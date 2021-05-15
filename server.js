@@ -1,8 +1,9 @@
 //Install express server
-const express = require('express');
+let express = require('express');
 const path = require('path');
 
-const app = express();
+let app = express();
+app.disable("x-powered-by");
 
 // Serve only the static files form the angularapp directory
 app.use(express.static(__dirname + '/angularapp'));
