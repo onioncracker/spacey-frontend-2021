@@ -98,9 +98,22 @@
             ],
             "scripts": []
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "eslintConfig": "eslintrc.json",
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
   },
-  "defaultProject": "spacey"
+  "defaultProject": "spacey",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }
