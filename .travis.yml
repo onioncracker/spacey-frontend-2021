@@ -1,0 +1,23 @@
+language: node_js
+node_js:
+  - "12"
+dist: trusty
+sudo: required
+branches:
+  only:
+  - master
+before_script:
+  - npm install -g @angular/cli
+script:
+- ng lint
+- ng build --prod --base-href https://t-palmer.github.io/travis-demo
+
+
+deploy:
+  provider: heroku
+  api_key: ${HEROKU_API_KEY}
+  app: spaceycracker
+
+notifications:
+  slack: nceducationce-3ag6276:Qe0g8czGFaIzczklQAbXYs89
+
