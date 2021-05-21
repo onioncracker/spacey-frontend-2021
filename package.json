@@ -10,9 +10,9 @@
     "lint": "ng lint",
     "start": "node server.js",
     "build": "ng build",
-    "watch": "ng build --watch --configuration development",
+    "watch": "ng build --watch --configuration production",
     "test": "ng test",
-    "postinstall": "ng build --output-path angularapp  --aot --configuration development"
+    "postinstall": "ng build --output-path angularapp  --aot --configuration production"
   },
   "private": true,
   "dependencies": {
