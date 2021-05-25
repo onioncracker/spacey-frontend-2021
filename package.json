@@ -1,34 +1,29 @@
 {
   "name": "spacey",
   "version": "0.0.0",
-  "engines": {
-    "node": "12.x",
-    "npm": "6.x"
-  },
   "scripts": {
     "ng": "ng",
     "lint": "ng lint",
-    "start": "node server.js",
+    "start": "ng serve",
     "build": "ng build",
-    "watch": "ng build --watch --configuration production",
-    "test": "ng test",
-    "postinstall": "ng build --output-path angularapp  --aot --configuration production"
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "~12.0.0",
+    "@angular/cdk": "^12.0.1",
     "@angular/common": "~12.0.0",
     "@angular/compiler": "~12.0.0",
     "@angular/core": "~12.0.0",
     "@angular/forms": "~12.0.0",
+    "@angular/material": "^12.0.1",
     "@angular/platform-browser": "~12.0.0",
     "@angular/platform-browser-dynamic": "~12.0.0",
     "@angular/router": "~12.0.0",
-    "express": "^4.17.1",
-    "path": "^0.12.7",
     "rxjs": "~6.6.0",
+    "sweetalert2": "^11.0.0",
     "tslib": "^2.1.0",
-    "typescript": "~4.2.3",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
@@ -44,7 +39,7 @@
     "@types/node": "^12.11.1",
     "@typescript-eslint/eslint-plugin": "4.23.0",
     "@typescript-eslint/parser": "4.23.0",
-    "eslint": "^7.26.0",
+    "eslint": "^7.27.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-jasmine": "^4.1.2",
     "eslint-plugin-prettier": "^3.4.0",
