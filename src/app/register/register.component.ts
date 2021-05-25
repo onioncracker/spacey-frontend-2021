@@ -1,8 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { UserService } from '../service/userService';
+import {ActivatedRoute, Router} from '@angular/router';
 import { User } from '../model/user';
-import { FormBuilder, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, NgForm, FormGroupDirective, FormGroup, Validators} from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
+import {RegisterModel} from "../model/RegisterModel";
+import {MessageService} from "../service/MessageService";
+
+export class RegistrationErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -11,43 +21,48 @@ import { FormBuilder, Validators} from '@angular/forms';
 export class RegisterComponent implements OnInit {
 
   user: User | undefined;
-  registerForm;
+  errorMatcher: ErrorStateMatcher;
+  registerForm: FormGroup;
+  hide: boolean = true;
 
 
 
   constructor(
-    private route: ActivatedRoute,
+    private router: Router,
     private formBuilder: FormBuilder,
-    private service: UserService
-
+    private service: MessageService
   ) {
     this.registerForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,30}')]],
       name: ['',[ Validators.required, Validators.maxLength(40)]],
       surname: ['', [Validators.required, Validators.maxLength(40)]],
-      role: ['', Validators.required]
-
     });
+    this.errorMatcher = new RegistrationErrorStateMatcher();
   }
 
   ngOnInit(): void {
-
   }
 
-  onSubmit(customerData: any) {
-    this.service.checkIfEmailExists(this.registerForm.value.email).subscribe(val => {
-      if(!val){
-        const form = this.registerForm.value;
-        form.password = btoa(this.registerForm.value.password);
+  onSubmit() {
+    this.register();
+  }
 
-        this.service.addUser(form);
+  public register(): void {
+    const registrationData = {
+      name: this.registerForm.get('name')!.value,
+      surname: this.registerForm.get('surname')!.value,
+      email: this.registerForm.get('email')!.value,
+      password: this.registerForm.get('password')!.value,
+      // phone_number: this.registerForm.get('phone_number').value,
+    } as RegisterModel;
+    this.registerForm.controls.name.disable();
+    this.registerForm.controls.email.disable();
+    this.registerForm.controls.password.disable();
+    this.registerForm.controls.surname.disable();
 
-          console.log('User created successfully!');
-      }
-      else {
-      console.log('User with such email already exists')
-      }
-    });
+    this.service.register(registrationData).subscribe(response => {
+
+    })
   }
 }

@@ -1,29 +1,48 @@
-<div >
-  <h3>Register</h3>
-  <form (ngSubmit)="onSubmit(registerForm.value)" novalidate>
-    <div class="form-group"
+<div>
+  <form class="form-class" (ngSubmit)="onSubmit()" [formGroup]="registerForm">
+    <div>
+      <mat-label><h1>Personal information</h1></mat-label>
 
-    >
-      <label>Email</label>
-      <input type="text" formControlName="email" id="email"  >
-    </div>
-    <div class = "form-group"
-         >
-      <label>Password</label>
-      <input type="text" formControlName="password" id="password" >
-    </div>
-    <div class="form-group">
+      <mat-form-field class="reg-form-field" appearance="standard">
+        <input matInput formControlName="name" type="text" placeholder="Name">
+        <mat-error *ngIf="registerForm.get('name')!.hasError('required')">
+          Name is required!
+        </mat-error>
+      </mat-form-field>
 
-      <label> Name</label>
-      <input type="text" formControlName="name" id="username" >
-    </div>
-    <div class="form-group"
-         >
-      <label>Surname</label>
-      <input type="text" formControlName="surname" id="surname">
+      <mat-form-field class="reg-form-field" appearance="standard">
+        <input matInput formControlName="surname" type="text" placeholder="Surname">
+        <mat-error *ngIf="registerForm.get('surname')!.hasError('required')">
+          Surname is required!
+        </mat-error>
+      </mat-form-field>
+
+      <mat-label><h1>Email</h1></mat-label>
+      <mat-form-field class="reg-form-field" appearance="standard">
+        <mat-label>Email</mat-label>
+        <input type="email" matInput formControlName="email" [errorStateMatcher]="errorMatcher" placeholder="email@example.com">
+        <mat-error *ngIf="registerForm.get('email')!.hasError('email') && !registerForm.get('email')!.hasError('required')">
+          Please write correct address
+        </mat-error>
+        <mat-error *ngIf="registerForm.get('email')!.hasError('required')">
+          Email is<strong>required!</strong>
+        </mat-error>
+      </mat-form-field>
     </div>
     <div>
-      <button type="submit">Submit</button>
+      <mat-label><h1>Password</h1></mat-label>
+      <mat-form-field class="reg-form-field" appearance="standard">
+        <mat-label>Enter your password</mat-label>
+        <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="registerForm.get('password')!.hasError('required')">
+          Password is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
     </div>
+
+
   </form>
 </div>
