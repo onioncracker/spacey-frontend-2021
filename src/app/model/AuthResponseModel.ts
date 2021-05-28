@@ -1,3 +1,3 @@
 export class AuthResponseModel {
-  public authToken: string | undefined;
+  public authToken!: string;
 }

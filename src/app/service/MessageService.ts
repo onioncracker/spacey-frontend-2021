@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {Observable, throwError} from "rxjs";
 import {RegisterModel} from "../model/RegisterModel";
 import {AuthResponseModel} from "../model/AuthResponseModel";
+import {LoginModel} from "../model/LoginModel";
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ import {AuthResponseModel} from "../model/AuthResponseModel";
 export class MessageService {
   private hostURL = 'http://localhost/5000';
   private registerURL = this.hostURL + '/register';
+  private loginURL = this.hostURL + '/login';
 
   public loggedIn = false;
   private httpOptions = {observe: 'response' as const};
@@ -40,6 +42,10 @@ export class MessageService {
 
   register(registerData: RegisterModel): Observable<HttpResponse<AuthResponseModel>> {
     return this.http.post<AuthResponseModel>(this.registerURL, registerData, this.httpOptions);
+  }
+
+  login(loginData: LoginModel): Observable<HttpResponse<AuthResponseModel>> {
+    return this.http.post<AuthResponseModel>(this.loginURL, loginData, this.httpOptions);
   }
 }
 
