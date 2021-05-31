@@ -17,9 +17,10 @@ import {AuthInterceptor} from "./service/AuthInterceptor";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import { LoginComponent } from './login/login.component';
+import { AdminEmployeeComponent } from './admin-employee/admin-employee.component';
 
 @NgModule({
-  declarations: [AppComponent, RegisterComponent, ToolbarComponent, FooterComponent, LoginComponent],
+  declarations: [AppComponent, RegisterComponent, ToolbarComponent, FooterComponent, LoginComponent, AdminEmployeeComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, ReactiveFormsModule, BrowserAnimationsModule, MatToolbarModule, MatButtonModule, MatListModule, MatIconModule, MatFormFieldModule, MatInputModule],
   providers: [
     {
