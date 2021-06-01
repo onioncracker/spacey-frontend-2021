@@ -5,6 +5,7 @@ import {Observable, throwError} from "rxjs";
 import {RegisterModel} from "../model/RegisterModel";
 import {AuthResponseModel} from "../model/AuthResponseModel";
 import {LoginModel} from "../model/LoginModel";
+import {EmployeeProfileModel} from "../model/EmployeeProfileModel";
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class MessageService {
   private hostURL = 'http://localhost/5000';
   private registerURL = this.hostURL + '/register';
   private loginURL = this.hostURL + '/login';
+  private employeeInfoURL = this.hostURL + '/employee-info';
 
   public loggedIn = false;
   private httpOptions = {observe: 'response' as const};
@@ -46,6 +48,10 @@ export class MessageService {
 
   login(loginData: LoginModel): Observable<HttpResponse<AuthResponseModel>> {
     return this.http.post<AuthResponseModel>(this.loginURL, loginData, this.httpOptions);
+  }
+
+  getEmployeeInfo():Observable<HttpResponse<EmployeeProfileModel>> {
+    return this.http.get<EmployeeProfileModel>(this.employeeInfoURL, this.httpOptions);
   }
 }
 
