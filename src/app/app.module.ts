@@ -17,12 +17,13 @@ import {AuthInterceptor} from "./service/AuthInterceptor";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import { LoginComponent } from './login/login.component';
-import { AdminEmployeeComponent } from './admin-employee/admin-employee.component';
+import { AdminEmployeeComponent } from './admin-manage/admin-employee.component';
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatTableModule} from "@angular/material/table";
+import { AdminEditComponent } from './admin-edit/admin-edit.component';
 
 @NgModule({
-  declarations: [AppComponent, RegisterComponent, ToolbarComponent, FooterComponent, LoginComponent, AdminEmployeeComponent],
+  declarations: [AppComponent, RegisterComponent, ToolbarComponent, FooterComponent, LoginComponent, AdminEmployeeComponent, AdminEditComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, ReactiveFormsModule, BrowserAnimationsModule, MatToolbarModule, MatButtonModule, MatListModule, MatIconModule, MatFormFieldModule, MatInputModule, MatPaginatorModule, MatTableModule],
   providers: [
     {
