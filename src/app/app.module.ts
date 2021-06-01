@@ -18,10 +18,12 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import { LoginComponent } from './login/login.component';
 import { AdminEmployeeComponent } from './admin-employee/admin-employee.component';
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatTableModule} from "@angular/material/table";
 
 @NgModule({
   declarations: [AppComponent, RegisterComponent, ToolbarComponent, FooterComponent, LoginComponent, AdminEmployeeComponent],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, ReactiveFormsModule, BrowserAnimationsModule, MatToolbarModule, MatButtonModule, MatListModule, MatIconModule, MatFormFieldModule, MatInputModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, ReactiveFormsModule, BrowserAnimationsModule, MatToolbarModule, MatButtonModule, MatListModule, MatIconModule, MatFormFieldModule, MatInputModule, MatPaginatorModule, MatTableModule],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

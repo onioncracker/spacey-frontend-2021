@@ -1,4 +1,62 @@
-<mat-form-field appearance="fill">
-  <mat-label>Input</mat-label>
+<mat-label class="manage-label"><h1> MANAGE EMPLOYEES </h1></mat-label>
+
+<form class="form-class">
+  <span></span>
+
+<div class="manage-form">
+<mat-form-field class = "search-box" appearance="fill">
+  <mat-label>type employee's name/surname</mat-label>
   <input matInput>
 </mat-form-field>
+</div>
+
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+
+      <!-- User Id Column -->
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef> User ID. </th>
+        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="firstname">
+        <th mat-header-cell *matHeaderCellDef> First name </th>
+        <td mat-cell *matCellDef="let element"> {{element.firstname}} </td>
+      </ng-container>
+
+      <!-- Last name Column -->
+      <ng-container matColumnDef="lastname">
+        <th mat-header-cell *matHeaderCellDef> Last name </th>
+        <td mat-cell *matCellDef="let element"> {{element.lastname}} </td>
+      </ng-container>
+
+      <!-- Role Column -->
+      <ng-container matColumnDef="role">
+        <th mat-header-cell *matHeaderCellDef> Role </th>
+        <td mat-cell *matCellDef="let element"> {{element.role}} </td>
+      </ng-container>
+
+      <!-- Status Column -->
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+      </ng-container>
+
+      <!-- Edit Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell  *matHeaderCellDef ></th>
+        <td mat-cell *matCellDef="let element"> <button mat-button>{{element.actions}}</button> </td>
+
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+  <br>
+  <div class="add-employee">
+    <button mat-raised-button class="add-btn" color="accent"> ADD EMPLOYEE </button>
+  </div>
+</form>
