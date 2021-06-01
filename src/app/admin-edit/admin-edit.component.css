@@ -1,0 +1,40 @@
+.form-class {
+  display: flex;
+  flex-direction: column;
+  align-items: normal;
+}
+
+.edit-label {
+  display: flex;
+  justify-content: center;
+  margin-top: 3%;
+  margin-bottom: 3%;
+}
+
+.input-form {
+  display: flex;
+  flex: 0 0 100%;
+  justify-content: left;
+}
+
+.save-changes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.save {
+  width: 30%;
+  border-radius: 1px;
+  margin-top: 3%;
+  margin-bottom: 3%;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  margin-right: 5%;
+  margin-left: 5%;
+  margin-bottom: 2%;
+  width: 100%;
+}
