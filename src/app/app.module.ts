@@ -16,15 +16,13 @@ import {MatIconModule} from "@angular/material/icon";
 import {FooterComponent} from './components/footer/footer.component';
 import {CheckoutComponent} from './components/checkout/checkout.component';
 import { ConfirmComponent } from './views/confirm/confirm.component';
-import { ItemsComponent } from './items/items.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { DeliveryComponent } from './components/delivery/delivery.component';
 import { CommentComponent } from './components/comment/comment.component';
-import { SummaryComponent } from './summary/summary.component';
 import { OrderComponent } from './components/order/order.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, RegisterComponent, ToolbarComponent, FooterComponent, CheckoutComponent, ConfirmComponent, ItemsComponent, OrdersComponent, DeliveryComponent, CommentComponent, SummaryComponent, OrderComponent],
+  declarations: [AppComponent, LoginComponent, RegisterComponent, ToolbarComponent, FooterComponent, CheckoutComponent, ConfirmComponent, OrdersComponent, DeliveryComponent, CommentComponent, OrderComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, ReactiveFormsModule,
             BrowserAnimationsModule, MatToolbarModule, MatButtonModule, MatListModule, MatIconModule],
   providers: [],
