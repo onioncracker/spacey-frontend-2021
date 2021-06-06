@@ -1,20 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import {TokenStorageService} from "../../store/service/auth/tokenStorageService";
-import {Router} from "@angular/router";
+import { TokenStorageService } from '../../store/service/auth/tokenStorageService';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-toolbar',
   templateUrl: './toolbar.component.html',
-  styleUrls: ['./toolbar.component.css']
+  styleUrls: ['./toolbar.component.css'],
 })
 export class ToolbarComponent implements OnInit {
+  constructor(private router: Router) {}
 
-  constructor(private router: Router) { }
-
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   routeToCheckout() {
-    this.router.navigateByUrl("/checkout");
+    this.router.navigateByUrl('/checkout');
   }
 }

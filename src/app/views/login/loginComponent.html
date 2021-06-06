@@ -1,5 +1,4 @@
-<div *ngIf="isLoggedIn; else loggedOut">
-</div>
+<div *ngIf="isLoggedIn; else loggedOut"></div>
 
 <ng-template #loggedOut>
   <form name="form" (ngSubmit)="onSubmit()" #f="ngForm" novalidate>
@@ -7,9 +6,16 @@
     <div>
       <label>Username</label>
       <div>
-        <input type="email" id="form-email" style="display: block"
-               name="username" [(ngModel)]="form.username" #username="ngModel"
-               placeholder="Email address" required/>
+        <input
+          type="email"
+          id="form-email"
+          style="display: block"
+          name="username"
+          [(ngModel)]="form.username"
+          #username="ngModel"
+          placeholder="Email address"
+          required
+        />
       </div>
       <div *ngIf="f.submitted && username.invalid">
         <div>Email is required</div>
@@ -19,9 +25,14 @@
       <label>Password</label>
 
       <div>
-        <input type="password"
-               name="password" [(ngModel)]="form.password" #password="ngModel"
-               placeholder="Password" required/>
+        <input
+          type="password"
+          name="password"
+          [(ngModel)]="form.password"
+          #password="ngModel"
+          placeholder="Password"
+          required
+        />
       </div>
       <div *ngIf="f.submitted && password.invalid">
         <div>Password is required</div>
@@ -32,5 +43,4 @@
       <button>Sign in</button>
     </div>
   </form>
-
 </ng-template>
