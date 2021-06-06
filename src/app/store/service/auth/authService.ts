@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { JwtResponse } from './jwtResponse';
-import { AuthLoginInfo } from './loginInfo';
+import { JwtResponse } from '../../models/jwtResponse';
+import { AuthLoginInfo } from '../../models/loginInfo';
 import {environment} from 'src/environments/environment';
 
 

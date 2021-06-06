@@ -2,28 +2,28 @@
 </div>
 
 <ng-template #loggedOut>
-  <form  name="form" (ngSubmit)="onSubmit()" #f="ngForm" novalidate>
+  <form name="form" (ngSubmit)="onSubmit()" #f="ngForm" novalidate>
     <h3>Login</h3>
-    <div >
+    <div>
       <label>Username</label>
-      <div >
-        <input  type="email" id="form-email" style="display: block"
+      <div>
+        <input type="email" id="form-email" style="display: block"
                name="username" [(ngModel)]="form.username" #username="ngModel"
-               placeholder="Email address" required />
+               placeholder="Email address" required/>
       </div>
-      <div *ngIf="f.submitted && username.invalid" >
+      <div *ngIf="f.submitted && username.invalid">
         <div>Email is required</div>
       </div>
     </div>
-    <div >
-      <label >Password</label>
+    <div>
+      <label>Password</label>
 
-      <div >
+      <div>
         <input type="password"
                name="password" [(ngModel)]="form.password" #password="ngModel"
-               placeholder="Password" required />
+               placeholder="Password" required/>
       </div>
-      <div *ngIf="f.submitted && password.invalid" >
+      <div *ngIf="f.submitted && password.invalid">
         <div>Password is required</div>
       </div>
     </div>

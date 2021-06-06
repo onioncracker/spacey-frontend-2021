@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {TokenStorageService} from "../../store/service/auth/tokenStorageService";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-toolbar',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ToolbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
+  routeToCheckout() {
+    this.router.navigateByUrl("/checkout");
+  }
 }
