@@ -1,0 +1,50 @@
+import { Injectable } from '@angular/core';
+
+const TOKEN_KEY = 'token';
+const USERNAME_KEY = 'username';
+const AUTHORITIES_KEY = 'AuthAuthorities';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class TokenStorageService {
+  private roles: Array<string> = [];
+  constructor() { }
+
+  signOut() {
+    sessionStorage.clear();
+  }
+
+  public saveToken(token: string) {
+    sessionStorage.removeItem(TOKEN_KEY);
+    sessionStorage.setItem(TOKEN_KEY, token);
+  }
+
+  public getToken(): string {
+    return sessionStorage.getItem(TOKEN_KEY) as string;
+  }
+
+  public saveUsername(username: string) {
+    sessionStorage.removeItem(USERNAME_KEY);
+    sessionStorage.setItem(USERNAME_KEY, username);
+  }
+
+  public getUsername(): string {
+    return sessionStorage.getItem(USERNAME_KEY) as string;
+  }
+
+  public saveAuthorities(authorities: string[]) {
+    sessionStorage.removeItem(AUTHORITIES_KEY);
+    sessionStorage.setItem(AUTHORITIES_KEY, JSON.stringify(authorities));
+  }
+
+  public getAuthorities(): string[] {
+    this.roles = [];
+    if (sessionStorage.getItem(TOKEN_KEY)) {
+      JSON.parse(sessionStorage.getItem(AUTHORITIES_KEY)!).forEach((authority: { authority: string; }) => {
+        this.roles.push(authority.authority);
+      });
+    }
+    return this.roles;
+  }
+}
