@@ -1,19 +1,19 @@
 <mat-toolbar color="primary">
-  <button mat-flat-button color="primary" routerLink="/homepage&&&&">
+  <button mat-flat-button color="primary" (click)="routeToHomepage()">
     <h2>Spacey</h2>
   </button>
   <span class="gap"></span>
-  <button mat-flat-button color="primary" routerLink="/popular_now_page&&&&&&">
+  <button mat-flat-button color="primary" (click)="routeToPopular()">
     Popular now
   </button>
-  <button mat-flat-button color="primary" routerLink="/women&&&&&&&">
+  <button mat-flat-button color="primary" routerLink="/women">
     Women
   </button>
-  <button mat-flat-button color="primary" routerLink="/men&&&&&&">Men</button>
-  <button mat-flat-button color="primary" routerLink="/accessories&&&&&&">
+  <button mat-flat-button color="primary" routerLink="/men">Men</button>
+  <button mat-flat-button color="primary" (click)="routeToAccessories()">
     Accessories
   </button>
-  <button mat-flat-button color="primary" routerLink="/auctions&&&&&&">
+  <button mat-flat-button color="primary" (click)="routeToAuctions()">
     Auctions
   </button>
   <span class="gap"></span>
