@@ -1,4 +1,4 @@
-<mat-label class="login-label"><h1> LOG IN </h1></mat-label>
+<mat-label class="login-label"><h1>LOG IN</h1></mat-label>
 
 <form class="form-class" (ngSubmit)="onSubmit()" [formGroup]="loginForm">
   <span></span>
@@ -7,8 +7,19 @@
 
     <mat-form-field class="login-form-field" appearance="fill">
       <mat-label>email</mat-label>
-      <input type="email" matInput formControlName="email" [errorStateMatcher]="errorMatcher" placeholder="email@example.com">
-      <mat-error *ngIf="loginForm.get('email')?.hasError('email') && !loginForm.get('email')?.hasError('required')">
+      <input
+        type="email"
+        matInput
+        formControlName="email"
+        [errorStateMatcher]="errorMatcher"
+        placeholder="email@example.com"
+      />
+      <mat-error
+        *ngIf="
+          loginForm.get('email')?.hasError('email') &&
+          !loginForm.get('email')?.hasError('required')
+        "
+      >
         Please write correct address
       </mat-error>
       <mat-error *ngIf="loginForm.get('email')?.hasError('required')">
@@ -20,22 +31,45 @@
 
     <mat-form-field class="login-form-field" appearance="fill">
       <mat-label>password</mat-label>
-      <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
-      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      <input
+        matInput
+        formControlName="password"
+        [type]="hide ? 'password' : 'text'"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hide = !hide"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide"
+      >
+        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
       </button>
       <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
         Password is <strong>required</strong>
       </mat-error>
     </mat-form-field>
   </div>
-  <button mat-raised-button class="login-btn" [disabled]="!loginForm.valid" disabled type="submit" color="accent"> LOG IN </button>
+  <button
+    mat-raised-button
+    class="login-btn"
+    [disabled]="!loginForm.valid"
+    disabled
+    type="submit"
+    color="accent"
+  >
+    LOG IN
+  </button>
   <span></span>
 </form>
 <div class="create-acc">
   <mat-label><h3>New Customer?</h3></mat-label>
-  <button mat-raised-button class="login-btn" color="accent" routerLink="/register">CREATE YOUR ACCOUNT</button>
+  <button
+    mat-raised-button
+    class="login-btn"
+    color="accent"
+    routerLink="/register"
+  >
+    CREATE YOUR ACCOUNT
+  </button>
 </div>
-
-
-

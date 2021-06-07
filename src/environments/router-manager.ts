@@ -5,5 +5,5 @@ export const routeUrls = {
   popular: '/popular',
   checkout: '/checkout',
   accessories: '/accessories',
-  auctions: '/auctions'
-}
+  auctions: '/auctions',
+};

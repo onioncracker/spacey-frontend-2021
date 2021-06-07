@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import {routeUrls} from "../../../environments/router-manager";
+import { routeUrls } from '../../../environments/router-manager';
 
 @Component({
   selector: 'app-toolbar',
