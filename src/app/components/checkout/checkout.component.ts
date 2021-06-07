@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CheckoutService } from '../../store/service/checkout/checkout.service';
 
 @Component({

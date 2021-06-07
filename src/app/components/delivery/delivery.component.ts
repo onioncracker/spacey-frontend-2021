@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-delivery',
@@ -6,5 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./delivery.component.css'],
 })
 export class DeliveryComponent {
-  constructor() {}
+  constructor() {
+    // do nothing.
+  }
 }
