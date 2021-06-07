@@ -6,8 +6,6 @@ import { CheckoutService } from '../../store/service/checkout/checkout.service';
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.css'],
 })
-export class CheckoutComponent implements OnInit {
+export class CheckoutComponent {
   constructor(private checkoutService: CheckoutService) {}
-
-  ngOnInit(): void {}
 }

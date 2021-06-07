@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { UserService } from '../../store/service/userService';
+import { UserService } from '../../store/service/user/userService';
 import { User } from '../../store/models/user';
 import { FormBuilder, Validators } from '@angular/forms';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
   user: User | undefined;
   registerForm;
 
@@ -37,8 +38,6 @@ export class RegisterComponent implements OnInit {
       role: ['', Validators.required],
     });
   }
-
-  ngOnInit(): void {}
 
   onSubmit(customerData: any) {
     this.service

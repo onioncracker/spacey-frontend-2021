@@ -5,8 +5,6 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './confirm.component.html',
   styleUrls: ['./confirm.component.css'],
 })
-export class ConfirmComponent implements OnInit {
+export class ConfirmComponent {
   constructor() {}
-
-  ngOnInit(): void {}
 }
