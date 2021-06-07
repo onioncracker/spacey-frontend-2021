@@ -1,0 +1,40 @@
+
+.reg-label {
+  display: flex;
+  justify-content: center;
+  margin-top: 5%;
+  margin-bottom: 3%;
+}
+
+.form-class {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-form {
+  display: flex;
+  flex: 0 0 100%;
+  justify-content: center;
+}
+
+.reg-btn-div {
+  display: flex;
+  justify-content: center;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  margin-right: 5%;
+  margin-left: 5%;
+  margin-bottom: 2%;
+  width: 25%;
+}
+
+.reg-btn {
+  padding-left: 10%;
+  padding-right: 10%;
+  border-radius: 1px;
+}

@@ -9,18 +9,15 @@ const AUTHORITIES_KEY = 'AuthAuthorities';
 })
 export class TokenStorageService {
   private roles: Array<string> = [];
-
-  constructor() {
-    // do nothing.
-  }
+  constructor() {}
 
   signOut() {
-    window.sessionStorage.clear();
+    sessionStorage.clear();
   }
 
   public saveToken(token: string) {
-    window.sessionStorage.removeItem(TOKEN_KEY);
-    window.sessionStorage.setItem(TOKEN_KEY, token);
+    sessionStorage.removeItem(TOKEN_KEY);
+    sessionStorage.setItem(TOKEN_KEY, token);
   }
 
   public getToken(): string {
@@ -28,8 +25,8 @@ export class TokenStorageService {
   }
 
   public saveUsername(username: string) {
-    window.sessionStorage.removeItem(USERNAME_KEY);
-    window.sessionStorage.setItem(USERNAME_KEY, username);
+    sessionStorage.removeItem(USERNAME_KEY);
+    sessionStorage.setItem(USERNAME_KEY, username);
   }
 
   public getUsername(): string {
@@ -37,8 +34,8 @@ export class TokenStorageService {
   }
 
   public saveAuthorities(authorities: string[]) {
-    window.sessionStorage.removeItem(AUTHORITIES_KEY);
-    window.sessionStorage.setItem(AUTHORITIES_KEY, JSON.stringify(authorities));
+    sessionStorage.removeItem(AUTHORITIES_KEY);
+    sessionStorage.setItem(AUTHORITIES_KEY, JSON.stringify(authorities));
   }
 
   public getAuthorities(): string[] {

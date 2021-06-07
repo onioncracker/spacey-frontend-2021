@@ -1,8 +1,32 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { UserService } from '../../store/service/user/userService';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import {
+  FormBuilder,
+  FormControl,
+  NgForm,
+  FormGroupDirective,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
 import { User } from '../../store/models/user';
-import { FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from '../../store/service/auth/AuthService';
+import { TokenStorageService } from '../../store/service/auth/TokenStorageService';
+import { RegisterModel } from '../../store/models/RegisterModel';
+
+export class RegistrationErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(
+    control: FormControl | null,
+    form: FormGroupDirective | NgForm | null
+  ): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(
+      control &&
+      control.invalid &&
+      (control.dirty || control.touched || isSubmitted)
+    );
+  }
+}
 
 @Component({
   selector: 'app-register',
@@ -11,21 +35,18 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class RegisterComponent {
   user: User | undefined;
-  registerForm;
+  errorMatcher: ErrorStateMatcher;
+  registerForm: FormGroup;
+  hide: boolean = true;
 
   constructor(
-    private route: ActivatedRoute,
+    private router: Router,
     private formBuilder: FormBuilder,
-    private service: UserService
+    private messageService: AuthService,
+    private storageService: TokenStorageService
   ) {
     this.registerForm = this.formBuilder.group({
-      email: [
-        '',
-        [
-          Validators.required,
-          Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
-        ],
-      ],
+      email: ['', [Validators.required, Validators.email]],
       password: [
         '',
         [
@@ -33,26 +54,55 @@ export class RegisterComponent {
           Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,30}'),
         ],
       ],
+      // password: ['', [Validators.required]],
       name: ['', [Validators.required, Validators.maxLength(40)]],
       surname: ['', [Validators.required, Validators.maxLength(40)]],
-      role: ['', Validators.required],
     });
+    this.errorMatcher = new RegistrationErrorStateMatcher();
   }
 
-  onSubmit(customerData: any) {
-    this.service
-      .checkIfEmailExists(this.registerForm.value.email)
-      .subscribe((val) => {
-        if (!val) {
-          const form = this.registerForm.value;
-          form.password = btoa(this.registerForm.value.password);
+  onSubmit() {
+    this.register();
+  }
 
-          this.service.addUser(form);
+  public register(): void {
+    const registrationData = {
+      name: this.registerForm.get('name')?.value,
+      surname: this.registerForm.get('surname')?.value,
+      email: this.registerForm.get('email')?.value,
+      password: this.registerForm.get('password')?.value,
+      // phone_number: this.registerForm.get('phone_number').value,
+    } as RegisterModel;
 
-          console.log('User created successfully!');
+    this.registerForm.controls.name.disable();
+    this.registerForm.controls.email.disable();
+    this.registerForm.controls.password.disable();
+    this.registerForm.controls.surname.disable();
+
+    this.messageService.register(registrationData).subscribe(
+      (response) => {
+        const data = response.body;
+        // sessionStorage.setItem('token', data!.authToken);
+        this.storageService.saveToken(data!.authToken);
+        console.log('user registered successfully');
+        // this.router.navigate(['main-page']);
+      },
+      (error) => {
+        console.warn('REGISTRATION FAILED');
+        if (error.status === 409) {
+          alert('Вказаний email вже зареєстровано в базі');
+          this.router.navigate(['/login']);
         } else {
-          console.log('User with such email already exists');
+          alert('Виникла помилка. Спробуйте ще раз');
+          console.warn(error);
         }
-      });
+
+        this.registerForm.controls.name.enable();
+        this.registerForm.controls.email.enable();
+        this.registerForm.controls.phoneNumber.enable();
+        this.registerForm.controls.email.enable();
+        this.registerForm.controls.password.enable();
+      }
+    );
   }
 }
