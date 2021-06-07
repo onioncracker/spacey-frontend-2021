@@ -1,0 +1,15 @@
+.category-container {
+  display: flex;
+  border-top: #5a5757 2px solid;
+}
+
+.title-category {
+  margin-left: 30px;
+  font-size: large;
+  font-weight: bold;
+}
+
+.mat-list-option {
+  margin-left: 15px;
+  margin-right: 100px;
+}
