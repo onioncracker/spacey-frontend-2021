@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ErrorStateMatcher } from '@angular/material/core';
 import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from "@angular/forms";
-import {MessageService} from "../../service/MessageService";
+import {AuthService} from "../../store/service/auth/AuthService";
 import {Router} from "@angular/router";
-import {LoginModel} from "../../model/LoginModel";
-import {TokenStorageService} from "../../service/TokenStorageService";
+import {LoginModel} from "../../store/models/LoginModel";
+import {TokenStorageService} from "../../store/service/auth/TokenStorageService";
 
 export class LoginErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   hide = true;
 
   constructor(private formBuilder: FormBuilder,
-              private messageService: MessageService,
+              private messageService: AuthService,
               private router: Router,
               private storageService: TokenStorageService
   ) {

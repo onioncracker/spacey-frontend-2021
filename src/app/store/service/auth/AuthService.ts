@@ -2,15 +2,15 @@ import {Injectable} from "@angular/core";
 import {HttpClient, HttpResponse} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {Observable, throwError} from "rxjs";
-import {RegisterModel} from "../model/RegisterModel";
-import {AuthResponseModel} from "../model/AuthResponseModel";
-import {LoginModel} from "../model/LoginModel";
+import {RegisterModel} from "../../models/RegisterModel";
+import {AuthResponseModel} from "../../models/AuthResponseModel";
+import {LoginModel} from "../../models/LoginModel";
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class MessageService {
+export class AuthService {
   private hostURL = 'http://localhost/5000';
   private registerURL = this.hostURL + '/register';
   private loginURL = this.hostURL + '/login';

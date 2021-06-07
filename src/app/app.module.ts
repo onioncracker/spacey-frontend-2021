@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/loginComponent';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './components/register/register.component';
@@ -20,6 +19,7 @@ import { OrdersComponent } from './components/orders/orders.component';
 import { DeliveryComponent } from './components/delivery/delivery.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { OrderComponent } from './components/order/order.component';
+import {LoginComponent} from "./components/login/login.component";
 
 @NgModule({
   declarations: [
