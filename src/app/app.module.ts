@@ -19,6 +19,8 @@ import { DeliveryComponent } from './components/delivery/delivery.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { OrderComponent } from './components/order/order.component';
 import { LoginComponent } from './components/login/login.component';
+import { AdminEmployeeComponent } from './components/admin-manage/admin-employee.component';
+import { AdminAddComponent } from './components/admin-add/admin-add.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { RegisterComponent } from './components/register/register.component';
@@ -31,6 +33,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -50,6 +53,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     CategoryComponent,
     FilterComponent,
     PaginationComponent,
+    AdminEmployeeComponent,
+    AdminAddComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,6 +72,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatPaginatorModule,
     MatCheckboxModule,
     MatExpansionModule,
+    MatTableModule,
   ],
   providers: [
     {
