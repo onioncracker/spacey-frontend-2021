@@ -1,12 +1,12 @@
-import {Component} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {AddProductService} from '../../store/service/add-product/add-product.service';
-import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
-import {MatChipInputEvent} from '@angular/material/chips';
-import {map, startWith} from 'rxjs/operators';
-import {FormControl} from '@angular/forms';
-import {Observable} from 'rxjs';
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { AddProductService } from '../../store/service/add-product/add-product.service';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { map, startWith } from 'rxjs/operators';
+import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
 
 @Component({
   selector: 'app-add-product',

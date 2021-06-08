@@ -1,12 +1,12 @@
-import {Component} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {EditProductService} from '../../store/service/edit-product/edit-product.service';
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {FormControl} from '@angular/forms';
-import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
-import {MatChipInputEvent} from '@angular/material/chips';
-import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
+import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { EditProductService } from '../../store/service/edit-product/edit-product.service';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 
 @Component({
   selector: 'app-edit-product',
