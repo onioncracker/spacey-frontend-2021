@@ -1,12 +1,17 @@
 {
   "name": "spacey",
   "version": "0.0.0",
+  "engines": {
+    "node": "12.x",
+    "npm": "6.x"
+  },
   "scripts": {
     "ng": "ng",
     "lint": "ng lint",
-    "start": "ng serve",
+    "start": "node server.js",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
+    "postinstall": "ng build --output-path angularapp  --aot --configuration production",
     "test": "ng test"
   },
   "private": true,
@@ -21,6 +26,7 @@
     "@angular/platform-browser": "~12.0.0",
     "@angular/platform-browser-dynamic": "~12.0.0",
     "@angular/router": "~12.0.0",
+    "express": "^4.17.1",
     "rxjs": "~6.6.0",
     "sweetalert2": "^11.0.0",
     "tslib": "^2.1.0",
