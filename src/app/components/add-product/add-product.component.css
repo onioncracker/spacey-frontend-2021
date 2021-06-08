@@ -1,0 +1,102 @@
+.head-prod-edit {
+  height: 70px;
+  background: #f8f8f8;
+  display: flex;
+}
+
+.h-add {
+  margin: 17px auto 17px;
+}
+
+h1 {
+  text-align: center;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 36px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #121212;
+}
+
+h3 {
+  margin: 24px auto 8px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 18px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #121212;
+}
+
+.table-edit {
+  margin: 18px auto 0;
+}
+
+td {
+  width: 168px;
+}
+
+.photo {
+  width: 174px;
+  height: 217px;
+}
+
+input, select {
+  width: 140px;
+  height: 28px;
+  background: #e5e5e5;
+  border: 0;
+}
+
+.input-name {
+  width: 485px;
+}
+
+.input-description {
+  width: 660px;
+  height: 130px;
+}
+
+.amount-size {
+  width: 80px;
+}
+
+button {
+  width: 340px;
+  height: 48px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 15px;
+  text-align: center;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.button-save {
+  align-items: center;
+  box-sizing: border-box;
+  background: #121212;
+  border: 2px solid #121212;
+  margin: 38px auto 8px;
+  color: #fff;
+}
+
+.save-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.example-chip-list {
+  width: 665px;
+}
+
+.sizes {
+  margin: 0 auto 8px;
+  float: right;
+}

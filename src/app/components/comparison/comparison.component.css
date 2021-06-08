@@ -1,0 +1,92 @@
+.head-comparison {
+  height: 70px;
+  background: #f8f8f8;
+  display: flex;
+}
+
+.h-comparison {
+  margin: 17px auto 17px;
+}
+
+.photo {
+  width: 240px;
+  height: 293px;
+}
+
+.photo-and-button {
+  position: relative;
+  width: 50%;
+}
+
+.button-x {
+  position: absolute;
+  padding: 10px 10px;
+  border: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+h4 {
+  margin: 32px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #121212;
+}
+
+.table-comparison {
+  display: flex;
+  margin: 42px auto 32px;
+  padding: 0 16px;
+  max-width: 960px;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  text-align: center;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 36px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #121212;
+}
+
+td {
+  width: 240px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 22px;
+  color: #121212;
+  text-align: center;
+}
+
+.button-div {
+  display: flex;
+  justify-content: center;
+}
+
+.button-add-more {
+  margin: 42px auto 80px;
+  background: #121212;
+  border: 2px solid #121212;
+  width: 156px;
+  height: 48px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 15px;
+  text-align: center;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #fff;
+  opacity: 0.9;
+}

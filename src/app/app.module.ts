@@ -31,6 +31,12 @@ import { PaginationComponent } from './components/pagination/pagination.componen
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { ComparisonComponent } from './components/comparison/comparison.component';
+import { AddProductComponent } from './components/add-product/add-product.component';
+import { EditProductComponent } from './components/edit-product/edit-product.component';
+import { MatOptionModule } from '@angular/material/core';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -50,6 +56,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
     CategoryComponent,
     FilterComponent,
     PaginationComponent,
+    ComparisonComponent,
+    AddProductComponent,
+    EditProductComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,6 +76,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatPaginatorModule,
     MatCheckboxModule,
     MatExpansionModule,
+    MatOptionModule,
+    MatAutocompleteModule,
+    MatChipsModule,
   ],
   providers: [
     {
