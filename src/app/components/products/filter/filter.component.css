@@ -1,0 +1,29 @@
+.filter-container {
+  margin: 0 35px 0 35px;
+  display: flex;
+}
+
+.example-section {
+  margin-top: 12px;
+  margin-right: 100px;
+}
+
+.title-section {
+  margin-left: 40px;
+  text-transform: uppercase;
+  font-size: small;
+}
+
+.mat-checkbox {
+  font-size: smaller;
+  font-weight: bold;
+}
+
+.example-margin {
+  margin: 0 12px;
+}
+
+ul {
+  list-style-type: none;
+  margin-top: 4px;
+}

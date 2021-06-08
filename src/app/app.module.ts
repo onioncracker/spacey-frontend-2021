@@ -23,6 +23,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthInterceptor } from './store/service/AuthInterceptor';
+import { ProductsComponent } from './components/products/products.component';
+import { ProductDetailsComponent } from './components/product/product-details.component';
+import { FilterComponent } from './components/products/filter/filter.component';
+import { CategoryComponent } from './components/products/category/category.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -37,6 +45,11 @@ import { AuthInterceptor } from './store/service/AuthInterceptor';
     DeliveryComponent,
     CommentComponent,
     OrderComponent,
+    ProductsComponent,
+    ProductDetailsComponent,
+    CategoryComponent,
+    FilterComponent,
+    PaginationComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,6 +64,9 @@ import { AuthInterceptor } from './store/service/AuthInterceptor';
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
+    MatPaginatorModule,
+    MatCheckboxModule,
+    MatExpansionModule,
   ],
   providers: [
     {

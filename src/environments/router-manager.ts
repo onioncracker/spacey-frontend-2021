@@ -6,4 +6,6 @@ export const routeUrls = {
   checkout: 'checkout',
   accessories: 'accessories',
   auctions: 'auctions',
+  products: 'products',
+  productDetails: 'products/:id',
 };

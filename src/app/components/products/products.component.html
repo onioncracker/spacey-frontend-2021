@@ -1,0 +1,41 @@
+<div class="title-container">
+  <h1 align="center" class="display-4 mb-5">{{ title }}</h1>
+  <mat-accordion>
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title> Filter </mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-filter></app-filter>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
+
+<div class="row card-deck text-center">
+  <div *ngFor="let product of products" class="col-lg-4">
+    <div class="card mb-4">
+      <a
+        [title]="product.name + ' details'"
+        [routerLink]="['/products', product.id]"
+      >
+        <img
+          height="50%"
+          class="card-img-top"
+          src="{{ product.photo }}"
+          alt="{{ product.name }}"
+        />
+      </a>
+      <div class="card-body">
+        <h3>
+          <a
+            [title]="product.name + ' details'"
+            [routerLink]="['/products', product.id]"
+          >
+            {{ product.name }}
+          </a>
+        </h3>
+        <p class="card-text" *ngIf="product.price">{{ product.price }} UAH</p>
+      </div>
+    </div>
+  </div>
+</div>
+<app-pagination></app-pagination>
