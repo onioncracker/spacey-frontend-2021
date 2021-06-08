@@ -19,8 +19,9 @@
 
 .body-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   flex-wrap: wrap;
+  margin-top: 35px;
 }
 
 .h5-title-parameter {
@@ -32,6 +33,16 @@
 .parameter {
   display: inline;
   font-weight: bold;
+}
+
+.photos-container {
+  margin-top: 5px;
+  margin-right: 90px;
+}
+
+.card-img-top {
+  width: 448px;
+  height: 560px;
 }
 
 .card-img-description {
