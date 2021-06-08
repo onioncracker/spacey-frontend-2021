@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { CompareService } from '../../store/service/comparison/compare.service';
+import {Component} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {CompareService} from '../../store/service/comparison/compare.service';
 
 @Component({
   selector: 'app-comparison',
@@ -14,5 +14,6 @@ export class ComparisonComponent {
   constructor(
     private route: ActivatedRoute,
     private comparisonService: CompareService
-  ) {}
+  ) {
+  }
 }
