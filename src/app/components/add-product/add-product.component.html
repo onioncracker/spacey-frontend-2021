@@ -10,12 +10,7 @@
         <h3 class="add-h">Category</h3>
         <mat-form-field appearance="fill">
           <mat-select [(ngModel)]="selectedValue" name="category">
-            <mat-option
-              *ngFor="let category of categories"
-              [value]="category.value1"
-            >
-              {{ category.viewValue1 }}
-            </mat-option>
+            <mat-option> </mat-option>
           </mat-select>
         </mat-form-field>
       </td>
@@ -33,10 +28,8 @@
       <td>
         <h3 class="add-h">Sex</h3>
         <mat-form-field appearance="fill">
-          <mat-select [(ngModel)]="selectedValue" name="sex">
-            <mat-option *ngFor="let sex of sexes" [value]="sex.value2">
-              {{ sex.viewValue2 }}
-            </mat-option>
+          <mat-select>
+            <mat-option> </mat-option>
           </mat-select>
         </mat-form-field>
       </td>
@@ -44,9 +37,7 @@
         <h3 class="add-h">Color</h3>
         <mat-form-field appearance="fill">
           <mat-select [(ngModel)]="selectedValue" name="color">
-            <mat-option *ngFor="let color of colors" [value]="color.value3">
-              {{ color.viewValue3 }}
-            </mat-option>
+            <mat-option> </mat-option>
           </mat-select>
         </mat-form-field>
       </td>
