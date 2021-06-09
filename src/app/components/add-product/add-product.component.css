@@ -1,43 +1,39 @@
-.head-prod-edit {
+.head-prod-add {
   height: 70px;
   background: #f8f8f8;
   display: flex;
+  justify-content: center;
 }
 
-.h-add {
+.add-label {
   margin: 17px auto 17px;
 }
 
-h1 {
-  text-align: center;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 26px;
-  line-height: 36px;
-  letter-spacing: 0.06em;
+.add-h {
   text-transform: uppercase;
-  color: #121212;
+  font-weight: bold;
 }
 
-h3 {
-  margin: 24px auto 8px;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 18px;
-  display: flex;
-  align-items: center;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: #121212;
-}
-
-.table-edit {
+.table-add {
   margin: 18px auto 0;
 }
 
-td {
-  width: 168px;
+.add-btn {
+  padding-left: 10%;
+  padding-right: 10%;
+  border-radius: 1px;
+  height: 48px;
+}
+
+.save-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+.input-name {
+  width: 614px;
 }
 
 .photo {
@@ -45,58 +41,18 @@ td {
   height: 217px;
 }
 
-input, select {
-  width: 140px;
-  height: 28px;
-  background: #e5e5e5;
-  border: 0;
-}
-
-.input-name {
-  width: 485px;
+.material-field {
+  width: 822px;
 }
 
 .input-description {
-  width: 660px;
-  height: 130px;
+  width: 822px;
 }
 
-.amount-size {
-  width: 80px;
+.description {
+  height: 300px;
 }
 
-button {
-  width: 340px;
-  height: 48px;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 13px;
-  line-height: 15px;
-  text-align: center;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  cursor: pointer;
-}
-
-.button-save {
-  align-items: center;
-  box-sizing: border-box;
-  background: #121212;
-  border: 2px solid #121212;
-  margin: 38px auto 8px;
-  color: #fff;
-}
-
-.save-wrapper {
-  display: flex;
-  justify-content: center;
-}
-
-.example-chip-list {
-  width: 665px;
-}
-
-.sizes {
-  margin: 0 auto 8px;
+.size-amount {
   float: right;
 }

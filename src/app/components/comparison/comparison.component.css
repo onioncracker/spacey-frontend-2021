@@ -1,7 +1,12 @@
-.head-comparison {
+.head-prod-comparison {
   height: 70px;
   background: #f8f8f8;
   display: flex;
+  justify-content: center;
+}
+
+.comparison-label {
+  margin: 17px auto 17px;
 }
 
 .h-comparison {
@@ -22,21 +27,7 @@
   position: absolute;
   padding: 10px 10px;
   border: none;
-}
-
-button {
   cursor: pointer;
-}
-
-h4 {
-  margin: 32px;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 24px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: #121212;
 }
 
 .table-comparison {
@@ -48,45 +39,25 @@ h4 {
   align-items: center;
 }
 
-h1 {
-  text-align: center;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 26px;
-  line-height: 36px;
-  letter-spacing: 0.06em;
+.compare-h {
   text-transform: uppercase;
-  color: #121212;
+  font-weight: bold;
 }
 
-td {
+.compare-field {
   width: 240px;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 22px;
-  color: #121212;
   text-align: center;
 }
 
 .button-div {
   display: flex;
   justify-content: center;
+  margin-top: 2%;
+  margin-bottom: 2%;
 }
 
-.button-add-more {
-  margin: 42px auto 80px;
-  background: #121212;
-  border: 2px solid #121212;
-  width: 156px;
+.btn-add-more {
+  padding-left: 10%;
+  padding-right: 10%;
   height: 48px;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 13px;
-  line-height: 15px;
-  text-align: center;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: #fff;
-  opacity: 0.9;
 }

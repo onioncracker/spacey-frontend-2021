@@ -9,7 +9,7 @@ import { CompareService } from '../../store/service/comparison/compare.service';
 })
 export class ComparisonComponent {
   title = 'Comparison';
-  products = [{}, {}, {}];
+  products = [{}, {}, {}, {}];
 
   constructor(
     private route: ActivatedRoute,

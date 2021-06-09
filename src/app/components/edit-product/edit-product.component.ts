@@ -8,6 +8,19 @@ import { map, startWith } from 'rxjs/operators';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 
+interface Category {
+  value1: string;
+  viewValue1: string;
+}
+interface Sex {
+  value2: string;
+  viewValue2: string;
+}
+interface Color {
+  value3: string;
+  viewValue3: string;
+}
+
 @Component({
   selector: 'app-edit-product',
   templateUrl: './edit-product.component.html',
@@ -24,7 +37,27 @@ export class EditProductComponent {
   allMaterials: string[] = ['Cotton', 'Synthetics', 'Viscose', 'Silk'];
   checked = false;
 
-  title = 'Edit product';
+  toppings = new FormControl();
+  toppingList: string[] = ['Cotton', 'Synthetics', 'Viscose', 'Silk', 'Wool', 'Polyester'];
+
+  selectedValue!: string;
+
+  categories: Category[] = [
+    {value1: 'T-shorts-0', viewValue1: 'T-shorts'},
+    {value1: 'Jeans-1', viewValue1: 'Jeans'},
+    {value1: 'Shorts-2', viewValue1: 'Shorts'}
+  ];
+
+  sexes: Sex[] = [
+    {value2: 'MEN', viewValue2: 'MEN'},
+    {value2: 'WOMEN', viewValue2: 'WOMEN'},
+  ];
+
+  colors: Color[] = [
+    {value3: 'Red', viewValue3: 'Red'},
+    {value3: 'Pink', viewValue3: 'Pink'},
+    {value3: 'Brown', viewValue3: 'Brown'}
+  ];
 
   constructor(
     private route: ActivatedRoute,

@@ -1,114 +1,185 @@
-<div class="page-edit">
-  <div class="head-prod-edit">
-    <div class="h-add">
-      <h1>{{ title }}</h1>
-    </div>
-  </div>
-  <form name="AddProduct">
-    <table class="table-edit">
-      <tr>
-        <td>
-          <h3>id:</h3>
-        </td>
-        <td>
-          <h3>Category</h3>
-          <select id="Category">
-            <option disabled selected>Select a category</option>
-          </select>
-        </td>
-        <td colspan="2">
-          <h3>Name</h3>
-          <input class="input-name" type="text" />
-        </td>
-        <td rowspan="3" class="cell-photo">
-          <input type="image" class="photo" value="Photo" alt="Photo" />
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h3>Sex</h3>
-          <select>
-            <option disabled selected>Select gender</option>
-            <option>MAN</option>
-            <option>WOMAN</option>
-          </select>
-        </td>
-        <td>
-          <h3>Color</h3>
-          <select>
-            <option disabled selected>Choose color</option>
-          </select>
-        </td>
-        <td>
-          <h3>Price</h3>
-          <input type="number" name="Price" min="0" />
-        </td>
-        <td>
-          <h3>Discount</h3>
-          <input type="number" name="Discount" min="0" />
-        </td>
-      </tr>
-      <tr>
-        <td colspan="4">
-          <h3>Material</h3>
-          <mat-form-field class="example-chip-list">
-            <mat-chip-list #chipList aria-label="Fruit selection">
-              <mat-chip
-                *ngFor="let material of materials"
-                [selectable]="selectable"
-                [removable]="removable"
-                (removed)="remove(material)"
-              >
-                {{ material }}
-                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-              </mat-chip>
-              <input
-                [formControl]="materialCtrl"
-                [matAutocomplete]="auto"
-                [matChipInputFor]="chipList"
-                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                (matChipInputTokenEnd)="add($event)"
-              />
-            </mat-chip-list>
-            <mat-autocomplete
-              #auto="matAutocomplete"
-              (optionSelected)="selected($event)"
-            >
-              <mat-option
-                *ngFor="let material of filteredMaterials | async"
-                [value]="material"
-              >
-                {{ material }}
-              </mat-option>
-            </mat-autocomplete>
-          </mat-form-field>
-        </td>
-      </tr>
-      <tr>
-        <td colspan="4" rowspan="5">
-          <h3>Description</h3>
-          <input class="input-description" type="text" name="Description" />
-          <div class="deactivate-box">
-            <input type="checkbox" />Deactivate product
-          </div>
-        </td>
-        <td rowspan="5" class="sizes">
-          <div class="sizes">XS: <input class="amount-size" /> <br /></div>
-          <div class="sizes">S: <input class="amount-size" /><br /></div>
-          <div class="sizes">M: <input class="amount-size" /><br /></div>
-          <div class="sizes">L: <input class="amount-size" /><br /></div>
-          <div class="sizes">XL: <input class="amount-size" /><br /></div>
-          <div class="sizes">XXL: <input class="amount-size" /></div>
-        </td>
-      </tr>
-    </table>
-    <br />
-    <div class="wrapper">
-      <button type="submit" class="button-save">Save Changes</button>
-      <br />
-    </div>
-    <div class="wrapper">
-      <button type="submit" class="button-delete">Delete Product</button>
-    </div>
-  </form>
+<div class="head-prod-edit">
+  <mat-label class="edit-label">
+    <h1 class="edit-h">EDIT PRODUCT</h1>
+  </mat-label>
 </div>
+<form name="AddProduct">
+  <table class="table-edit">
+    <tr>
+      <td>
+        <h3 class="edit-h">ID: </h3>
+      </td>
+      <td>
+        <h3 class="edit-h">Category</h3>
+        <mat-form-field appearance="fill">
+          <mat-select [(ngModel)]="selectedValue" name="category">
+            <mat-option *ngFor="let category of categories" [value]="category.value1">
+              {{category.viewValue1}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </td>
+      <td colspan="2">
+        <h3 class="edit-h">Name</h3>
+        <mat-form-field class="input-name" appearance="fill">
+          <input matInput type="text" placeholder="Name" />
+        </mat-form-field>
+      </td>
+      <td rowspan="3" class="cell-photo">
+        <input type="image" class="photo" value="Photo" alt="Photo" />
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <h3 class="edit-h">Sex</h3>
+        <mat-form-field appearance="fill">
+          <mat-select [(ngModel)]="selectedValue" name="sex">
+            <mat-option *ngFor="let sex of sexes" [value]="sex.value2">
+              {{sex.viewValue2}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </td>
+      <td>
+        <h3 class="edit-h">Color</h3>
+        <mat-form-field appearance="fill">
+          <mat-select [(ngModel)]="selectedValue" name="color">
+            <mat-option *ngFor="let color of colors" [value]="color.value3">
+              {{color.viewValue3}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </td>
+      <td>
+        <h3 class="edit-h">Price</h3>
+        <mat-form-field class="input-field" appearance="fill">
+          <input matInput type="number" placeholder="Price" />
+        </mat-form-field>
+      </td>
+      <td>
+        <h3 class="edit-h">Discount</h3>
+        <mat-form-field class="input-field" appearance="fill">
+          <input matInput type="number" placeholder="Discount" />
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4">
+        <h3 class="edit-h">Material</h3>
+        <mat-form-field appearance="fill" class="material-field">
+          <mat-select [formControl]="toppings" multiple placeholder="Select materials">
+            <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4" rowspan="5">
+        <h3 class="edit-h">Description</h3>
+        <mat-form-field class="input-description" appearance="fill">
+            <textarea
+              matInput spellcheck="true"
+              class="description"
+              placeholder="Some information about product"
+            >
+
+            </textarea>
+        </mat-form-field>
+        <div class="deactivate-box">
+          <mat-checkbox>
+            <mat-label  class="edit-h">Deactivate product</mat-label>
+          </mat-checkbox>
+        </div>
+      </td>
+      <td rowspan="5" class="sizes">
+    <tr>
+      <td>
+        <div class="sizes">
+          <mat-label  class="edit-h">XS:</mat-label>
+          <mat-form-field class="size-amount" appearance="fill">
+            <input matInput type="number" placeholder="Amount" />
+          </mat-form-field>
+          <br />
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="sizes">
+          <mat-label  class="edit-h">S:</mat-label>
+          <mat-form-field class="size-amount" appearance="fill">
+            <input matInput type="number" placeholder="Amount" />
+          </mat-form-field>
+          <br />
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="sizes">
+          <mat-label  class="edit-h">M:</mat-label>
+          <mat-form-field class="size-amount" appearance="fill">
+            <input matInput type="number" placeholder="Amount" />
+          </mat-form-field>
+          <br />
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="sizes">
+          <mat-label  class="edit-h">L:</mat-label>
+          <mat-form-field class="size-amount" appearance="fill">
+            <input matInput type="number" placeholder="Amount" />
+          </mat-form-field>
+          <br />
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="sizes">
+          <mat-label  class="edit-h">XL:</mat-label>
+          <mat-form-field class="size-amount" appearance="fill">
+            <input matInput type="number" placeholder="Amount" />
+          </mat-form-field>
+          <br />
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="sizes">
+          <mat-label  class="edit-h">XXL:</mat-label>
+          <mat-form-field class="size-amount" appearance="fill">
+            <input matInput type="number" placeholder="Amount" />
+          </mat-form-field>
+          <br />
+        </div>
+      </td>
+    </tr>
+  </table>
+  <br />
+  <div class="wrapper">
+    <button
+      mat-raised-button
+      class="edit-btn"
+      type="submit"
+      color="accent"
+    >
+      SAVE CHANGES
+    </button>
+
+  </div>
+  <br/>
+  <div class="wrapper">
+    <button
+      mat-raised-button
+      class="edit-btn delete-btn"
+      type="submit"
+      color="accent"
+    >
+      DELETE PRODUCT
+    </button>
+  </div>
+</form>
