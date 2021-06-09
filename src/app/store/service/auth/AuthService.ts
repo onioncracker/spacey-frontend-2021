@@ -10,7 +10,7 @@ import { LoginModel } from '../../models/LoginModel';
   providedIn: 'root',
 })
 export class AuthService {
-  private hostURL = 'http://localhost/5000';
+  private hostURL = 'http://localhost:8080';
   private registerURL = this.hostURL + '/register';
   private loginURL = this.hostURL + '/login';
 

@@ -39,3 +39,8 @@
 .card-text {
   font-weight: bold;
 }
+
+.card-img-top {
+  width: 255px;
+  height: 318px;
+}
