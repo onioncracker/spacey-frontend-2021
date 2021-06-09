@@ -37,7 +37,7 @@ import { EditProductComponent } from './components/edit-product/edit-product.com
 import { MatOptionModule } from '@angular/material/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
-import {MatSelectModule} from "@angular/material/select";
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -61,27 +61,27 @@ import {MatSelectModule} from "@angular/material/select";
     AddProductComponent,
     EditProductComponent,
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        FormsModule,
-        HttpClientModule,
-        ReactiveFormsModule,
-        BrowserAnimationsModule,
-        MatToolbarModule,
-        MatButtonModule,
-        MatListModule,
-        MatIconModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatPaginatorModule,
-        MatCheckboxModule,
-        MatExpansionModule,
-        MatOptionModule,
-        MatAutocompleteModule,
-        MatChipsModule,
-        MatSelectModule,
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatListModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatPaginatorModule,
+    MatCheckboxModule,
+    MatExpansionModule,
+    MatOptionModule,
+    MatAutocompleteModule,
+    MatChipsModule,
+    MatSelectModule,
+  ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
