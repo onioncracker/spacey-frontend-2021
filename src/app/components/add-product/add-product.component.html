@@ -1,0 +1,168 @@
+<div class="head-prod-add">
+  <mat-label class="add-label">
+    <h1 class="add-h">ADD PRODUCT</h1>
+  </mat-label>
+</div>
+<form name="AddProduct">
+  <table class="table-add">
+    <tr>
+      <td>
+        <h3 class="add-h">Category</h3>
+        <mat-form-field appearance="fill">
+          <mat-select [(ngModel)]="selectedValue" name="category">
+            <mat-option> </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </td>
+      <td colspan="3">
+        <h3 class="add-h">Name</h3>
+        <mat-form-field class="input-name" appearance="fill">
+          <input matInput type="text" placeholder="Name" />
+        </mat-form-field>
+      </td>
+      <td rowspan="3" class="cell-photo">
+        <input type="image" class="photo" value="Photo" alt="Photo" />
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <h3 class="add-h">Sex</h3>
+        <mat-form-field appearance="fill">
+          <mat-select>
+            <mat-option> </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </td>
+      <td>
+        <h3 class="add-h">Color</h3>
+        <mat-form-field appearance="fill">
+          <mat-select [(ngModel)]="selectedValue" name="color">
+            <mat-option> </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </td>
+      <td>
+        <h3 class="add-h">Price</h3>
+        <mat-form-field class="input-field" appearance="fill">
+          <input matInput type="number" placeholder="Price" />
+        </mat-form-field>
+      </td>
+      <td>
+        <h3 class="add-h">Discount</h3>
+        <mat-form-field class="input-field" appearance="fill">
+          <input matInput type="number" placeholder="Discount" />
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4">
+        <h3 class="add-h">Material</h3>
+        <mat-form-field appearance="fill" class="material-field">
+          <mat-select
+            [formControl]="toppings"
+            multiple
+            placeholder="Select materials"
+          >
+            <mat-option *ngFor="let topping of toppingList" [value]="topping">{{
+              topping
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4" rowspan="5">
+        <h3 class="add-h">Description</h3>
+        <mat-form-field class="input-description" appearance="fill">
+          <textarea
+            matInput
+            class="description"
+            placeholder="Some information about product"
+          >
+          </textarea>
+        </mat-form-field>
+        <div class="deactivate-box">
+          <mat-checkbox>
+            <mat-label class="add-h">Deactivate product</mat-label>
+          </mat-checkbox>
+        </div>
+      </td>
+      <td rowspan="5" class="sizes">
+        <tr>
+          <td>
+            <div class="sizes">
+              <mat-label class="add-h">XS:</mat-label>
+              <mat-form-field class="size-amount" appearance="fill">
+                <input matInput type="number" placeholder="Amount" />
+              </mat-form-field>
+              <br />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="sizes">
+              <mat-label class="add-h">S:</mat-label>
+              <mat-form-field class="size-amount" appearance="fill">
+                <input matInput type="number" placeholder="Amount" />
+              </mat-form-field>
+              <br />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="sizes">
+              <mat-label class="add-h">M:</mat-label>
+              <mat-form-field class="size-amount" appearance="fill">
+                <input matInput type="number" placeholder="Amount" />
+              </mat-form-field>
+              <br />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="sizes">
+              <mat-label class="add-h">L:</mat-label>
+              <mat-form-field class="size-amount" appearance="fill">
+                <input matInput type="number" placeholder="Amount" />
+              </mat-form-field>
+              <br />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="sizes">
+              <mat-label class="add-h">XL:</mat-label>
+              <mat-form-field class="size-amount" appearance="fill">
+                <input matInput type="number" placeholder="Amount" />
+              </mat-form-field>
+              <br />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="sizes">
+              <mat-label class="add-h">XXL:</mat-label>
+              <mat-form-field class="size-amount" appearance="fill">
+                <input matInput type="number" placeholder="Amount" />
+              </mat-form-field>
+              <br />
+            </div>
+          </td>
+        </tr>
+      </td>
+    </tr>
+  </table>
+
+  <br />
+  <div class="save-wrapper">
+    <button mat-raised-button class="add-btn" type="submit" color="accent">
+      SAVE PRODUCT
+    </button>
+    <br />
+  </div>
+</form>

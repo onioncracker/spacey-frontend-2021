@@ -8,4 +8,7 @@ export const routeUrls = {
   auctions: 'auctions',
   products: 'products',
   productDetails: 'products/:id',
+  comparisons: 'comparison',
+  addProduct: 'add',
+  editProduct: 'edit',
 };

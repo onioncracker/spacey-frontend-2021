@@ -1,0 +1,181 @@
+<div class="head-prod-comparison">
+  <mat-label class="comparison-label">
+    <h1 class="compare-h">Comparison</h1>
+  </mat-label>
+</div>
+<div class="table-comparison">
+  <table>
+    <tr>
+      <td class="compare-field">
+        <div class="photo-and-button">
+          <button class="button-x">X</button>
+          <img [attr.src]="" alt="Photo" class="photo" />
+        </div>
+      </td>
+      <td class="compare-field">
+        <button class="button-x">X</button>
+        <img [attr.src]="" alt="Photo" class="photo" />
+      </td>
+      <td
+        class="compare-field"
+        *ngIf="products.length === 3 || products.length === 4"
+      >
+        <button class="button-x">X</button>
+        <img [attr.src]="" alt="Photo" class="photo" />
+      </td>
+      <td class="compare-field" *ngIf="products.length === 4">
+        <button class="button-x">X</button>
+        <img [attr.src]="" alt="Photo" class="photo" />
+      </td>
+    </tr>
+    <tr>
+      <td class="prod-name compare-field">
+        <a routerLink="products/:id"></a>
+      </td>
+      <td class="prod-name compare-field">
+        <a routerLink="products/:id"></a>
+      </td>
+      <td
+        class="prod-name compare-field"
+        *ngIf="products.length === 3 || products.length === 4"
+      >
+        <a routerLink="products/:id"></a>
+      </td>
+      <td class="prod-name compare-field" *ngIf="products.length === 4">
+        <a routerLink="products/:id"></a>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4" class="compare-field">
+        <h3 class="compare-h">In Stock</h3>
+      </td>
+    </tr>
+    <tr>
+      <td class="compare-field"></td>
+      <td class="compare-field"></td>
+      <td *ngIf="products.length === 3 || products.length === 4"></td>
+      <td *ngIf="products.length === 4"></td>
+    </tr>
+    <tr>
+      <td class="compare-field" colspan="4">
+        <h3 class="compare-h">Discount</h3>
+      </td>
+    </tr>
+    <tr>
+      <td class="compare-field">-%</td>
+      <td class="compare-field">-%</td>
+      <td
+        class="compare-field"
+        *ngIf="products.length === 3 || products.length === 4"
+      >
+        -%
+      </td>
+      <td class="compare-field" *ngIf="products.length === 4">-%</td>
+    </tr>
+    <tr>
+      <td class="compare-field" colspan="4">
+        <h3 class="compare-h">Price</h3>
+      </td>
+    </tr>
+    <tr>
+      <td class="compare-field">UAH</td>
+      <td class="compare-field">UAH</td>
+      <td
+        class="compare-field"
+        *ngIf="products.length === 3 || products.length === 4"
+      >
+        UAH
+      </td>
+      <td class="compare-field" *ngIf="products.length === 4">UAH</td>
+    </tr>
+    <tr>
+      <td class="compare-field" colspan="4">
+        <h3 class="compare-h">Category</h3>
+      </td>
+    </tr>
+    <tr>
+      <td class="compare-field"></td>
+      <td class="compare-field"></td>
+      <td
+        class="compare-field"
+        *ngIf="products.length === 3 || products.length === 4"
+      ></td>
+      <td class="compare-field" *ngIf="products.length === 4"></td>
+    </tr>
+    <tr>
+      <td class="compare-field" colspan="4">
+        <h3 class="compare-h">Sex</h3>
+      </td>
+    </tr>
+    <tr>
+      <td class="compare-field"></td>
+      <td class="compare-field"></td>
+      <td
+        class="compare-field"
+        *ngIf="products.length === 3 || products.length === 4"
+      ></td>
+      <td class="compare-field" *ngIf="products.length === 4"></td>
+    </tr>
+    <tr>
+      <td class="compare-field" colspan="4">
+        <h3 class="compare-h">Sizes</h3>
+      </td>
+    </tr>
+    <tr>
+      <td class="compare-field"></td>
+      <td class="compare-field"></td>
+      <td
+        class="compare-field"
+        *ngIf="products.length === 3 || products.length === 4"
+      ></td>
+      <td class="compare-field" *ngIf="products.length === 4"></td>
+    </tr>
+    <tr>
+      <td class="compare-field" colspan="4">
+        <h3 class="compare-h">Color</h3>
+      </td>
+    </tr>
+    <tr>
+      <td class="compare-field"></td>
+      <td class="compare-field"></td>
+      <td
+        class="compare-field"
+        *ngIf="products.length === 3 || products.length === 4"
+      ></td>
+      <td class="compare-field" *ngIf="products.length === 4"></td>
+    </tr>
+    <tr>
+      <td class="compare-field" colspan="4">
+        <h3 class="compare-h">Materials</h3>
+      </td>
+    </tr>
+    <tr>
+      <td class="compare-field"></td>
+      <td class="compare-field"></td>
+      <td
+        class="compare-field"
+        *ngIf="products.length === 3 || products.length === 4"
+      ></td>
+      <td class="compare-field" *ngIf="products.length === 4"></td>
+    </tr>
+    <tr>
+      <td class="compare-field" colspan="4">
+        <h3 class="compare-h">About items</h3>
+      </td>
+    </tr>
+    <tr>
+      <td class="compare-field"></td>
+      <td class="compare-field"></td>
+      <td
+        class="compare-field"
+        *ngIf="products.length === 3 || products.length === 4"
+      ></td>
+      <td class="compare-field" *ngIf="products.length === 4"></td>
+    </tr>
+  </table>
+  <div class="button-div">
+    <button mat-raised-button class="add-btn" type="submit" color="accent">
+      ADD MORE
+    </button>
+  </div>
+</div>
