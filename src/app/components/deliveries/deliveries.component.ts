@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import Order, {orders} from 'src/app/store/models/order';
 import {MatPaginator} from '@angular/material/paginator';
+import {ActivatedRoute} from "@angular/router";
 
 
 @Component({
@@ -25,6 +26,10 @@ export class DeliveriesComponent implements OnInit {
   ];
   dataSource = new MatTableDataSource<Order>(orders);
   orders!: Order[];
+
+  constructor(
+    private route: ActivatedRoute,
+  ) {}
 
 
   ngOnInit(): void {

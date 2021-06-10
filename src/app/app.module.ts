@@ -38,6 +38,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSelectModule } from '@angular/material/select';
+import { DeliveryComponent } from './components/delivery/delivery.component';
 
 
 @NgModule({
@@ -61,6 +62,7 @@ import { MatSelectModule } from '@angular/material/select';
     ComparisonComponent,
     AddProductComponent,
     EditProductComponent,
+    DeliveryComponent,
   ],
   imports: [
     BrowserModule,

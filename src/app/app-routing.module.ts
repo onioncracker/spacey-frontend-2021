@@ -10,6 +10,7 @@ import { DeliveriesComponent } from './components/deliveries/deliveries.componen
 import { ComparisonComponent } from './components/comparison/comparison.component';
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { EditProductComponent } from './components/edit-product/edit-product.component';
+import {DeliveryComponent} from "./components/delivery/delivery.component";
 
 const routes: Routes = [
   { path: routeUrls.login, component: LoginComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: routeUrls.products, component: ProductsComponent },
   { path: routeUrls.productDetails, component: ProductDetailsComponent },
   { path: routeUrls.deliveries, component: DeliveriesComponent },
+  { path: routeUrls.delivery, component: DeliveryComponent },
   { path: routeUrls.comparisons, component: ComparisonComponent },
   { path: routeUrls.addProduct, component: AddProductComponent },
   { path: routeUrls.editProduct, component: EditProductComponent },

@@ -3,7 +3,8 @@
 </div>
 
 <div>
-  <p class="dl-p1" align="right">When you completed the order, confirm it by clicking ‘tick’ icon. Otherwise click ‘cross’ to change its status to ‘failed’</p>
+  <p class="dl-p1" align="right">When you completed the order, confirm it by clicking ‘tick’ icon. Otherwise click
+    ‘cross’ to change its status to ‘failed’</p>
 </div>
 <form class="form-class">
 
@@ -49,8 +50,10 @@
 
         <ng-container matColumnDef="actions">
           <td mat-header-cell *matHeaderCellDef></td>
-          <th mat-cell *matCellDef="let row">
-            <button mat-button class="dl-detail-btn">Details</button>
+          <th mat-cell *matCellDef="let element">
+            <a [routerLink]="['/delivery', element.orderId]">
+              <button mat-button class="dl-detail-btn">Details</button>
+            </a>
           </th>
         </ng-container>
         <!--        kkkd-->
@@ -79,7 +82,7 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns" class="table-dl-header"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
-            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
     </div>
 
   </div>
