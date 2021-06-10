@@ -1,1 +1,32 @@
-<p>delivery works!</p>
+<div>
+  <h2 class="delivery-font">DELIVERY</h2>
+  <p>Choose the day and time of delivery</p>
+  <div>
+    <li class="mat-form-field--inline">
+      <mat-form-field appearance="fill">
+        <mat-label>Day</mat-label>
+        <mat-select [(ngModel)]="selectedDay" name="day">
+          <mat-option *ngFor="let day of days" [value]="day.value">
+            {{day.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Time</mat-label>
+        <mat-select [(ngModel)]="selectedHour" name="day">
+          <mat-option *ngFor="let hour of hours" [value]="hour.value">
+            {{hour.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </li>
+  </div>
+  <div>
+    <section class="example-section">
+      <mat-checkbox class="example-margin">'Do not disturb' option</mat-checkbox>
+    </section>
+    <section class="example-section">
+      <mat-checkbox class="example-margin">'No contact' delivery</mat-checkbox>
+    </section>
+  </div>
+</div>

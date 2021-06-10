@@ -20,6 +20,11 @@ import { OrdersComponent } from './components/orders/orders.component';
 import { DeliveryComponent } from './components/delivery/delivery.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { OrderComponent } from './components/order/order.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSliderModule } from "@angular/material/slider";
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDividerModule } from '@angular/material/divider';
+import { PersonalInformationComponent } from './components/personal-information/personal-information.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +39,7 @@ import { OrderComponent } from './components/order/order.component';
     DeliveryComponent,
     CommentComponent,
     OrderComponent,
+    PersonalInformationComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,6 +52,10 @@ import { OrderComponent } from './components/order/order.component';
     MatButtonModule,
     MatListModule,
     MatIconModule,
+    MatSliderModule,
+    MatCheckboxModule,
+    MatSelectModule,
+    MatDividerModule
   ],
   providers: [],
   bootstrap: [AppComponent],

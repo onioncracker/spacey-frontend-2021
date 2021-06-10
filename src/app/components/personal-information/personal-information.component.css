@@ -1,4 +1,4 @@
-.delivery-font {
+.personal-info-font {
   font-family: Spartan;
   font-style: normal;
   font-weight: 600;
@@ -14,13 +14,7 @@
   align-items: center;
 }
 
-.mat-form-field--inline .mat-form-field {
-  display: inline-block;
-  height: auto;
-  width: 25%;
-  vertical-align: middle;
-}
-
-.mat-form-field--inline .mat-form-field:nth-child(1) {
-  margin-right: 50px;
+.space {
+  display: flex;
+  justify-content: space-between;
 }
