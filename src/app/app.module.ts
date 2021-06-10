@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -32,6 +31,14 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatTableModule} from '@angular/material/table'
 import {DeliveriesComponent} from "./components/deliveries/deliveries.component";
+import { ComparisonComponent } from './components/comparison/comparison.component';
+import { AddProductComponent } from './components/add-product/add-product.component';
+import { EditProductComponent } from './components/edit-product/edit-product.component';
+import { MatOptionModule } from '@angular/material/core';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatSelectModule } from '@angular/material/select';
+
 
 @NgModule({
   declarations: [
@@ -51,6 +58,9 @@ import {DeliveriesComponent} from "./components/deliveries/deliveries.component"
     CategoryComponent,
     FilterComponent,
     PaginationComponent,
+    ComparisonComponent,
+    AddProductComponent,
+    EditProductComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,6 +79,10 @@ import {DeliveriesComponent} from "./components/deliveries/deliveries.component"
     MatCheckboxModule,
     MatExpansionModule,
     MatTableModule,
+    MatOptionModule,
+    MatAutocompleteModule,
+    MatChipsModule,
+    MatSelectModule,
   ],
   providers: [
     {

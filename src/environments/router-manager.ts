@@ -9,4 +9,7 @@ export const routeUrls = {
   products: 'products',
   productDetails: 'products/:id',
   deliveries: 'deliveries',
+  comparisons: 'comparison',
+  addProduct: 'add',
+  editProduct: 'edit',
 };

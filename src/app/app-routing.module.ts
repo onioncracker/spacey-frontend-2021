@@ -7,6 +7,10 @@ import { RegisterComponent } from './components/register/register.component';
 import { ProductsComponent } from './components/products/products.component';
 import { ProductDetailsComponent } from './components/product/product-details.component';
 import { DeliveriesComponent } from './components/deliveries/deliveries.component';
+import { ComparisonComponent } from './components/comparison/comparison.component';
+import { AddProductComponent } from './components/add-product/add-product.component';
+import { EditProductComponent } from './components/edit-product/edit-product.component';
+
 const routes: Routes = [
   { path: routeUrls.login, component: LoginComponent },
   { path: routeUrls.register, component: RegisterComponent },
@@ -14,6 +18,9 @@ const routes: Routes = [
   { path: routeUrls.products, component: ProductsComponent },
   { path: routeUrls.productDetails, component: ProductDetailsComponent },
   { path: routeUrls.deliveries, component: DeliveriesComponent },
+  { path: routeUrls.comparisons, component: ComparisonComponent },
+  { path: routeUrls.addProduct, component: AddProductComponent },
+  { path: routeUrls.editProduct, component: EditProductComponent },
 ];
 
 @NgModule({

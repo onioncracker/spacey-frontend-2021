@@ -6,23 +6,10 @@ import { TokenStorageService } from './store/service/auth/TokenStorageService';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   public title: 'spacey' | undefined;
   private roles: string[] | undefined;
   public authority: string | undefined;
 
   constructor(private tokenStorage: TokenStorageService) {}
-
-  ngOnInit() {
-    if (this.tokenStorage.getToken()) {
-      this.roles = this.tokenStorage.getAuthorities();
-      // @ts-ignore
-      this.roles.every((role) => {
-        if (role === 'ROLE_ADMIN') {
-          this.authority = 'admin';
-          return;
-        }
-      });
-    }
-  }
 }
