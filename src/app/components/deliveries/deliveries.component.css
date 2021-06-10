@@ -1,0 +1,48 @@
+.dl-h1 {
+  padding: 25px 0 25px 0;
+  background: #f8f8f8;
+}
+
+.form-class {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dl-p1 {
+  padding: 25px 20px 25px 0;
+  font-family: Spartan;
+  font-size: 14px;
+}
+
+.manage-form {
+  width: 95%;
+}
+
+.dl-table {
+  width: 100%;
+  font-family: Spartan;
+  font-size: 16px;
+}
+
+.table-dl-header {
+  background: #c4c4c4;
+  height: 46px;
+  font-size: 16px;
+}
+
+.dl-detail-btn {
+  width: 97px;
+  height: 46px;
+  background: #f8f8f8;
+}
+
+.dl-row-button {
+  width: 40px;
+  height: 40px;
+  background: #f8f8f8
+}
+
+.dl-circle-icon {
+  color: #111111;
+}
