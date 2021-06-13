@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -7,17 +7,10 @@ import {
   NgForm,
   Validators,
 } from '@angular/forms';
-import { User } from '../../store/models/user';
-import { EmployeeModel } from '../../store/models/EmployeeModel';
-import { AuthService } from '../../store/service/auth/AuthService';
-import { TokenStorageService } from '../../store/service/auth/TokenStorageService';
 import { EmployeeService } from '../../store/service/employee/employeeService';
 import { RegistrationErrorStateMatcher } from '../register/register.component';
 import { ErrorStateMatcher } from '@angular/material/core';
-import { RegisterModel } from '../../store/models/RegisterModel';
-import { Router } from '@angular/router';
 import { AddEmployeeModel } from '../../store/models/AddEmployeeModel';
-// import {AddEmpService} from "../../store/service/emp/AddEmpService";
 
 export class EmployeeErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -38,13 +31,11 @@ export class EmployeeErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./admin-add.component.css'],
 })
 export class AdminAddComponent {
-  employee: EmployeeModel | undefined;
   addEmployeeForm: FormGroup;
   errorMatcher: ErrorStateMatcher;
 
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router,
     private messageService: EmployeeService
   ) {
     this.addEmployeeForm = this.formBuilder.group({

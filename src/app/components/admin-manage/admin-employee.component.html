@@ -5,16 +5,11 @@
     <mat-form-field class="search-box" appearance="fill">
       <mat-label>Type employee's name/surname</mat-label>
       <input matInput />
+      <!--      <input matInput type="text" (keyup)="searchEmployees(getValue($event))" id = "lastName" placeholder="Search" )/>-->
     </mat-form-field>
 
     <div class="mat-elevation-z8">
       <table mat-table [dataSource]="dataSource">
-        <!-- User Id Column -->
-        <ng-container matColumnDef="loginId">
-          <th mat-header-cell *matHeaderCellDef>User ID</th>
-          <td mat-cell *matCellDef="let element">{{ element.loginId }}</td>
-        </ng-container>
-
         <!-- Email Column -->
         <ng-container matColumnDef="email">
           <th mat-header-cell *matHeaderCellDef>E-mail</th>
@@ -53,7 +48,7 @@
 
         <!-- Edit Column -->
         <ng-container matColumnDef="actions">
-          <th mat-header-cell *matHeaderCellDef>edit</th>
+          <th mat-header-cell *matHeaderCellDef>Edit</th>
           <td mat-cell *matCellDef="let element">
             <button mat-stroked-button class="edit-btn">
               {{ element.actions }}
@@ -71,7 +66,12 @@
     </div>
 
     <div class="add-employee">
-      <button mat-raised-button class="add-btn" color="accent">
+      <button
+        mat-raised-button
+        class="add-btn"
+        color="accent"
+        (click)="btnClick()"
+      >
         ADD EMPLOYEE
       </button>
     </div>

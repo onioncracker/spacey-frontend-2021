@@ -21,6 +21,7 @@ import { OrderComponent } from './components/order/order.component';
 import { LoginComponent } from './components/login/login.component';
 import { AdminEmployeeComponent } from './components/admin-manage/admin-employee.component';
 import { AdminAddComponent } from './components/admin-add/admin-add.component';
+// import { AdminEditComponent } from './components/admin-edit/admin-edit.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { RegisterComponent } from './components/register/register.component';
@@ -55,6 +56,7 @@ import { MatTableModule } from '@angular/material/table';
     PaginationComponent,
     AdminEmployeeComponent,
     AdminAddComponent,
+    // AdminEditComponent,
   ],
   imports: [
     BrowserModule,

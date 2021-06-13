@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { EmployeeModel } from '../../models/EmployeeModel';
-import { environment } from 'src/environments/environment';
-import { Observable, throwError } from 'rxjs';
-import { Router } from '@angular/router';
-import { RegisterModel } from '../../models/RegisterModel';
-import { AuthResponseModel } from '../../models/AuthResponseModel';
-import { LoginModel } from '../../models/LoginModel';
+import {
+  HttpClient,
+  HttpHeaders,
+  HttpParams,
+  HttpResponse,
+} from '@angular/common/http';
+import { Observable, of, throwError } from 'rxjs';
 import { AddEmployeeModel } from '../../models/AddEmployeeModel';
+import { EmployeeModel } from '../../models/EmployeeModel';
 
 @Injectable({
   providedIn: 'root',
@@ -15,18 +15,45 @@ import { AddEmployeeModel } from '../../models/AddEmployeeModel';
 export class EmployeeService {
   private hostURL = 'https://spacey-backend.herokuapp.com';
   private employeeUrl = `${this.hostURL}/employees`;
-  private addEmployeeUrl = this.hostURL + '/employees';
-  // private loginURL = this.hostURL + '/login';
-  private httpOptions = { observe: 'response' as const };
+  private searchEmployeeUrl = this.employeeUrl + '/search';
 
-  constructor(private http: HttpClient, private router: Router) {}
+  // private editEmployeeUrl = this.employeeUrl + '/update';
+
+  constructor(private http: HttpClient) {}
 
   getAllEmployees(): Observable<any> {
     return this.http.get(this.employeeUrl);
   }
 
+  // search(term: string): Observable<EmployeeModel> {
+  //   return this.http.get(`{this.searchEmployeeUrl}/?lastName=${term}`)
+  //     .map(response => response.json().data as EmployeeModel[])
+  //     .catch(this.handleError);
+  // }
+  // searchEmployees(term: Observable<EmployeeModel>): Observable {
+  //   return term.debouncedTime(200).distinctUntilChanged().switchMap(term => this.search(term));
+  // }
+
+  // this.http.request('GET', this.searchEmployeeUrl + '?' + 'lastName=term', {responseType:'json'});
+  // search(term:string): Observable {
+  //   return this.http.get(`api/employee/?firstName=${term}`)
+  //     .map(response =>  response.json().data as Employee[])
+  //     .catch(this.handleError);
+  // }
+  //
+  // searchEmployees(term: Observable): Observable {
+  //   return term.debounceTime(200)
+  //     .distinctUntilChanged()
+  //     .switchMap(term => this.search(term));//here is the error
+  // }
+  //
+  // private handleError(error: any): Promise {
+  //   console.error('Error on EmployeeSearchService', error);
+  //   return Promise.reject(error.message || error);
+  // }
+
   addEmployee(addEmployeeData: AddEmployeeModel): Observable<any> {
-    const url = `${this.addEmployeeUrl}`;
+    const url = `${this.employeeUrl}`;
     const body = {
       email: addEmployeeData.email,
       status: addEmployeeData.status,
@@ -38,3 +65,15 @@ export class EmployeeService {
     return this.http.post(url, body);
   }
 }
+// editEmployee(editEmployeeData: EmployeeModel): Observable<any> {
+//   const url = `${this.employeeUrl}`;
+//   const body = {
+//     email: editEmployeeData.email,
+//     status: editEmployeeData.status,
+//     firstName: editEmployeeData.firstName,
+//     lastName: editEmployeeData.lastName,
+//     userRole: editEmployeeData.userRole,
+//     phoneNumber: editEmployeeData.phoneNumber,
+//   };
+//   return this.http.post(url, body);
+// }
