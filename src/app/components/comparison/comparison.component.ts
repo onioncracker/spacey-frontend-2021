@@ -30,17 +30,7 @@ export class ComparisonComponent implements OnInit {
       });
   }
 
-  //deleteComparisonProduct() {
-  //this.comparisonService
-  //.deleteCompareProduct(this.deleteProduct)
-  //.pipe()
-  //.subscribe((deleteProduct:DeleteCompareProduct) => {
-  //this.deleteProduct = deleteProduct;
-  //})
-  //}
-
   ngOnInit() {
     this.getAllComparison();
-    //this.deleteComparisonProduct();
   }
 }
