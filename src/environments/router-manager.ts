@@ -11,4 +11,7 @@ export const routeUrls = {
   adminEmployee: 'admin-manage',
   adminEdit: 'admin-edit',
   adminAdd: 'admin-add',
+  comparisons: 'comparison',
+  addProduct: 'add',
+  editProduct: 'edit',
 };

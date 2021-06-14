@@ -69,6 +69,23 @@
           Password is <strong>required</strong>
         </mat-error>
       </mat-form-field>
+
+      <mat-label><h3>PHONE NUMBER</h3></mat-label>
+      <mat-form-field class="reg-form-field" appearance="fill">
+        <span matPrefix>+38 &nbsp;</span>
+        <input
+          type="tel"
+          matInput
+          formControlName="phoneNumber"
+          [errorStateMatcher]="errorMatcher"
+          placeholder="0901239090"
+        />
+        <mat-error
+          *ngIf="!registerForm.get('phoneNumber')?.hasError('required')"
+        >
+          Please write correct number
+        </mat-error>
+      </mat-form-field>
     </div>
   </div>
   <div class="reg-btn-div">

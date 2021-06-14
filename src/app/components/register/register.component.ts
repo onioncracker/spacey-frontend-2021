@@ -57,6 +57,7 @@ export class RegisterComponent {
       // password: ['', [Validators.required]],
       name: ['', [Validators.required, Validators.maxLength(40)]],
       surname: ['', [Validators.required, Validators.maxLength(40)]],
+      phoneNumber: ['', [Validators.required, Validators.maxLength(10)]],
     });
     this.errorMatcher = new RegistrationErrorStateMatcher();
   }
@@ -67,17 +68,18 @@ export class RegisterComponent {
 
   public register(): void {
     const registrationData = {
-      name: this.registerForm.get('name')?.value,
-      surname: this.registerForm.get('surname')?.value,
+      firstName: this.registerForm.get('name')?.value,
+      lastName: this.registerForm.get('surname')?.value,
       email: this.registerForm.get('email')?.value,
       password: this.registerForm.get('password')?.value,
-      // phone_number: this.registerForm.get('phone_number').value,
+      phoneNumber: this.registerForm.get('phoneNumber')?.value,
     } as RegisterModel;
 
     this.registerForm.controls.name.disable();
     this.registerForm.controls.email.disable();
     this.registerForm.controls.password.disable();
     this.registerForm.controls.surname.disable();
+    this.registerForm.controls.phoneNumber.disable();
 
     this.messageService.register(registrationData).subscribe(
       (response) => {
