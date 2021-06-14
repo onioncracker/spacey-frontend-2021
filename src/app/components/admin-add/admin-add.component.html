@@ -43,7 +43,8 @@
 
       <mat-label><h3>ROLE</h3></mat-label>
       <mat-form-field class="emp-form-field" appearance="fill">
-        <input matInput
+        <input
+          matInput
           formControlName="userRole"
           type="text"
           placeholder="Role"
@@ -53,7 +54,8 @@
           <mat-option value="option2">Product Manager</mat-option>
         </mat-select>
         <mat-error
-          *ngIf="addEmployeeForm.get('userRole')?.hasError('required')">
+          *ngIf="addEmployeeForm.get('userRole')?.hasError('required')"
+        >
           Role is required!
         </mat-error>
       </mat-form-field>
@@ -92,20 +94,17 @@
 
       <mat-label><h3>STATUS</h3></mat-label>
       <mat-form-field class="emp-form-field" appearance="fill">
-        <input
-          matInput
-          formControlName="status"
-          type="text"/>
-<!--          placeholder="Status"-->
+        <input matInput formControlName="status" type="text" />
+        <!--          placeholder="Status"-->
 
         <mat-select>
           <mat-option value="option1">Active</mat-option>
           <mat-option value="option2">Terminated</mat-option>
           <mat-option value="option3">Inactive</mat-option>
         </mat-select>
-<!--        <mat-error *ngIf="addEmployeeForm.get('status')?.hasError('required')">-->
-<!--          Status is required!-->
-<!--        </mat-error>-->
+        <!--        <mat-error *ngIf="addEmployeeForm.get('status')?.hasError('required')">-->
+        <!--          Status is required!-->
+        <!--        </mat-error>-->
       </mat-form-field>
     </div>
   </div>

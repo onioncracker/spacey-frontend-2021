@@ -24,7 +24,7 @@ export class EmployeeService {
   constructor(private http: HttpClient) {}
 
   getAllEmployees(): Observable<any> {
-    return this.http.get(this.employeeUrl)
+    return this.http.get(this.employeeUrl);
   }
 
   addEmployee(addEmployeeData: AddEmployeeModel): Observable<any> {
@@ -43,7 +43,7 @@ export class EmployeeService {
   // Error handling
   handleError(error) {
     let errorMessage = '';
-    if(error.error instanceof ErrorEvent) {
+    if (error.error instanceof ErrorEvent) {
       // Get client-side error
       errorMessage = error.error.message;
     } else {

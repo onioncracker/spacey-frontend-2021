@@ -34,7 +34,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTableModule } from '@angular/material/table';
 import { AdminEditComponent } from './components/admin-edit/admin-edit.component';
-import {MatSelectModule} from "@angular/material/select";
+import { MatSelectModule } from '@angular/material/select';
 import { ComparisonComponent } from './components/comparison/comparison.component';
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { EditProductComponent } from './components/edit-product/edit-product.component';

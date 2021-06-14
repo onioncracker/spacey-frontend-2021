@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -8,11 +8,10 @@ import {
   Validators,
 } from '@angular/forms';
 import { EmployeeService } from '../../store/service/employee/employeeService';
-import {ErrorStateMatcher} from "@angular/material/core";
-import {RegistrationErrorStateMatcher} from "../register/register.component";
-import {AddEmployeeModel} from "../../store/models/AddEmployeeModel";
-import {EmployeeModel} from "../../store/models/EmployeeModel";
-
+import { ErrorStateMatcher } from '@angular/material/core';
+import { RegistrationErrorStateMatcher } from '../register/register.component';
+import { AddEmployeeModel } from '../../store/models/AddEmployeeModel';
+import { EmployeeModel } from '../../store/models/EmployeeModel';
 
 export class EmployeeErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -30,25 +29,24 @@ export class EmployeeErrorStateMatcher implements ErrorStateMatcher {
 @Component({
   selector: 'app-admin-edit',
   templateUrl: './admin-edit.component.html',
-  styleUrls: ['./admin-edit.component.css']
+  styleUrls: ['./admin-edit.component.css'],
 })
 export class AdminEditComponent {
-
   editEmployeeForm: FormGroup;
   errorMatcher: ErrorStateMatcher;
 
   constructor(
     private formBuilder: FormBuilder,
     private messageService: EmployeeService
-    ) {
+  ) {
     this.editEmployeeForm = this.formBuilder.group({
-    email: ['', [Validators.required, Validators.email]],
-    firstName: ['', [Validators.required, Validators.maxLength(20)]],
-    lastName: ['', [Validators.required, Validators.maxLength(30)]],
-    userRole: ['', [Validators.required, Validators.maxLength(30)]],
-    status: ['', [Validators.required, Validators.maxLength(30)]],
-    phoneNumber: ['', [Validators.required, Validators.maxLength(13)]],
-  });
+      email: ['', [Validators.required, Validators.email]],
+      firstName: ['', [Validators.required, Validators.maxLength(20)]],
+      lastName: ['', [Validators.required, Validators.maxLength(30)]],
+      userRole: ['', [Validators.required, Validators.maxLength(30)]],
+      status: ['', [Validators.required, Validators.maxLength(30)]],
+      phoneNumber: ['', [Validators.required, Validators.maxLength(13)]],
+    });
 
     this.errorMatcher = new RegistrationErrorStateMatcher();
   }
@@ -88,8 +86,5 @@ export class AdminEditComponent {
   //       this.editEmployeeForm.controls.phoneNumber.enable();
   //     }
   //   );
-//   }
+  //   }
 }
-
-
-

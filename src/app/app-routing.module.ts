@@ -25,7 +25,6 @@ const routes: Routes = [
   { path: routeUrls.comparisons, component: ComparisonComponent },
   { path: routeUrls.addProduct, component: AddProductComponent },
   { path: routeUrls.editProduct, component: EditProductComponent },
-
 ];
 
 @NgModule({
