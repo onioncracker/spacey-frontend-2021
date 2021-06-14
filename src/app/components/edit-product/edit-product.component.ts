@@ -2,24 +2,15 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EditProductService } from '../../store/service/edit-product/edit-product.service';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { FormControl } from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-
-interface Category {
-  value1: string;
-  viewValue1: string;
-}
-interface Sex {
-  value2: string;
-  viewValue2: string;
-}
-interface Color {
-  value3: string;
-  viewValue3: string;
-}
+import {AddProduct} from "../../store/models/addProduct";
+import {CatergoryMaterialsAdd} from "../../store/models/catergoryMaterialsAdd";
+import {SizesAdd} from "../../store/models/sizesAdd";
+import {AddProductService} from "../../store/service/add-product/add-product.service";
 
 @Component({
   selector: 'app-edit-product',
@@ -27,87 +18,67 @@ interface Color {
   styleUrls: ['./edit-product.component.css'],
 })
 export class EditProductComponent {
-  visible = true;
-  selectable = true;
-  removable = true;
-  separatorKeysCodes: number[] = [ENTER, COMMA];
-  materialCtrl = new FormControl();
-  filteredMaterials: Observable<string[]>;
-  materials: string[] = [];
-  allMaterials: string[] = ['Cotton', 'Synthetics', 'Viscose', 'Silk'];
-  checked = false;
-
-  toppings = new FormControl();
-  toppingList: string[] = [
-    'Cotton',
-    'Synthetics',
-    'Viscose',
-    'Silk',
-    'Wool',
-    'Polyester',
-  ];
-
-  selectedValue!: string;
-
-  categories: Category[] = [
-    { value1: 'T-shorts-0', viewValue1: 'T-shorts' },
-    { value1: 'Jeans-1', viewValue1: 'Jeans' },
-    { value1: 'Shorts-2', viewValue1: 'Shorts' },
-  ];
-
-  sexes: Sex[] = [
-    { value2: 'MEN', viewValue2: 'MEN' },
-    { value2: 'WOMEN', viewValue2: 'WOMEN' },
-  ];
-
-  colors: Color[] = [
-    { value3: 'Red', viewValue3: 'Red' },
-    { value3: 'Pink', viewValue3: 'Pink' },
-    { value3: 'Brown', viewValue3: 'Brown' },
-  ];
+  product!: AddProduct;
+  //addProductForm: FormGroup;
+  materialsList!: CatergoryMaterialsAdd [];
+  categories!: CatergoryMaterialsAdd [];
+  colors!: CatergoryMaterialsAdd [];
+  sizes!: SizesAdd [];
+  photo = 'jhbg,jh';
+  amount = 39;
 
   constructor(
     private route: ActivatedRoute,
+    private addProductService: AddProductService,
+    private formBuilder: FormBuilder,
     private editProductService: EditProductService
   ) {
-    this.filteredMaterials = this.materialCtrl.valueChanges.pipe(
-      startWith(null),
-      map((material: string | null) =>
-        material ? this._filter(material) : this.allMaterials.slice()
-      )
-    );
+
   }
 
-  add(event: MatChipInputEvent): void {
-    const value = (event.value || '').trim();
 
-    if (value) {
-      this.materials.push(value);
-    }
 
-    event.chipInput!.clear();
-
-    this.materialCtrl.setValue(null);
+  allMaterials() {
+    this.addProductService
+      .getAllMaterials()
+      .pipe()
+      .subscribe((materialsList:CatergoryMaterialsAdd[]) =>{
+        this.materialsList = materialsList;
+      })
   }
 
-  remove(material: string): void {
-    const index = this.materials.indexOf(material);
-
-    if (index >= 0) {
-      this.materials.splice(index, 1);
-    }
+  allColors() {
+    this.addProductService
+      .getAllColors()
+      .pipe()
+      .subscribe((colors:CatergoryMaterialsAdd[]) =>{
+        this.colors = colors;
+      })
   }
 
-  selected(event: MatAutocompleteSelectedEvent): void {
-    this.materials.push(event.option.viewValue);
-    this.materialCtrl.setValue(null);
+  allSizes() {
+    this.addProductService
+      .getAllSizes()
+      .pipe()
+      .subscribe((sizes:SizesAdd[]) =>{
+        this.sizes = sizes;
+        console.log();
+      })
   }
 
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
+  allCategory() {
+    this.addProductService
+      .getAllCategory()
+      .pipe()
+      .subscribe((categories: CatergoryMaterialsAdd[]) =>{
+        this.categories = categories;
+      })
+  }
 
-    return this.allMaterials.filter(
-      (material) => material.toLowerCase().indexOf(filterValue) === 0
-    );
+  ngOnInit() {
+    this.allMaterials();
+    this.allColors();
+    this.allSizes();
+    this.allCategory();
   }
 }

@@ -1,14 +1,16 @@
+import {SizesComparison} from "./sizesComparison";
+
 export class Comparison {
   id!: number;
   name!: string;
   price!: number;
   discount!: number;
   description!: string;
-  productSex!: string;
+  sex!: string;
   photo!: string;
-  isAvailable!: boolean;
+  availability!: boolean;
   materials!: string[];
-  sizeProduct!: string;
+  sizes!: [SizesComparison];
   color!: string;
   amount!: number;
   category!: string;

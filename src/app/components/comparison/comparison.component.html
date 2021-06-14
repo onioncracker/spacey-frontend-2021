@@ -6,175 +6,113 @@
 <div class="table-comparison">
   <table>
     <tr>
-      <td class="compare-field">
-        <div class="photo-and-button">
+      <td class="compare-field" *ngFor="let product of products">
+        <div class="photo-and-button" >
           <button class="button-x">X</button>
-          <img [attr.src]="" alt="Photo" class="photo" />
+          <img src="{{product.photo}}" class="photo" alt="{{product.name}}" />
         </div>
-      </td>
-      <td class="compare-field">
-        <button class="button-x">X</button>
-        <img [attr.src]="" alt="Photo" class="photo" />
-      </td>
-      <td
-        class="compare-field"
-        *ngIf="products.length === 3 || products.length === 4"
-      >
-        <button class="button-x">X</button>
-        <img [attr.src]="" alt="Photo" class="photo" />
-      </td>
-      <td class="compare-field" *ngIf="products.length === 4">
-        <button class="button-x">X</button>
-        <img [attr.src]="" alt="Photo" class="photo" />
       </td>
     </tr>
     <tr>
-      <td class="prod-name compare-field">
-        <a routerLink="products/:id"></a>
-      </td>
-      <td class="prod-name compare-field">
-        <a routerLink="products/:id"></a>
-      </td>
-      <td
-        class="prod-name compare-field"
-        *ngIf="products.length === 3 || products.length === 4"
-      >
-        <a routerLink="products/:id"></a>
-      </td>
-      <td class="prod-name compare-field" *ngIf="products.length === 4">
-        <a routerLink="products/:id"></a>
+      <td class="prod-name compare-field" *ngFor="let product of products">
+        <a routerLink="/products/{{product.id}}">{{product.name}}</a>
       </td>
     </tr>
     <tr>
       <td colspan="4" class="compare-field">
-        <h3 class="compare-h">In Stock</h3>
+        <h3 class="compare-h label-field">In Stock</h3>
       </td>
     </tr>
     <tr>
-      <td class="compare-field"></td>
-      <td class="compare-field"></td>
-      <td *ngIf="products.length === 3 || products.length === 4"></td>
-      <td *ngIf="products.length === 4"></td>
+      <td class="compare-field" *ngFor="let product of products">
+        {{product.availability}}
+      </td>
     </tr>
     <tr>
       <td class="compare-field" colspan="4">
-        <h3 class="compare-h">Discount</h3>
+        <h3 class="compare-h label-field">Discount</h3>
       </td>
     </tr>
     <tr>
-      <td class="compare-field">-%</td>
-      <td class="compare-field">-%</td>
-      <td
-        class="compare-field"
-        *ngIf="products.length === 3 || products.length === 4"
-      >
-        -%
+      <td class="compare-field" *ngFor="let product of products">
+        -{{product.discount}}%
       </td>
-      <td class="compare-field" *ngIf="products.length === 4">-%</td>
     </tr>
     <tr>
       <td class="compare-field" colspan="4">
-        <h3 class="compare-h">Price</h3>
+        <h3 class="compare-h label-field">Price</h3>
       </td>
     </tr>
     <tr>
-      <td class="compare-field">UAH</td>
-      <td class="compare-field">UAH</td>
-      <td
-        class="compare-field"
-        *ngIf="products.length === 3 || products.length === 4"
-      >
-        UAH
+      <td class="compare-field" *ngFor="let product of products">
+        {{product.price}} UAH
       </td>
-      <td class="compare-field" *ngIf="products.length === 4">UAH</td>
     </tr>
     <tr>
       <td class="compare-field" colspan="4">
-        <h3 class="compare-h">Category</h3>
+        <h3 class="compare-h label-field">Category</h3>
       </td>
     </tr>
     <tr>
-      <td class="compare-field"></td>
-      <td class="compare-field"></td>
-      <td
-        class="compare-field"
-        *ngIf="products.length === 3 || products.length === 4"
-      ></td>
-      <td class="compare-field" *ngIf="products.length === 4"></td>
+      <td class="compare-field" *ngFor="let product of products">
+        {{product.category}}
+      </td>
     </tr>
     <tr>
       <td class="compare-field" colspan="4">
-        <h3 class="compare-h">Sex</h3>
+        <h3 class="compare-h label-field">Sex</h3>
       </td>
     </tr>
     <tr>
-      <td class="compare-field"></td>
-      <td class="compare-field"></td>
-      <td
-        class="compare-field"
-        *ngIf="products.length === 3 || products.length === 4"
-      ></td>
-      <td class="compare-field" *ngIf="products.length === 4"></td>
+      <td class="compare-field" *ngFor="let product of products">
+        {{product.sex}}
+      </td>
     </tr>
     <tr>
       <td class="compare-field" colspan="4">
-        <h3 class="compare-h">Sizes</h3>
+        <h3 class="compare-h label-field">Sizes</h3>
       </td>
     </tr>
     <tr>
-      <td class="compare-field"></td>
-      <td class="compare-field"></td>
-      <td
-        class="compare-field"
-        *ngIf="products.length === 3 || products.length === 4"
-      ></td>
-      <td class="compare-field" *ngIf="products.length === 4"></td>
+      <td class="compare-field" *ngFor="let product of products">
+        <span *ngFor="let size of product.sizes">
+          {{size.size}}
+        </span>
+      </td>
     </tr>
     <tr>
       <td class="compare-field" colspan="4">
-        <h3 class="compare-h">Color</h3>
+        <h3 class="compare-h label-field">Color</h3>
       </td>
     </tr>
     <tr>
-      <td class="compare-field"></td>
-      <td class="compare-field"></td>
-      <td
-        class="compare-field"
-        *ngIf="products.length === 3 || products.length === 4"
-      ></td>
-      <td class="compare-field" *ngIf="products.length === 4"></td>
+      <td class="compare-field" *ngFor="let product of products">
+        {{product.color}}
+      </td>
     </tr>
     <tr>
       <td class="compare-field" colspan="4">
-        <h3 class="compare-h">Materials</h3>
+        <h3 class="compare-h label-field">Materials</h3>
       </td>
     </tr>
     <tr>
-      <td class="compare-field"></td>
-      <td class="compare-field"></td>
-      <td
-        class="compare-field"
-        *ngIf="products.length === 3 || products.length === 4"
-      ></td>
-      <td class="compare-field" *ngIf="products.length === 4"></td>
+      <td class="compare-field" *ngFor="let product of products">
+        {{product.materials}}
+      </td>
     </tr>
     <tr>
       <td class="compare-field" colspan="4">
-        <h3 class="compare-h">About items</h3>
+        <h3 class="compare-h label-field">About items</h3>
       </td>
     </tr>
     <tr>
-      <td class="compare-field"></td>
-      <td class="compare-field"></td>
-      <td
-        class="compare-field"
-        *ngIf="products.length === 3 || products.length === 4"
-      ></td>
-      <td class="compare-field" *ngIf="products.length === 4"></td>
+      <td class="compare-field" *ngFor="let product of products">
+        {{product.description}}
+      </td>
     </tr>
   </table>
   <div class="button-div">
-    <button mat-raised-button class="add-btn" type="submit" color="accent">
+    <button mat-raised-button class="btn-add-more" type="submit" color="accent" routerLink="/products">
       ADD MORE
     </button>
   </div>

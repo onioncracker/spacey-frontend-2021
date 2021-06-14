@@ -12,12 +12,12 @@
       <td>
         <h3 class="edit-h">Category</h3>
         <mat-form-field appearance="fill">
-          <mat-select [(ngModel)]="selectedValue" name="category">
+          <mat-select name="category">
             <mat-option
               *ngFor="let category of categories"
-              [value]="category.value1"
+              [value]="category"
             >
-              {{ category.viewValue1 }}
+              {{category.name}}
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -36,19 +36,21 @@
       <td>
         <h3 class="edit-h">Sex</h3>
         <mat-form-field appearance="fill">
-          <mat-select [(ngModel)]="selectedValue" name="sex">
-            <mat-option *ngFor="let sex of sexes" [value]="sex.value2">
-              {{ sex.viewValue2 }}
-            </mat-option>
+          <mat-select
+            formControlName="productSex"
+            placeholder="Sex"
+          >
+            <mat-option value="MEN">MEN</mat-option>
+            <mat-option value="WOMEN">WOMEN</mat-option>
           </mat-select>
         </mat-form-field>
       </td>
       <td>
         <h3 class="edit-h">Color</h3>
         <mat-form-field appearance="fill">
-          <mat-select [(ngModel)]="selectedValue" name="color">
-            <mat-option *ngFor="let color of colors" [value]="color.value3">
-              {{ color.viewValue3 }}
+          <mat-select name="color">
+            <mat-option *ngFor="let color of colors" [value]="color">
+              {{ color.name }}
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -71,13 +73,12 @@
         <h3 class="edit-h">Material</h3>
         <mat-form-field appearance="fill" class="material-field">
           <mat-select
-            [formControl]="toppings"
             multiple
             placeholder="Select materials"
           >
-            <mat-option *ngFor="let topping of toppingList" [value]="topping">{{
-              topping
-            }}</mat-option>
+            <mat-option *ngFor="let material of materialsList" [value]="material">
+              {{material.name}}
+            </mat-option>
           </mat-select>
         </mat-form-field>
       </td>
@@ -99,78 +100,35 @@
             <mat-label class="edit-h">Deactivate product</mat-label>
           </mat-checkbox>
         </div>
+        <div class="deactivate-box">
+          <mat-checkbox formControlName="isOnAuction">
+            <mat-label class="edit-h">Is product on auction?</mat-label>
+          </mat-checkbox>
+        </div>
       </td>
       <td rowspan="5" class="sizes">
-        <tr>
-          <td>
-            <div class="sizes">
-              <mat-label class="edit-h">XS:</mat-label>
-              <mat-form-field class="size-amount" appearance="fill">
-                <input matInput type="number" placeholder="Amount" />
-              </mat-form-field>
-              <br />
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <div class="sizes">
-              <mat-label class="edit-h">S:</mat-label>
-              <mat-form-field class="size-amount" appearance="fill">
-                <input matInput type="number" placeholder="Amount" />
-              </mat-form-field>
-              <br />
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <div class="sizes">
-              <mat-label class="edit-h">M:</mat-label>
-              <mat-form-field class="size-amount" appearance="fill">
-                <input matInput type="number" placeholder="Amount" />
-              </mat-form-field>
-              <br />
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <div class="sizes">
-              <mat-label class="edit-h">L:</mat-label>
-              <mat-form-field class="size-amount" appearance="fill">
-                <input matInput type="number" placeholder="Amount" />
-              </mat-form-field>
-              <br />
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <div class="sizes">
-              <mat-label class="edit-h">XL:</mat-label>
-              <mat-form-field class="size-amount" appearance="fill">
-                <input matInput type="number" placeholder="Amount" />
-              </mat-form-field>
-              <br />
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <div class="sizes">
-              <mat-label class="edit-h">XXL:</mat-label>
-              <mat-form-field class="size-amount" appearance="fill">
-                <input matInput type="number" placeholder="Amount" />
-              </mat-form-field>
-              <br />
-            </div>
-          </td>
-        </tr>
+    <tr *ngFor="let size of sizes">
+      <td>
+        <div class="sizes">
+          <mat-label
+            class="add-h"
+          >
+            {{size.name}}:
+          </mat-label>
+          <mat-form-field class="size-amount" appearance="fill">
+            <input
+              matInput
+              type="number"
+              placeholder="Amount"
+              [value]="sizes"
+              [formControlName]="size.quantity"
+            />
+          </mat-form-field>
+          <br />
+        </div>
       </td>
     </tr>
   </table>
-
   <br />
   <div class="wrapper">
     <button mat-raised-button class="edit-btn" type="submit" color="accent">
