@@ -14,12 +14,12 @@ import { Router } from '@angular/router';
 export class AdminEmployeeComponent implements OnInit {
   displayedColumns: string[] = [
     // 'loginId',
-    'email',
     'firstName',
     'lastName',
-    'phoneNumber',
-    'status',
     'userRole',
+    'phoneNumber',
+    'email',
+    'status',
     'actions',
   ];
   dataSource = new MatTableDataSource<EmployeeModel>();

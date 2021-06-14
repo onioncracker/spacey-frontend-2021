@@ -8,6 +8,7 @@ import {
 import { Observable, of, throwError } from 'rxjs';
 import { AddEmployeeModel } from '../../models/AddEmployeeModel';
 import { EmployeeModel } from '../../models/EmployeeModel';
+import { retry, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -16,44 +17,18 @@ export class EmployeeService {
   private hostURL = 'https://spacey-backend.herokuapp.com';
   private employeeUrl = `${this.hostURL}/employees`;
   private searchEmployeeUrl = this.employeeUrl + '/search';
+  private addEmployeeUrl = `${this.employeeUrl}/create`;
 
   // private editEmployeeUrl = this.employeeUrl + '/update';
 
   constructor(private http: HttpClient) {}
 
   getAllEmployees(): Observable<any> {
-    return this.http.get(this.employeeUrl);
+    return this.http.get(this.employeeUrl)
   }
 
-  // search(term: string): Observable<EmployeeModel> {
-  //   return this.http.get(`{this.searchEmployeeUrl}/?lastName=${term}`)
-  //     .map(response => response.json().data as EmployeeModel[])
-  //     .catch(this.handleError);
-  // }
-  // searchEmployees(term: Observable<EmployeeModel>): Observable {
-  //   return term.debouncedTime(200).distinctUntilChanged().switchMap(term => this.search(term));
-  // }
-
-  // this.http.request('GET', this.searchEmployeeUrl + '?' + 'lastName=term', {responseType:'json'});
-  // search(term:string): Observable {
-  //   return this.http.get(`api/employee/?firstName=${term}`)
-  //     .map(response =>  response.json().data as Employee[])
-  //     .catch(this.handleError);
-  // }
-  //
-  // searchEmployees(term: Observable): Observable {
-  //   return term.debounceTime(200)
-  //     .distinctUntilChanged()
-  //     .switchMap(term => this.search(term));//here is the error
-  // }
-  //
-  // private handleError(error: any): Promise {
-  //   console.error('Error on EmployeeSearchService', error);
-  //   return Promise.reject(error.message || error);
-  // }
-
   addEmployee(addEmployeeData: AddEmployeeModel): Observable<any> {
-    const url = `${this.employeeUrl}`;
+    const url = `${this.addEmployeeUrl}`;
     const body = {
       email: addEmployeeData.email,
       status: addEmployeeData.status,
@@ -64,7 +39,22 @@ export class EmployeeService {
     };
     return this.http.post(url, body);
   }
+
+  // Error handling
+  handleError(error) {
+    let errorMessage = '';
+    if(error.error instanceof ErrorEvent) {
+      // Get client-side error
+      errorMessage = error.error.message;
+    } else {
+      // Get server-side error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    window.alert(errorMessage);
+    return throwError(errorMessage);
+  }
 }
+
 // editEmployee(editEmployeeData: EmployeeModel): Observable<any> {
 //   const url = `${this.employeeUrl}`;
 //   const body = {

@@ -33,6 +33,7 @@ export class EmployeeErrorStateMatcher implements ErrorStateMatcher {
 export class AdminAddComponent {
   addEmployeeForm: FormGroup;
   errorMatcher: ErrorStateMatcher;
+  disableSelect = new FormControl(false);
 
   constructor(
     private formBuilder: FormBuilder,
