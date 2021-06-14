@@ -7,15 +7,19 @@
   <table>
     <tr>
       <td class="compare-field" *ngFor="let product of products">
-        <div class="photo-and-button" >
+        <div class="photo-and-button">
           <button class="button-x">X</button>
-          <img src="{{product.photo}}" class="photo" alt="{{product.name}}" />
+          <img
+            src="{{ product.photo }}"
+            class="photo"
+            alt="{{ product.name }}"
+          />
         </div>
       </td>
     </tr>
     <tr>
       <td class="prod-name compare-field" *ngFor="let product of products">
-        <a routerLink="/products/{{product.id}}">{{product.name}}</a>
+        <a routerLink="/products/{{ product.id }}">{{ product.name }}</a>
       </td>
     </tr>
     <tr>
@@ -25,7 +29,7 @@
     </tr>
     <tr>
       <td class="compare-field" *ngFor="let product of products">
-        {{product.availability}}
+        {{ product.availability }}
       </td>
     </tr>
     <tr>
@@ -35,7 +39,7 @@
     </tr>
     <tr>
       <td class="compare-field" *ngFor="let product of products">
-        -{{product.discount}}%
+        -{{ product.discount }}%
       </td>
     </tr>
     <tr>
@@ -45,7 +49,7 @@
     </tr>
     <tr>
       <td class="compare-field" *ngFor="let product of products">
-        {{product.price}} UAH
+        {{ product.price }} UAH
       </td>
     </tr>
     <tr>
@@ -55,7 +59,7 @@
     </tr>
     <tr>
       <td class="compare-field" *ngFor="let product of products">
-        {{product.category}}
+        {{ product.category }}
       </td>
     </tr>
     <tr>
@@ -65,7 +69,7 @@
     </tr>
     <tr>
       <td class="compare-field" *ngFor="let product of products">
-        {{product.sex}}
+        {{ product.sex }}
       </td>
     </tr>
     <tr>
@@ -76,7 +80,7 @@
     <tr>
       <td class="compare-field" *ngFor="let product of products">
         <span *ngFor="let size of product.sizes">
-          {{size.size}}
+          {{ size.size }}
         </span>
       </td>
     </tr>
@@ -87,7 +91,7 @@
     </tr>
     <tr>
       <td class="compare-field" *ngFor="let product of products">
-        {{product.color}}
+        {{ product.color }}
       </td>
     </tr>
     <tr>
@@ -97,7 +101,7 @@
     </tr>
     <tr>
       <td class="compare-field" *ngFor="let product of products">
-        {{product.materials}}
+        {{ product.materials }}
       </td>
     </tr>
     <tr>
@@ -107,12 +111,18 @@
     </tr>
     <tr>
       <td class="compare-field" *ngFor="let product of products">
-        {{product.description}}
+        {{ product.description }}
       </td>
     </tr>
   </table>
   <div class="button-div">
-    <button mat-raised-button class="btn-add-more" type="submit" color="accent" routerLink="/products">
+    <button
+      mat-raised-button
+      class="btn-add-more"
+      type="submit"
+      color="accent"
+      routerLink="/products"
+    >
       ADD MORE
     </button>
   </div>

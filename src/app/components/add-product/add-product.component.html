@@ -15,7 +15,7 @@
             placeholder="Category"
           >
             <mat-option *ngFor="let category of categories" [value]="category">
-            {{category.name}}
+              {{ category.name }}
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -33,11 +33,12 @@
         </mat-form-field>
       </td>
       <td rowspan="3" class="cell-photo">
+        <span>Select Image</span>
         <input
-          type="image"
-          class="photo"
-          value="Photo"
-          alt="Photo"
+          #imageInput
+          type="file"
+          accept="image/*"
+          (change)="processFile(imageInput)"
         />
       </td>
     </tr>
@@ -64,7 +65,7 @@
             placeholder="Color"
           >
             <mat-option *ngFor="let color of colors" [value]="color">
-              {{color.name}}
+              {{ color.name }}
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -95,7 +96,7 @@
       </td>
     </tr>
     <tr>
-      <td colspan="4">
+      <td colspan="3">
         <h3 class="add-h">Material</h3>
         <mat-form-field appearance="fill" class="material-field">
           <mat-select
@@ -104,10 +105,25 @@
             multiple
             placeholder="Select materials"
           >
-            <mat-option *ngFor="let material of materialsList" [value]="material">
-              {{material.name}}
+            <mat-option
+              *ngFor="let material of materialsList"
+              [value]="material"
+            >
+              {{ material.name }}
             </mat-option>
           </mat-select>
+        </mat-form-field>
+      </td>
+      <td>
+        <h3 class="add-h">Amount</h3>
+        <mat-form-field class="input-field" appearance="fill">
+          <input
+            matInput
+            [formGroup]="addProductForm"
+            formControlName="amount"
+            type="number"
+            placeholder="Amount"
+          />
         </mat-form-field>
       </td>
     </tr>
@@ -125,69 +141,49 @@
           </textarea>
         </mat-form-field>
         <div class="deactivate-box">
-          <mat-checkbox [formGroup]="addProductForm" formControlName="isAvailable">
+          <mat-checkbox
+            [formGroup]="addProductForm"
+            formControlName="isAvailable"
+          >
             <mat-label class="add-h">Activate product</mat-label>
           </mat-checkbox>
         </div>
         <div class="deactivate-box">
-          <mat-checkbox [formGroup]="addProductForm" formControlName="isOnAuction">
+          <mat-checkbox
+            [formGroup]="addProductForm"
+            formControlName="isOnAuction"
+          >
             <mat-label class="add-h">Is the product in the auction?</mat-label>
           </mat-checkbox>
         </div>
       </td>
       <td rowspan="5" class="sizes">
-        <tr *ngFor="let size of sizesAmount">
+        <tr *ngFor="let size of sizesAmount; let i = index; trackBy: onTrackBy">
           <td>
             <div class="sizes">
-              <mat-label
-                class="add-h"
-              >
-                {{size.name}}:
-              </mat-label>
+              <mat-label class="add-h"> {{ size.name }}: </mat-label>
               <mat-form-field class="size-amount" appearance="fill">
                 <input
                   matInput
                   type="number"
                   placeholder="Amount"
                   formControlName="sizes"
-                  [(ngModel)]="size.quantity"
-                  (ngModelChange)="saverange($event)"
+                  [(ngModel)]="sizesAmount[i].quantity"
                 />
               </mat-form-field>
               <br />
             </div>
           </td>
         </tr>
+      </td>
+    </tr>
   </table>
+
   <br />
   <div class="save-wrapper">
-    <button
-      mat-raised-button
-      class="add-btn"
-      type="submit"
-      color="accent">
+    <button mat-raised-button class="add-btn" type="submit" color="accent">
       SAVE PRODUCT
     </button>
     <br />
   </div>
-  <h3 class="add-h">Photo</h3>
-  <mat-form-field class="input-field" appearance="fill">
-    <input
-      matInput
-      [formGroup]="addProductForm"
-      formControlName="photo"
-      type="text"
-      placeholder="Photo"
-    />
-  </mat-form-field>
-  <h3 class="add-h">Amount</h3>
-  <mat-form-field class="input-field" appearance="fill">
-    <input
-      matInput
-      [formGroup]="addProductForm"
-      formControlName="amount"
-      type="number"
-      placeholder="Amount"
-    />
-  </mat-form-field>
 </form>

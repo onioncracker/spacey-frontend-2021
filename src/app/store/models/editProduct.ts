@@ -1,5 +1,5 @@
-import {CatergoryMaterialsAdd} from "./catergoryMaterialsAdd";
-import {SizesAdd} from "./sizesAdd";
+import { CatergoryMaterialsAdd } from './catergoryMaterialsAdd';
+import { SizesAdd } from './sizesAdd';
 
 export class EditProduct {
   id!: number;

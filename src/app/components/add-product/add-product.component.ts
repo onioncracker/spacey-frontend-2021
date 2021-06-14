@@ -1,25 +1,33 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AddProductService } from '../../store/service/add-product/add-product.service';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {AddProduct} from "../../store/models/addProduct";
-import {CatergoryMaterialsAdd} from "../../store/models/catergoryMaterialsAdd";
-import {SizesAdd} from "../../store/models/sizesAdd";
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import { AddProduct } from '../../store/models/addProduct';
+import { CatergoryMaterialsAdd } from '../../store/models/catergoryMaterialsAdd';
+import { SizesAdd } from '../../store/models/sizesAdd';
+
+class ImageSnippet {
+  constructor(public src: string, public file: File) {}
+}
 
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
   styleUrls: ['./add-product.component.css'],
 })
-export class AddProductComponent implements OnInit{
+export class AddProductComponent implements OnInit {
   product!: AddProduct;
   addProductForm: FormGroup;
-  materialsList!: CatergoryMaterialsAdd [];
-  categories!: CatergoryMaterialsAdd [];
-  colors!: CatergoryMaterialsAdd [];
-  sizesAmount!: SizesAdd [];
-  // photo = 'jhbg,jh';
-  // amount = 39;
+  materialsList!: CatergoryMaterialsAdd[];
+  categories!: CatergoryMaterialsAdd[];
+  colors!: CatergoryMaterialsAdd[];
+  sizesAmount!: SizesAdd[];
+  selectedFile!: ImageSnippet;
 
   constructor(
     private route: ActivatedRoute,
@@ -40,7 +48,7 @@ export class AddProductComponent implements OnInit{
       color: ['', [Validators.required]],
       materials: ['', [Validators.required]],
       sizes: ['', [Validators.required]],
-    })
+    });
   }
 
   onSubmit() {
@@ -61,7 +69,7 @@ export class AddProductComponent implements OnInit{
       category: this.addProductForm.get('category')?.value,
       color: this.addProductForm.get('color')?.value,
       materials: this.addProductForm.get('materials')?.value,
-      sizes: this.addProductForm.get('sizes')?.value,
+      sizes: this.sizesAmount,
     };
     this.addProductForm.controls.name.disable();
     this.addProductForm.controls.amount.disable();
@@ -77,58 +85,61 @@ export class AddProductComponent implements OnInit{
     this.addProductForm.controls.materials.disable();
     this.addProductForm.controls.sizes.disable();
 
-    this.addProductService
-      .addNewProduct(this.product)
-      .subscribe(
-        (response) => {
-        const data = response.body;
-      }
-    )
+    this.addProductService.addNewProduct(this.product).subscribe((response) => {
+      const data = response.body;
+      console.log(data);
+      this.addProductService.uploadImage(this.selectedFile.file, data);
+      console.log(this.selectedFile, data);
+    });
   }
 
   allMaterials() {
     this.addProductService
       .getAllMaterials()
       .pipe()
-      .subscribe((materialsList:CatergoryMaterialsAdd[]) =>{
+      .subscribe((materialsList: CatergoryMaterialsAdd[]) => {
         this.materialsList = materialsList;
-      })
+      });
   }
 
   allColors() {
     this.addProductService
       .getAllColors()
       .pipe()
-      .subscribe((colors:CatergoryMaterialsAdd[]) =>{
+      .subscribe((colors: CatergoryMaterialsAdd[]) => {
         this.colors = colors;
-      })
+      });
   }
 
   allSizes() {
     this.addProductService
       .getAllSizes()
       .pipe()
-      .subscribe((sizesAmount: SizesAdd[]) =>{
+      .subscribe((sizesAmount: SizesAdd[]) => {
         this.sizesAmount = sizesAmount;
-      })
+      });
   }
 
   allCategory() {
     this.addProductService
       .getAllCategory()
       .pipe()
-      .subscribe((categories: CatergoryMaterialsAdd[]) =>{
+      .subscribe((categories: CatergoryMaterialsAdd[]) => {
         this.categories = categories;
-      })
+      });
   }
 
-  size = new SizesAdd();
+  onTrackBy(index: number) {
+    return index;
+  }
 
-  saverange (size: any): any {
-
-    // this.size.quantity = value;
-    // console.log(value);
-     console.log(size);
+  processFile(imageInput: any) {
+    const file: File = imageInput.files[0];
+    const reader = new FileReader();
+    reader.addEventListener('load', (event: any) => {
+      this.selectedFile = new ImageSnippet(event.target.result, file);
+    });
+    reader.readAsDataURL(file);
   }
 
   ngOnInit() {

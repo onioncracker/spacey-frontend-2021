@@ -1,5 +1,5 @@
-import {CatergoryMaterialsAdd} from "./catergoryMaterialsAdd";
-import {SizesAdd} from "./sizesAdd";
+import { CatergoryMaterialsAdd } from './catergoryMaterialsAdd';
+import { SizesAdd } from './sizesAdd';
 
 export class AddProduct {
   name!: string;
@@ -14,6 +14,5 @@ export class AddProduct {
   category!: CatergoryMaterialsAdd;
   color!: CatergoryMaterialsAdd;
   materials!: [CatergoryMaterialsAdd];
-  sizes!: [SizesAdd];
+  sizes!: SizesAdd[];
 }
-

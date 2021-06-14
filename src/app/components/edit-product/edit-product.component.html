@@ -13,11 +13,8 @@
         <h3 class="edit-h">Category</h3>
         <mat-form-field appearance="fill">
           <mat-select name="category">
-            <mat-option
-              *ngFor="let category of categories"
-              [value]="category"
-            >
-              {{category.name}}
+            <mat-option *ngFor="let category of categories" [value]="category">
+              {{ category.name }}
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -36,10 +33,7 @@
       <td>
         <h3 class="edit-h">Sex</h3>
         <mat-form-field appearance="fill">
-          <mat-select
-            formControlName="productSex"
-            placeholder="Sex"
-          >
+          <mat-select formControlName="productSex" placeholder="Sex">
             <mat-option value="MEN">MEN</mat-option>
             <mat-option value="WOMEN">WOMEN</mat-option>
           </mat-select>
@@ -72,12 +66,12 @@
       <td colspan="4">
         <h3 class="edit-h">Material</h3>
         <mat-form-field appearance="fill" class="material-field">
-          <mat-select
-            multiple
-            placeholder="Select materials"
-          >
-            <mat-option *ngFor="let material of materialsList" [value]="material">
-              {{material.name}}
+          <mat-select multiple placeholder="Select materials">
+            <mat-option
+              *ngFor="let material of materialsList"
+              [value]="material"
+            >
+              {{ material.name }}
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -97,7 +91,7 @@
         </mat-form-field>
         <div class="deactivate-box">
           <mat-checkbox>
-            <mat-label class="edit-h">Deactivate product</mat-label>
+            <mat-label class="edit-h">Activate product</mat-label>
           </mat-checkbox>
         </div>
         <div class="deactivate-box">
@@ -107,28 +101,27 @@
         </div>
       </td>
       <td rowspan="5" class="sizes">
-    <tr *ngFor="let size of sizes">
-      <td>
-        <div class="sizes">
-          <mat-label
-            class="add-h"
-          >
-            {{size.name}}:
-          </mat-label>
-          <mat-form-field class="size-amount" appearance="fill">
-            <input
-              matInput
-              type="number"
-              placeholder="Amount"
-              [value]="sizes"
-              [formControlName]="size.quantity"
-            />
-          </mat-form-field>
-          <br />
-        </div>
+        <tr *ngFor="let size of sizes">
+          <td>
+            <div class="sizes">
+              <mat-label class="add-h"> {{ size.name }}: </mat-label>
+              <mat-form-field class="size-amount" appearance="fill">
+                <input
+                  matInput
+                  type="number"
+                  placeholder="Amount"
+                  [value]="sizes"
+                  [formControlName]="size.quantity"
+                />
+              </mat-form-field>
+              <br />
+            </div>
+          </td>
+        </tr>
       </td>
     </tr>
   </table>
+
   <br />
   <div class="wrapper">
     <button mat-raised-button class="edit-btn" type="submit" color="accent">
