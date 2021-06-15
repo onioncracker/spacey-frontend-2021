@@ -11,10 +11,11 @@ import { environment } from '../../../../environments/environment';
   providedIn: 'root',
 })
 export class AuthService {
-  private registerURL = environment.url + '/register';
-  private loginURL = environment.url + '/login';
+  private apiPrefix = '/api/v1';
+  private registerURL = environment.url + this.apiPrefix + '/register';
+  private loginURL = environment.url + this.apiPrefix + '/login';
 
-  public loggedIn = false;
+  private loggedIn = false;
   private httpOptions = { observe: 'response' as const };
 
   constructor(private http: HttpClient, private router: Router) {}
@@ -38,6 +39,14 @@ export class AuthService {
     sessionStorage.setItem('token', '');
     this.loggedIn = false;
     this.router.navigate(['/']);
+  }
+
+  setAuthorised(value: boolean) {
+    this.loggedIn = value;
+  }
+
+  isAuthorised(): boolean {
+    return this.loggedIn;
   }
 
   register(

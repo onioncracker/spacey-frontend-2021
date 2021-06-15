@@ -66,7 +66,7 @@ export class LoginComponent {
       (response) => {
         const data = response.body;
         this.storageService.saveToken(data!.authToken);
-        this.messageService.loggedIn = true;
+        this.messageService.setAuthorised(true);
         this.router.navigate(['/']);
         console.warn('logged in successfully');
         console.log(this.storageService.getToken());
