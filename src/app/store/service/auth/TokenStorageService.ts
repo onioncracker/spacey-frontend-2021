@@ -8,7 +8,7 @@ const AUTHORITIES_KEY = 'AuthAuthorities';
   providedIn: 'root',
 })
 export class TokenStorageService {
-  private roles: Array<string> = [];
+  private role: string | undefined;
   constructor() {}
 
   signOut() {
@@ -33,20 +33,16 @@ export class TokenStorageService {
     return sessionStorage.getItem(USERNAME_KEY) as string;
   }
 
-  public saveAuthorities(authorities: string[]) {
+  public saveAuthorities(authority: string) {
     sessionStorage.removeItem(AUTHORITIES_KEY);
-    sessionStorage.setItem(AUTHORITIES_KEY, JSON.stringify(authorities));
+    sessionStorage.setItem(AUTHORITIES_KEY, authority);
   }
 
-  public getAuthorities(): string[] {
-    this.roles = [];
-    if (sessionStorage.getItem(TOKEN_KEY)) {
-      JSON.parse(sessionStorage.getItem(AUTHORITIES_KEY)!).forEach(
-        (authority: { authority: string }) => {
-          this.roles.push(authority.authority);
-        }
-      );
+  public getAuthorities(): string {
+    let res = sessionStorage.getItem(AUTHORITIES_KEY);
+    if (res) {
+      return res;
     }
-    return this.roles;
+    return '';
   }
 }
