@@ -1,117 +1,106 @@
-<!--<mat-label class="edit-label"><h1>Edit employee</h1></mat-label>-->
-<!--<form class="form-class" [formGroup]="editEmployeeForm">-->
-<!--  <span></span>-->
+<mat-label class="edit-label"><h1>Edit employee</h1></mat-label>
+<form class="form-class" [formGroup]="editEmployeeForm" #employeeForm="ngForm"
+      (ngSubmit)="onSubmit(editEmployeeForm, employeeForm)">
+  <span></span>
 
-<!--  <div class="input-form">-->
-<!--    <div class="column">-->
-<!--      <mat-label><h3>FIRST NAME</h3></mat-label>-->
-<!--      <mat-form-field class="emp-form-field" appearance="fill">-->
-<!--        <input-->
-<!--          matInput-->
-<!--          formControlName="firstName"-->
-<!--          type="text"-->
-<!--          placeholder="Name"-->
-<!--        />-->
-<!--        <mat-error-->
-<!--          *ngIf="editEmployeeForm.get('firstName')?.hasError('required')"-->
-<!--        >-->
-<!--          Name is required!-->
-<!--        </mat-error>-->
-<!--      </mat-form-field>-->
+  <div class="input-form">
+    <div class="column">
+      <mat-label><h3>FIRST NAME</h3></mat-label>
+      <mat-form-field class="emp-form-field" appearance="fill">
+        <input
+          matInput
+          formControlName="firstName"
+          type="text"
+          placeholder="Name"
+        />
+        <mat-error
+          *ngIf="editEmployeeForm.get('firstName')?.hasError('required')"
+        >
+          Name is required!
+        </mat-error>
+      </mat-form-field>
 
-<!--      <mat-label><h3>E-MAIL</h3></mat-label>-->
-<!--      <mat-form-field class="emp-form-field" appearance="fill">-->
-<!--        <input-->
-<!--          matInput-->
-<!--          formControlName="email"-->
-<!--          type="text"-->
-<!--          [errorStateMatcher]="errorMatcher"-->
-<!--          placeholder="email@example.com"-->
-<!--        />-->
-<!--        <mat-error-->
-<!--          *ngIf="-->
-<!--            editEmployeeForm.get('email')?.hasError('email') &&-->
-<!--            !editEmployeeForm.get('email')?.hasError('required')-->
-<!--          "-->
-<!--        >-->
-<!--          Please write correct address!-->
-<!--        </mat-error>-->
-<!--        <mat-error *ngIf="editEmployeeForm.get('email')?.hasError('required')">-->
-<!--          Email is<strong>required!</strong>-->
-<!--        </mat-error>-->
-<!--      </mat-form-field>-->
+      <mat-label><h3>E-MAIL</h3></mat-label>
+      <mat-form-field class="emp-form-field" appearance="fill">
+        <input
+          matInput
+          formControlName="email"
+          type="text"
+          [errorStateMatcher]="errorMatcher"
+          placeholder="email@example.com"
+        />
+        <mat-error
+          *ngIf="
+            editEmployeeForm.get('email')?.hasError('email') &&
+            !editEmployeeForm.get('email')?.hasError('required')
+          "
+        >
+          Please write correct address!
+        </mat-error>
+        <mat-error *ngIf="editEmployeeForm.get('email')?.hasError('required')">
+          Email is<strong>required!</strong>
+        </mat-error>
+      </mat-form-field>
 
-<!--      <mat-label><h3>ROLE</h3></mat-label>-->
-<!--      <mat-form-field class="emp-form-field" appearance="fill">-->
-<!--        <input-->
-<!--          matInput-->
-<!--          formControlName="userRole"-->
-<!--          type="text"-->
-<!--          placeholder="Role"-->
-<!--        />-->
-<!--        <mat-error-->
-<!--          *ngIf="editEmployeeForm.get('userRole')?.hasError('required')"-->
-<!--        >-->
-<!--          Role is required!-->
-<!--        </mat-error>-->
-<!--      </mat-form-field>-->
-<!--    </div>-->
-<!--    <div class="column">-->
-<!--      <mat-label><h3>LAST NAME</h3></mat-label>-->
-<!--      <mat-form-field class="emp-form-field" appearance="fill">-->
-<!--        <input-->
-<!--          matInput-->
-<!--          formControlName="lastName"-->
-<!--          type="text"-->
-<!--          placeholder="Surname"-->
-<!--        />-->
-<!--        <mat-error-->
-<!--          *ngIf="editEmployeeForm.get('lastName')?.hasError('required')"-->
-<!--        >-->
-<!--          Surname is required!-->
-<!--        </mat-error>-->
-<!--      </mat-form-field>-->
+      <mat-label><h3>ROLE</h3></mat-label>
+      <mat-form-field class="emp-form-field" appearance="fill">
+        <mat-select class="emp-form-field" formControlName="userRole">
+          <mat-option value="Courier">Courier</mat-option>
+          <mat-option value="PM">Product Manager</mat-option>
+        </mat-select>
+        <mat-error *ngIf="editEmployeeForm.get('userRole')?.hasError('required')">
+          Role is required!
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="column">
+      <mat-label><h3>LAST NAME</h3></mat-label>
+      <mat-form-field class="emp-form-field" appearance="fill">
+        <input
+          matInput
+          formControlName="lastName"
+          type="text"
+          placeholder="Surname"
+        />
+        <mat-error
+          *ngIf="editEmployeeForm.get('lastName')?.hasError('required')"
+        >
+          Surname is required!
+        </mat-error>
+      </mat-form-field>
 
-<!--      <mat-label><h3>PHONE NUMBER</h3></mat-label>-->
-<!--      <mat-form-field class="emp-form-field" appearance="fill">-->
-<!--        <input-->
-<!--          matInput-->
-<!--          formControlName="phoneNumber"-->
-<!--          type="text"-->
-<!--          placeholder="+8 800 555 35 35"-->
-<!--        />-->
-<!--        <mat-error-->
-<!--          *ngIf="editEmployeeForm.get('phoneNumber')?.hasError('required')"-->
-<!--        >-->
-<!--          Name is required!-->
-<!--        </mat-error>-->
-<!--      </mat-form-field>-->
+      <mat-label><h3>PHONE NUMBER</h3></mat-label>
+      <mat-form-field class="emp-form-field" appearance="fill">
+        <input
+          matInput
+          formControlName="phoneNumber"
+          type="text"
+          placeholder="+8 800 555 35 35"
+        />
+        <mat-error
+          *ngIf="editEmployeeForm.get('phoneNumber')?.hasError('required')"
+        >
+          Name is required!
+        </mat-error>
+      </mat-form-field>
 
-<!--      <mat-label><h3>STATUS</h3></mat-label>-->
-<!--      <mat-form-field class="emp-form-field" appearance="fill">-->
-<!--        <input-->
-<!--          matInput-->
-<!--          formControlName="status"-->
-<!--          type="text"-->
-<!--          placeholder="Status"-->
-<!--        />-->
-<!--        <mat-error *ngIf="editEmployeeForm.get('status')?.hasError('required')">-->
-<!--          Status is required!-->
-<!--        </mat-error>-->
-<!--      </mat-form-field>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--  <div class="add-employee">-->
-<!--    <button-->
-<!--      mat-raised-button-->
-<!--      class="add"-->
-<!--      [disabled]="!editEmployeeForm.valid"-->
-<!--      disabled-->
-<!--      type="submit"-->
-<!--      color="accent"-->
-<!--    >-->
-<!--      EDIT-->
-<!--    </button>-->
-<!--  </div>-->
-<!--  <span></span>-->
-<!--</form>-->
+      <mat-label><h3>STATUS</h3></mat-label>
+      <mat-form-field class="emp-form-field" appearance="fill">
+        <mat-select class="emp-form-field" formControlName="status">
+          <mat-option value="Active">Active</mat-option>
+          <mat-option value="Terminated">Terminated</mat-option>
+          <mat-option value="Inactive">Inactive</mat-option>
+        </mat-select>
+        <mat-error *ngIf="editEmployeeForm.get('status')?.hasError('required')">
+          Status is required!
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="edit-employee">
+    <button mat-raised-button class="edit" [disabled]="!editEmployeeForm.valid" disabled type="submit" color="accent">
+      EDIT
+    </button>
+  </div>
+  <span></span>
+</form>

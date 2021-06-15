@@ -1,27 +1,33 @@
 export class EmployeeModel {
-  loginId: string;
+  userId: string;
   email: string;
+  roleId: string;
+  roleName: string;
   firstName: string;
   lastName: string;
-  userRole: string;
-  status: string;
+  statusId: string;
+  statusName: string;
   phoneNumber: string;
 
   constructor(
-    loginId: string,
+    userId: string,
     email: string,
+    roleId: string,
+    roleName: string,
     firstName: string,
     lastName: string,
-    userRole: string,
-    status: string,
+    statusId: string,
+    statusName: string,
     phoneNumber: string
   ) {
-    this.loginId = loginId;
+    this.userId = userId;
     this.email = email;
+    this.roleId = roleId;
+    this.roleName = roleName;
     this.firstName = firstName;
     this.lastName = lastName;
-    this.userRole = userRole;
-    this.status = status;
+    this.statusId = statusId;
+    this.statusName = statusName;
     this.phoneNumber = phoneNumber;
   }
 }

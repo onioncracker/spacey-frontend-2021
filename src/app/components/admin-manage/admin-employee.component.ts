@@ -13,18 +13,16 @@ import { Router } from '@angular/router';
 })
 export class AdminEmployeeComponent implements OnInit {
   displayedColumns: string[] = [
-    // 'loginId',
     'firstName',
     'lastName',
-    'userRole',
+    'roleName',
     'phoneNumber',
     'email',
-    'status',
+    'statusName',
     'actions',
   ];
   dataSource = new MatTableDataSource<EmployeeModel>();
   employees!: EmployeeModel[];
-  // private searchText$ = new Subject<string>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 

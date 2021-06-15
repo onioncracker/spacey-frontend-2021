@@ -1,5 +1,6 @@
 <mat-label class="edit-label"><h1>Add new employee</h1></mat-label>
-<form class="form-class" (ngSubmit)="onSubmit()" [formGroup]="addEmployeeForm">
+<form class="form-class" [formGroup]="addEmployeeForm" #employeeForm="ngForm"
+      (ngSubmit)="onSubmit(addEmployeeForm, employeeForm)">
   <span></span>
 
   <div class="input-form">
@@ -41,23 +42,18 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-label><h3>ROLE</h3></mat-label>
+      <mat-label>
+        <h3>ROLE</h3>
+      </mat-label>
       <mat-form-field class="emp-form-field" appearance="fill">
-        <input
-          matInput
-          formControlName="userRole"
-          type="text"
-          placeholder="Role"
-        />
-        <mat-select [disabled]="disableSelect.value">
-          <mat-option value="option1">Courier</mat-option>
-          <mat-option value="option2">Product Manager</mat-option>
+        <mat-select class="emp-form-field" formControlName="roleId">
+          <mat-option *ngFor="let role of roles" [value]="role.id">
+            {{role.name}}
+          </mat-option>
         </mat-select>
-        <mat-error
-          *ngIf="addEmployeeForm.get('userRole')?.hasError('required')"
-        >
-          Role is required!
-        </mat-error>
+<!--        <mat-error *ngIf="addEmployeeForm.get('roleId')?.hasError('required')">-->
+<!--          Role is required!-->
+<!--        </mat-error>-->
       </mat-form-field>
     </div>
 
@@ -79,44 +75,36 @@
 
       <mat-label><h3>PHONE NUMBER</h3></mat-label>
       <mat-form-field class="emp-form-field" appearance="fill">
+        <span matPrefix>+380 &nbsp;</span>
         <input
           matInput
           formControlName="phoneNumber"
           type="text"
-          placeholder="+8 800 555 35 35"
+          placeholder="989898988"
         />
-        <mat-error
-          *ngIf="addEmployeeForm.get('phoneNumber')?.hasError('required')"
-        >
-          Name is required!
-        </mat-error>
+        <mat-icon matSuffix>mode_edit</mat-icon>
       </mat-form-field>
 
       <mat-label><h3>STATUS</h3></mat-label>
       <mat-form-field class="emp-form-field" appearance="fill">
-        <input matInput formControlName="status" type="text" />
-        <!--          placeholder="Status"-->
-
-        <mat-select>
-          <mat-option value="option1">Active</mat-option>
-          <mat-option value="option2">Terminated</mat-option>
-          <mat-option value="option3">Inactive</mat-option>
+        <mat-select class="emp-form-field" formControlName="statusId">
+        <mat-option *ngFor="let status of statuses" [value]="status.id">
+          {{status.name}}
+        </mat-option>
         </mat-select>
-        <!--        <mat-error *ngIf="addEmployeeForm.get('status')?.hasError('required')">-->
-        <!--          Status is required!-->
-        <!--        </mat-error>-->
+<!--        <mat-error *ngIf="addEmployeeForm.get('statusId')?.hasError('required')">-->
+<!--          Status is required!-->
+<!--        </mat-error>-->
       </mat-form-field>
     </div>
   </div>
+
   <div class="add-employee">
-    <button
-      mat-raised-button
-      class="add"
+    <button mat-raised-button class="add"
       [disabled]="!addEmployeeForm.valid"
       disabled
       type="submit"
-      color="accent"
-    >
+      color="accent">
       ADD
     </button>
   </div>

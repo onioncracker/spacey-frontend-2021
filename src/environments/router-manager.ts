@@ -14,4 +14,5 @@ export const routeUrls = {
   comparisons: 'comparison',
   addProduct: 'add',
   editProduct: 'edit',
+  productCart: 'product-cart',
 };

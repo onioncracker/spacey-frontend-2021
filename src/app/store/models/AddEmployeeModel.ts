@@ -2,23 +2,29 @@ export class AddEmployeeModel {
   email: string;
   firstName: string;
   lastName: string;
-  userRole: string;
-  status: string;
+  roleId: number;
+  roleName: string;
+  statusId: number;
+  statusName: string;
   phoneNumber: string;
 
   constructor(
     email: string,
     firstName: string,
     lastName: string,
-    userRole: string,
-    status: string,
+    roleId: number,
+    roleName: string,
+    statusId: number,
+    statusName: string,
     phoneNumber: string
   ) {
     this.email = email;
     this.firstName = firstName;
     this.lastName = lastName;
-    this.userRole = userRole;
-    this.status = status;
+    this.roleId = roleId;
+    this.roleName = roleName;
+    this.statusId = statusId;
+    this.statusName = statusName;
     this.phoneNumber = phoneNumber;
   }
 }

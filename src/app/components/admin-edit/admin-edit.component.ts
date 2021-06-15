@@ -43,48 +43,53 @@ export class AdminEditComponent {
       email: ['', [Validators.required, Validators.email]],
       firstName: ['', [Validators.required, Validators.maxLength(20)]],
       lastName: ['', [Validators.required, Validators.maxLength(30)]],
-      userRole: ['', [Validators.required, Validators.maxLength(30)]],
-      status: ['', [Validators.required, Validators.maxLength(30)]],
+      roleId: ['', [Validators.required]],
+      statusId: ['', [Validators.required]],
       phoneNumber: ['', [Validators.required, Validators.maxLength(13)]],
     });
 
     this.errorMatcher = new RegistrationErrorStateMatcher();
   }
-  // onSubmit() {
-  //   this.editEmployee();
-  // }
-  //
-  // public editEmployee(): void {
-  //   const editEmployeeData = {
-  //     email: this.editEmployeeForm.get('email')?.value,
-  //     firstName: this.editEmployeeForm.get('firstName')?.value,
-  //     lastName: this.editEmployeeForm.get('lastName')?.value,
-  //     userRole: this.editEmployeeForm.get('userRole')?.value,
-  //     status: this.editEmployeeForm.get('status')?.value,
-  //     phoneNumber: this.editEmployeeForm.get('phoneNumber')?.value,
-  //   } as EmployeeModel;
 
-  //   this.editEmployeeForm.controls.email.disable();
-  //   this.editEmployeeForm.controls.firstName.disable();
-  //   this.editEmployeeForm.controls.lastName.disable();
-  //   this.editEmployeeForm.controls.userRole.disable();
-  //   this.editEmployeeForm.controls.status.disable();
-  //   this.editEmployeeForm.controls.phoneNumber.disable();
-  //
-  //   this.messageService.editEmployee(editEmployeeForm).subscribe(
-  //     (response) => {
-  //       const data = response.body;
-  //       console.log(data);
-  //     },
-  //     (error) => {
-  //       console.warn(error);
-  //       this.editEmployeeForm.controls.email.enable();
-  //       this.editEmployeeForm.controls.firstName.enable();
-  //       this.editEmployeeForm.controls.lastName.enable();
-  //       this.editEmployeeForm.controls.userRole.enable();
-  //       this.editEmployeeForm.controls.status.enable();
-  //       this.editEmployeeForm.controls.phoneNumber.enable();
-  //     }
-  //   );
-  //   }
+  onSubmit(editEmployeeForm: any, employeeForm: FormGroupDirective) {
+    this.editEmployee();
+    employeeForm.resetForm();
+    window.alert('Employee has been edited!');
+  }
+
+  public editEmployee(): void {
+    const editEmployeeData = {
+      email: this.editEmployeeForm.get('email')?.value,
+      firstName: this.editEmployeeForm.get('firstName')?.value,
+      lastName: this.editEmployeeForm.get('lastName')?.value,
+      roleId: this.editEmployeeForm.get('roleId')?.value,
+      statusId: this.editEmployeeForm.get('statusId')?.value,
+      phoneNumber: this.editEmployeeForm.get('phoneNumber')?.value,
+    } as AddEmployeeModel;
+
+    console.log(editEmployeeData);
+
+    this.editEmployeeForm.controls.email.disable();
+    this.editEmployeeForm.controls.firstName.disable();
+    this.editEmployeeForm.controls.lastName.disable();
+    this.editEmployeeForm.controls.roleId.disable();
+    this.editEmployeeForm.controls.statusId.disable();
+    this.editEmployeeForm.controls.phoneNumber.disable();
+
+    this.messageService.addEmployee(editEmployeeData).subscribe(
+      (response) => {
+        const data = response.body;
+        console.log(data);
+      },
+      (error) => {
+        console.warn(error);
+        this.editEmployeeForm.controls.email.enable();
+        this.editEmployeeForm.controls.firstName.enable();
+        this.editEmployeeForm.controls.lastName.enable();
+        this.editEmployeeForm.controls.roleId.enable();
+        this.editEmployeeForm.controls.statusId.enable();
+        this.editEmployeeForm.controls.phoneNumber.enable();
+      }
+    );
+  }
 }

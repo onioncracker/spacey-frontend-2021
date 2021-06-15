@@ -29,4 +29,8 @@ export class ToolbarComponent {
   routeToAuctions() {
     this.router.navigateByUrl(routeUrls.auctions);
   }
+
+  routeToCart() {
+    this.router.navigateByUrl(routeUrls.productCart);
+  }
 }

@@ -17,13 +17,13 @@
   justify-content: left;
 }
 
-.add-employee {
+.edit-employee {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.add {
+.edit {
   width: 30%;
   border-radius: 1px;
   margin-top: 3%;
