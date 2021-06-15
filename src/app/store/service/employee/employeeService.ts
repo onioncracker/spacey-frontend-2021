@@ -7,8 +7,7 @@ import {
 } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { AddEmployeeModel } from '../../models/AddEmployeeModel';
-import {EmployeeModel} from "../../models/EmployeeModel";
-
+import { EmployeeModel } from '../../models/EmployeeModel';
 
 @Injectable({
   providedIn: 'root',
@@ -31,9 +30,11 @@ export class EmployeeService {
     const body = {
       email: addEmployeeData.email,
       statusId: addEmployeeData.statusId,
+      statusName: addEmployeeData.statusName,
       firstName: addEmployeeData.firstName,
       lastName: addEmployeeData.lastName,
       roleId: addEmployeeData.roleId,
+      roleName: addEmployeeData.roleName,
       phoneNumber: addEmployeeData.phoneNumber,
     };
     return this.http.post(url, body);
@@ -66,4 +67,3 @@ export class EmployeeService {
     return this.http.post(url, body);
   }
 }
-

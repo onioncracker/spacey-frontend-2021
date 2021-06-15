@@ -22,7 +22,6 @@ import { AdminEmployeeComponent } from './components/admin-manage/admin-employee
 import { AdminAddComponent } from './components/admin-add/admin-add.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-// import { MatFormFieldModule, MatInputModule } from '@angular/material';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthInterceptor } from './store/service/AuthInterceptor';
 import { ProductsComponent } from './components/products/products.component';
@@ -42,8 +41,6 @@ import { EditProductComponent } from './components/edit-product/edit-product.com
 import { MatOptionModule } from '@angular/material/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
-import { ProductCartComponent } from './components/product-cart/product-cart.component';
-
 
 @NgModule({
   declarations: [
@@ -69,7 +66,6 @@ import { ProductCartComponent } from './components/product-cart/product-cart.com
     ComparisonComponent,
     AddProductComponent,
     EditProductComponent,
-    ProductCartComponent,
   ],
   imports: [
     BrowserModule,

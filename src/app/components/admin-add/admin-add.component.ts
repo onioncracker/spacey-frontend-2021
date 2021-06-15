@@ -13,12 +13,12 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { AddEmployeeModel } from '../../store/models/AddEmployeeModel';
 
 interface Roles {
-  id: string;
+  id: number;
   name: string;
 }
 
 interface Statuses {
-  id: string;
+  id: number;
   name: string;
 }
 export class EmployeeErrorStateMatcher implements ErrorStateMatcher {
@@ -40,22 +40,19 @@ export class EmployeeErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./admin-add.component.css'],
 })
 export class AdminAddComponent {
-  // selectedRole: string;
-  // selectedStatus: string;
   addEmployeeForm: FormGroup;
   errorMatcher: ErrorStateMatcher;
   disableSelect = new FormControl(false);
   roles: Roles[] = [
-    {id: '1', name: 'Courier'},
-    {id: '2', name: 'Product Manager'}
+    { id: 1, name: 'Courier' },
+    { id: 2, name: 'Product Manager' },
   ];
 
   statuses: Statuses[] = [
-    {id: '1', name: 'Active'},
-    {id: '2', name: 'Terminated'},
-    {id: '3', name: 'Inactive'}
+    { id: 1, name: 'Active' },
+    { id: 2, name: 'Terminated' },
+    { id: 3, name: 'Inactive' },
   ];
-
 
   constructor(
     private formBuilder: FormBuilder,
@@ -65,8 +62,8 @@ export class AdminAddComponent {
       email: ['', [Validators.required, Validators.email]],
       firstName: ['', [Validators.required, Validators.maxLength(20)]],
       lastName: ['', [Validators.required, Validators.maxLength(30)]],
-      roleId: ['',[Validators.required]],
-      statusId: ['',[Validators.required]],
+      roleId: ['', [Validators.required]],
+      statusId: ['', [Validators.required]],
       phoneNumber: ['', [Validators.required, Validators.maxLength(13)]],
     });
 
@@ -77,26 +74,24 @@ export class AdminAddComponent {
     this.addEmployee();
     employeeForm.resetForm();
     window.alert('Employee has been added to the employee list!');
-
   }
 
-public addEmployee(): void{
+  public addEmployee(): void {
+    const roleId = this.addEmployeeForm.get('roleId')?.value;
+    const roleName = this.roles.find((el) => el.id == roleId)?.name;
+    const statusId = this.addEmployeeForm.get('statusId')?.value;
+    const statusName = this.statuses.find((el) => el.id == statusId)?.name;
 
-  const roleId = this.addEmployeeForm.get('roleId')?.value;
-  const roleName = this.roles.find((el) => el.id == roleId)?.name;
-  const statusId = this.addEmployeeForm.get('statusId')?.value;
-  const statusName = this.statuses.find((el) => el.id == statusId)?.name;
-
-  const addEmployeeData = {
-    email: this.addEmployeeForm.get('email')?.value,
-    firstName: this.addEmployeeForm.get('firstName')?.value,
-    lastName: this.addEmployeeForm.get('lastName')?.value,
-    roleId: roleId,
-    roleName: roleName,
-    statusId: statusId,
-    statusName: statusName,
-    phoneNumber: this.addEmployeeForm.get('phoneNumber')?.value,
-  } as AddEmployeeModel;
+    const addEmployeeData = {
+      email: this.addEmployeeForm.get('email')?.value,
+      firstName: this.addEmployeeForm.get('firstName')?.value,
+      lastName: this.addEmployeeForm.get('lastName')?.value,
+      roleId: roleId,
+      roleName: roleName,
+      statusId: statusId,
+      statusName: statusName,
+      phoneNumber: this.addEmployeeForm.get('phoneNumber')?.value,
+    } as AddEmployeeModel;
 
     console.log(addEmployeeData);
 
