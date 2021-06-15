@@ -1,6 +1,10 @@
 <mat-label class="edit-label"><h1>Edit employee</h1></mat-label>
-<form class="form-class" [formGroup]="editEmployeeForm" #employeeForm="ngForm"
-      (ngSubmit)="onSubmit(editEmployeeForm, employeeForm)">
+<form
+  class="form-class"
+  [formGroup]="editEmployeeForm"
+  #employeeForm="ngForm"
+  (ngSubmit)="onSubmit(editEmployeeForm, employeeForm)"
+>
   <span></span>
 
   <div class="input-form">
@@ -48,7 +52,9 @@
           <mat-option value="Courier">Courier</mat-option>
           <mat-option value="PM">Product Manager</mat-option>
         </mat-select>
-        <mat-error *ngIf="editEmployeeForm.get('userRole')?.hasError('required')">
+        <mat-error
+          *ngIf="editEmployeeForm.get('userRole')?.hasError('required')"
+        >
           Role is required!
         </mat-error>
       </mat-form-field>
@@ -98,7 +104,14 @@
     </div>
   </div>
   <div class="edit-employee">
-    <button mat-raised-button class="edit" [disabled]="!editEmployeeForm.valid" disabled type="submit" color="accent">
+    <button
+      mat-raised-button
+      class="edit"
+      [disabled]="!editEmployeeForm.valid"
+      disabled
+      type="submit"
+      color="accent"
+    >
       EDIT
     </button>
   </div>
