@@ -31,6 +31,10 @@ export class ToolbarComponent {
     this.router.navigateByUrl(routeUrls.auctions);
   }
 
+  routeToCart() {
+    this.router.navigateByUrl(routeUrls.checkout);
+  }
+
   routeToProfile() {
     if (this.authService.isAuthorised()) {
       this.router.navigateByUrl(routeUrls.homepage); // todo change to profile page
