@@ -72,20 +72,18 @@ export class RegisterComponent {
       lastName: this.registerForm.get('surname')?.value,
       email: this.registerForm.get('email')?.value,
       password: this.registerForm.get('password')?.value,
-      phoneNumber: this.registerForm.get('phoneNumber')?.value,
     } as RegisterModel;
 
     this.registerForm.controls.name.disable();
     this.registerForm.controls.email.disable();
     this.registerForm.controls.password.disable();
     this.registerForm.controls.surname.disable();
-    this.registerForm.controls.phoneNumber.disable();
 
     this.messageService.register(registrationData).subscribe(
       (response) => {
-        const data = response.body;
+        // const data = response.body;
         // sessionStorage.setItem('token', data!.authToken);
-        this.storageService.saveToken(data!.authToken);
+        // this.storageService.saveToken(data!.authToken);
         console.log('user registered successfully');
         // this.router.navigate(['main-page']);
       },
@@ -101,8 +99,7 @@ export class RegisterComponent {
 
         this.registerForm.controls.name.enable();
         this.registerForm.controls.email.enable();
-        this.registerForm.controls.phoneNumber.enable();
-        this.registerForm.controls.email.enable();
+        this.registerForm.controls.surname.enable();
         this.registerForm.controls.password.enable();
       }
     );

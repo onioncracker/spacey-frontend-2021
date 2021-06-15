@@ -3,19 +3,16 @@ export class RegisterModel {
   password: string;
   firstName: string;
   lastName: string;
-  phoneNumber: string | undefined;
 
   constructor(
     email: string,
     password: string,
     firstName: string,
-    lastName: string,
-    phoneNumber = undefined
+    lastName: string
   ) {
     this.email = email;
     this.password = password;
     this.lastName = lastName;
     this.firstName = firstName;
-    this.phoneNumber = phoneNumber;
   }
 }

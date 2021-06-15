@@ -5,14 +5,14 @@ import { Observable, throwError } from 'rxjs';
 import { RegisterModel } from '../../models/RegisterModel';
 import { AuthResponseModel } from '../../models/AuthResponseModel';
 import { LoginModel } from '../../models/LoginModel';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private hostURL = 'http://localhost:8080';
-  private registerURL = this.hostURL + '/register';
-  private loginURL = this.hostURL + '/login';
+  private registerURL = environment.url + '/register';
+  private loginURL = environment.url + '/login';
 
   public loggedIn = false;
   private httpOptions = { observe: 'response' as const };
