@@ -13,6 +13,7 @@ import { User } from '../../store/models/user';
 import { AuthService } from '../../store/service/auth/AuthService';
 import { TokenStorageService } from '../../store/service/auth/TokenStorageService';
 import { RegisterModel } from '../../store/models/RegisterModel';
+import { routeUrls } from '../../../environments/router-manager';
 
 export class RegistrationErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -42,8 +43,7 @@ export class RegisterComponent {
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
-    private messageService: AuthService,
-    private storageService: TokenStorageService
+    private messageService: AuthService
   ) {
     this.registerForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -54,10 +54,8 @@ export class RegisterComponent {
           Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,30}'),
         ],
       ],
-      // password: ['', [Validators.required]],
       name: ['', [Validators.required, Validators.maxLength(40)]],
       surname: ['', [Validators.required, Validators.maxLength(40)]],
-      phoneNumber: ['', [Validators.required, Validators.maxLength(10)]],
     });
     this.errorMatcher = new RegistrationErrorStateMatcher();
   }
@@ -72,28 +70,25 @@ export class RegisterComponent {
       lastName: this.registerForm.get('surname')?.value,
       email: this.registerForm.get('email')?.value,
       password: this.registerForm.get('password')?.value,
-      phoneNumber: this.registerForm.get('phoneNumber')?.value,
     } as RegisterModel;
 
     this.registerForm.controls.name.disable();
     this.registerForm.controls.email.disable();
     this.registerForm.controls.password.disable();
     this.registerForm.controls.surname.disable();
-    this.registerForm.controls.phoneNumber.disable();
 
     this.messageService.register(registrationData).subscribe(
       (response) => {
-        const data = response.body;
-        // sessionStorage.setItem('token', data!.authToken);
-        this.storageService.saveToken(data!.authToken);
         console.log('user registered successfully');
-        // this.router.navigate(['main-page']);
+        alert('Check your email to verify your account');
+        this.messageService.setAuthorised(true);
+        this.router.navigateByUrl(routeUrls.homepage);
       },
       (error) => {
         console.warn('REGISTRATION FAILED');
-        if (error.status === 409) {
+        if (error.status === 400) {
           alert('Вказаний email вже зареєстровано в базі');
-          this.router.navigate(['/login']);
+          this.router.navigateByUrl(routeUrls.login);
         } else {
           alert('Виникла помилка. Спробуйте ще раз');
           console.warn(error);
@@ -101,8 +96,7 @@ export class RegisterComponent {
 
         this.registerForm.controls.name.enable();
         this.registerForm.controls.email.enable();
-        this.registerForm.controls.phoneNumber.enable();
-        this.registerForm.controls.email.enable();
+        this.registerForm.controls.surname.enable();
         this.registerForm.controls.password.enable();
       }
     );
