@@ -22,7 +22,7 @@ export class ComparisonComponent implements OnInit {
 
   getAllComparison() {
     this.comparisonService
-      .getAllCompareProduct(4)
+      .getAllCompareProduct(3)
       .pipe()
       .subscribe((products: Comparison[]) => {
         this.products = products;

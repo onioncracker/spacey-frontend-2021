@@ -14,7 +14,7 @@ export class EditProduct {
   isAvailable!: boolean;
   isOnAuction!: boolean;
   category!: CatergoryMaterialsAdd;
-  colors!: CatergoryMaterialsAdd;
+  color!: CatergoryMaterialsAdd;
   materials!: [CatergoryMaterialsAdd];
-  sizes!: [SizesAdd];
+  sizes!: SizesAdd [];
 }
