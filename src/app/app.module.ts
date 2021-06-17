@@ -31,14 +31,16 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatTableModule} from '@angular/material/table'
 import {DeliveriesComponent} from "./components/deliveries/deliveries.component";
-import { ComparisonComponent } from './components/comparison/comparison.component';
-import { AddProductComponent } from './components/add-product/add-product.component';
-import { EditProductComponent } from './components/edit-product/edit-product.component';
-import { MatOptionModule } from '@angular/material/core';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatSelectModule } from '@angular/material/select';
-import { DeliveryComponent } from './components/delivery/delivery.component';
+import {ComparisonComponent} from './components/comparison/comparison.component';
+import {AddProductComponent} from './components/add-product/add-product.component';
+import {EditProductComponent} from './components/edit-product/edit-product.component';
+import {MatOptionModule} from '@angular/material/core';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatSelectModule} from '@angular/material/select';
+import {DeliveryComponent} from './components/delivery/delivery.component';
+import {MatGridListModule} from "@angular/material/grid-list";
+import {MatDividerModule} from "@angular/material/divider";
 
 
 @NgModule({
@@ -85,6 +87,8 @@ import { DeliveryComponent } from './components/delivery/delivery.component';
     MatAutocompleteModule,
     MatChipsModule,
     MatSelectModule,
+    MatGridListModule,
+    MatDividerModule,
   ],
   providers: [
     {

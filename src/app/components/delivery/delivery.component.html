@@ -1,3 +1,74 @@
 <div>
-  <h1 align="center" class="dl-h1">Order Details</h1>
+  <h1 align="center" class="dl-h1">{{title}}</h1>
+</div>
+
+<div class="dl-item-container">
+  <p><span class="dl-t1">Order # {{order.orderId}}</span>
+    <span class="dl-t2">{{order.dateTimeOrder | date :'short'}}</span></p>
+  <p class="dl-t3">Items</p>
+  <div *ngFor="let product of order.products" class="dl-item-container">
+    <div class="main-container">
+      <div class="image-container">
+        <img
+          class="card-img"
+          src="{{ product.photo }}"
+          alt="{{ product.name }}"
+        />
+        <div>
+          <p class="dl-t4">{{product.name}}</p>
+          <p class="dl-t5"> {{product.color}},{{product.size}}</p>
+          <p class="dl-t6">x {{product.amount}}</p>
+        </div>
+      </div>
+      <div class="dl-t7">
+        <p class="dl-t3 ">{{product.price}}UAH</p>
+      </div>
+    </div>
+    <hr class="solid">
+  </div>
+</div>
+<div class="main-container1">
+  <div>
+    <p class="dl-t3">
+      Delivery Information
+    </p>
+    <p class="dl-t2">
+      {{order.firstName}}
+      {{order.lastName}}
+      <br>
+      {{order.address}}
+      {{order.phoneNumber}}
+      <br>
+      {{order.dateTimeDelivery | date :'short'}}
+    </p>
+  </div>
+  <div>
+    <p class="dl-t3">
+      Comment
+    </p>
+    <p class="dl-t2">
+      {{order.comment}}
+    </p>
+  </div>
+</div>
+<hr class="solid">
+<div class="main-container1">
+  <div>
+    <p class="dl-t2">
+      Items
+      <br>
+      Delivery
+    </p>
+    <p class="dl-t3">Total</p>
+  </div>
+  <div>
+    <p class="dl-t2">
+      {{order.sum}}UAH
+      <br>
+      0UAH
+    </p>
+    <p class="dl-t3">
+        {{order.sum}}UAH
+    </p>
+  </div>
 </div>
