@@ -1,7 +1,26 @@
 <h2 class="orders-font">ITEMS</h2>
 <div>
-  <app-order></app-order>
-  <mat-divider></mat-divider>
-  <br>
-  <app-order></app-order>
+<!--  <div *ngFor="let product of checkout.products">-->
+<!--    <div class="main-container">-->
+<!--      <div class="image-container">-->
+<!--        <img-->
+<!--          class="card-img"-->
+<!--          src="{{ product.photo }}"-->
+<!--          alt="{{ product.name }}"-->
+<!--        />-->
+<!--        <div>-->
+<!--          <p class="dl-t4">{{ product.productName }}</p>-->
+<!--          <p class="dl-t5"> {{ product.color }},{{ product.size }}</p>-->
+<!--          <p class="dl-t6">x {{ product.amount }}</p>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="dl-t7">-->
+<!--        <p class="dl-t3 ">{{ product.sum }}UAH</p>-->
+<!--      </div>-->
+<!--    </div>-->
+    <button mat-fab color="primary">
+      <mat-icon>delete</mat-icon>
+    </button>
+    <hr class="solid">
+<!--  </div>-->
 </div>
