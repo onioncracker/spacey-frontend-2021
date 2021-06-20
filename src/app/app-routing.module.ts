@@ -11,6 +11,11 @@ import { ComparisonComponent } from './components/comparison/comparison.componen
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { EditProductComponent } from './components/edit-product/edit-product.component';
 import {DeliveryComponent} from "./components/delivery/delivery.component";
+import { AdminEmployeeComponent } from './components/admin-manage/admin-employee.component';
+import { AdminAddComponent } from './components/admin-add/admin-add.component';
+import { AdminEditComponent } from './components/admin-edit/admin-edit.component';
+
+
 
 const routes: Routes = [
   { path: routeUrls.login, component: LoginComponent },
@@ -20,6 +25,9 @@ const routes: Routes = [
   { path: routeUrls.productDetails, component: ProductDetailsComponent },
   { path: routeUrls.deliveries, component: DeliveriesComponent },
   { path: routeUrls.delivery, component: DeliveryComponent },
+  { path: routeUrls.adminEmployee, component: AdminEmployeeComponent },
+  { path: routeUrls.adminAdd, component: AdminAddComponent },
+  { path: routeUrls.adminEdit, component: AdminEditComponent },
   { path: routeUrls.comparisons, component: ComparisonComponent },
   { path: routeUrls.addProduct, component: AddProductComponent },
   { path: routeUrls.editProduct, component: EditProductComponent },

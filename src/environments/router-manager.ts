@@ -1,7 +1,7 @@
 export const routeUrls = {
   login: 'login',
   register: 'register',
-  homepage: 'homepage',
+  homepage: 'products',
   popular: 'popular',
   checkout: 'checkout',
   accessories: 'accessories',
@@ -10,6 +10,9 @@ export const routeUrls = {
   productDetails: 'products/:id',
   deliveries: 'deliveries',
   delivery: 'delivery/:id',
+  adminEmployee: 'admin-manage',
+  adminEdit: 'admin-edit',
+  adminAdd: 'admin-add',
   comparisons: 'comparison',
   addProduct: 'add',
   editProduct: 'edit',
