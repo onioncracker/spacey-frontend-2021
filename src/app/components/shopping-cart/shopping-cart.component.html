@@ -1,26 +1,34 @@
 <mat-label class="cart-label"><h1>SHOPPING CART</h1></mat-label>
-  <div class="cart-form">
-<!--    *ngFor="let product of products-->
-    <div class="product-description">
+<div class="cart-form">
+  <!--    *ngFor="let product of products-->
+  <div class="product-description">
     <div class="cart-photo">
-      <img mat-card-image class="img" src= "https://spacey-photo-storage.s3.eu-west-2.amazonaws.com/white-tee-front_1.jpg" alt=""/>
+      <img
+        mat-card-image
+        class="img"
+        src="https://spacey-photo-storage.s3.eu-west-2.amazonaws.com/white-tee-front_1.jpg"
+        alt=""
+      />
       <div>
-      <h3 class = "h3-name">{{ "product.name" }}</h3>
-      <h3 class = "h3-color-size">{{" product.color"}}, {{ "product.size"}}</h3>
-      <!--      <button class="btn btn-primary" (click)="plus()"><i class="fa fa-plus"></i></button>-->
-      <h3 class = "h3-amount">{{ "product.amount"}}</h3>
-      <!--      <button class="btn btn-primary" (click)="minus()"><i clasns="fa fa-plus"></i></button>-->
+        <h3 class="h3-name">{{ "product.name" }}</h3>
+        <h3 class="h3-color-size">
+          {{ " product.color" }}, {{ "product.size" }}
+        </h3>
+        <!--      <button class="btn btn-primary" (click)="plus()"><i class="fa fa-plus"></i></button>-->
+        <h3 class="h3-amount">{{ "product.amount" }}</h3>
+        <!--      <button class="btn btn-primary" (click)="minus()"><i clasns="fa fa-plus"></i></button>-->
+      </div>
     </div>
-  </div>
     <div class="price-delete">
-      <h3 class = "h3-price">{{ "product.price"}}</h3>
-      <h3 class = "h3-delete" button mat-icon-button (click) = "deleteProduct()">
-        <mat-icon>delete</mat-icon> </h3>
+      <h3 class="h3-price">{{ "product.price" }}</h3>
+      <h3 class="h3-delete" button mat-icon-button (click)="deleteProduct()">
+        <mat-icon>delete</mat-icon>
+      </h3>
     </div>
-    </div>
-    <hr class="solid">
   </div>
-<div class = total-container>
+  <hr class="solid" />
+</div>
+<div class="total-container">
   <h3 class="h3-total">
     <h3>Total</h3>
   </h3>
@@ -28,14 +36,9 @@
     <h3>Sum</h3>
   </h3>
 </div>
-  <div class="checkout">
-    <hr class="solid">
-    <button mat-raised-button class="check" color="accent">
-      CHECK OUT
-    </button>
-    <button mat-raised-button class="check">
-      VIEW CART
-    </button>
-<br>
-  </div>
-
+<div class="checkout">
+  <hr class="solid" />
+  <button mat-raised-button class="check" color="accent">CHECK OUT</button>
+  <button mat-raised-button class="check">VIEW CART</button>
+  <br />
+</div>

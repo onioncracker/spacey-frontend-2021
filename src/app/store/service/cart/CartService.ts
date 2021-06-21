@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import {Product} from "../../models/product";
-import {HttpClient} from "@angular/common/http";
+import { Product } from '../../models/product';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CartService {
   products: Product[] = [];
@@ -22,5 +22,4 @@ export class CartService {
   }
 
   constructor(private http: HttpClient) {}
-
 }
