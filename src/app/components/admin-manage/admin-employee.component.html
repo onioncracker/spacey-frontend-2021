@@ -4,8 +4,7 @@
   <div class="manage-form">
     <mat-form-field class="search-box" appearance="fill">
       <mat-label>Type employee's name/surname</mat-label>
-      <input matInput />
-      <!--      <input matInput type="text" (keyup)="searchEmployees(getValue($event))" id = "lastName" placeholder="Search" )/>-->
+      <input matInput (keyup)="onChangeEvent($event)" placeholder="Filter"/>
     </mat-form-field>
 
     <div class="mat-elevation-z8">
