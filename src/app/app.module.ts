@@ -41,6 +41,7 @@ import { EditProductComponent } from './components/edit-product/edit-product.com
 import { MatOptionModule } from '@angular/material/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { MatChipsModule } from '@angular/material/chips';
     ComparisonComponent,
     AddProductComponent,
     EditProductComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,

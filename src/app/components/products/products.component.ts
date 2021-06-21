@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../store/service/product/product.service';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../../store/models/product';
+import { HeaderTitleService } from '../../store/service/header/header-title.service';
 
 @Component({
   selector: 'app-products',
@@ -16,7 +17,8 @@ export class ProductsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductService
+    private productService: ProductService,
+    private headerTitleService: HeaderTitleService
   ) {}
 
   getAllProducts() {
@@ -29,6 +31,7 @@ export class ProductsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.headerTitleService.setTitle('Women');
     this.getAllProducts();
   }
 }
