@@ -8,14 +8,14 @@
     <tr>
       <td>
         <h3 class="edit-h">ID: {{product.id}}</h3>
+        <h3 class="edit-h">Create: {{product.createDate}}</h3>
       </td>
       <td>
         <h3 class="edit-h">Category</h3>
         <mat-form-field appearance="fill">
           <mat-select
-            name="category"
-            [formGroup]="editProductForm"
             formControlName="category"
+            [(ngModel)]="product.category.name"
           >
             <mat-option *ngFor="let category of categories" [value]="category">
               {{ category.name }}
@@ -30,8 +30,8 @@
             matInput
             type="text"
             placeholder="Name"
-            [formGroup]="editProductForm"
             formControlName="name"
+            [(ngModel)]="product.name"
           />
         </mat-form-field>
       </td>
@@ -41,6 +41,7 @@
           class="photo"
           value="Photo"
           alt="Photo"
+          [(ngModel)]="product.photo"
         />
       </td>
     </tr>
@@ -48,7 +49,7 @@
       <td>
         <h3 class="edit-h">Sex</h3>
         <mat-form-field appearance="fill">
-          <mat-select formControlName="productSex" placeholder="Sex">
+          <mat-select formControlName="productSex" placeholder="Sex" [(ngModel)]="product.productSex">
             <mat-option value="MEN">MEN</mat-option>
             <mat-option value="WOMEN">WOMEN</mat-option>
           </mat-select>
@@ -61,6 +62,7 @@
             placeholder="Color"
             [formGroup]="editProductForm"
             formControlName="color"
+            [(ngModel)]="product.color.name"
           >
             <mat-option *ngFor="let color of colors" [value]="color">
               {{ color.name }}
@@ -77,6 +79,7 @@
             placeholder="Price"
             [formGroup]="editProductForm"
             formControlName="price"
+            [(ngModel)]="product.price"
           />
         </mat-form-field>
       </td>
@@ -89,6 +92,7 @@
             placeholder="Discount"
             [formGroup]="editProductForm"
             formControlName="discount"
+            [(ngModel)]="product.discount"
           />
         </mat-form-field>
       </td>
@@ -102,6 +106,7 @@
             placeholder="Select materials"
             [formGroup]="editProductForm"
             formControlName="materials"
+            [(ngModel)]="product.materials"
           >
             <mat-option
               *ngFor="let material of materialsList"
@@ -124,6 +129,7 @@
             placeholder="Some information about product"
             [formGroup]="editProductForm"
             formControlName="description"
+            [(ngModel)]="product.description"
           >
           </textarea>
         </mat-form-field>
@@ -131,16 +137,9 @@
           <mat-checkbox
           [formGroup]="editProductForm"
           formControlName="isAvailable"
+          [(ngModel)]="product.isAvailable"
           >
             <mat-label class="edit-h">Activate product</mat-label>
-          </mat-checkbox>
-        </div>
-        <div class="deactivate-box">
-          <mat-checkbox
-            [formGroup]="editProductForm"
-            formControlName="isOnAuction"
-          >
-            <mat-label class="edit-h">Is product on auction?</mat-label>
           </mat-checkbox>
         </div>
       </td>
@@ -148,7 +147,7 @@
         <tr *ngFor="let size of sizesAmount; let i = index; trackBy: onTrackBy">
           <td>
             <div class="sizes">
-              <mat-label class="add-h"> {{ size.name }}: </mat-label>
+              <mat-label class="edit-h"> {{ size.name }}: </mat-label>
               <mat-form-field class="size-amount" appearance="fill">
                 <input
                   matInput
@@ -166,7 +165,7 @@
 
   <br />
   <div class="wrapper">
-    <button mat-raised-button class="edit-btn" type="submit" color="accent">
+    <button mat-raised-button class="edit-btn" type="submit" color="accent" (click)="onSubmit()">
       SAVE CHANGES
     </button>
   </div>

@@ -1,3 +1,5 @@
+import {SizesComparison} from "./sizesComparison";
+
 export class Product {
   id!: number;
   name!: string;
@@ -8,8 +10,7 @@ export class Product {
   discount!: number;
   availability!: boolean;
   color!: string;
-  size!: string;
-  amount!: number;
+  sizes!: SizesComparison[];
   category!: string;
-  material!: string[];
+  materials!: string[];
 }

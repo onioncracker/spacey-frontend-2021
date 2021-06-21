@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from '../../store/models/product';
 import { ProductService } from '../../store/service/product/product.service';
 import { ActivatedRoute } from '@angular/router';
+import {CompareService} from "../../store/service/comparison/compare.service";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-product-details',
@@ -13,7 +15,9 @@ export class ProductDetailsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductService
+    private productService: ProductService,
+    private compareService: CompareService,
+    private dialog: MatDialog
   ) {}
 
   getProduct() {
@@ -22,6 +26,11 @@ export class ProductDetailsComponent implements OnInit {
       this.product = product;
     });
   }
+
+  addProductToCompare(product: Product) {
+    this.compareService.addProductToCompare(product);
+  }
+
   ngOnInit() {
     this.getProduct();
   }

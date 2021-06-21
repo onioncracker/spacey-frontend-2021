@@ -12,6 +12,5 @@ export class Comparison {
   materials!: string[];
   sizes!: [SizesComparison];
   color!: string;
-  amount!: number;
   category!: string;
 }
