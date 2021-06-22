@@ -3,71 +3,45 @@
   background: #f8f8f8;
 }
 
-.dl-t1 {
-  padding-left: 2%;
-  font-family: Spartan;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 24px;
-}
-
-.dl-t2 {
-  padding-left: 5%;
-  font-family: Spartan;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 22px;
-}
-
-.dl-t3 {
-  padding-left: 2%;
-  padding-top: 2%;
-  font-family: Spartan;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 24px;
-}
-
-.dl-t4 {
-  font-family: Spartan;
-  padding-left: 20px;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 22px;
-}
-
-.dl-t5 {
-  font-family: Spartan;
-  padding-left: 20px;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 18px;
-  align-items: center;
-}
-
-.dl-t6 {
-  font-family: Spartan;
-  padding-left: 20px;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 22px;
-}
-
-.dl-t7 {
+.radio-group {
   display: flex;
-  align-content: space-between;
+  flex-direction: column;
+  margin: 15px 0;
+}
+
+.radio-button {
+  margin: 5px;
+}
+
+.dl-top-elem {
+  display: flex;
+  padding-left: 1%;
+  width: 97%;
+  justify-content: space-between;
+}
+
+.dl-top-elem-child {
+  display: flex;
+  margin-left: 1%;
+  width: 500px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.default_padding {
+  padding-left: 2%;
 }
 
 .card-img {
   padding-left: 2%;
   width: 83px;
   height: 104px;
+}
+
+.product-info {
+  padding-left: 5%;
 }
 
 .main-container {
@@ -85,10 +59,10 @@
 }
 
 .solid {
-  width: 95%;
+  width: 97%;
 }
 
-.main-container1 {
+.delivery-info-container {
   display: flex;
   justify-content: space-between;
   width: 95%;

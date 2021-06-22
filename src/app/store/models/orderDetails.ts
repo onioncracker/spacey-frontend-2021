@@ -3,16 +3,20 @@ import ProductOrder from "./productOrder";
 export default class OrderDetails {
   products!: ProductOrder[];
   orderId!: number;
-  dateTimeOrder!: Date;
-  status!: string;
-  address!: string;
+  dateCreate!: Date;
+  orderStatus!: string;
+  city!: string;
+  street!: string;
+  house!: number;
+  apartment!: number;
   firstName!: string;
   lastName!: string;
   phoneNumber!: string;
-  dateTimeDelivery!: Date;
+  dateDelivery!: Date;
   comment!: string;
   sum!: number;
   courierId!: number;
+  overallPrice!: number;
 
 }
 export const products =

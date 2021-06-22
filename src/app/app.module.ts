@@ -37,13 +37,17 @@ import { MatSelectModule } from '@angular/material/select';
 import { ComparisonComponent } from './components/comparison/comparison.component';
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { EditProductComponent } from './components/edit-product/edit-product.component';
-import { MatOptionModule } from '@angular/material/core';
+import {MatNativeDateModule, MatOptionModule} from '@angular/material/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
 import {DeliveryComponent} from './components/delivery/delivery.component';
 import {MatGridListModule} from "@angular/material/grid-list";
 import {MatDividerModule} from "@angular/material/divider";
 import {DeliveriesComponent} from "./components/deliveries/deliveries.component";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {DatePipe} from "@angular/common";
+import {MatRadioModule} from "@angular/material/radio";
+
 
 
 @NgModule({
@@ -95,6 +99,9 @@ import {DeliveriesComponent} from "./components/deliveries/deliveries.component"
     MatSelectModule,
     MatGridListModule,
     MatDividerModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatRadioModule,
   ],
   providers: [
     {
@@ -102,6 +109,7 @@ import {DeliveriesComponent} from "./components/deliveries/deliveries.component"
       useClass: AuthInterceptor,
       multi: true,
     },
+    DatePipe,
   ],
   bootstrap: [AppComponent],
 })

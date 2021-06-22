@@ -1,10 +1,21 @@
 <div>
   <h1 align="center" class="dl-h1">Your assigned orders</h1>
 </div>
+<div class="dl-top">
+  <div>
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="Choose date"
+             (dateChange)="pickDataEvent($event)" [formControl]="date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
 
-<div>
-  <p class="dl-p1" align="right">When you completed the order, confirm it by clicking ‘tick’ icon. Otherwise click
-    ‘cross’ to change its status to ‘failed’</p>
+  <div>
+    <p class="dl-p1" align="right">When you completed the order, confirm it by clicking ‘tick’ icon. Otherwise click
+      ‘cross’ to change its status to ‘failed’</p>
+  </div>
+
 </div>
 <form class="form-class">
 
@@ -12,37 +23,30 @@
 
     <div class="mat-elevation-z8">
       <table mat-table [dataSource]="dataSource" class="dl-table">
-        <!-- User Id Column -->
+
         <ng-container matColumnDef="orderId">
           <th mat-header-cell *matHeaderCellDef> Order ID</th>
           <td mat-cell *matCellDef="let element"> {{element.orderId}} </td>
         </ng-container>
 
-        <!-- Email Column -->
-        <ng-container matColumnDef="userId">
-          <th mat-header-cell *matHeaderCellDef> User ID</th>
-          <td mat-cell *matCellDef="let element"> {{element.userId}} </td>
-        </ng-container>
-
-        <!-- Name Column -->
         <ng-container matColumnDef="status">
           <th mat-header-cell *matHeaderCellDef> Status</th>
           <td mat-cell *matCellDef="let element"> {{element.status}} </td>
         </ng-container>
 
-        <!-- Last name Column -->
+
         <ng-container matColumnDef="dateTime">
           <th mat-header-cell *matHeaderCellDef> Date and Time</th>
-          <td mat-cell *matCellDef="let element"> {{element.dateTime | date:'short'}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.dateDelivery | date:'short'}} </td>
         </ng-container>
 
-        Role Column
+
         <ng-container matColumnDef="address">
           <th mat-header-cell *matHeaderCellDef> Address</th>
-          <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.city}} </td>
         </ng-container>
 
-        <!-- Status Column -->
+
         <ng-container matColumnDef="phoneNumber">
           <th mat-header-cell *matHeaderCellDef> Phone Number</th>
           <td mat-cell *matCellDef="let element"> {{element.phoneNumber}} </td>
@@ -56,11 +60,11 @@
             </a>
           </th>
         </ng-container>
-        <!--        kkkd-->
+
         <ng-container matColumnDef="action1">
           <td mat-header-cell *matHeaderCellDef></td>
-          <th mat-cell *matCellDef="let row">
-            <button mat-mini-fab class="dl-row-button">
+          <th mat-cell *matCellDef="let element">
+            <button (click)="updateStatus(element.orderId, 1)" mat-mini-fab class="dl-row-button">
               <span class="dl-circle-icon">
               <mat-icon>check</mat-icon>
               </span>
@@ -70,8 +74,8 @@
 
         <ng-container matColumnDef="action2">
           <td mat-header-cell *matHeaderCellDef></td>
-          <th mat-cell *matCellDef="let row">
-            <button mat-mini-fab class="dl-row-button">
+          <th mat-cell *matCellDef="let element">
+            <button (click)="updateStatus(element.orderId, 2)" mat-mini-fab class="dl-row-button">
               <span class="dl-circle-icon">
               <mat-icon>close</mat-icon>
                 </span>
@@ -82,7 +86,6 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns" class="table-dl-header"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
-      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
     </div>
 
   </div>

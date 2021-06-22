@@ -1,3 +1,9 @@
+.dl-top {
+  padding-left: 1%;
+  display: flex;
+  justify-content: space-between;
+}
+
 .dl-h1 {
   padding: 25px 0 25px 0;
   background: #f8f8f8;

@@ -1,9 +1,12 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
-import {MatPaginator} from '@angular/material/paginator';
 import {ActivatedRoute} from "@angular/router";
 import {OrderService} from "../../store/service/order/order.service";
 import Order from "../../store/models/order";
+import {FormControl} from "@angular/forms";
+import {DatePipe} from "@angular/common";
+import {MatDatepickerInputEvent} from "@angular/material/datepicker";
+import {OrderStatus} from "../../store/models/status";
 
 @Component({
   selector: 'app-delivery',
@@ -14,11 +17,8 @@ import Order from "../../store/models/order";
 
 export class DeliveriesComponent implements OnInit {
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-
   displayedColumns: string[] = [
     'orderId',
-    'userId',
     'status',
     'dateTime',
     'address',
@@ -28,22 +28,41 @@ export class DeliveriesComponent implements OnInit {
     'action2',
   ];
   dataSource = new MatTableDataSource<Order>();
-  orders!: Order[];
+  orders: Order[] = [];
+  date = new FormControl(new Date);
+
 
   constructor(
     private route: ActivatedRoute,
     private ordersService: OrderService,
+    private datePipe: DatePipe,
   ) {
   }
 
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+  pickDataEvent(event: MatDatepickerInputEvent<Date>) {
+    this.uploadData();
+  }
+
+  updateStatus(orderId: number, statusId: number): void {
+    if (confirm("update status")) {
+      this.ordersService.updateOrderStatus(new OrderStatus(orderId, statusId))
+        .subscribe((res) => {
+          alert(res);
+          this.uploadData();
+        });
+    }
   }
 
   ngOnInit(): void {
-    this.ordersService.findAllOrders()
-      .subscribe((data: Order[]) => this.orders = data);
-    this.dataSource = new MatTableDataSource(this.orders);
+    this.uploadData();
+  }
+
+  private uploadData(): void {
+    this.ordersService.findAllOrders(<string>this.datePipe.transform(this.date.value, 'yyyy-MM-d'))
+      .subscribe((data: Order[]) => {
+        this.orders = data;
+        this.dataSource = new MatTableDataSource(this.orders);
+      });
   }
 }

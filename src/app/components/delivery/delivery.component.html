@@ -1,11 +1,37 @@
 <div>
   <h1 align="center" class="dl-h1">{{title}}</h1>
 </div>
-
+<div class="dl-top-elem">
+  <div class="dl-top-elem-child">
+    <div>
+      <h3 class="bold"> ORDER # {{order.orderId}}</h3>
+    </div>
+    <div class="default_padding">
+      <h3>{{order.dateCreate | date : "medium"}}</h3>
+    </div>
+  </div>
+  <div>
+    <mat-accordion>
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>{{order.orderStatus}}</mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-radio-group
+          class="radio-group"
+          [(ngModel)]="status">
+          <mat-radio-button class="radio-button" *ngFor="let status of statuses" [value]="status"
+                            (change)="onChange($event)">
+            {{status.statusName}}
+          </mat-radio-button>
+          <br/>
+        </mat-radio-group>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>
 <div class="dl-item-container">
-  <p><span class="dl-t1">Order # {{order.orderId}}</span>
-    <span class="dl-t2">{{order.dateTimeOrder | date :'short'}}</span></p>
-  <p class="dl-t3">Items</p>
+
+  <h1 class="default_padding">Items</h1>
   <div *ngFor="let product of order.products" class="dl-item-container">
     <div class="main-container">
       <div class="image-container">
@@ -14,61 +40,66 @@
           src="{{ product.photo }}"
           alt="{{ product.name }}"
         />
-        <div>
-          <p class="dl-t4">{{product.name}}</p>
-          <p class="dl-t5"> {{product.color}},{{product.size}}</p>
-          <p class="dl-t6">x {{product.amount}}</p>
+        <div class="product-info">
+          <h4>{{product.name}}</h4>
+          <h4> {{product.color}},{{product.size}}</h4>
+          <h4>x {{product.amount}}</h4>
         </div>
       </div>
-      <div class="dl-t7">
-        <p class="dl-t3 ">{{product.price}}UAH</p>
+      <div>
+        <h3>{{product.price}} UAH</h3>
       </div>
     </div>
     <hr class="solid">
   </div>
 </div>
-<div class="main-container1">
+<div class="delivery-info-container">
   <div>
-    <p class="dl-t3">
-      Delivery Information
-    </p>
-    <p class="dl-t2">
+    <h3 class="dl-t3">
+      DELIVERY INFORMATION
+    </h3>
+    <h3 class="dl-t2">
       {{order.firstName}}
       {{order.lastName}}
       <br>
-      {{order.address}}
-      {{order.phoneNumber}}
+      {{order.city}}
+      {{order.street}}
+      {{order.house}}
       <br>
-      {{order.dateTimeDelivery | date :'short'}}
-    </p>
+      Apartment {{order.apartment}}
+      <br>
+      Tel: {{order.phoneNumber}}
+      <br>
+      {{order.dateDelivery | date :'short'}}
+    </h3>
   </div>
   <div>
-    <p class="dl-t3">
-      Comment
-    </p>
-    <p class="dl-t2">
+    <h3>
+      COMMENT
+    </h3>
+    <h4>
       {{order.comment}}
-    </p>
+    </h4>
   </div>
 </div>
 <hr class="solid">
-<div class="main-container1">
+<div class="delivery-info-container">
   <div>
-    <p class="dl-t2">
+    <h3>
       Items
       <br>
       Delivery
-    </p>
-    <p class="dl-t3">Total</p>
+    </h3>
+    <h3>Total</h3>
   </div>
   <div>
-    <p class="dl-t2">
-      {{order.sum}}UAH
+    <h3>
+      {{order.overallPrice}} UAH
       <br>
-      0UAH
-    </p>
-    <p class="dl-t3">
-        {{order.sum}}UAH
-    </p>
+      0 UAH
+    </h3>
+    <h3>
+      {{order.overallPrice}} UAH
+    </h3>
   </div>
 </div>
