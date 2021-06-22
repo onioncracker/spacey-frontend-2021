@@ -23,6 +23,10 @@ export class ToolbarComponent {
     this.router.navigateByUrl(routeUrls.popular);
   }
 
+  routeToProducts() {
+    this.router.navigateByUrl(routeUrls.products);
+  }
+
   routeToAccessories() {
     this.router.navigateByUrl(routeUrls.accessories);
   }

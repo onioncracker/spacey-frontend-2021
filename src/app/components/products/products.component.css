@@ -2,16 +2,6 @@
   margin-bottom: 20px;
 }
 
-.display-4 {
-  padding: 25px 0 25px 0;
-  background: #f8f8f8;
-}
-
-.mb-5 {
-  text-transform: uppercase;
-  font-weight: bold;
-}
-
 .mat-expansion-panel {
   box-shadow: none;
 }

@@ -43,6 +43,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { ConfirmRegistrationComponent } from './components/confirm-registration/confirm-registration.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import { ConfirmRegistrationComponent } from './components/confirm-registration/
     EditProductComponent,
     ShoppingCartComponent,
     ConfirmRegistrationComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
