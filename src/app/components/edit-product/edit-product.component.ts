@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EditProductService } from '../../store/service/edit-product/edit-product.service';
-import { FormBuilder } from '@angular/forms';
-import { AddProduct } from '../../store/models/addProduct';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CatergoryMaterialsAdd } from '../../store/models/catergoryMaterialsAdd';
 import { SizesAdd } from '../../store/models/sizesAdd';
 import { AddProductService } from '../../store/service/add-product/add-product.service';
+import { EditProduct } from '../../store/models/editProduct';
 
 @Component({
   selector: 'app-edit-product',
@@ -13,20 +13,84 @@ import { AddProductService } from '../../store/service/add-product/add-product.s
   styleUrls: ['./edit-product.component.css'],
 })
 export class EditProductComponent implements OnInit {
-  product!: AddProduct;
+  product!: EditProduct;
+  editProductForm: FormGroup;
   materialsList!: CatergoryMaterialsAdd[];
   categories!: CatergoryMaterialsAdd[];
   colors!: CatergoryMaterialsAdd[];
-  sizes!: SizesAdd[];
-  photo = 'jhbg,jh';
-  amount = 39;
+  sizesAmount!: SizesAdd[];
 
   constructor(
     private route: ActivatedRoute,
     private addProductService: AddProductService,
     private formBuilder: FormBuilder,
     private editProductService: EditProductService
-  ) {}
+  ) {
+    this.editProductForm = this.formBuilder.group({
+      name: ['', [Validators.required]],
+      createDate: ['', [Validators.required]],
+      productSex: ['', [Validators.required]],
+      price: ['', [Validators.required]],
+      discount: ['', [Validators.required]],
+      photo: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+      isAvailable: ['', [Validators.required]],
+      category: ['', [Validators.required]],
+      color: ['', [Validators.required]],
+      materials: ['', [Validators.required]],
+      sizes: ['', [Validators.required]],
+    });
+  }
+
+  onSubmit() {
+    this.updateProduct();
+  }
+
+  getProduct(): void {
+    this.editProductService
+      .getProductById(61)
+      .pipe()
+      .subscribe((product: EditProduct) => {
+        this.product = product;
+      });
+  }
+
+  updateProduct() {}
+
+  // public editProduct(): void {
+  //   this.product = {
+  //     id: this.editProductForm.get('id')?.value,
+  //     name: this.editProductForm.get('name')?.value,
+  //     createDate: this.editProductForm.get('createDate')?.value,
+  //     productSex: this.editProductForm.get('productSex')?.value,
+  //     price: this.editProductForm.get('price')?.value,
+  //     discount: this.editProductForm.get('discount')?.value,
+  //     photo: this.editProductForm.get('photo')?.value,
+  //     description: this.editProductForm.get('description')?.value,
+  //     isAvailable: this.editProductForm.get('isAvailable')?.value,
+  //     category: this.editProductForm.get('category')?.value,
+  //     color: this.editProductForm.get('color')?.value,
+  //     materials: this.editProductForm.get('materials')?.value,
+  //     sizes: this.sizesAmount,
+  //   }
+  //   this.editProductForm.controls.id.disable();
+  //   this.editProductForm.controls.name.disable();
+  //   this.editProductForm.controls.createDate.disable();
+  //   this.editProductForm.controls.productSex.disable();
+  //   this.editProductForm.controls.price.disable();
+  //   this.editProductForm.controls.discount.disable();
+  //   this.editProductForm.controls.photo.disable();
+  //   this.editProductForm.controls.description.disable();
+  //   this.editProductForm.controls.isAvailable.disable();
+  //   this.editProductForm.controls.category.disable();
+  //   this.editProductForm.controls.color.disable();
+  //   this.editProductForm.controls.materials.disable();
+  //   this.editProductForm.controls.sizes.disable();
+  //
+  //   this.editProductService.getProductById(this.product).subscribe((response) =>{
+  //     const data = response.body;
+  //   })
+  // }
 
   allMaterials() {
     this.addProductService
@@ -50,10 +114,13 @@ export class EditProductComponent implements OnInit {
     this.addProductService
       .getAllSizes()
       .pipe()
-      .subscribe((sizes: SizesAdd[]) => {
-        this.sizes = sizes;
-        console.log();
+      .subscribe((sizesAmount: SizesAdd[]) => {
+        this.sizesAmount = sizesAmount;
       });
+  }
+
+  onTrackBy(index: number) {
+    return index;
   }
 
   allCategory() {
@@ -70,5 +137,6 @@ export class EditProductComponent implements OnInit {
     this.allColors();
     this.allSizes();
     this.allCategory();
+    this.getProduct();
   }
 }

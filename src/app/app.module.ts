@@ -41,6 +41,9 @@ import { EditProductComponent } from './components/edit-product/edit-product.com
 import { MatOptionModule } from '@angular/material/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
+import { DialogMessageComponent } from './components/dialog-message/dialog-message.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ManageProductsComponent } from './components/manage-products/manage-products.component';
 import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
@@ -67,6 +70,8 @@ import { HeaderComponent } from './components/header/header.component';
     ComparisonComponent,
     AddProductComponent,
     EditProductComponent,
+    DialogMessageComponent,
+    ManageProductsComponent,
     HeaderComponent,
   ],
   imports: [
@@ -90,6 +95,7 @@ import { HeaderComponent } from './components/header/header.component';
     MatAutocompleteModule,
     MatChipsModule,
     MatSelectModule,
+    MatDialogModule,
   ],
   providers: [
     {

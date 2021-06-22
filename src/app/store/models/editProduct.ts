@@ -4,7 +4,6 @@ import { SizesAdd } from './sizesAdd';
 export class EditProduct {
   id!: number;
   name!: string;
-  amount!: number;
   createDate!: string;
   productSex!: string;
   price!: number;
@@ -12,9 +11,8 @@ export class EditProduct {
   photo!: string;
   description!: string;
   isAvailable!: boolean;
-  isOnAuction!: boolean;
   category!: CatergoryMaterialsAdd;
-  colors!: CatergoryMaterialsAdd;
+  color!: CatergoryMaterialsAdd;
   materials!: [CatergoryMaterialsAdd];
-  sizes!: [SizesAdd];
+  sizes!: SizesAdd[];
 }

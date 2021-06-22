@@ -3,7 +3,12 @@
     <h1 class="add-h">ADD PRODUCT</h1>
   </mat-label>
 </div>
-<form name="AddProduct" [formGroup]="addProductForm" (ngSubmit)="onSubmit()">
+<form
+  name="AddProduct"
+  [formGroup]="addProductForm"
+  (ngSubmit)="onSubmit(addProductForm, productForm)"
+  #productForm="ngForm"
+>
   <table class="table-add">
     <tr>
       <td>
@@ -96,7 +101,7 @@
       </td>
     </tr>
     <tr>
-      <td colspan="3">
+      <td colspan="4">
         <h3 class="add-h">Material</h3>
         <mat-form-field appearance="fill" class="material-field">
           <mat-select
@@ -112,18 +117,6 @@
               {{ material.name }}
             </mat-option>
           </mat-select>
-        </mat-form-field>
-      </td>
-      <td>
-        <h3 class="add-h">Amount</h3>
-        <mat-form-field class="input-field" appearance="fill">
-          <input
-            matInput
-            [formGroup]="addProductForm"
-            formControlName="amount"
-            type="number"
-            placeholder="Amount"
-          />
         </mat-form-field>
       </td>
     </tr>
@@ -146,14 +139,6 @@
             formControlName="isAvailable"
           >
             <mat-label class="add-h">Activate product</mat-label>
-          </mat-checkbox>
-        </div>
-        <div class="deactivate-box">
-          <mat-checkbox
-            [formGroup]="addProductForm"
-            formControlName="isOnAuction"
-          >
-            <mat-label class="add-h">Is the product in the auction?</mat-label>
           </mat-checkbox>
         </div>
       </td>
