@@ -3,7 +3,12 @@
     <h1 class="add-h">ADD PRODUCT</h1>
   </mat-label>
 </div>
-<form name="AddProduct" [formGroup]="addProductForm" (ngSubmit)="onSubmit()">
+<form
+  name="AddProduct"
+  [formGroup]="addProductForm"
+  (ngSubmit)="onSubmit(addProductForm, productForm)"
+  #productForm = "ngForm"
+>
   <table class="table-add">
     <tr>
       <td>

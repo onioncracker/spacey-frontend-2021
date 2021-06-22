@@ -12,6 +12,7 @@ import { AdminEditComponent } from './components/admin-edit/admin-edit.component
 import { ComparisonComponent } from './components/comparison/comparison.component';
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { EditProductComponent } from './components/edit-product/edit-product.component';
+import {ManageProductsComponent} from "./components/manage-products/manage-products.component";
 
 const routes: Routes = [
   { path: routeUrls.login, component: LoginComponent },
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: routeUrls.comparisons, component: ComparisonComponent },
   { path: routeUrls.addProduct, component: AddProductComponent },
   { path: routeUrls.editProduct, component: EditProductComponent },
+  { path: routeUrls.manageProducts, component: ManageProductsComponent},
 ];
 
 @NgModule({

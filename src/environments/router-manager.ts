@@ -13,5 +13,6 @@ export const routeUrls = {
   adminAdd: 'admin-add',
   comparisons: 'comparison',
   addProduct: 'add',
-  editProduct: 'edit',
+  editProduct: 'edit/:id',
+  manageProducts: 'manage/products',
 };

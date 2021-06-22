@@ -42,7 +42,8 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
 import { DialogMessageComponent } from './components/dialog-message/dialog-message.component';
-import {MatDialog, MatDialogModule} from "@angular/material/dialog";
+import { MatDialogModule } from "@angular/material/dialog";
+import { ManageProductsComponent } from './components/manage-products/manage-products.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import {MatDialog, MatDialogModule} from "@angular/material/dialog";
     AddProductComponent,
     EditProductComponent,
     DialogMessageComponent,
+    ManageProductsComponent,
   ],
   imports: [
     BrowserModule,

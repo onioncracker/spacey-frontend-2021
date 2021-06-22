@@ -3,8 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { CompareService } from '../../store/service/comparison/compare.service';
 import { SizesComparison } from '../../store/models/sizesComparison';
 import {Product} from "../../store/models/product";
-import {MatDialog} from "@angular/material/dialog";
-import {DialogMessageComponent} from "../dialog-message/dialog-message.component";
 
 @Component({
   selector: 'app-comparison',
@@ -18,12 +16,7 @@ export class ComparisonComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private comparisonService: CompareService,
-    private dialog: MatDialog,
   ) {}
-
-  openDialog() {
-    this.dialog.open(DialogMessageComponent);
-  }
 
   getAllComparison() {
      if (sessionStorage.getItem("token")) {

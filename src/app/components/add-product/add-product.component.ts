@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AddProductService } from '../../store/service/add-product/add-product.service';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, FormGroupDirective, Validators} from '@angular/forms';
 import { AddProduct } from '../../store/models/addProduct';
 import { CatergoryMaterialsAdd } from '../../store/models/catergoryMaterialsAdd';
 import { SizesAdd } from '../../store/models/sizesAdd';
@@ -44,9 +44,9 @@ export class AddProductComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+  onSubmit(addProductForm: any, productForm: FormGroupDirective) {
     this.addProduct();
-    // this.addProductForm.reset();
+    productForm.resetForm();
   }
 
   public addProduct(): void {
@@ -63,17 +63,17 @@ export class AddProductComponent implements OnInit {
       materials: this.addProductForm.get('materials')?.value,
       sizes: this.sizesAmount,
     };
-    this.addProductForm.controls.name.disable();
-    this.addProductForm.controls.productSex.disable();
-    this.addProductForm.controls.price.disable();
-    this.addProductForm.controls.discount.disable();
-    this.addProductForm.controls.photo.disable();
-    this.addProductForm.controls.description.disable();
-    this.addProductForm.controls.isAvailable.disable();
-    this.addProductForm.controls.category.disable();
-    this.addProductForm.controls.color.disable();
-    this.addProductForm.controls.materials.disable();
-    this.addProductForm.controls.sizes.disable();
+    this.addProductForm.controls.name.enable();
+    this.addProductForm.controls.productSex.enable();
+    this.addProductForm.controls.price.enable();
+    this.addProductForm.controls.discount.enable();
+    this.addProductForm.controls.photo.enable();
+    this.addProductForm.controls.description.enable();
+    this.addProductForm.controls.isAvailable.enable();
+    this.addProductForm.controls.category.enable();
+    this.addProductForm.controls.color.enable();
+    this.addProductForm.controls.materials.enable();
+    this.addProductForm.controls.sizes.enable();
 
     this.addProductService.addNewProduct(this.product).subscribe((response) => {
       const data = response.body;
