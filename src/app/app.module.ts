@@ -44,6 +44,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { DialogMessageComponent } from './components/dialog-message/dialog-message.component';
 import { MatDialogModule } from "@angular/material/dialog";
 import { ManageProductsComponent } from './components/manage-products/manage-products.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { ManageProductsComponent } from './components/manage-products/manage-pro
     EditProductComponent,
     DialogMessageComponent,
     ManageProductsComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -104,4 +106,6 @@ import { ManageProductsComponent } from './components/manage-products/manage-pro
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+
+}

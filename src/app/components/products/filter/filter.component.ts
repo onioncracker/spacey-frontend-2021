@@ -29,19 +29,6 @@ export class FilterComponent {
     ],
   };
 
-  sizeTask: Task = {
-    name: '',
-    completed: false,
-    color: 'primary',
-    subtasks: [
-      { name: 'XL', completed: false, color: 'accent' },
-      { name: 'L', completed: false, color: 'accent' },
-      { name: 'M', completed: false, color: 'accent' },
-      { name: 'S', completed: false, color: 'accent' },
-      { name: 'XS', completed: false, color: 'accent' },
-    ],
-  };
-
   priceTask: Task = {
     name: '',
     completed: false,
