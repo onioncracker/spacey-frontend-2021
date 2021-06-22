@@ -7,8 +7,8 @@
   <table class="table-edit">
     <tr>
       <td>
-        <h3 class="edit-h">ID: {{product.id}}</h3>
-        <h3 class="edit-h">Create: {{product.createDate}}</h3>
+        <h3 class="edit-h">ID: {{ product.id }}</h3>
+        <h3 class="edit-h">Create: {{ product.createDate }}</h3>
       </td>
       <td>
         <h3 class="edit-h">Category</h3>
@@ -49,7 +49,11 @@
       <td>
         <h3 class="edit-h">Sex</h3>
         <mat-form-field appearance="fill">
-          <mat-select formControlName="productSex" placeholder="Sex" [(ngModel)]="product.productSex">
+          <mat-select
+            formControlName="productSex"
+            placeholder="Sex"
+            [(ngModel)]="product.productSex"
+          >
             <mat-option value="MEN">MEN</mat-option>
             <mat-option value="WOMEN">WOMEN</mat-option>
           </mat-select>
@@ -135,9 +139,9 @@
         </mat-form-field>
         <div class="deactivate-box">
           <mat-checkbox
-          [formGroup]="editProductForm"
-          formControlName="isAvailable"
-          [(ngModel)]="product.isAvailable"
+            [formGroup]="editProductForm"
+            formControlName="isAvailable"
+            [(ngModel)]="product.isAvailable"
           >
             <mat-label class="edit-h">Activate product</mat-label>
           </mat-checkbox>
@@ -161,11 +165,19 @@
             </div>
           </td>
         </tr>
+      </td>
+    </tr>
   </table>
 
   <br />
   <div class="wrapper">
-    <button mat-raised-button class="edit-btn" type="submit" color="accent" (click)="onSubmit()">
+    <button
+      mat-raised-button
+      class="edit-btn"
+      type="submit"
+      color="accent"
+      (click)="onSubmit()"
+    >
       SAVE CHANGES
     </button>
   </div>

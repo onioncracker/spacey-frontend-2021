@@ -3,12 +3,20 @@
     <h1 class="compare-h">Comparison</h1>
   </mat-label>
 </div>
-<div class="table-comparison" *ngIf="products.length>1">
+<div class="table-comparison" *ngIf="products.length > 1">
   <table>
     <tr>
-      <td class="compare-field" *ngFor="let product of products; let i=index; trackBy: trackByFn;">
+      <td
+        class="compare-field"
+        *ngFor="let product of products; let i = index; trackBy: trackByFn"
+      >
         <div class="photo-and-button">
-          <button class="button-x" (click)="deleteProductFromCompare(product.id)">X</button>
+          <button
+            class="button-x"
+            (click)="deleteProductFromCompare(product.id)"
+          >
+            X
+          </button>
           <img
             src="{{ product.photo }}"
             class="photo"
@@ -129,6 +137,7 @@
 </div>
 <div *ngIf="products.length < 2">
   <h3>
-    You add to compere less then 2 products. Please, go to <a routerLink="/products">catalog</a> and add more.
+    You add to compere less then 2 products. Please, go to
+    <a routerLink="/products">catalog</a> and add more.
   </h3>
 </div>

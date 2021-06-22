@@ -14,5 +14,5 @@ export class EditProduct {
   category!: CatergoryMaterialsAdd;
   color!: CatergoryMaterialsAdd;
   materials!: [CatergoryMaterialsAdd];
-  sizes!: SizesAdd [];
+  sizes!: SizesAdd[];
 }

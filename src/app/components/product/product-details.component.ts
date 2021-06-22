@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from '../../store/models/product';
 import { ProductService } from '../../store/service/product/product.service';
 import { ActivatedRoute } from '@angular/router';
-import {CompareService} from "../../store/service/comparison/compare.service";
-import {MatDialog} from "@angular/material/dialog";
+import { CompareService } from '../../store/service/comparison/compare.service';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-product-details',

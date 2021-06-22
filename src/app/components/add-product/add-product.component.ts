@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AddProductService } from '../../store/service/add-product/add-product.service';
-import {FormBuilder, FormGroup, FormGroupDirective, Validators} from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormGroupDirective,
+  Validators,
+} from '@angular/forms';
 import { AddProduct } from '../../store/models/addProduct';
 import { CatergoryMaterialsAdd } from '../../store/models/catergoryMaterialsAdd';
 import { SizesAdd } from '../../store/models/sizesAdd';

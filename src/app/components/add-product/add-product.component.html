@@ -7,7 +7,7 @@
   name="AddProduct"
   [formGroup]="addProductForm"
   (ngSubmit)="onSubmit(addProductForm, productForm)"
-  #productForm = "ngForm"
+  #productForm="ngForm"
 >
   <table class="table-add">
     <tr>
@@ -160,15 +160,13 @@
             </div>
           </td>
         </tr>
+      </td>
+    </tr>
   </table>
+
   <br />
   <div class="save-wrapper">
-    <button
-      mat-raised-button
-      class="add-btn"
-      type="submit"
-      color="accent"
-    >
+    <button mat-raised-button class="add-btn" type="submit" color="accent">
       SAVE PRODUCT
     </button>
     <br />

@@ -1,11 +1,11 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EditProductService } from '../../store/service/edit-product/edit-product.service';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CatergoryMaterialsAdd } from '../../store/models/catergoryMaterialsAdd';
 import { SizesAdd } from '../../store/models/sizesAdd';
 import { AddProductService } from '../../store/service/add-product/add-product.service';
-import {EditProduct} from "../../store/models/editProduct";
+import { EditProduct } from '../../store/models/editProduct';
 
 @Component({
   selector: 'app-edit-product',
@@ -47,16 +47,15 @@ export class EditProductComponent implements OnInit {
   }
 
   getProduct(): void {
-    this.editProductService.getProductById(61).pipe()
+    this.editProductService
+      .getProductById(61)
+      .pipe()
       .subscribe((product: EditProduct) => {
         this.product = product;
       });
   }
 
-  updateProduct() {
-
-  }
-
+  updateProduct() {}
 
   // public editProduct(): void {
   //   this.product = {
