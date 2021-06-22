@@ -15,4 +15,5 @@ export const routeUrls = {
   addProduct: 'add',
   editProduct: 'edit',
   shoppingCart: 'shopping-cart',
+  confirmRegistration: 'confirm-registration',
 };

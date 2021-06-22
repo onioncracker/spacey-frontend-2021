@@ -42,6 +42,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { ConfirmRegistrationComponent } from './components/confirm-registration/confirm-registration.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
     AddProductComponent,
     EditProductComponent,
     ShoppingCartComponent,
+    ConfirmRegistrationComponent,
   ],
   imports: [
     BrowserModule,

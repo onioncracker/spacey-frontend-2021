@@ -13,6 +13,7 @@ import { ComparisonComponent } from './components/comparison/comparison.componen
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { EditProductComponent } from './components/edit-product/edit-product.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { ConfirmRegistrationComponent } from './components/confirm-registration/confirm-registration.component';
 
 const routes: Routes = [
   { path: routeUrls.login, component: LoginComponent },
@@ -27,6 +28,10 @@ const routes: Routes = [
   { path: routeUrls.addProduct, component: AddProductComponent },
   { path: routeUrls.editProduct, component: EditProductComponent },
   { path: routeUrls.shoppingCart, component: ShoppingCartComponent },
+  {
+    path: routeUrls.confirmRegistration,
+    component: ConfirmRegistrationComponent,
+  },
 ];
 
 @NgModule({
