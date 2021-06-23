@@ -1,16 +1,34 @@
 import { Injectable } from '@angular/core';
 import {CheckoutDto} from "../../models/checkout";
 import {from, Observable} from "rxjs";
+import {HttpClient} from "@angular/common/http";
+import { environment} from "../../../../environments/environment";
+import {catchError} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root',
 })
-export class CheckoutService {
+export default class CheckoutService {
   private mockCheckout: CheckoutDto = {
     products: [
-      // {productName: 'T-Shirt', sum: 200.50},
-      // {productName: 'Jeans', sum: 256.00},
-      // {productName: 'Belt', sum: 25.00},
+      {
+        productId: 0,
+        productName: 'T-Shirt',
+        color: 'red',
+        sizeName: 'S',
+        photo: 'https://i.pinimg.com/originals/95/30/41/953041070f000d45c05c912005f63724.jpg',
+        amount: 2,
+        sum: 210.50
+      },
+      {
+        productId: 1,
+        productName: 'T-Shirt',
+        color: 'red',
+        sizeName: 'S',
+        photo: 'https://i.pinimg.com/originals/95/30/41/953041070f000d45c05c912005f63724.jpg',
+        amount: 2,
+        sum: 200.50
+      },
     ],
     overallPrice: 456.50,
     firstName: 'Christopher',
@@ -23,12 +41,22 @@ export class CheckoutService {
     apartment: '18'
   };
 
-  constructor() {
+  constructor(private http: HttpClient) {
     // do nothing.
   }
 
+  private checkoutUrl = environment.url + '/api/checkout/';
+
+  getCheckoutByCartId(id: number): Observable<CheckoutDto> {
+    return this.http.get<CheckoutDto>(this.checkoutUrl + id)
+  }
+
+  getCheckoutByUserId(id: number) : Observable<CheckoutDto> {
+    return this.http.get<CheckoutDto>(this.checkoutUrl + id)
+  }
+
   getCheckout(): Observable<CheckoutDto> {
-    // todo: fetch checkout by url
     return from([this.mockCheckout]);
+    // return this.http.get<CheckoutDto>(this.checkoutUrl);
   }
 }

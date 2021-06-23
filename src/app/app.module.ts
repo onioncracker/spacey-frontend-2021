@@ -26,7 +26,11 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { PersonalInformationComponent } from './components/personal-information/personal-information.component';
-import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+import {
+  NgxMatDatetimePickerModule,
+  NgxMatNativeDateModule,
+  NgxMatTimepickerModule
+} from '@angular-material-components/datetime-picker';
 
 @NgModule({
   declarations: [
@@ -59,7 +63,9 @@ import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
     MatSelectModule,
     MatDividerModule,
     MatSnackBarModule,
-    NgxMaterialTimepickerModule
+    NgxMatDatetimePickerModule,
+    NgxMatTimepickerModule,
+    NgxMatNativeDateModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

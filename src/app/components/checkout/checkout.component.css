@@ -1,5 +1,5 @@
 .summary {
-  margin: 85px;
+  padding: 10px 30px 30px 30px;
 }
 
 .items {
@@ -8,13 +8,13 @@
 }
 
 .mb-5 {
-  font-family: Spartan;
+  font-family: Spartan, sans-serif;
   text-transform: uppercase;
   font-weight: bold;
 }
 
 .display-4 {
-  padding: 25px 0 25px 0;
+  padding: 15px 0 25px 0;
   background: #f8f8f8;
 }
 

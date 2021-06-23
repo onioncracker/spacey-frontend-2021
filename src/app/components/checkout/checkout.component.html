@@ -1,24 +1,15 @@
-<link rel="stylesheet" href="../personal-information/personal-information.component.css">
 <div>
   <h1 align="center" class="display-4 mb-5">CONFIRM ORDER</h1>
 </div>
 <div class="summary">
   <app-orders [checkout]="checkout"></app-orders>
-  <br>
   <app-personal-information [checkout]="checkout"></app-personal-information>
-  <br>
   <app-delivery></app-delivery>
-  <br>
-  <br>
   <app-comment></app-comment>
-  <br>
-  <br>
-  <app-confirm></app-confirm>
+  <app-confirm [checkout]="checkout"></app-confirm>
 </div>
-<input [ngxTimepicker]="picker">
-<ngx-material-timepicker #picker></ngx-material-timepicker>
 <div class="button-div">
-  <button mat-flat-button class="button-checkout" type="submit" routerlink="/">
+  <button mat-flat-button class="button-checkout" type="submit" (click)="onCheckout()">
     CHECK OUT
   </button>
 </div>

@@ -25,6 +25,28 @@
 }
 
 .space {
+  margin-top: 50px;
   display: flex;
   justify-content: space-between;
+}
+
+.input-area {
+  display: flex;
+  flex: 0 0 100%;
+  font-family: Spartan, sans-serif;
+  border: none;
+  resize: none;
+}
+
+.input-area:focus {
+  outline: none;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  margin-right: 5%;
+  margin-left: 5%;
+  margin-bottom: 2%;
+  width: 25%;
 }

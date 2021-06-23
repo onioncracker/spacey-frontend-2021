@@ -31,3 +31,8 @@
 .comment-area:focus {
   outline: none;
 }
+
+.solid {
+  border-top: 2px solid #bbb;
+  width: 95%;
+}

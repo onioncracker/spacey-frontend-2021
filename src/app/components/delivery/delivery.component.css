@@ -24,3 +24,8 @@
 .mat-form-field--inline .mat-form-field:nth-child(1) {
   margin-right: 50px;
 }
+
+.solid {
+  border-top: 2px solid #bbb;
+  width: 95%;
+}
