@@ -40,6 +40,25 @@ export class AdminEmployeeComponent implements OnInit {
         this.dataSource = new MatTableDataSource(this.employees);
       });
   }
+  onChangeEvent(event: any) {
+    this.employeeService
+      .getAllEmployeesVariable(event.target.value)
+      .pipe()
+      .subscribe((employees: EmployeeModel[]) => {
+        this.employees = employees;
+        this.dataSource = new MatTableDataSource(this.employees);
+      });
+  }
+
+  searchEmployees() {
+    this.employeeService
+      .getAllEmployees()
+      .pipe()
+      .subscribe((employees: EmployeeModel[]) => {
+        this.employees = employees;
+        this.dataSource = new MatTableDataSource(this.employees);
+      });
+  }
 
   btnClick() {
     this.router.navigate(['/admin-add']);
