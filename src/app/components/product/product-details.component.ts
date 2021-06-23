@@ -4,7 +4,6 @@ import { ProductService } from '../../store/service/product/product.service';
 import { ActivatedRoute } from '@angular/router';
 import { CartService } from '../../store/service/cart/CartService';
 import { CompareService } from '../../store/service/comparison/compare.service';
-import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-product-details',
@@ -19,7 +18,6 @@ export class ProductDetailsComponent implements OnInit {
     private productService: ProductService,
     private cartService: CartService,
     private compareService: CompareService,
-    private dialog: MatDialog
   ) {}
 
   getProduct() {
@@ -30,7 +28,7 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   addToCart(product: Product) {
-    // this.cartService.addToCart(product);
+    console.log(product.id);
     window.alert('Your product has been added to the cart!');
   }
 
