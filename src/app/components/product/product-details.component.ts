@@ -17,7 +17,7 @@ export class ProductDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private productService: ProductService,
     private cartService: CartService,
-    private compareService: CompareService,
+    private compareService: CompareService
   ) {}
 
   getProduct() {
