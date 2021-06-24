@@ -16,7 +16,7 @@ export class AuthService {
   private registerURL = environment.url + endpointUrls.apiPrefix + '/register';
   private loginURL = environment.url + endpointUrls.apiPrefix + '/login';
   private confirmURL =
-    environment.url + endpointUrls.apiPrefix + '/registration-confirm';
+    environment.url + endpointUrls.apiPrefix + '/registration_confirm';
 
   private httpOptions = { observe: 'response' as const };
 
