@@ -7,15 +7,18 @@
   <table class="table-edit">
     <tr>
       <td>
-        <h3 class="edit-h">ID: {{ product.id }}</h3>
-        <h3 class="edit-h">Create: {{ product.createDate }}</h3>
+        <h3 class="edit-h">ID</h3>
+        <mat-form-field appearance="fill">
+          <input matInput type="text" placeholder="ID" formControlName="id" />
+        </mat-form-field>
       </td>
       <td>
         <h3 class="edit-h">Category</h3>
         <mat-form-field appearance="fill">
           <mat-select
+            placeholder="Category"
             formControlName="category"
-            [(ngModel)]="product.category.name"
+            [compareWith]="compareObjects"
           >
             <mat-option *ngFor="let category of categories" [value]="category">
               {{ category.name }}
@@ -31,7 +34,6 @@
             type="text"
             placeholder="Name"
             formControlName="name"
-            [(ngModel)]="product.name"
           />
         </mat-form-field>
       </td>
@@ -41,7 +43,8 @@
           class="photo"
           value="Photo"
           alt="Photo"
-          [(ngModel)]="product.photo"
+          [src]="product.photo"
+          formControlName="photo"
         />
       </td>
     </tr>
@@ -52,7 +55,7 @@
           <mat-select
             formControlName="productSex"
             placeholder="Sex"
-            [(ngModel)]="product.productSex"
+            [compareWith]="compareObjects"
           >
             <mat-option value="MEN">MEN</mat-option>
             <mat-option value="WOMEN">WOMEN</mat-option>
@@ -64,9 +67,8 @@
         <mat-form-field appearance="fill">
           <mat-select
             placeholder="Color"
-            [formGroup]="editProductForm"
             formControlName="color"
-            [(ngModel)]="product.color.name"
+            [compareWith]="compareObjects"
           >
             <mat-option *ngFor="let color of colors" [value]="color">
               {{ color.name }}
@@ -81,9 +83,7 @@
             matInput
             type="number"
             placeholder="Price"
-            [formGroup]="editProductForm"
             formControlName="price"
-            [(ngModel)]="product.price"
           />
         </mat-form-field>
       </td>
@@ -94,9 +94,7 @@
             matInput
             type="number"
             placeholder="Discount"
-            [formGroup]="editProductForm"
             formControlName="discount"
-            [(ngModel)]="product.discount"
           />
         </mat-form-field>
       </td>
@@ -108,9 +106,8 @@
           <mat-select
             multiple
             placeholder="Select materials"
-            [formGroup]="editProductForm"
             formControlName="materials"
-            [(ngModel)]="product.materials"
+            [compareWith]="compareObjects"
           >
             <mat-option
               *ngFor="let material of materialsList"
@@ -131,18 +128,12 @@
             spellcheck="true"
             class="description"
             placeholder="Some information about product"
-            [formGroup]="editProductForm"
             formControlName="description"
-            [(ngModel)]="product.description"
           >
           </textarea>
         </mat-form-field>
         <div class="deactivate-box">
-          <mat-checkbox
-            [formGroup]="editProductForm"
-            formControlName="isAvailable"
-            [(ngModel)]="product.isAvailable"
-          >
+          <mat-checkbox formControlName="isAvailable">
             <mat-label class="edit-h">Activate product</mat-label>
           </mat-checkbox>
         </div>
@@ -157,16 +148,14 @@
                   matInput
                   type="number"
                   placeholder="Amount"
-                  formControlName="sizes"
                   [(ngModel)]="sizesAmount[i].quantity"
+                  [ngModelOptions]="{standalone: true}"
                 />
               </mat-form-field>
               <br />
             </div>
           </td>
         </tr>
-      </td>
-    </tr>
   </table>
 
   <br />
@@ -188,6 +177,7 @@
       class="edit-btn delete-btn"
       type="submit"
       color="accent"
+      (click)="deleteProduct(product.id)"
     >
       DELETE PRODUCT
     </button>

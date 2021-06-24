@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { EditProduct } from '../../models/editProduct';
+import { EditProduct } from '../../models/edit-product';
 
 @Injectable({
   providedIn: 'root',
@@ -27,21 +27,11 @@ export class EditProductService {
   updateProductById(editProductData: EditProduct): Observable<any> {
     return this.http
       .put(
-        `${this.editProductUrl}/edit/{id}`,
+        `${this.editProductUrl}/edit/${editProductData.id}`,
         editProductData,
         this.httpOptions
       )
       .pipe();
   }
 
-  // private handleError<T> (operation = 'operation', result?: T) {
-  //   return(error: any): Observable<T> => {
-  //     console.error(error);
-  //     this.log(`${operation} failed: ${error.message}`);
-  //     return of(result as T);
-  //   };
-  // }
-  // private log(message: string) {
-  //   this.messageService.add(`EditProductService: ${message}`);
-  // }
 }

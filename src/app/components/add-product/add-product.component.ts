@@ -7,9 +7,9 @@ import {
   FormGroupDirective,
   Validators,
 } from '@angular/forms';
-import { AddProduct } from '../../store/models/addProduct';
-import { CatergoryMaterialsAdd } from '../../store/models/catergoryMaterialsAdd';
-import { SizesAdd } from '../../store/models/sizesAdd';
+import { AddProduct } from '../../store/models/add-product';
+import { CategoryColorMaterials } from '../../store/models/category-color-materials';
+import { Sizes } from '../../store/models/sizes';
 
 class ImageSnippet {
   constructor(public src: string, public file: File) {}
@@ -23,10 +23,10 @@ class ImageSnippet {
 export class AddProductComponent implements OnInit {
   product!: AddProduct;
   addProductForm: FormGroup;
-  materialsList!: CatergoryMaterialsAdd[];
-  categories!: CatergoryMaterialsAdd[];
-  colors!: CatergoryMaterialsAdd[];
-  sizesAmount!: SizesAdd[];
+  materialsList!: CategoryColorMaterials[];
+  categories!: CategoryColorMaterials[];
+  colors!: CategoryColorMaterials[];
+  sizesAmount!: Sizes[];
   selectedFile!: ImageSnippet;
 
   constructor(
@@ -92,7 +92,7 @@ export class AddProductComponent implements OnInit {
     this.addProductService
       .getAllMaterials()
       .pipe()
-      .subscribe((materialsList: CatergoryMaterialsAdd[]) => {
+      .subscribe((materialsList: CategoryColorMaterials[]) => {
         this.materialsList = materialsList;
       });
   }
@@ -101,7 +101,7 @@ export class AddProductComponent implements OnInit {
     this.addProductService
       .getAllColors()
       .pipe()
-      .subscribe((colors: CatergoryMaterialsAdd[]) => {
+      .subscribe((colors: CategoryColorMaterials[]) => {
         this.colors = colors;
       });
   }
@@ -110,7 +110,7 @@ export class AddProductComponent implements OnInit {
     this.addProductService
       .getAllSizes()
       .pipe()
-      .subscribe((sizesAmount: SizesAdd[]) => {
+      .subscribe((sizesAmount: Sizes[]) => {
         this.sizesAmount = sizesAmount;
       });
   }
@@ -119,7 +119,7 @@ export class AddProductComponent implements OnInit {
     this.addProductService
       .getAllCategory()
       .pipe()
-      .subscribe((categories: CatergoryMaterialsAdd[]) => {
+      .subscribe((categories: CategoryColorMaterials[]) => {
         this.categories = categories;
       });
   }

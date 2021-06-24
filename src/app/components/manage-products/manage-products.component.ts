@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
-import { EditProduct } from '../../store/models/editProduct';
 import { ManageProductsService } from '../../store/service/manage-products/manage-products.service';
 import { MatPaginator } from '@angular/material/paginator';
+import { Products } from '../../store/models/products';
 
 @Component({
   selector: 'app-manage-products',
@@ -23,8 +23,8 @@ export class ManageProductsComponent implements OnInit {
     'action1',
     'action2',
   ];
-  products!: EditProduct[];
-  dataSource = new MatTableDataSource<EditProduct>();
+  products!: Products[];
+  dataSource = new MatTableDataSource<Products>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
@@ -36,7 +36,7 @@ export class ManageProductsComponent implements OnInit {
     this.manageProductsService
       .getAllProducts()
       .pipe()
-      .subscribe((data: EditProduct[]) => {
+      .subscribe((data: Products[]) => {
         this.products = data;
         this.dataSource = new MatTableDataSource(this.products);
       });
