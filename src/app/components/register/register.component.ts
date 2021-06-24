@@ -81,7 +81,6 @@ export class RegisterComponent {
       (response) => {
         console.log('user registered successfully');
         alert('Check your email to verify your account');
-        this.messageService.setAuthorised(true);
         this.router.navigateByUrl(routeUrls.homepage);
       },
       (error) => {
