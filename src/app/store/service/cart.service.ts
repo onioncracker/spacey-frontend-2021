@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Product } from '../../models/product';
+import { Product } from '../models/product';
 import {
   HttpClient,
   HttpErrorResponse,
   HttpResponse,
 } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
-import { ProductForCartModel } from '../../models/ProductForCartModel';
-import { endpointUrls } from '../../../../environments/endpoint-routes-manager';
-import { environment } from '../../../../environments/environment';
+import { ProductForCartModel } from '../models/product-for-cart.model';
+import { endpointUrls } from '../../../environments/endpoint-routes-manager';
+import { environment } from '../../../environments/environment';
 import { catchError, tap } from 'rxjs/operators';
-import { EditCartModel } from '../../models/EditCartModel';
-import { TokenStorageService } from '../auth/TokenStorageService';
-import { sessionStorageKeys } from '../../../../environments/session-storage-manager';
+import { EditCartModel } from '../models/edit-cart.model';
+import { TokenStorageService } from './auth/token-storage.service';
+import { sessionStorageKeys } from '../../../environments/session-storage-manager';
 
 @Injectable({
   providedIn: 'root',

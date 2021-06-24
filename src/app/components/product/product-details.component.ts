@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from '../../store/models/product';
 import { ProductService } from '../../store/service/product/product.service';
 import { ActivatedRoute } from '@angular/router';
-import { CartService } from '../../store/service/cart/CartService';
+import { CartService } from '../../store/service/cart.service';
 import { CompareService } from '../../store/service/comparison/compare.service';
-import { EditCartModel } from '../../store/models/EditCartModel';
+import { EditCartModel } from '../../store/models/edit-cart.model';
 
 @Component({
   selector: 'app-product-details',

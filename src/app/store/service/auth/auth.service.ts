@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
-import { RegisterModel } from '../../models/RegisterModel';
-import { AuthResponseModel } from '../../models/AuthResponseModel';
-import { LoginModel } from '../../models/LoginModel';
+import { RegisterModel } from '../../models/register.model';
+import { AuthResponseModel } from '../../models/auth-response.model';
+import { LoginModel } from '../../models/login.model';
 import { environment } from '../../../../environments/environment';
 import { endpointUrls } from '../../../../environments/endpoint-routes-manager';
-import { TokenStorageService } from './TokenStorageService';
+import { TokenStorageService } from './token-storage.service';
 
 @Injectable({
   providedIn: 'root',
