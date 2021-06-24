@@ -16,80 +16,72 @@
 <div *ngIf="!isAuthUser || isEdit">
   <div class="input-form">
     <div class="column">
-      <div class="input-area" appearance="fill">
-        <input
-          matInput
-          type="text"
-          [value] = "checkout.firstName"
-          placeholder="First Name"
-        />
-      </div>
+      <input class="input-area"
+             matInput
+             type="text"
+             [value]="checkout.firstName"
+             placeholder="First Name"
+      />
+      <br>
 
-      <div class="input-area" appearance="fill">
-        <input
-          matInput
-          type="text"
-          [value] = "checkout.lastName"
-          placeholder="Last Name"
-        />
-      </div>
+      <input class="input-area"
+             matInput
+             type="text"
+             [value]="checkout.lastName"
+             placeholder="Last Name"
+      />
+      <br>
 
-      <div class="input-area" appearance="fill">
-        <input
-          matInput
-          type="text"
-          [value] = "checkout.phoneNumber"
-          placeholder="Phone Number"
-        />
-      </div>
+      <input class="input-area"
+             matInput
+             type="text"
+             [value]="checkout.phoneNumber"
+             placeholder="Phone Number"
+      />
+      <br>
 
-      <div class="input-area" appearance="fill">
-        <input
-          matInput
-          type="text"
-          [value] = "checkout.email"
-          placeholder="Enter your email"
-        />
-      </div>
+      <input class="input-area"
+             matInput
+             type="text"
+             [value]="checkout.email"
+             placeholder="Enter your email"
+      />
+      <br>
     </div>
 
-    <div class="column">
-      <mat-label><h3 class="personal-info-font-small">DELIVERY ADDRESS</h3></mat-label>
-      <div class="input-area" appearance="fill">
-        <input
-          matInput
-          type="text"
-          [value] = "checkout.city"
-          placeholder="City"
+      <div class="column">
+        <mat-label><h3 class="personal-info-font-small">DELIVERY ADDRESS</h3></mat-label>
+        <input class="input-area"
+               matInput
+               type="text"
+               [value]="checkout.city"
+               placeholder="City"
         />
-      </div>
+        <br>
 
-      <div class="input-area" appearance="fill">
-        <input
-          matInput
-          type="text"
-          [value] = "checkout.street"
-          placeholder="Street"
+        <input class="input-area"
+               matInput
+               type="text"
+               [value]="checkout.street"
+               placeholder="Street"
         />
-      </div>
+        <br>
 
-      <div class="input-area" appearance="fill">
-        <input
-          matInput
-          type="text"
-          [value] = "checkout.house"
-          placeholder="Building"
+        <input class="input-area-small"
+               matInput
+               type="text"
+               [value]="checkout.house"
+               placeholder="Building"
         />
-      </div>
+        <br>
 
-      <div class="input-area" appearance="fill">
-        <input
+        <input class="input-area-small"
           matInput
           type="text"
-          [value] = "checkout.apartment"
+          [value]="checkout.apartment"
           placeholder="Apartment"
         />
-      </div>
+        <br>
     </div>
   </div>
 </div>

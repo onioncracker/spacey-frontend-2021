@@ -29,3 +29,18 @@
   border-top: 2px solid #bbb;
   width: 95%;
 }
+
+.datetime {
+  background: #f8f8f8;
+  font-family: Spartan, sans-serif;
+  width: 340px;
+  height: 48px;
+  padding: 10px 0 0 10px;
+  border: 0;
+  outline: none;
+  resize: none;
+}
+
+.datetime:focus {
+  outline: none;
+}

@@ -1,5 +1,5 @@
 .personal-info-font {
-  font-family: Spartan;
+  font-family: Spartan, sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
@@ -9,7 +9,7 @@
 }
 
 .personal-info-font-small {
-  font-family: Spartan;
+  font-family: Spartan, sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 12px;
@@ -25,16 +25,30 @@
 }
 
 .space {
-  margin-top: 50px;
+  margin-top: 25px;
   display: flex;
   justify-content: space-between;
 }
 
 .input-area {
-  display: flex;
-  flex: 0 0 100%;
+  background: #f8f8f8;
   font-family: Spartan, sans-serif;
-  border: none;
+  width: 340px;
+  height: 48px;
+  padding: 10px 0 0 10px;
+  border: 0;
+  outline: none;
+  resize: none;
+}
+
+.input-area-small {
+  background: #f8f8f8;
+  font-family: Spartan, sans-serif;
+  width: 163px;
+  height: 48px;
+  padding: 10px 0 0 10px;
+  border: 0;
+  outline: none;
   resize: none;
 }
 
@@ -49,4 +63,10 @@
   margin-left: 5%;
   margin-bottom: 2%;
   width: 25%;
+}
+
+.input-form {
+  display: flex;
+  flex: 0 0 100%;
+  justify-content: center;
 }

@@ -1,26 +1,30 @@
-<h2 class="orders-font">ITEMS</h2>
-<div>
-  <div *ngFor="let x of checkout.products">
-    <div class="main-container">
-      <div class="image-container">
-        <img
-          class="card-img"
-          [src]= "x.photo"
-          alt="{{ x.productName }}"
-        />
-        <div>
-          <p class="dl-t4">{{ x.productName }}</p>
-          <p class="dl-t5"> {{ x.color }},{{ x.sizeName }}</p>
-          <p class="dl-t6">x {{ x.amount }}</p>
+<div style="margin-top: 30px;">
+  <h2 class="orders-font">ITEMS</h2>
+  <div>
+    <div *ngFor="let x of checkout.products">
+      <div class="main-container">
+        <div class="image-container">
+          <img
+            class="card-img"
+            [src]= "x.photo"
+            alt="{{ x.productName }}"
+          />
+          <div>
+            <p class="dl-t4">{{ x.productName }}</p>
+            <p class="dl-t5"> {{ x.color }},{{ x.sizeName }}</p>
+            <p class="dl-t6">x {{ x.amount }}</p>
+          </div>
         </div>
-      </div>
-      <div class="dl-t7 price">
+        <div class="dl-t7 price">
           <p class="dl-t3">{{ x.sum }} UAH</p>
           <button class="delete-button" (click)="delete(x.productId)">
             <mat-icon>delete</mat-icon>
           </button>
+        </div>
       </div>
+      <hr>
     </div>
-    <hr>
   </div>
 </div>
+
+
