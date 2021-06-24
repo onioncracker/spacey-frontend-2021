@@ -36,6 +36,13 @@
 
       <div class="underlining-container">
         <h5 class="price">{{ product.price }} UAH</h5>
+        <button
+          type="button"
+          class="purchase-button"
+          (click)="addToCart(product)"
+        >
+          Add to cart
+        </button>
         <button type="button" class="purchase-button">Add to cart</button>
         <button
           type="button"

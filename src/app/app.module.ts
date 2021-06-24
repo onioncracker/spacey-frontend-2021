@@ -41,6 +41,8 @@ import { EditProductComponent } from './components/edit-product/edit-product.com
 import { MatOptionModule } from '@angular/material/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { ConfirmRegistrationComponent } from './components/confirm-registration/confirm-registration.component';
 import { DialogMessageComponent } from './components/dialog-message/dialog-message.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ManageProductsComponent } from './components/manage-products/manage-products.component';
@@ -72,6 +74,8 @@ import { HeaderComponent } from './components/header/header.component';
     EditProductComponent,
     DialogMessageComponent,
     ManageProductsComponent,
+    ShoppingCartComponent,
+    ConfirmRegistrationComponent,
     HeaderComponent,
   ],
   imports: [

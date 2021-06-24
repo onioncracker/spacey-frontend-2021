@@ -6,14 +6,16 @@ import { RegisterModel } from '../../models/RegisterModel';
 import { AuthResponseModel } from '../../models/AuthResponseModel';
 import { LoginModel } from '../../models/LoginModel';
 import { environment } from '../../../../environments/environment';
+import { endpointUrls } from '../../../../environments/endpoint-routes-manager';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private apiPrefix = '/api/v1';
-  private registerURL = environment.url + this.apiPrefix + '/register';
-  private loginURL = environment.url + this.apiPrefix + '/login';
+  private registerURL = environment.url + endpointUrls.apiPrefix + '/register';
+  private loginURL = environment.url + endpointUrls.apiPrefix + '/login';
+  private confirmURL =
+    environment.url + endpointUrls.apiPrefix + '/registration_confirm';
 
   private loggedIn = false;
   private httpOptions = { observe: 'response' as const };
@@ -65,5 +67,9 @@ export class AuthService {
       loginData,
       this.httpOptions
     );
+  }
+
+  confirmRegistration(token: string): Observable<HttpResponse<any>> {
+    return this.http.get<any>(this.confirmURL + '?token=' + token);
   }
 }

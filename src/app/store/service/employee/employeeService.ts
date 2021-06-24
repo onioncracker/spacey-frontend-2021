@@ -25,6 +25,9 @@ export class EmployeeService {
     return this.http.get(this.employeeUrl);
   }
 
+  getAllEmployeesVariable(prompt: string): Observable<any> {
+    return this.http.get(`${this.employeeUrl}/${prompt}`);
+  }
   addEmployee(addEmployeeData: AddEmployeeModel): Observable<any> {
     const url = `${this.employeeUrl}`;
     const body = {
