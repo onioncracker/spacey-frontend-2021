@@ -8,10 +8,10 @@ import {
   NgForm,
   Validators,
 } from '@angular/forms';
-import { AuthService } from '../../store/service/auth/AuthService';
+import { AuthService } from '../../store/service/auth/auth.service';
 import { Router } from '@angular/router';
-import { LoginModel } from '../../store/models/LoginModel';
-import { TokenStorageService } from '../../store/service/auth/TokenStorageService';
+import { LoginModel } from '../../store/models/login.model';
+import { TokenStorageService } from '../../store/service/auth/token-storage.service';
 
 export class LoginErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -66,7 +66,6 @@ export class LoginComponent {
       (response) => {
         const data = response.body;
         this.storageService.saveToken(data!.authToken);
-        this.messageService.setAuthorised(true);
         this.router.navigate(['/']);
         console.warn('logged in successfully');
         console.log(this.storageService.getToken());

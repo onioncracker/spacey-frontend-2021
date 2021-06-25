@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CartService } from '../../store/service/cart/CartService';
+import { CartService } from '../../store/service/cart.service';
 import { ActivatedRoute } from '@angular/router';
-import { ProductForCartModel } from '../../store/models/ProductForCartModel';
+import { ProductForCartModel } from '../../store/models/product-for-cart.model';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -9,7 +9,7 @@ import { ProductForCartModel } from '../../store/models/ProductForCartModel';
   styleUrls: ['./shopping-cart.component.css'],
 })
 export class ShoppingCartComponent implements OnInit {
-  products: ProductForCartModel[] | undefined;
+  products: ProductForCartModel[] | null = [];
   isProductsLoaded = false;
 
   constructor(
@@ -23,25 +23,11 @@ export class ShoppingCartComponent implements OnInit {
 
   getProducts(): void {
     console.log('loading products');
-    this.cartService
-      .getProducts()
-      .subscribe(
-        (response) => {
-          this.products = response;
-          this.isProductsLoaded = true;
-          console.log('Cart: data loaded');
-        },
-        (error) => {
-          console.warn('Fetching products in cart failed');
-          if (error.status === 401) {
-            console.log('Unauthorised access');
-          } else {
-            alert('Виникла помилкаю Спробуйте ще раз');
-            console.error(error);
-          }
-        }
-      )
-      .unsubscribe();
+    this.cartService.getProducts().subscribe((response) => {
+      this.products = response.body;
+      this.isProductsLoaded = true;
+      console.log('Cart: data loaded');
+    });
   }
 
   deleteProduct() {}
