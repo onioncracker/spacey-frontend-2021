@@ -22,31 +22,27 @@
              [value]="checkout.firstName"
              placeholder="First Name"
       />
-      <br>
 
-      <input class="input-area"
+      <input class="mt input-area"
              matInput
              type="text"
              [value]="checkout.lastName"
              placeholder="Last Name"
       />
-      <br>
 
-      <input class="input-area"
+      <input class="mt input-area"
              matInput
              type="text"
              [value]="checkout.phoneNumber"
              placeholder="Phone Number"
       />
-      <br>
 
-      <input class="input-area"
+      <input class="mt input-area"
              matInput
              type="text"
              [value]="checkout.email"
              placeholder="Enter your email"
       />
-      <br>
     </div>
 
       <div class="column">
@@ -57,31 +53,29 @@
                [value]="checkout.city"
                placeholder="City"
         />
-        <br>
 
-        <input class="input-area"
+        <input class="mt input-area"
                matInput
                type="text"
                [value]="checkout.street"
                placeholder="Street"
         />
-        <br>
 
-        <input class="input-area-small"
-               matInput
-               type="text"
-               [value]="checkout.house"
-               placeholder="Building"
-        />
-        <br>
+        <div class="apartment-building-info">
+          <input class="mt input-area-small"
+                 matInput
+                 type="text"
+                 [value]="checkout.house"
+                 placeholder="Building"
+          />
 
-        <input class="input-area-small"
-          matInput
-          type="text"
-          [value]="checkout.apartment"
-          placeholder="Apartment"
-        />
-        <br>
+          <input class="mt input-area-small"
+                 matInput
+                 type="text"
+                 [value]="checkout.apartment"
+                 placeholder="Apartment"
+          />
+        </div>
     </div>
   </div>
 </div>

@@ -51,10 +51,6 @@ export default class CheckoutService {
     return this.http.get<CheckoutDto>(this.checkoutUrl + id)
   }
 
-  getCheckoutByUserId(id: number) : Observable<CheckoutDto> {
-    return this.http.get<CheckoutDto>(this.checkoutUrl + id)
-  }
-
   getCheckout(): Observable<CheckoutDto> {
     return from([this.mockCheckout]);
     // return this.http.get<CheckoutDto>(this.checkoutUrl);
