@@ -1,8 +1,33 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { UserService } from '../../store/service/user/userService';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import {
+  FormBuilder,
+  FormControl,
+  NgForm,
+  FormGroupDirective,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
 import { User } from '../../store/models/user';
-import { FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from '../../store/service/auth/auth.service';
+import { TokenStorageService } from '../../store/service/auth/token-storage.service';
+import { RegisterModel } from '../../store/models/register.model';
+import { routeUrls } from '../../../environments/router-manager';
+
+export class RegistrationErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(
+    control: FormControl | null,
+    form: FormGroupDirective | NgForm | null
+  ): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(
+      control &&
+      control.invalid &&
+      (control.dirty || control.touched || isSubmitted)
+    );
+  }
+}
 
 @Component({
   selector: 'app-register',
@@ -11,21 +36,17 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class RegisterComponent {
   user: User | undefined;
-  registerForm;
+  errorMatcher: ErrorStateMatcher;
+  registerForm: FormGroup;
+  hide: boolean = true;
 
   constructor(
-    private route: ActivatedRoute,
+    private router: Router,
     private formBuilder: FormBuilder,
-    private service: UserService
+    private messageService: AuthService
   ) {
     this.registerForm = this.formBuilder.group({
-      email: [
-        '',
-        [
-          Validators.required,
-          Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
-        ],
-      ],
+      email: ['', [Validators.required, Validators.email]],
       password: [
         '',
         [
@@ -35,24 +56,48 @@ export class RegisterComponent {
       ],
       name: ['', [Validators.required, Validators.maxLength(40)]],
       surname: ['', [Validators.required, Validators.maxLength(40)]],
-      role: ['', Validators.required],
     });
+    this.errorMatcher = new RegistrationErrorStateMatcher();
   }
 
-  onSubmit(customerData: any) {
-    this.service
-      .checkIfEmailExists(this.registerForm.value.email)
-      .subscribe((val) => {
-        if (!val) {
-          const form = this.registerForm.value;
-          form.password = btoa(this.registerForm.value.password);
+  onSubmit() {
+    this.register();
+  }
 
-          this.service.addUser(form);
+  public register(): void {
+    const registrationData = {
+      firstName: this.registerForm.get('name')?.value,
+      lastName: this.registerForm.get('surname')?.value,
+      email: this.registerForm.get('email')?.value,
+      password: this.registerForm.get('password')?.value,
+    } as RegisterModel;
 
-          console.log('User created successfully!');
+    this.registerForm.controls.name.disable();
+    this.registerForm.controls.email.disable();
+    this.registerForm.controls.password.disable();
+    this.registerForm.controls.surname.disable();
+
+    this.messageService.register(registrationData).subscribe(
+      (response) => {
+        console.log('user registered successfully');
+        alert('Check your email to verify your account');
+        this.router.navigateByUrl(routeUrls.homepage);
+      },
+      (error) => {
+        console.warn('REGISTRATION FAILED');
+        if (error.status === 400) {
+          alert('Вказаний email вже зареєстровано в базі');
+          this.router.navigateByUrl(routeUrls.login);
         } else {
-          console.log('User with such email already exists');
+          alert('Виникла помилка. Спробуйте ще раз');
+          console.warn(error);
         }
-      });
+
+        this.registerForm.controls.name.enable();
+        this.registerForm.controls.email.enable();
+        this.registerForm.controls.surname.enable();
+        this.registerForm.controls.password.enable();
+      }
+    );
   }
 }

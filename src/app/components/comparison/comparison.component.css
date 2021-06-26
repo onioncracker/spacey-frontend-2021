@@ -1,0 +1,68 @@
+.head-prod-comparison {
+  height: 70px;
+  background: #f8f8f8;
+  display: flex;
+  justify-content: center;
+}
+
+.comparison-label {
+  margin: 17px auto 17px;
+}
+
+.label-field {
+  margin: 24px auto 0;
+}
+
+.h-comparison {
+  margin: 17px auto 17px;
+}
+
+.photo {
+  width: 240px;
+  height: 293px;
+}
+
+.photo-and-button {
+  position: relative;
+  width: 50%;
+}
+
+.button-x {
+  position: absolute;
+  padding: 10px 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.table-comparison {
+  display: flex;
+  margin: 42px auto 32px;
+  padding: 0 16px;
+  max-width: 960px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.compare-h {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.compare-field {
+  width: 240px;
+  text-align: center;
+}
+
+.button-div {
+  display: flex;
+  justify-content: center;
+  margin: 48px auto 80px;
+}
+
+.btn-add-more {
+  padding-left: 10%;
+  padding-right: 10%;
+  border-radius: 1px;
+  height: 48px;
+  width: 340px;
+}
