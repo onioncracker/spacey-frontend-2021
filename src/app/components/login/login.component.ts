@@ -36,6 +36,11 @@ export class LoginComponent {
   loginForm: FormGroup;
   errorMatcher = new LoginErrorStateMatcher();
   hide = true;
+  siteKey = '6LcVzFobAAAAAItOzCPLpCc8Xi83puwXPK3Njaab';
+  public theme: 'light' | 'dark' = 'light';
+  public size: 'compact' | 'normal' = 'normal';
+  public lang = 'en';
+  public type!: 'image' | 'audio';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -46,6 +51,7 @@ export class LoginComponent {
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.required],
       password: ['', Validators.required],
+      recaptcha: ['', Validators.required],
     });
   }
 
