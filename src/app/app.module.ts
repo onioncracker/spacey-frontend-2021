@@ -47,6 +47,7 @@ import { DialogMessageComponent } from './components/dialog-message/dialog-messa
 import { MatDialogModule } from '@angular/material/dialog';
 import { ManageProductsComponent } from './components/manage-products/manage-products.component';
 import { HeaderComponent } from './components/header/header.component';
+import { EmployeeProfileComponent } from './components/employee-profile/employee-profile.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +78,7 @@ import { HeaderComponent } from './components/header/header.component';
     ShoppingCartComponent,
     ConfirmRegistrationComponent,
     HeaderComponent,
+    EmployeeProfileComponent,
   ],
   imports: [
     BrowserModule,
