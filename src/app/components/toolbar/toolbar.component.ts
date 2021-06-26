@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { routeUrls } from '../../../environments/router-manager';
-import { AuthService } from '../../store/service/auth/AuthService';
+import { AuthService } from '../../store/service/auth/auth.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -21,6 +21,10 @@ export class ToolbarComponent {
 
   routeToPopular() {
     this.router.navigateByUrl(routeUrls.popular);
+  }
+
+  routeToProducts() {
+    this.router.navigateByUrl(routeUrls.products);
   }
 
   routeToAccessories() {

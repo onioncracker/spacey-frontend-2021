@@ -14,8 +14,9 @@ import {DeliveryComponent} from "./components/delivery/delivery.component";
 import { AdminEmployeeComponent } from './components/admin-manage/admin-employee.component';
 import { AdminAddComponent } from './components/admin-add/admin-add.component';
 import { AdminEditComponent } from './components/admin-edit/admin-edit.component';
-
-
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { ConfirmRegistrationComponent } from './components/confirm-registration/confirm-registration.component';
+import { ManageProductsComponent } from './components/manage-products/manage-products.component';
 
 const routes: Routes = [
   { path: routeUrls.login, component: LoginComponent },
@@ -31,6 +32,12 @@ const routes: Routes = [
   { path: routeUrls.comparisons, component: ComparisonComponent },
   { path: routeUrls.addProduct, component: AddProductComponent },
   { path: routeUrls.editProduct, component: EditProductComponent },
+  { path: routeUrls.manageProducts, component: ManageProductsComponent },
+  { path: routeUrls.shoppingCart, component: ShoppingCartComponent },
+  {
+    path: routeUrls.confirmRegistration,
+    component: ConfirmRegistrationComponent,
+  },
 ];
 
 @NgModule({

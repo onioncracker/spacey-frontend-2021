@@ -47,7 +47,13 @@ import {DeliveriesComponent} from "./components/deliveries/deliveries.component"
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {DatePipe} from "@angular/common";
 import {MatRadioModule} from "@angular/material/radio";
-
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { ConfirmRegistrationComponent } from './components/confirm-registration/confirm-registration.component';
+import { DialogMessageComponent } from './components/dialog-message/dialog-message.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ManageProductsComponent } from './components/manage-products/manage-products.component';
+import { HeaderComponent } from './components/header/header.component';
+import { NgxCaptchaModule } from 'ngx-captcha';
 
 
 @NgModule({
@@ -75,6 +81,12 @@ import {MatRadioModule} from "@angular/material/radio";
     AddProductComponent,
     EditProductComponent,
     DeliveryComponent,
+    DialogMessageComponent,
+    ManageProductsComponent,
+    ShoppingCartComponent,
+    ConfirmRegistrationComponent,
+    HeaderComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -102,6 +114,9 @@ import {MatRadioModule} from "@angular/material/radio";
     MatDatepickerModule,
     MatNativeDateModule,
     MatRadioModule,
+    MatDialogModule,
+    NgxCaptchaModule,
+
   ],
   providers: [
     {

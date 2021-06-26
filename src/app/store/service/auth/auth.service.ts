@@ -2,23 +2,29 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
-import { RegisterModel } from '../../models/RegisterModel';
-import { AuthResponseModel } from '../../models/AuthResponseModel';
-import { LoginModel } from '../../models/LoginModel';
+import { RegisterModel } from '../../models/register.model';
+import { AuthResponseModel } from '../../models/auth-response.model';
+import { LoginModel } from '../../models/login.model';
 import { environment } from '../../../../environments/environment';
+import { endpointUrls } from '../../../../environments/endpoint-routes-manager';
+import { TokenStorageService } from './token-storage.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private apiPrefix = '/api/v1';
-  private registerURL = environment.url + this.apiPrefix + '/register';
-  private loginURL = environment.url + this.apiPrefix + '/login';
+  private registerURL = environment.url + endpointUrls.apiPrefix + '/register';
+  private loginURL = environment.url + endpointUrls.apiPrefix + '/login';
+  private confirmURL =
+    environment.url + endpointUrls.apiPrefix + '/registration_confirm';
 
-  private loggedIn = false;
   private httpOptions = { observe: 'response' as const };
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private tokenStorageService: TokenStorageService
+  ) {}
 
   // @ts-ignore
   handleError(error) {
@@ -36,17 +42,12 @@ export class AuthService {
   }
 
   logOut(): void {
-    sessionStorage.setItem('token', '');
-    this.loggedIn = false;
+    this.tokenStorageService.saveToken('');
     this.router.navigate(['/']);
   }
 
-  setAuthorised(value: boolean) {
-    this.loggedIn = value;
-  }
-
   isAuthorised(): boolean {
-    return this.loggedIn;
+    return this.tokenStorageService.isAuthorised();
   }
 
   register(
@@ -65,5 +66,9 @@ export class AuthService {
       loginData,
       this.httpOptions
     );
+  }
+
+  confirmRegistration(token: string): Observable<HttpResponse<any>> {
+    return this.http.get<any>(this.confirmURL + '?token=' + token);
   }
 }

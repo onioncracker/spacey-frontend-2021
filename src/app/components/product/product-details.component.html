@@ -26,17 +26,27 @@
         </div>
         <div>
           <h5 class="h5-title-parameter">Size:</h5>
-          <p class="parameter">{{ product.size }}</p>
+          <p class="parameter">{{ product.sizes }}</p>
 
           <div class="button-container">
-            <button type="button" class="button">{{ product.size }}</button>
+            <button type="button" class="button">{{ product.sizes }}</button>
           </div>
         </div>
       </div>
 
       <div class="underlining-container">
         <h5 class="price">{{ product.price }} UAH</h5>
+        <button type="button" class="purchase-button" (click)="addToCart()">
+          Add to cart
+        </button>
         <button type="button" class="purchase-button">Add to cart</button>
+        <button
+          type="button"
+          class="purchase-button"
+          (click)="addProductToCompare(product)"
+        >
+          Add to compare
+        </button>
       </div>
 
       <div class="underlining-container">
@@ -52,11 +62,11 @@
         </div>
         <div>
           <h5 class="h5-additional-info-title">Size:</h5>
-          <p class="additional-info">{{ product.size }}</p>
+          <p class="additional-info">{{ product.sizes }}</p>
         </div>
         <div>
           <h5 class="h5-additional-info-title">Material:</h5>
-          <p class="additional-info">{{ product.material }}</p>
+          <p class="additional-info">{{ product.materials }}</p>
         </div>
       </div>
     </div>
