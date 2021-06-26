@@ -47,6 +47,7 @@ import { DialogMessageComponent } from './components/dialog-message/dialog-messa
 import { MatDialogModule } from '@angular/material/dialog';
 import { ManageProductsComponent } from './components/manage-products/manage-products.component';
 import { HeaderComponent } from './components/header/header.component';
+import { NgxCaptchaModule } from 'ngx-captcha';
 
 @NgModule({
   declarations: [
@@ -100,6 +101,7 @@ import { HeaderComponent } from './components/header/header.component';
     MatChipsModule,
     MatSelectModule,
     MatDialogModule,
+    NgxCaptchaModule,
   ],
   providers: [
     {
