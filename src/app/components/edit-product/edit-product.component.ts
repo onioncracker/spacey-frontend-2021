@@ -58,7 +58,7 @@ export class EditProductComponent implements OnInit {
   updateProduct() {}
 
   // public editProduct(): void {
-  //   this.product = {
+  //   this.product-details = {
   //     id: this.editProductForm.get('id')?.value,
   //     name: this.editProductForm.get('name')?.value,
   //     createDate: this.editProductForm.get('createDate')?.value,
@@ -87,7 +87,7 @@ export class EditProductComponent implements OnInit {
   //   this.editProductForm.controls.materials.disable();
   //   this.editProductForm.controls.sizes.disable();
   //
-  //   this.editProductService.getProductById(this.product).subscribe((response) =>{
+  //   this.editProductService.getProductById(this.product-details).subscribe((response) =>{
   //     const data = response.body;
   //   })
   // }

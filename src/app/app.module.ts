@@ -24,10 +24,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthInterceptor } from './store/service/AuthInterceptor';
-import { ProductsComponent } from './components/products/products.component';
-import { ProductDetailsComponent } from './components/product/product-details.component';
-import { FilterComponent } from './components/products/filter/filter.component';
-import { CategoryComponent } from './components/products/category/category.component';
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -48,6 +45,11 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ManageProductsComponent } from './components/manage-products/manage-products.component';
 import { HeaderComponent } from './components/header/header.component';
 import { NgxCaptchaModule } from 'ngx-captcha';
+import { ProductsCatalogComponent } from './components/products-catalog/products-catalog.component';
+import { FilterComponent } from './components/filter/filter.component';
+import { ProductComponent } from './components/product/product.component';
+import { PillComponent } from './components/pill/pill.component';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -62,10 +64,7 @@ import { NgxCaptchaModule } from 'ngx-captcha';
     DeliveryComponent,
     CommentComponent,
     OrderComponent,
-    ProductsComponent,
     ProductDetailsComponent,
-    CategoryComponent,
-    FilterComponent,
     PaginationComponent,
     AdminEmployeeComponent,
     AdminAddComponent,
@@ -78,6 +77,10 @@ import { NgxCaptchaModule } from 'ngx-captcha';
     ShoppingCartComponent,
     ConfirmRegistrationComponent,
     HeaderComponent,
+    ProductsCatalogComponent,
+    FilterComponent,
+    ProductComponent,
+    PillComponent,
   ],
   imports: [
     BrowserModule,
@@ -102,6 +105,7 @@ import { NgxCaptchaModule } from 'ngx-captcha';
     MatSelectModule,
     MatDialogModule,
     NgxCaptchaModule,
+    MatRadioModule,
   ],
   providers: [
     {

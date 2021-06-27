@@ -1,7 +1,6 @@
 <div *ngIf="product">
   <div class="title-container">
-    <h1 align="center" class="display-4 mb-5">{{ product.name }}</h1>
-    <p class="availability-title">Availability: {{ product.availability }}</p>
+    <h1 class="display-4 mb-5">{{ product.name }}</h1>
   </div>
 
   <div class="body-container">
@@ -33,12 +32,11 @@
         </div>
       </div>
 
-      <div class="underlining-container">
+      <div class="product-info-container underlining-container">
         <h5 class="price">{{ product.price }} UAH</h5>
         <button type="button" class="purchase-button" (click)="addToCart()">
           Add to cart
         </button>
-
         <button
           type="button"
           class="purchase-button"
@@ -48,7 +46,7 @@
         </button>
       </div>
 
-      <div class="underlining-container">
+      <div class="product-info-container underlining-container">
         <h5 class="product-info-title">Description</h5>
         <p class="description">{{ product.description }}</p>
       </div>

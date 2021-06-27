@@ -1,0 +1,24 @@
+<div class="card mb-4">
+  <div class="card-pill">
+    <app-pill [pill]="getPill()"></app-pill>
+  </div>
+
+  <a
+    [title]="item.name + ' details'"
+    [routerLink]="['/products-catalog', item.id]"
+  >
+    <img class="card-img-top" src="{{ item.photo }}" alt="{{ item.name }}" />
+  </a>
+  <div class="card-body">
+    <h3>
+      <a
+        [title]="item.name + ' details'"
+        [routerLink]="['/products-catalog', item.id]"
+        class="title-link"
+      >
+        {{ item.name }}
+      </a>
+    </h3>
+    <p class="card-text" *ngIf="item.price">{{ item.price }} UAH</p>
+  </div>
+</div>
