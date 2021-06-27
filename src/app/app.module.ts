@@ -30,11 +30,9 @@ import { FilterComponent } from './components/products/filter/filter.component';
 import { CategoryComponent } from './components/products/category/category.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTableModule } from '@angular/material/table';
 import { AdminEditComponent } from './components/admin-edit/admin-edit.component';
-import { MatSelectModule } from '@angular/material/select';
 import { ComparisonComponent } from './components/comparison/comparison.component';
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { EditProductComponent } from './components/edit-product/edit-product.component';
@@ -53,11 +51,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { PersonalInformationComponent } from './components/personal-information/personal-information.component';
-import {
-  NgxMatDatetimePickerModule,
-  NgxMatNativeDateModule,
-  NgxMatTimepickerModule
-} from '@angular-material-components/datetime-picker';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 
 @NgModule({
@@ -95,6 +88,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
@@ -113,15 +107,9 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     MatChipsModule,
     MatSelectModule,
     MatDialogModule,
-    MatSliderModule,
     MatCheckboxModule,
     MatSelectModule,
     MatDividerModule,
-    MatSnackBarModule,
-    NgxMatDatetimePickerModule,
-    NgxMatTimepickerModule,
-    NgxMatNativeDateModule,
-    MatDatepickerModule
   ],
   providers: [
     {

@@ -1,4 +1,5 @@
 import CheckoutItem from "./CheckoutItem";
+import {PersonalInformation} from "./personal-information";
 
 export class CheckoutDto {
   products: CheckoutItem[]

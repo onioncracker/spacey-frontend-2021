@@ -19,7 +19,9 @@ export class CheckoutComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.checkoutService.getCheckout().subscribe((checkout: CheckoutDto) => this.checkout = checkout);
+    console.log(this.checkout)
     // this.checkoutService.getCheckoutByCartId().subscribe((checkout: CheckoutDto) => this.checkout = checkout);
   }
 }

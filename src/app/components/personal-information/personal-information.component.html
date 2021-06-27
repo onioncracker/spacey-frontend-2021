@@ -1,81 +1,94 @@
-<div class="space">
-  <h2 class="personal-info-font">PERSONAL INFORMATION</h2>
-  <div>
-    <a mat-button target="_blank" *ngIf="isAuthUser" (click)="isEdit = !isEdit">EDIT</a>
-  </div>
-</div>
-<div *ngIf="!isEdit">
-  <p>{{ checkout.firstName }} {{checkout.lastName}}</p>
-  <p>{{ checkout.phoneNumber }}</p>
-  <p>{{ checkout.email }}</p>
-  <br>
-  <p>{{ checkout.street }}, {{ checkout.house }}/{{ checkout.apartment }}</p>
-  <hr class="solid">
-</div>
 
-<div *ngIf="!isAuthUser || isEdit">
-  <div class="input-form">
-    <div class="column">
-      <input class="input-area"
-             matInput
-             type="text"
-             [value]="checkout.firstName"
-             placeholder="First Name"
-      />
-
-      <input class="mt input-area"
-             matInput
-             type="text"
-             [value]="checkout.lastName"
-             placeholder="Last Name"
-      />
-
-      <input class="mt input-area"
-             matInput
-             type="text"
-             [value]="checkout.phoneNumber"
-             placeholder="Phone Number"
-      />
-
-      <input class="mt input-area"
-             matInput
-             type="text"
-             [value]="checkout.email"
-             placeholder="Enter your email"
-      />
+<form [formGroup]="personalInformationForm">
+  <div class="space">
+    <h2 class="personal-info-font">PERSONAL INFORMATION</h2>
+    <div>
+      <a mat-button target="_blank" *ngIf="isAuthUser" (click)="isEdit = !isEdit">EDIT</a>
     </div>
+  </div>
+  <div *ngIf="!isEdit">
+    <p>{{ personalInformation.firstName }} {{personalInformation.lastName}}</p>
+    <p>{{ personalInformation.phoneNumber }}</p>
+    <p>{{ personalInformation.email }}</p>
+    <br>
+    <p>{{ personalInformation.street }}, {{ personalInformation.house }}/{{ personalInformation.apartment }}</p>
+    <hr>
+  </div>
 
-      <div class="column">
-        <mat-label><h3 class="personal-info-font-small">DELIVERY ADDRESS</h3></mat-label>
-        <input class="input-area"
-               matInput
-               type="text"
-               [value]="checkout.city"
-               placeholder="City"
-        />
-
-        <input class="mt input-area"
-               matInput
-               type="text"
-               [value]="checkout.street"
-               placeholder="Street"
-        />
-
-        <div class="apartment-building-info">
-          <input class="mt input-area-small"
+    <div *ngIf="!isAuthUser || isEdit">
+      <div class="input-form">
+        <div class="column">
+          <mat-form-field class="emp-form-field">
+          <input class="input-area"
                  matInput
+                 formControlName="firstName"
                  type="text"
-                 [value]="checkout.house"
-                 placeholder="Building"
+                 [value]="personalInformation.firstName"
+                 placeholder="First Name"
+          />
+            <mat-error
+              *ngIf="personalInformationForm.get('firstName')?.hasError('required')"
+            >
+              Name is required!
+            </mat-error>
+          </mat-form-field>
+
+          <input class="mt input-area"
+                 matInput
+                 formControlName="lastName"
+                 type="text"
+                 [value]="personalInformation.lastName"
+                 placeholder="Last Name"
           />
 
-          <input class="mt input-area-small"
+          <input class="mt input-area"
                  matInput
+                 formControlName="phoneNumber"
                  type="text"
-                 [value]="checkout.apartment"
-                 placeholder="Apartment"
+                 placeholder="Phone Number"
+          />
+
+          <input class="mt input-area"
+                 matInput
+                 formControlName="email"
+                 type="text"
+                 placeholder="Enter your email"
           />
         </div>
+
+        <div class="column">
+          <mat-label><h3 class="personal-info-font-small">DELIVERY ADDRESS</h3></mat-label>
+          <input class="input-area"
+                 matInput
+                 formControlName="city"
+                 type="text"
+                 placeholder="City"
+          />
+
+          <input class="mt input-area"
+                 matInput
+                 formControlName="street"
+                 type="text"
+                 placeholder="Street"
+          />
+
+          <div class="apartment-building-info">
+            <input class="mt input-area-small"
+                   matInput
+                   formControlName="house"
+                   type="text"
+                   placeholder="Building"
+            />
+
+            <input class="mt input-area-small"
+                   matInput
+                   formControlName="apartment"
+                   type="text"
+                   placeholder="Apartment"
+            />
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
+</form>
+

@@ -30,6 +30,10 @@
   justify-content: space-between;
 }
 
+.mat-form-field-appearance-legacy .mat-form-field-underline {
+  height: 0 !important;
+}
+
 .input-area,
 .input-area-small {
   height: 48px;
