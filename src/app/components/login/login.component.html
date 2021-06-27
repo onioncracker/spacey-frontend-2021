@@ -50,6 +50,16 @@
       </mat-error>
     </mat-form-field>
   </div>
+  <ngx-recaptcha2
+    [siteKey]="siteKey"
+    [useGlobalDomain]="false"
+    [size]="size"
+    [hl]="lang"
+    [theme]="theme"
+    [type]="type"
+    formControlName="recaptcha"
+  >
+  </ngx-recaptcha2>
   <button
     mat-raised-button
     class="login-btn"

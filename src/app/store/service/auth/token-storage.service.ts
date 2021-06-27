@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
+import { sessionStorageKeys } from '../../../../environments/session-storage-manager';
 
-const TOKEN_KEY = 'token';
-const USERNAME_KEY = 'username';
-const AUTHORITIES_KEY = 'AuthAuthorities';
+const TOKEN_KEY = sessionStorageKeys.TOKEN_KEY;
+const USERNAME_KEY = sessionStorageKeys.USERNAME_KEY;
+const AUTHORITIES_KEY = sessionStorageKeys.AUTHORITIES_KEY;
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,9 @@ export class TokenStorageService {
   constructor() {}
 
   signOut() {
-    sessionStorage.clear();
+    sessionStorage.removeItem(TOKEN_KEY);
+    sessionStorage.removeItem(AUTHORITIES_KEY);
+    sessionStorage.removeItem(USERNAME_KEY);
   }
 
   public saveToken(token: string) {
@@ -44,5 +47,12 @@ export class TokenStorageService {
       return res;
     }
     return '';
+  }
+
+  public isAuthorised(): boolean {
+    return (
+      sessionStorage.getItem(TOKEN_KEY) !== null &&
+      sessionStorage.getItem(TOKEN_KEY) !== ''
+    );
   }
 }

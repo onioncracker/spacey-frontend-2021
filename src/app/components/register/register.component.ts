@@ -10,9 +10,9 @@ import {
 } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { User } from '../../store/models/user';
-import { AuthService } from '../../store/service/auth/AuthService';
-import { TokenStorageService } from '../../store/service/auth/TokenStorageService';
-import { RegisterModel } from '../../store/models/RegisterModel';
+import { AuthService } from '../../store/service/auth/auth.service';
+import { TokenStorageService } from '../../store/service/auth/token-storage.service';
+import { RegisterModel } from '../../store/models/register.model';
 import { routeUrls } from '../../../environments/router-manager';
 
 export class RegistrationErrorStateMatcher implements ErrorStateMatcher {
@@ -81,7 +81,6 @@ export class RegisterComponent {
       (response) => {
         console.log('user registered successfully');
         alert('Check your email to verify your account');
-        this.messageService.setAuthorised(true);
         this.router.navigateByUrl(routeUrls.homepage);
       },
       (error) => {
