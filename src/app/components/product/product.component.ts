@@ -13,6 +13,4 @@ export class ProductComponent {
   getPill() {
     return this.item.discount;
   }
-
-  constructor() {}
 }
