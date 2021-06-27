@@ -1,4 +1,4 @@
-import { SizesComparison } from './sizesComparison';
+import { SizesComparison } from './sizes-comparison';
 
 export class Product {
   id!: number;

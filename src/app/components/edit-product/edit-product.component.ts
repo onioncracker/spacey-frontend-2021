@@ -43,8 +43,10 @@ export class EditProductComponent implements OnInit {
   });
 
   onSubmit() {
+    this.product = this.editProductForm.value;
+    this.product.sizes = this.sizesAmount;
     console.log(this.product);
-    console.log(this.editProductForm);
+    this.updateProduct(this.product);
   }
 
   getProduct(): void {
@@ -73,7 +75,7 @@ export class EditProductComponent implements OnInit {
   }
 
   updateProduct(product: EditProduct) {
-    this.editProductService.updateProductById(product);
+    this.editProductService.updateProductById(product).subscribe();
   }
 
   deleteProduct(id: number) {

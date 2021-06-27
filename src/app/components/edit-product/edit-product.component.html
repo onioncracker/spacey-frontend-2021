@@ -44,7 +44,6 @@
           value="Photo"
           alt="Photo"
           [src]="product.photo"
-          formControlName="photo"
         />
       </td>
     </tr>
@@ -149,13 +148,15 @@
                   type="number"
                   placeholder="Amount"
                   [(ngModel)]="sizesAmount[i].quantity"
-                  [ngModelOptions]="{standalone: true}"
+                  [ngModelOptions]="{ standalone: true }"
                 />
               </mat-form-field>
               <br />
             </div>
           </td>
         </tr>
+      </td>
+    </tr>
   </table>
 
   <br />
