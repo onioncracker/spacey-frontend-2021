@@ -1,4 +1,4 @@
-import { SizesComparison } from './sizesComparison';
+import { SizeModel } from './size.model';
 
 export class Product {
   id!: number;
@@ -10,7 +10,7 @@ export class Product {
   discount!: number;
   availability!: boolean;
   color!: string;
-  sizes!: SizesComparison[];
+  sizes!: SizeModel[];
   category!: string;
   materials!: string[];
 }
