@@ -3,20 +3,19 @@
   <!--    *ngFor="let product of products-->
   <div class="product-description">
     <div class="cart-photo">
-      <img
-        mat-card-image
-        class="img"
-        src="https://spacey-photo-storage.s3.eu-west-2.amazonaws.com/white-tee-front_1.jpg"
-        alt=""
-      />
+      <img class="img" [src]="product.photo" alt="" />
       <div>
         <h3 class="h3-name">{{ product.name }}</h3>
-        <h3 class="h3-color-size">
-          {{ product.color }}, {{ product.size }}
-        </h3>
-        <!--      <button class="btn btn-primary" (click)="plus()"><i class="fa fa-plus"></i></button>-->
-        <h3 class="h3-amount">{{ product.amount }}</h3>
-        <!--      <button class="btn btn-primary" (click)="minus()"><i clasns="fa fa-plus"></i></button>-->
+        <h3 class="h3-color-size">{{ product.color }}, {{ product.size }}</h3>
+        <div class="add-substract-div">
+          <button class="btn btn-primary" (click)="addProduct(product)">
+            + <i class="fa fa-plus"></i>
+          </button>
+          <h3 class="h3-amount">{{ product.amount }}</h3>
+          <button class="btn btn-primary" (click)="substractProduct(product)">
+            - <i clasns="fa fa-plus"></i>
+          </button>
+        </div>
       </div>
     </div>
     <div class="price-delete">
@@ -29,9 +28,7 @@
   <hr class="solid" />
 </div>
 <div class="total-container">
-  <h3 class="h3-total">
-    Total
-  </h3>
+  <h3 class="h3-total">Total</h3>
   <h3 class="h3-sum">
     <h3>Sum</h3>
   </h3>

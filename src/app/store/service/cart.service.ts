@@ -21,6 +21,8 @@ export class CartService {
   getCartUrl = `${environment.url}${endpointUrls.apiPrefix}${endpointUrls.getCart}`;
   addProductUrl =
     environment.url + endpointUrls.apiPrefix + endpointUrls.addProduct;
+  removeProductUrl =
+    environment.url + endpointUrls.apiPrefix + endpointUrls.deleteProduct;
   checkProductUrl =
     environment.url + endpointUrls.apiPrefix + endpointUrls.checkProduct;
   getUnauthorizedCartUrl =
@@ -77,6 +79,12 @@ export class CartService {
       .pipe(catchError(this.handleError));
   }
 
+  removeProductFromCart(data: EditCartModel): Observable<HttpResponse<any>> {
+    return this.http
+      .post<any>(this.removeProductUrl, data, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
   checkProduct(data: EditCartModel): Observable<HttpResponse<any>> {
     return this.http
       .post(this.checkProductUrl, data, this.httpOptions)
@@ -89,7 +97,7 @@ export class CartService {
     for (let product of cart) {
       if (
         product.productId == productToAdd.productId &&
-        product.size == productToAdd.size
+        product.sizeId == productToAdd.sizeId
       ) {
         product.amount += productToAdd.amount;
         isInCart = true;
@@ -102,6 +110,26 @@ export class CartService {
     }
     this.saveUnauthorizedCart(cart);
     console.log(cart.toString());
+  }
+
+  removeProductFromUnauthorizedCart(productToAdd: EditCartModel): void {
+    const cart = this.getUnauthorizedCart();
+    let isInCart = false;
+    for (let product of cart) {
+      if (
+        product.productId == productToAdd.productId &&
+        product.sizeId == productToAdd.sizeId
+      ) {
+        product.amount -= productToAdd.amount;
+        isInCart = true;
+        console.log('item is already in cart, amount decreased');
+      }
+    }
+    if (!isInCart) {
+      // cart.(productToAdd); TODO remove item here
+      console.log('item has been removed from local shopping cart');
+    }
+    this.saveUnauthorizedCart(cart);
   }
 
   getUnauthorizedCart(): EditCartModel[] {
