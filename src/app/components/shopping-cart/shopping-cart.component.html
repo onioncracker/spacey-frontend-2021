@@ -1,5 +1,5 @@
 <mat-label class="cart-label"><h1>SHOPPING CART</h1></mat-label>
-<div class="cart-form">
+<div class="cart-form" *ngFor="let product of products">
   <!--    *ngFor="let product of products-->
   <div class="product-description">
     <div class="cart-photo">
@@ -10,12 +10,12 @@
         alt=""
       />
       <div>
-        <h3 class="h3-name">{{ "product.name" }}</h3>
+        <h3 class="h3-name">{{ product.name }}</h3>
         <h3 class="h3-color-size">
-          {{ " product.color" }}, {{ "product.size" }}
+          {{ product.color }}, {{ product.size }}
         </h3>
         <!--      <button class="btn btn-primary" (click)="plus()"><i class="fa fa-plus"></i></button>-->
-        <h3 class="h3-amount">{{ "product.amount" }}</h3>
+        <h3 class="h3-amount">{{ product.amount }}</h3>
         <!--      <button class="btn btn-primary" (click)="minus()"><i clasns="fa fa-plus"></i></button>-->
       </div>
     </div>
@@ -30,7 +30,7 @@
 </div>
 <div class="total-container">
   <h3 class="h3-total">
-    <h3>Total</h3>
+    Total
   </h3>
   <h3 class="h3-sum">
     <h3>Sum</h3>

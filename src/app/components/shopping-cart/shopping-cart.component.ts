@@ -9,7 +9,7 @@ import { ProductForCartModel } from '../../store/models/product-for-cart.model';
   styleUrls: ['./shopping-cart.component.css'],
 })
 export class ShoppingCartComponent implements OnInit {
-  products: ProductForCartModel[] | null = [];
+  products: ProductForCartModel[] = [];
   isProductsLoaded = false;
 
   constructor(
@@ -24,7 +24,7 @@ export class ShoppingCartComponent implements OnInit {
   getProducts(): void {
     console.log('loading products');
     this.cartService.getProducts().subscribe((response) => {
-      this.products = response.body;
+      this.products = response.body!;
       this.isProductsLoaded = true;
       console.log('Cart: data loaded');
     });
