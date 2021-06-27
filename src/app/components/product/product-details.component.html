@@ -25,11 +25,10 @@
           />
         </div>
         <div>
-          <h5 class="h5-title-parameter">Size:</h5>
-          <p class="parameter">{{ product.sizes }}</p>
-
-          <div class="button-container">
-            <button type="button" class="button">{{ product.sizes }}</button>
+          <div class="button-container" *ngFor="let size of product.sizes">
+            <button type="button" class="button">
+              {{ size.name }}
+            </button>
           </div>
         </div>
       </div>
@@ -39,7 +38,7 @@
         <button type="button" class="purchase-button" (click)="addToCart()">
           Add to cart
         </button>
-        <button type="button" class="purchase-button">Add to cart</button>
+
         <button
           type="button"
           class="purchase-button"
@@ -61,11 +60,13 @@
           <p class="additional-info">{{ product.color }}</p>
         </div>
         <div>
-          <h5 class="h5-additional-info-title">Size:</h5>
-          <p class="additional-info">{{ product.sizes }}</p>
+          <h5 class="h5-additional-info-title">Sizes:</h5>
+          <p class="additional-info" *ngFor="let size of product.sizes">
+            {{ size.name }}
+          </p>
         </div>
         <div>
-          <h5 class="h5-additional-info-title">Material:</h5>
+          <h5 class="h5-additional-info-title">Materials:</h5>
           <p class="additional-info">{{ product.materials }}</p>
         </div>
       </div>
