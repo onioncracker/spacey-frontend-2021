@@ -54,7 +54,7 @@
 }
 
 .button-container {
-  display: block;
+  display: inline-block;
   margin-top: 16px;
 }
 
@@ -70,7 +70,7 @@
   font-style: normal;
   font-weight: 600;
   font-size: 12px;
-  margin: 0 2px;
+  margin: 0 5px;
   transition-duration: 0.3s;
   cursor: pointer;
 }
@@ -113,6 +113,7 @@
 
 .purchase-button {
   display: inline-block;
+  margin-right: 30px;
   background: #121212;
   width: 156px;
   height: 48px;
@@ -172,6 +173,7 @@
 
 .additional-info {
   display: inline-block;
+  margin-right: 7px;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
