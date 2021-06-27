@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Product } from '../models/product';
+import { ProductModel } from '../models/product.model';
 import {
   HttpClient,
   HttpErrorResponse,

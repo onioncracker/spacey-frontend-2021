@@ -1,6 +1,6 @@
 import { SizeModel } from './size.model';
 
-export class Product {
+export class ProductModel {
   id!: number;
   name!: string;
   sex!: string;
