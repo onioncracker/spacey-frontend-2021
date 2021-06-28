@@ -17,6 +17,8 @@ export class AuthService {
   private loginURL = environment.url + endpointUrls.apiPrefix + '/login';
   private confirmURL =
     environment.url + endpointUrls.apiPrefix + '/registration_confirm';
+  private resendConfirmURL =
+    environment.url + endpointUrls.apiPrefix + '/resend_registration_token';
 
   private httpOptions = { observe: 'response' as const };
 
@@ -70,5 +72,9 @@ export class AuthService {
 
   confirmRegistration(token: string): Observable<HttpResponse<any>> {
     return this.http.get<any>(this.confirmURL + '?token=' + token);
+  }
+
+  resendRegistration(token: string): Observable<HttpResponse<any>> {
+    return this.http.get<any>(this.resendConfirmURL + '?token=' + token);
   }
 }
