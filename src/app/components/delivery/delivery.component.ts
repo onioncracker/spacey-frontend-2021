@@ -3,6 +3,7 @@ import OrderDetails from "../../store/models/orderDetails";
 import {ActivatedRoute} from "@angular/router";
 import {OrderService} from "../../store/service/order/order.service";
 import {OrderStatus, Status, statuses} from "../../store/models/status";
+import {DialogService} from "../../store/service/dialog/dialog.service";
 
 
 @Component({
@@ -16,36 +17,48 @@ export class DeliveryComponent implements OnInit {
   status!: string;
   statuses: Status[] = statuses;
 
+  options = {
+    title: 'Update status?',
+    message: 'Status order will be changed.',
+    cancelText: 'CANCEL',
+    confirmText: 'YES'
+  };
+
   constructor(
     private route: ActivatedRoute,
     private ordersService: OrderService,
+    private dialogService: DialogService,
   ) {
   }
 
   onChange(event) {
-    console.log(event.value);
-    const id = parseInt(this.route.snapshot.paramMap.get('id')!);
-
-    if (confirm("update status")) {
-      this.ordersService.updateOrderStatus(new OrderStatus(id, event.value.statusId))
-        .subscribe(res => {
-          alert(res)
-          this.ordersService.findOrderById(id)
-            .subscribe((data) => {
-              this.order = data;
-              console.log(data)
-            });
-        });
-    }
-
+    this.dialogService.openConfirm(this.options);
+    this.dialogService.confirmed().subscribe(confirmed => {
+      if (confirmed) {
+        this.updateStatus(this.getOrderId(), event)
+      }
+    });
   }
 
   ngOnInit(): void {
-    const id = parseInt(this.route.snapshot.paramMap.get('id')!);
-    this.ordersService.findOrderById(id)
+    this.findOrderById();
+  }
+
+  private getOrderId(): number {
+    return parseInt(this.route.snapshot.paramMap.get('id')!);
+  }
+
+  private findOrderById(): void {
+    this.ordersService.findOrderById(this.getOrderId())
       .subscribe((data) => {
         this.order = data;
-        console.log(data)
+      });
+  }
+
+  private updateStatus(id, event): void {
+    this.ordersService.updateOrderStatus(new OrderStatus(id, event.value.statusId))
+      .subscribe(res => {
+        this.findOrderById()
       });
   }
 }
