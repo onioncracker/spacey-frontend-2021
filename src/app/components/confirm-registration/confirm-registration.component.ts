@@ -12,6 +12,7 @@ import { routeUrls } from '../../../environments/router-manager';
 export class ConfirmRegistrationComponent implements OnInit, OnDestroy {
   private routeSub!: Subscription;
   private token: string = '';
+  tokenIsOk: boolean = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -34,6 +35,22 @@ export class ConfirmRegistrationComponent implements OnInit, OnDestroy {
     this.authService.confirmRegistration(this.token).subscribe(
       (response) => {
         this.router.navigateByUrl(routeUrls.login);
+      },
+      (error) => {
+        if (error.status == 400) {
+          alert('your link is expired. refresh it to confirm registration');
+          this.tokenIsOk = false;
+        }
+        alert('Confirming failed. Try again');
+        console.error(error);
+      }
+    );
+  }
+
+  resendToken(): void {
+    this.authService.resendRegistration(this.token).subscribe(
+      (response) => {
+        this.tokenIsOk = true;
       },
       (error) => {
         alert('Confirming failed. Try again');
