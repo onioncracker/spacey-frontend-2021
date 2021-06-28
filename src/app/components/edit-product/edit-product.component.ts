@@ -79,7 +79,7 @@ export class EditProductComponent implements OnInit {
   }
 
   deleteProduct(id: number) {
-    this.editProductService.deleteProductById(id);
+    this.editProductService.deleteProductById(id).subscribe();
   }
 
   compareObjects(object1: any, object2: any) {
