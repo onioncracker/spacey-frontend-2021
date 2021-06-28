@@ -12,7 +12,7 @@ import { AdminEditComponent } from './components/admin-edit/admin-edit.component
 import { ComparisonComponent } from './components/comparison/comparison.component';
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { EditProductComponent } from './components/edit-product/edit-product.component';
-import {DeliveryComponent} from "./components/delivery/delivery.component";
+import { DeliveryComponent } from './components/delivery/delivery.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { ConfirmRegistrationComponent } from './components/confirm-registration/confirm-registration.component';
 

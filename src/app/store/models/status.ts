@@ -1,6 +1,6 @@
 export class Status {
-  statusId!: number
-  statusName!: string
+  statusId!: number;
+  statusName!: string;
 }
 
 export class OrderStatus {
@@ -9,18 +9,17 @@ export class OrderStatus {
     this.orderStatusId = orderStatusId;
   }
 
-  orderId!: number
-  orderStatusId!: number
+  orderId!: number;
+  orderStatusId!: number;
 }
 
 export const statuses = [
   {
     statusId: 1,
-    statusName: "DELIVERED"
+    statusName: 'DELIVERED',
   },
   {
     statusId: 2,
-    statusName: "FAIL"
+    statusName: 'FAIL',
   },
-
-]
+];
