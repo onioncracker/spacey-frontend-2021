@@ -12,6 +12,7 @@ import { EditCartModel } from '../../store/models/edit-cart.model';
 export class ShoppingCartComponent implements OnInit {
   products: ProductForCartModel[] = [];
   isProductsLoaded = false;
+  checkoutAvailable = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -29,6 +30,7 @@ export class ShoppingCartComponent implements OnInit {
       this.isProductsLoaded = true;
       console.log('Cart: data loaded');
     });
+    this.checkoutAvailable = this.cartService.checkAvailability(this.products);
   }
 
   addProduct(product: ProductForCartModel) {
@@ -37,16 +39,17 @@ export class ShoppingCartComponent implements OnInit {
       sizeId: product.sizeId,
       amount: 1,
     } as EditCartModel;
+
     if (this.cartService.isAuthorised()) {
-      this.cartService
-        .addProductToCart(productToAdd)
-        .subscribe((response) => {});
+      this.cartService.addProductToCart(productToAdd).subscribe((response) => {
+        this.getProducts();
+      });
     } else {
       this.cartService.checkProduct(productToAdd).subscribe((response) => {
         this.cartService.addProductToUnauthorizedCart(productToAdd);
+        this.getProducts();
       });
     }
-    window.alert('product added to cart!');
   }
 
   substractProduct(product: ProductForCartModel) {
@@ -55,21 +58,25 @@ export class ShoppingCartComponent implements OnInit {
       sizeId: product.sizeId,
       amount: 1,
     } as EditCartModel;
+
     if (this.cartService.isAuthorised()) {
       this.cartService
         .removeProductFromCart(productToSubstract)
-        .subscribe((response) => {});
+        .subscribe((response) => {
+          this.getProducts();
+        });
     } else {
       const productToCheck = {
         productId: product.id,
         sizeId: product.sizeId,
         amount: product.amount - 1,
       } as EditCartModel;
+
       this.cartService.checkProduct(productToCheck).subscribe((response) => {
         this.cartService.removeProductFromUnauthorizedCart(productToSubstract);
+        this.getProducts();
       });
     }
-    window.alert('product added to cart!');
   }
 
   deleteProduct() {}

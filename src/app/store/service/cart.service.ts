@@ -112,23 +112,22 @@ export class CartService {
     console.log(cart.toString());
   }
 
-  removeProductFromUnauthorizedCart(productToAdd: EditCartModel): void {
+  removeProductFromUnauthorizedCart(productToRemove: EditCartModel): void {
     const cart = this.getUnauthorizedCart();
-    let isInCart = false;
-    for (let product of cart) {
+    cart.forEach((product, index) => {
       if (
-        product.productId == productToAdd.productId &&
-        product.sizeId == productToAdd.sizeId
+        product.productId == productToRemove.productId &&
+        product.sizeId == productToRemove.sizeId
       ) {
-        product.amount -= productToAdd.amount;
-        isInCart = true;
-        console.log('item is already in cart, amount decreased');
+        if (product.amount == 1) {
+          cart.splice(index, 1);
+          console.log('item found in cart, amount decreased');
+        } else {
+          product.amount -= productToRemove.amount;
+          console.log('item has been removed from local shopping cart');
+        }
       }
-    }
-    if (!isInCart) {
-      // cart.(productToAdd); TODO remove item here
-      console.log('item has been removed from local shopping cart');
-    }
+    });
     this.saveUnauthorizedCart(cart);
   }
 
@@ -154,5 +153,12 @@ export class CartService {
     return this.tokenStorageService.isAuthorised();
   }
 
-  private;
+  checkAvailability(products: ProductForCartModel[]): boolean {
+    let unavailableCounter = 0;
+    for (let product of products) {
+      console.log(product.id);
+      unavailableCounter += product.unavailableAmount;
+    }
+    return unavailableCounter === 0;
+  }
 }

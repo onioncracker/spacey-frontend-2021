@@ -7,19 +7,28 @@
       <div>
         <h3 class="h3-name">{{ product.name }}</h3>
         <h3 class="h3-color-size">{{ product.color }}, {{ product.size }}</h3>
+        <span class="amount-gap"></span>
         <div class="add-substract-div">
-          <button class="btn btn-primary" (click)="addProduct(product)">
+          <button
+            mat-raised-button
+            class="btn btn-primary"
+            (click)="addProduct(product)"
+          >
             + <i class="fa fa-plus"></i>
           </button>
           <h3 class="h3-amount">{{ product.amount }}</h3>
-          <button class="btn btn-primary" (click)="substractProduct(product)">
-            - <i clasns="fa fa-plus"></i>
+          <button
+            mat-raised-button
+            class="btn btn-primary"
+            (click)="substractProduct(product)"
+          >
+            - <i class="fa fa-plus"></i>
           </button>
         </div>
       </div>
     </div>
     <div class="price-delete">
-      <h3 class="h3-price">{{ "product.price" }}</h3>
+      <h3 class="h3-price">{{ product.overallPrice }}</h3>
       <button class="h3-delete" mat-icon-button (click)="deleteProduct()">
         <mat-icon>delete</mat-icon>
       </button>
@@ -35,7 +44,14 @@
 </div>
 <div class="checkout">
   <hr class="solid" />
-  <button mat-raised-button class="check" color="accent">CHECK OUT</button>
-  <button mat-raised-button class="check">VIEW CART</button>
+  <button
+    mat-raised-button
+    class="check"
+    color="accent"
+    *ngIf="checkoutAvailable"
+  >
+    CHECK OUT
+  </button>
+  <!--  <button mat-raised-button class="check">VIEW CART</button>-->
   <br />
 </div>

@@ -94,4 +94,11 @@
 
 .add-substract-div {
   display: flex;
+  height: 20%;
+  align-self: flex-end;
+}
+
+.amount-gap {
+  flex: 1 1 auto;
+  width: 100%;
 }
