@@ -1,6 +1,7 @@
 .title-container {
   margin-bottom: 20px;
-  padding: 25px 0 1px 0;
+  padding: 25px 0 25px 0;
+  text-align: center;
   background: #f8f8f8;
 }
 
@@ -10,11 +11,7 @@
 
 .mb-5 {
   font-weight: bold;
-}
-
-.availability-title {
-  margin-right: 30px;
-  text-align: right;
+  text-transform: capitalize;
 }
 
 .body-container {
@@ -54,7 +51,7 @@
 }
 
 .button-container {
-  display: block;
+  display: inline-block;
   margin-top: 16px;
 }
 
@@ -70,7 +67,7 @@
   font-style: normal;
   font-weight: 600;
   font-size: 12px;
-  margin: 0 2px;
+  margin: 0 5px;
   transition-duration: 0.3s;
   cursor: pointer;
 }
@@ -113,6 +110,7 @@
 
 .purchase-button {
   display: inline-block;
+  margin-right: 30px;
   background: #121212;
   width: 156px;
   height: 48px;
@@ -149,8 +147,11 @@
   color: #121212;
 }
 
+.product-info-container {
+  width: 526px;
+}
+
 .description {
-  display: flex;
   align-items: center;
   font-style: normal;
   font-weight: normal;
@@ -172,6 +173,7 @@
 
 .additional-info {
   display: inline-block;
+  margin-right: 7px;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;

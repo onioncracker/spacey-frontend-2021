@@ -1,13 +1,12 @@
 export const routeUrls = {
   login: 'login',
   register: 'register',
-  homepage: 'products',
+  homepage: 'products-catalog',
   popular: 'popular',
   checkout: 'checkout',
-  accessories: 'accessories',
   auctions: 'auctions',
-  products: 'products',
-  productDetails: 'products/:id',
+  productsCatalog: 'products-catalog',
+  productDetails: 'products-catalog/:id',
   adminEmployee: 'admin-manage',
   adminEdit: 'admin-edit',
   adminAdd: 'admin-add',
@@ -16,5 +15,4 @@ export const routeUrls = {
   shoppingCart: 'shopping-cart',
   confirmRegistration: 'confirm-registration',
   editProduct: 'edit/:id',
-  manageProducts: 'manage/products',
 };
