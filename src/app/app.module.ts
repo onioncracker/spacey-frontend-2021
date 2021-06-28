@@ -16,7 +16,6 @@ import { ConfirmComponent } from './components/confirm/confirm.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { DeliveryComponent } from './components/delivery/delivery.component';
 import { CommentComponent } from './components/comment/comment.component';
-import { OrderComponent } from './components/order/order.component';
 import { LoginComponent } from './components/login/login.component';
 import { AdminEmployeeComponent } from './components/admin-manage/admin-employee.component';
 import { AdminAddComponent } from './components/admin-add/admin-add.component';
@@ -65,7 +64,6 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     OrdersComponent,
     DeliveryComponent,
     CommentComponent,
-    OrderComponent,
     ProductsComponent,
     ProductDetailsComponent,
     CategoryComponent,

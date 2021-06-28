@@ -30,19 +30,16 @@
   justify-content: space-between;
 }
 
-.mat-form-field-appearance-legacy .mat-form-field-underline {
-  height: 0 !important;
-}
-
 .input-area,
 .input-area-small {
   height: 48px;
+  caret-color: black;
   background: #f8f8f8;
   font-family: Spartan, sans-serif;
 }
 
 .input-area {
-  width: 340px;
+  width: 355px;
   padding: 10px 0 0 10px;
   border: 0;
   outline: none;

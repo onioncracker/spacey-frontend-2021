@@ -14,8 +14,8 @@ export class PersonalInformationComponent implements OnInit, OnChanges{
   @Output() personalInformationEvent = new EventEmitter<PersonalInformation>();
   userContactInfo!: PersonalInformation;
   @Input() personalInformation!: Order;
-  isAuthUser = true;
-  isEdit = false;
+  isAuthUser!: boolean;
+  isEdit!: boolean;
 
   onFormDataChange() {
     this.personalInformationEvent.emit(this.personalInformationForm.value);
@@ -39,6 +39,11 @@ export class PersonalInformationComponent implements OnInit, OnChanges{
   }
 
   ngOnInit(): void {
+    console.log(sessionStorage.getItem('token'))
+    if (this.isUserLogin()) {
+      this.isAuthUser = true;
+      this.isEdit = false;
+    }
   }
 
   ngOnChanges(): void {
@@ -52,5 +57,9 @@ export class PersonalInformationComponent implements OnInit, OnChanges{
       this.personalInformation.house,
       this.personalInformation.apartment);
     this.personalInformationForm.setValue(this.userContactInfo);
+  }
+
+  isUserLogin() : boolean {
+    return sessionStorage.getItem('token') != null;
   }
 }

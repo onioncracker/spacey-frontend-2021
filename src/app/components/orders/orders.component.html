@@ -1,22 +1,22 @@
 <div style="margin-top: 30px;">
   <h2 class="orders-font">ITEMS</h2>
   <div>
-    <div *ngFor="let x of products">
+    <div *ngFor="let product of products">
       <div class="main-container">
         <div class="image-container">
           <img
             class="card-img"
-            [src]= "x.photo"
-            alt="{{ x.productName }}"
+            [src]= "product.photo"
+            alt="{{ product.productName }}"
           />
           <div>
-            <p class="dl-t4">{{ x.productName }}</p>
-            <p class="dl-t5"> {{ x.color }},{{ x.sizeName }}</p>
-            <p class="dl-t6">x {{ x.amount }}</p>
+            <p class="dl-t4">{{ product.productName }}</p>
+            <p class="dl-t5"> {{ product.color }}, {{ product.sizeName }}</p>
+            <p class="dl-t6">x {{ product.amount }}</p>
           </div>
         </div>
         <div class="dl-t7 price">
-          <p class="dl-t3">{{ x.sum }} UAH</p>
+          <p class="dl-t3">{{ product.sum }} UAH</p>
         </div>
       </div>
       <hr>

@@ -5,10 +5,18 @@
     <input class="datetime"  type="datetime-local" matInput>
     <div>
       <section>
-        <mat-checkbox>'Do not disturb' option</mat-checkbox>
+        <mat-checkbox (change)="onChangeDelivery()"
+                      [(ngModel)]="doNotDisturb"
+        >
+          'Do not disturb' option
+        </mat-checkbox>
       </section>
       <section>
-        <mat-checkbox>'No contact' delivery</mat-checkbox>
+        <mat-checkbox (change)="onChangeDelivery()"
+                      [(ngModel)]="noContact"
+        >
+          'No contact' delivery
+        </mat-checkbox>
       </section>
     </div>
     <hr>

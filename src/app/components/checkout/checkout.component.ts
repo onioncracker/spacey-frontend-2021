@@ -14,6 +14,8 @@ export class CheckoutComponent implements OnInit {
   order!: Order;
   products!: CheckoutItem[];
 
+  isFormValid = true;
+
   getPersonalInformation(personalInformation: PersonalInformation) {
     this.order.firstName = personalInformation.firstName;
     this.order.lastName = personalInformation.lastName;
@@ -27,6 +29,13 @@ export class CheckoutComponent implements OnInit {
 
   getComment(comment: string) {
     this.order.commentOrder = comment;
+  }
+
+  getDelivery(delivery: Order) {
+    console.log(delivery);
+    console.log(this.order.noContact);
+    this.order.noContact = false;
+    this.order.doNotDisturb = true;
   }
 
   onCheckout() {
