@@ -51,7 +51,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { NgxCaptchaModule } from 'ngx-captcha';
 import { ProductsCatalogComponent } from './components/products-catalog/products-catalog.component';
 import { FilterComponent } from './components/filter/filter.component';
-import { SortingComponent } from "./components/sorting/sorting.component";
+import { SortingComponent } from './components/sorting/sorting.component';
 import { ProductComponent } from './components/product/product.component';
 import { PillComponent } from './components/pill/pill.component';
 import { PaginationComponent } from './components/pagination/pagination.component';

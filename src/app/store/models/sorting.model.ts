@@ -6,22 +6,22 @@ export interface ISorting {
 export const SortingMock: ISorting[] = [
   {
     id: 1,
-    name: 'new'
+    name: 'new',
   },
   {
     id: 2,
-    name: 'old'
+    name: 'old',
   },
   {
     id: 3,
-    name: 'cheap'
+    name: 'cheap',
   },
   {
     id: 4,
-    name: 'expensive'
+    name: 'expensive',
   },
   {
     id: 5,
-    name: 'name'
-  }
+    name: 'name',
+  },
 ];

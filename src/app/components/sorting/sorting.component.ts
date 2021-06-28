@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { ISorting } from "../../store/models/sorting.model";
-import { SORTING_PARAM } from "./sorting-params.constants";
-import { Observable } from "rxjs";
-import { ProductService } from "../../store/service/product/product.service";
+import { ISorting } from '../../store/models/sorting.model';
+import { SORTING_PARAM } from './sorting-params.constants';
+import { Observable } from 'rxjs';
+import { ProductService } from '../../store/service/product/product.service';
 
 @Component({
   selector: 'app-sorting',
@@ -10,7 +10,6 @@ import { ProductService } from "../../store/service/product/product.service";
   styleUrls: ['sorting.component.css'],
 })
 export class SortingComponent {
-
   @Output() selectSortingItem = new EventEmitter();
   selected = 'new';
 
@@ -21,8 +20,8 @@ export class SortingComponent {
   }
 
   changeSorting(event): void {
-    if(event.isUserInput) {
-      let sortingValue = event.source.value
+    if (event.isUserInput) {
+      let sortingValue = event.source.value;
       let savedSorting = sessionStorage.getItem(SORTING_PARAM);
       if (savedSorting === null) {
         sessionStorage.setItem(SORTING_PARAM, this.selected);

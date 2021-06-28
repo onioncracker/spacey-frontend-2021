@@ -7,10 +7,11 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import {
   CATEGORIES_PARAM,
-  COLORS_PARAM, PAGE_PARAM,
+  COLORS_PARAM,
+  PAGE_PARAM,
   SEX_PARAM,
 } from '../filter/filter-params.constants';
-import {SORTING_PARAM} from "../sorting/sorting-params.constants";
+import { SORTING_PARAM } from '../sorting/sorting-params.constants';
 
 @Component({
   selector: 'app-products-catalog',
@@ -18,7 +19,6 @@ import {SORTING_PARAM} from "../sorting/sorting-params.constants";
   styleUrls: ['products-catalog.component.css'],
 })
 export class ProductsCatalogComponent implements OnInit, OnDestroy {
-
   public showFilter = false;
   products: ProductModel[] = [];
   sexQueryParam = '';
@@ -84,15 +84,38 @@ export class ProductsCatalogComponent implements OnInit, OnDestroy {
   }
 
   handleProducts(): void {
-    const categoriesSessionStorage = (sessionStorage.getItem(CATEGORIES_PARAM) || null) as string;
-    const colorsSessionStorage = (sessionStorage.getItem(COLORS_PARAM) || null) as string;
-    const sortingSessionStorage = (sessionStorage.getItem(SORTING_PARAM) || null) as string;
-    const pageNumberSessionStorage = (sessionStorage.getItem(PAGE_PARAM) || null) as string;
-    const categories = this.getQueryStringByFilter(CATEGORIES_PARAM, JSON.parse(categoriesSessionStorage));
-    const colors = this.getQueryStringByFilter(COLORS_PARAM, JSON.parse(colorsSessionStorage));
-    const sorting = this.getQueryStringByName(SORTING_PARAM, sortingSessionStorage);
-    const page = this.getQueryStringByName(PAGE_PARAM, pageNumberSessionStorage);
-    const queryString = this.getFiltersQueryString(this.sexQueryParam, categories, colors, sorting, page);
+    const categoriesSessionStorage = (sessionStorage.getItem(
+      CATEGORIES_PARAM
+    ) || null) as string;
+    const colorsSessionStorage = (sessionStorage.getItem(COLORS_PARAM) ||
+      null) as string;
+    const sortingSessionStorage = (sessionStorage.getItem(SORTING_PARAM) ||
+      null) as string;
+    const pageNumberSessionStorage = (sessionStorage.getItem(PAGE_PARAM) ||
+      null) as string;
+    const categories = this.getQueryStringByFilter(
+      CATEGORIES_PARAM,
+      JSON.parse(categoriesSessionStorage)
+    );
+    const colors = this.getQueryStringByFilter(
+      COLORS_PARAM,
+      JSON.parse(colorsSessionStorage)
+    );
+    const sorting = this.getQueryStringByName(
+      SORTING_PARAM,
+      sortingSessionStorage
+    );
+    const page = this.getQueryStringByName(
+      PAGE_PARAM,
+      pageNumberSessionStorage
+    );
+    const queryString = this.getFiltersQueryString(
+      this.sexQueryParam,
+      categories,
+      colors,
+      sorting,
+      page
+    );
     this.getProducts(queryString);
   }
 

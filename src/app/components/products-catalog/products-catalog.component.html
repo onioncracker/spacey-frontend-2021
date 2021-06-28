@@ -7,9 +7,9 @@
     Filter
   </button>
 
-    <div *ngIf="showFilter">
-      <app-filter (selectFilterItem)="onSelectedFilter()"></app-filter>
-    </div>
+  <div *ngIf="showFilter">
+    <app-filter (selectFilterItem)="onSelectedFilter()"></app-filter>
+  </div>
 
   <div class="cards">
     <ng-container *ngFor="let product of products">
@@ -17,8 +17,6 @@
     </ng-container>
   </div>
 
-  <app-pagination (selectPage)="onSelectedPage()"
-                  [items]="products">
-
+  <app-pagination (selectPage)="onSelectedPage()" [items]="products">
   </app-pagination>
 </div>

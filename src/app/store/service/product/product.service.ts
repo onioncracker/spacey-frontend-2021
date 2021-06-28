@@ -6,7 +6,7 @@ import { IPrice, PricesMock } from '../../models/price.model';
 import { ProductModel } from '../../models/product.model';
 import { CategoryModel } from '../../models/category.model';
 import { ColorModel } from '../../models/color.model';
-import { ISorting, SortingMock } from "../../models/sorting.model";
+import { ISorting, SortingMock } from '../../models/sorting.model';
 
 @Injectable({
   providedIn: 'root',

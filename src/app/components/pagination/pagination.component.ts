@@ -1,15 +1,13 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {PAGE_PARAM} from "../filter/filter-params.constants";
-import {ProductModel} from "../../store/models/product.model";
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { PAGE_PARAM } from '../filter/filter-params.constants';
+import { ProductModel } from '../../store/models/product.model';
 
 @Component({
   selector: 'app-pagination',
   templateUrl: './pagination.component.html',
   styleUrls: ['pagination.component.css'],
-
 })
 export class PaginationComponent implements OnInit {
-
   @Input() items!: ProductModel[];
   @Output() selectPage = new EventEmitter();
   pageNumber!: number;

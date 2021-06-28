@@ -3,13 +3,12 @@
     <mat-label>Order by:</mat-label>
     <mat-select>
       <mat-option
-        *ngFor="let item of (sortingList | async)"
+        *ngFor="let item of sortingList | async"
         [value]="item.name"
-        (onSelectionChange)="changeSorting($event)">
+        (onSelectionChange)="changeSorting($event)"
+      >
         {{ item.name }}
       </mat-option>
     </mat-select>
   </mat-form-field>
 </div>
-
-
