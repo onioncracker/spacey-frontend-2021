@@ -1,9 +1,12 @@
 export default class Order {
   orderId!: number;
-  userId!: number;
-  productId!: number;
+  ordenerName!: string;
+  ordenerSurname!: string;
+  phoneNumber!: string;
   status!: string;
-  dateTime!: Date;
-  overallPrice!: number;
-  commentOrder!: string;
+  dateDelivery!: Date;
+  city!: string;
+  street!: string;
+  house!: string;
+  apartment!: string;
 }
