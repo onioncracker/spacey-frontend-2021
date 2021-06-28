@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from '../../store/models/product';
+import { ProductModel } from '../../store/models/product.model';
 import { ProductService } from '../../store/service/product/product.service';
 import { ActivatedRoute } from '@angular/router';
 import { CartService } from '../../store/service/cart.service';
@@ -12,14 +12,14 @@ import { EditCartModel } from '../../store/models/edit-cart.model';
   styleUrls: ['product-details.component.css'],
 })
 export class ProductDetailsComponent implements OnInit {
-  product!: Product;
+  product!: ProductModel;
   choosedSize: string | undefined = 'S'; // TODO change string to id
 
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
-    private cartService: CartService,
-    private compareService: CompareService
+    private compareService: CompareService,
+    private cartService: CartService
   ) {}
 
   getProduct() {
@@ -38,17 +38,17 @@ export class ProductDetailsComponent implements OnInit {
 
     if (this.cartService.isAuthorised()) {
       this.cartService.addProductToCart(productToAdd).subscribe((response) => {
-        window.alert('product added to cart!');
+        window.alert('product-details added to cart!');
       });
     } else {
       this.cartService.checkProduct(productToAdd).subscribe((response) => {
         this.cartService.addProductToUnauthorizedCart(productToAdd);
-        window.alert('product added to cart!');
+        window.alert('product-details added to cart!');
       });
     }
   }
 
-  addProductToCompare(product: Product) {
+  addProductToCompare(product: ProductModel) {
     this.compareService.addProductToCompare(product);
   }
 

@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { AddProduct } from '../../models/addProduct';
+import { AddProduct } from '../../models/add-product';
 import { Observable, Subscription } from 'rxjs';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { DialogMessageComponent } from '../../../components/dialog-message/dialog-message.component';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +18,7 @@ export class AddProductService {
   private allCategoryUrl = `${environment.url}/api/v1/category/all`;
   private imgUrl = `${environment.url}/api/v1/images`;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private dialog: MatDialog) {}
 
   addNewProduct(addProductData: AddProduct): Observable<any> {
     console.log(this.httpOptions);
@@ -33,8 +35,7 @@ export class AddProductService {
     return this.http
       .post(`${this.imgUrl}/${id}`, formData)
       .subscribe((response) => {
-        console.log(response);
-        alert('Uploaded Successfully.');
+        this.openDialog('Product was added!');
       });
   }
 
@@ -52,5 +53,13 @@ export class AddProductService {
 
   getAllCategory(): Observable<any> {
     return this.http.get(`${this.allCategoryUrl}`);
+  }
+
+  openDialog(title: string) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = {
+      messageTitle: title,
+    };
+    this.dialog.open(DialogMessageComponent, dialogConfig);
   }
 }

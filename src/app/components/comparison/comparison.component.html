@@ -88,7 +88,7 @@
     <tr>
       <td class="compare-field" *ngFor="let product of products">
         <span *ngFor="let size of product.sizes">
-          {{ size.size }}
+          {{ size.name }}
         </span>
       </td>
     </tr>
@@ -135,7 +135,7 @@
     </button>
   </div>
 </div>
-<div *ngIf="products.length < 2">
+<div *ngIf="products.length < 2" routerLink="/products">
   <h3>
     You add to compere less then 2 products. Please, go to
     <a routerLink="/products">catalog</a> and add more.

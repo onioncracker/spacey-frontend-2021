@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CompareService } from '../../store/service/comparison/compare.service';
-import { SizesComparison } from '../../store/models/sizesComparison';
-import { Product } from '../../store/models/product';
+import { SizesComparison } from '../../store/models/sizes-comparison';
+import { ProductModel } from '../../store/models/product.model';
 
 @Component({
   selector: 'app-comparison',
@@ -10,7 +10,7 @@ import { Product } from '../../store/models/product';
   styleUrls: ['./comparison.component.css'],
 })
 export class ComparisonComponent implements OnInit {
-  products: Product[] = [];
+  products: ProductModel[] = [];
   sizes!: SizesComparison[];
 
   constructor(
@@ -23,7 +23,7 @@ export class ComparisonComponent implements OnInit {
       this.comparisonService
         .getAllCompareProduct()
         .pipe()
-        .subscribe((products: Product[]) => {
+        .subscribe((products: ProductModel[]) => {
           this.products = products;
           localStorage.setItem('comparisonArray', JSON.stringify(products));
         });

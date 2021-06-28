@@ -1,0 +1,16 @@
+.pill-container {
+  position: absolute;
+  width: 50px;
+  height: 30px;
+  background: #e91e63;
+}
+
+.pill-title {
+  margin-top: 7px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 13px;
+  text-align: center;
+  color: #ffff;
+}
