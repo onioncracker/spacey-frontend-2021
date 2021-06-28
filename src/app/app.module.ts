@@ -14,7 +14,6 @@ import { FooterComponent } from './components/footer/footer.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { ConfirmComponent } from './components/confirm/confirm.component';
 import { OrdersComponent } from './components/orders/orders.component';
-import { DeliveryComponent } from './components/delivery/delivery.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { OrderComponent } from './components/order/order.component';
 import { LoginComponent } from './components/login/login.component';
@@ -35,9 +34,16 @@ import { MatSelectModule } from '@angular/material/select';
 import { ComparisonComponent } from './components/comparison/comparison.component';
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { EditProductComponent } from './components/edit-product/edit-product.component';
-import { MatOptionModule } from '@angular/material/core';
+import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
+import { DeliveryComponent } from './components/delivery/delivery.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatDividerModule } from '@angular/material/divider';
+import { DeliveriesComponent } from './components/deliveries/deliveries.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { DatePipe } from '@angular/common';
+import { MatRadioModule } from '@angular/material/radio';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { ConfirmRegistrationComponent } from './components/confirm-registration/confirm-registration.component';
 import { DialogMessageComponent } from './components/dialog-message/dialog-message.component';
@@ -48,7 +54,6 @@ import { ProductsCatalogComponent } from './components/products-catalog/products
 import { FilterComponent } from './components/filter/filter.component';
 import { ProductComponent } from './components/product/product.component';
 import { PillComponent } from './components/pill/pill.component';
-import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -60,7 +65,7 @@ import { MatRadioModule } from '@angular/material/radio';
     CheckoutComponent,
     ConfirmComponent,
     OrdersComponent,
-    DeliveryComponent,
+    DeliveriesComponent,
     CommentComponent,
     OrderComponent,
     ProductDetailsComponent,
@@ -71,6 +76,7 @@ import { MatRadioModule } from '@angular/material/radio';
     ComparisonComponent,
     AddProductComponent,
     EditProductComponent,
+    DeliveryComponent,
     DialogMessageComponent,
     ShoppingCartComponent,
     ConfirmRegistrationComponent,
@@ -101,6 +107,11 @@ import { MatRadioModule } from '@angular/material/radio';
     MatAutocompleteModule,
     MatChipsModule,
     MatSelectModule,
+    MatGridListModule,
+    MatDividerModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatRadioModule,
     MatDialogModule,
     NgxCaptchaModule,
     MatRadioModule,
@@ -111,6 +122,7 @@ import { MatRadioModule } from '@angular/material/radio';
       useClass: AuthInterceptor,
       multi: true,
     },
+    DatePipe,
   ],
   bootstrap: [AppComponent],
 })
