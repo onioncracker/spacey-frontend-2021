@@ -12,7 +12,7 @@ import { routeUrls } from '../../../environments/router-manager';
 export class ConfirmRegistrationComponent implements OnInit, OnDestroy {
   private routeSub!: Subscription;
   private token: string = '';
-  private tokenIsOk: boolean = true;
+  tokenIsOk: boolean = true;
 
   constructor(
     private route: ActivatedRoute,
