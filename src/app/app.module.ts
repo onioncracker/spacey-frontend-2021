@@ -24,7 +24,6 @@ import { MatInputModule } from '@angular/material/input';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthInterceptor } from './store/service/AuthInterceptor';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
-import { PaginationComponent } from './components/pagination/pagination.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -52,8 +51,10 @@ import { HeaderComponent } from './components/header/header.component';
 import { NgxCaptchaModule } from 'ngx-captcha';
 import { ProductsCatalogComponent } from './components/products-catalog/products-catalog.component';
 import { FilterComponent } from './components/filter/filter.component';
+import { SortingComponent } from "./components/sorting/sorting.component";
 import { ProductComponent } from './components/product/product.component';
 import { PillComponent } from './components/pill/pill.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,6 @@ import { PillComponent } from './components/pill/pill.component';
     CommentComponent,
     OrderComponent,
     ProductDetailsComponent,
-    PaginationComponent,
     AdminEmployeeComponent,
     AdminAddComponent,
     AdminEditComponent,
@@ -83,8 +83,10 @@ import { PillComponent } from './components/pill/pill.component';
     HeaderComponent,
     ProductsCatalogComponent,
     FilterComponent,
+    SortingComponent,
     ProductComponent,
     PillComponent,
+    PaginationComponent,
   ],
   imports: [
     BrowserModule,

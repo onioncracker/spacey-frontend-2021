@@ -1,13 +1,15 @@
 <div class="products-catalog">
   <app-header></app-header>
 
+  <app-sorting (selectSortingItem)="onSelectedSorting()"></app-sorting>
+
   <button class="products-toggle-filter" (click)="onToggleFilters()">
     Filter
   </button>
 
-  <div *ngIf="showFilter">
-    <app-filter (selectFilterItem)="onSelectedFilter()"></app-filter>
-  </div>
+    <div *ngIf="showFilter">
+      <app-filter (selectFilterItem)="onSelectedFilter()"></app-filter>
+    </div>
 
   <div class="cards">
     <ng-container *ngFor="let product of products">
@@ -15,5 +17,8 @@
     </ng-container>
   </div>
 
-  <app-pagination></app-pagination>
+  <app-pagination (selectPage)="onSelectedPage()"
+                  [items]="products">
+
+  </app-pagination>
 </div>
