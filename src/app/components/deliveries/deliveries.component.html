@@ -1,5 +1,5 @@
 <div>
-  <h1 align="center" class="dl-h1">Your assigned orders</h1>
+  <h1 class="dl-h1">Your assigned orders</h1>
 </div>
 <div class="dl-top">
   <div>
@@ -67,7 +67,7 @@
 
           <ng-container matColumnDef="actions">
             <td id="6" mat-header-cell *matHeaderCellDef></td>
-            <th mat-cell *matCellDef="let element">
+            <th id="7" mat-cell *matCellDef="let element">
               <a [routerLink]="['/delivery', element.orderId]">
                 <button mat-button class="dl-detail-btn">Details</button>
               </a>
@@ -75,8 +75,8 @@
           </ng-container>
 
           <ng-container matColumnDef="action1">
-            <td id="7" mat-header-cell *matHeaderCellDef></td>
-            <th mat-cell *matCellDef="let element">
+            <td id="8" mat-header-cell *matHeaderCellDef></td>
+            <th id="9" mat-cell *matCellDef="let element">
               <button
                 (click)="updateStatus(element.orderId, 'delivered')"
                 mat-mini-fab
@@ -90,8 +90,8 @@
           </ng-container>
 
           <ng-container matColumnDef="action2">
-            <td mat-header-cell *matHeaderCellDef></td>
-            <th mat-cell *matCellDef="let element">
+            <td id="10" mat-header-cell *matHeaderCellDef></td>
+            <th id="11" mat-cell *matCellDef="let element">
               <button
                 (click)="updateStatus(element.orderId, 'fail')"
                 mat-mini-fab
