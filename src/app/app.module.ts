@@ -34,16 +34,16 @@ import { MatSelectModule } from '@angular/material/select';
 import { ComparisonComponent } from './components/comparison/comparison.component';
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { EditProductComponent } from './components/edit-product/edit-product.component';
-import {MatNativeDateModule, MatOptionModule} from '@angular/material/core';
+import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
-import {DeliveryComponent} from './components/delivery/delivery.component';
-import {MatGridListModule} from "@angular/material/grid-list";
-import {MatDividerModule} from "@angular/material/divider";
-import {DeliveriesComponent} from "./components/deliveries/deliveries.component";
-import {MatDatepickerModule} from "@angular/material/datepicker";
-import {DatePipe} from "@angular/common";
-import {MatRadioModule} from "@angular/material/radio";
+import { DeliveryComponent } from './components/delivery/delivery.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatDividerModule } from '@angular/material/divider';
+import { DeliveriesComponent } from './components/deliveries/deliveries.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { DatePipe } from '@angular/common';
+import { MatRadioModule } from '@angular/material/radio';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { ConfirmRegistrationComponent } from './components/confirm-registration/confirm-registration.component';
 import { DialogMessageComponent } from './components/dialog-message/dialog-message.component';
@@ -54,8 +54,6 @@ import { ProductsCatalogComponent } from './components/products-catalog/products
 import { FilterComponent } from './components/filter/filter.component';
 import { ProductComponent } from './components/product/product.component';
 import { PillComponent } from './components/pill/pill.component';
-
-
 
 @NgModule({
   declarations: [
@@ -128,5 +126,4 @@ import { PillComponent } from './components/pill/pill.component';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}

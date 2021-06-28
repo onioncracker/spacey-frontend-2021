@@ -5,7 +5,6 @@ import { OrderService } from '../../store/service/order/order.service';
 import Order from '../../store/models/order';
 import { FormControl } from '@angular/forms';
 import { DatePipe } from '@angular/common';
-import { OrderStatus } from '../../store/models/status';
 import { DialogService } from '../../store/service/dialog/dialog.service';
 
 @Component({

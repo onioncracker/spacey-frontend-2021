@@ -16,8 +16,9 @@
 }
 
 .dl-p1 {
+  text-align: right;
   padding: 25px 20px 25px 0;
-  font-family: Spartan;
+  font-family: Spartan, serif;
   font-size: 14px;
 }
 
@@ -27,7 +28,7 @@
 
 .dl-table {
   width: 100%;
-  font-family: Spartan;
+  font-family: Spartan, serif;
   font-size: 16px;
 }
 
