@@ -1,49 +1,6 @@
-.filter-container {
-  margin: 0 35px 0 35px;
+.sorting-container {
   display: flex;
-}
-
-.filter-section {
-  padding: 10px 120px 24px 0;
-}
-
-.title-section {
-  margin-left: 40px;
-  text-transform: uppercase;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  letter-spacing: 1px;
-}
-
-ul {
-  list-style-type: none;
-}
-
-.mat-checkbox {
-  margin-bottom: 5px;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 13px;
-  color: #121212;
-  opacity: 0.8;
-}
-
-.example-radio-group {
-  display: flex;
-  flex-direction: column;
-  margin: 15px 0;
-}
-
-.example-radio-button {
-  margin: 5px;
-}
-
-.mat-radio-button {
-  margin-bottom: 5px;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 13px;
-  color: #121212;
-  opacity: 0.8;
+  justify-content: flex-end;
+  margin-top: 20px;
+  margin-right: 90px;
 }

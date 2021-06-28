@@ -22,7 +22,6 @@ export class ProductsCatalogComponent implements OnInit, OnDestroy {
   public showFilter = false;
   products: ProductModel[] = [];
   sexQueryParam = '';
-  pageNumber!: number;
   private destroyStream = new Subject<void>();
 
   constructor(
@@ -30,7 +29,6 @@ export class ProductsCatalogComponent implements OnInit, OnDestroy {
     private headerTitleService: HeaderTitleService,
     private productService: ProductService
   ) {}
-
 
   public onToggleFilters(): void {
     this.showFilter = !this.showFilter;
@@ -42,47 +40,6 @@ export class ProductsCatalogComponent implements OnInit, OnDestroy {
       .subscribe((products: ProductModel[]) => {
         this.products = products;
       });
-  }
-
-  getPageFromSessionStorage(): void {
-    let stringNumber = (sessionStorage.getItem(PAGE_PARAM) || null) as string;
-    this.pageNumber = +stringNumber;
-  }
-
-  onTogglePrev(): void {
-    this.prevPage();
-    this.handleProducts();
-  }
-
-  onToggleNext(): void {
-    if (this.products.length === 8) {
-      this.nextPage();
-      this.handleProducts();
-    }
-  }
-
-  prevPage(): void {
-    let savedPage = sessionStorage.getItem('pageNum');
-    if (savedPage === null) {
-      sessionStorage.setItem('pageNum', '0');
-    } else if (+savedPage > 0) {
-      let prevPage = +savedPage;
-      prevPage--;
-      this.pageNumber = prevPage;
-      sessionStorage.setItem('pageNum', prevPage.toString());
-    }
-  }
-
-  nextPage(): void {
-    let savedPage = sessionStorage.getItem('pageNum');
-    if (savedPage === null) {
-      sessionStorage.setItem('pageNum', '0');
-    } else {
-      let nextPage = +savedPage;
-      nextPage++;
-      this.pageNumber = nextPage;
-      sessionStorage.setItem('pageNum', nextPage.toString());
-    }
   }
 
   getQueryStringByFilter(name, data) {
@@ -139,6 +96,10 @@ export class ProductsCatalogComponent implements OnInit, OnDestroy {
     this.getProducts(queryString);
   }
 
+  onSelectedPage(): void {
+    this.handleProducts();
+  }
+
   onSelectedFilter(): void {
     this.handleProducts();
   }
@@ -150,7 +111,6 @@ export class ProductsCatalogComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.handleSexQueryParam();
     this.handleProducts();
-    this.getPageFromSessionStorage();
   }
 
   ngOnDestroy(): void {

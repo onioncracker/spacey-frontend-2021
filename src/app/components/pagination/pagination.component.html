@@ -1,0 +1,23 @@
+<div class="paginator-container">
+  <div *ngIf="pageNumber > 0" class="prev-btn-container">
+    <button (click)="onTogglePrev()"
+            mat-mini-fab
+            class="dl-row-button">
+        <span class="dl-circle-icon">
+          <mat-icon>arrow_back_ios</mat-icon>
+        </span>
+    </button>
+  </div>
+
+  <p class="page-title">{{ pageNumber + 1 }}</p>
+
+  <div *ngIf="items.length == 8" class="next-btn-container">
+    <button (click)="onToggleNext()"
+            mat-mini-fab
+            class="dl-row-button">
+        <span class="dl-circle-icon">
+          <mat-icon>arrow_forward_ios</mat-icon>
+        </span>
+    </button>
+  </div>
+</div>

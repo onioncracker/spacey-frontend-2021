@@ -49,7 +49,7 @@ import { FilterComponent } from './components/filter/filter.component';
 import { SortingComponent } from "./components/sorting/sorting.component";
 import { ProductComponent } from './components/product/product.component';
 import { PillComponent } from './components/pill/pill.component';
-import { MatRadioModule } from '@angular/material/radio';
+import { PaginationComponent } from "./components/pagination/pagination.component";
 
 @NgModule({
   declarations: [
@@ -81,6 +81,7 @@ import { MatRadioModule } from '@angular/material/radio';
     SortingComponent,
     ProductComponent,
     PillComponent,
+    PaginationComponent,
   ],
   imports: [
     BrowserModule,
