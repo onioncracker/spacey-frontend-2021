@@ -15,6 +15,7 @@ import { EditProductComponent } from './components/edit-product/edit-product.com
 import { DeliveryComponent } from './components/delivery/delivery.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { ConfirmRegistrationComponent } from './components/confirm-registration/confirm-registration.component';
+import { ProductsCatalogComponent } from './components/products-catalog/products-catalog.component';
 
 const routes: Routes = [
   { path: routeUrls.login, component: LoginComponent },
@@ -30,6 +31,7 @@ const routes: Routes = [
   { path: routeUrls.addProduct, component: AddProductComponent },
   { path: routeUrls.editProduct, component: EditProductComponent },
   { path: routeUrls.shoppingCart, component: ShoppingCartComponent },
+  { path: routeUrls.productsCatalog, component: ProductsCatalogComponent },
   {
     path: routeUrls.confirmRegistration,
     component: ConfirmRegistrationComponent,
