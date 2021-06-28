@@ -6,14 +6,14 @@
     <div>
       <section>
         <mat-checkbox (change)="onChangeDelivery()"
-                      [(ngModel)]="doNotDisturb"
+                      [(ngModel)]="delivery.doNotDisturb"
         >
           'Do not disturb' option
         </mat-checkbox>
       </section>
       <section>
         <mat-checkbox (change)="onChangeDelivery()"
-                      [(ngModel)]="noContact"
+                      [(ngModel)]="delivery.noContact"
         >
           'No contact' delivery
         </mat-checkbox>

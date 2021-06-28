@@ -4,6 +4,7 @@ import {Order} from "../../store/models/order";
 import {PersonalInformation} from "../../store/models/personal-information";
 import {CheckoutDto} from "../../store/models/checkout";
 import CheckoutItem from "../../store/models/CheckoutItem";
+import {Delivery} from "../../store/models/delivery";
 
 @Component({
   selector: 'app-checkout',
@@ -31,11 +32,10 @@ export class CheckoutComponent implements OnInit {
     this.order.commentOrder = comment;
   }
 
-  getDelivery(delivery: Order) {
-    console.log(delivery);
-    console.log(this.order.noContact);
-    this.order.noContact = false;
-    this.order.doNotDisturb = true;
+  getDelivery(delivery: Delivery) {
+    console.log(delivery)
+    this.order.noContact = delivery.noContact;
+    this.order.doNotDisturb = delivery.doNotDisturb;
   }
 
   onCheckout() {

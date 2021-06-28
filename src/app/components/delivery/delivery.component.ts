@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {Delivery} from "../../store/models/delivery";
+import {PersonalInformation} from "../../store/models/personal-information";
 
 @Component({
   selector: 'app-delivery',
@@ -7,23 +8,15 @@ import {Delivery} from "../../store/models/delivery";
   styleUrls: ['./delivery.component.css'],
 })
 export class DeliveryComponent {
-  @Output() deliveryOptionsEvent = new EventEmitter<boolean>();
-  @Output() deliveryDateEvent = new EventEmitter<Date>();
+  @Output() deliveryEvent = new EventEmitter<Delivery>();
   delivery!: Delivery;
-  doNotDisturb!: boolean;
-  noContact!: boolean;
-  date!: Date;
 
-  onChangeDelivery1() {
-    this.deliveryOptionsEvent.emit(this.doNotDisturb);
+  onChangeDelivery() {
+    this.delivery = new Delivery(
+      this.delivery.date,
+      this.delivery.doNotDisturb,
+      this.delivery.noContact
+    );
+    this.deliveryEvent.emit(this.delivery);
   }
-
-  onChangeDelivery2() {
-    this.deliveryOptionsEvent.emit(this.noContact);
-  }
-
-  onChangeDate() {
-    this.deliveryDateEvent.emit(this.date)
-  }
-
 }

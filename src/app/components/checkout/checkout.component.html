@@ -4,7 +4,7 @@
 <div *ngIf="order" class="summary">
   <app-order-products [products]="products"></app-order-products>
   <app-personal-information (personalInformationEvent)=getPersonalInformation($event) [personalInformation]="order"></app-personal-information>
-  <app-delivery (deliveryDateEvent)=getDelivery($event)></app-delivery>
+  <app-delivery (deliveryEvent)=getDelivery($event)></app-delivery>
   <app-comment (commentEvent)=getComment($event)></app-comment>
   <app-confirm [checkout]="order"></app-confirm>
 </div>
