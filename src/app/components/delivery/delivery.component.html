@@ -66,8 +66,9 @@
       {{order.street}}
       {{order.house}}
       <br>
-      Apartment {{order.apartment}}
-      <br>
+      <div *ngIf ="order.apartment">
+        Apartment {{order.apartment}}
+      </div>
       Tel: {{order.phoneNumber}}
       <br>
       {{order.dateDelivery | date :'short'}}

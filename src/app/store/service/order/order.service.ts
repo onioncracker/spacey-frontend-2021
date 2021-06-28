@@ -4,7 +4,6 @@ import {Observable} from "rxjs";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import Order from "../../models/order";
 import OrderDetails from "../../models/orderDetails";
-import {OrderStatus} from "../../models/status";
 
 @Injectable({
   providedIn: 'root'
@@ -30,8 +29,12 @@ export class OrderService {
     return this.http.get<OrderDetails>(`${this.ordersUrl}/orders/${orderId}`)
   }
 
-  updateOrderStatus(orderStatus: OrderStatus):Observable<OrderStatus> {
-    return this.http.put<OrderStatus>(`${this.ordersUrl}/orders`, orderStatus)
+  updateOrderStatusConfirm(orderId: number):Observable<number> {
+    return this.http.put<number>(`${this.ordersUrl}/orders/delivered/${orderId}`, orderId);
+  }
+
+  updateOrderStatusFail(orderId: number):Observable<number> {
+    return this.http.put<number>(`${this.ordersUrl}/orders/fail/${orderId}`, orderId);
   }
 }
 

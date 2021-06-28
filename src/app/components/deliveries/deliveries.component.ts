@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {ActivatedRoute} from "@angular/router";
 import {OrderService} from "../../store/service/order/order.service";
@@ -6,10 +6,6 @@ import Order from "../../store/models/order";
 import {FormControl} from "@angular/forms";
 import {DatePipe} from "@angular/common";
 import {OrderStatus} from "../../store/models/status";
-import {Subscription} from "rxjs";
-import {MatDialogConfig} from "@angular/material/dialog";
-import {DialogMessageComponent} from "../dialog-message/dialog-message.component";
-import {ConfirmComponent} from "../confirm/confirm.component";
 import {DialogService} from "../../store/service/dialog/dialog.service";
 
 @Component({
@@ -34,8 +30,6 @@ export class DeliveriesComponent implements OnInit {
   dataSource = new MatTableDataSource<Order>();
   orders: Order[] = [];
   date = new FormControl(new Date);
-  uploadSubscription!: Subscription;
-  subscriptions!: Subscription;
   dateFormat = 'yyyy-MM-d';
   buttonName = 'close';
   options = {
@@ -59,27 +53,42 @@ export class DeliveriesComponent implements OnInit {
     this.uploadData();
   }
 
-  updateStatus(orderId: number, statusId: number): void {
+  updateStatus(orderId: number, status: string): void {
     this.dialogService.openConfirm(this.options)
     this.dialogService.confirmed().subscribe(confirmed => {
       if (confirmed) {
-        this.changeStatus(orderId, statusId);
+        this.changeStatus(orderId, status);
       }
     });
   }
 
-  private changeStatus(orderId: number, statusId: number): void {
-    this.ordersService.updateOrderStatus(new OrderStatus(orderId, statusId))
-      .subscribe((res) => {
-        this.dialogService.openMessage('Status successful updated', this.buttonName);
-        this.uploadData();
-      });
+  private changeStatus(orderId: number, status: string): void {
+
+    if (status === 'fail') {
+      this.ordersService.updateOrderStatusFail(orderId)
+        .subscribe((res) => {
+          this.dialogService.openMessage('Status successful updated to FAIL', this.buttonName);
+          this.uploadData();
+        });
+    }
+
+    if (status === 'delivered') {
+      this.ordersService.updateOrderStatusConfirm(orderId)
+        .subscribe((res) => {
+          this.dialogService.openMessage('Status successful updated to DELIVERED', this.buttonName);
+          this.uploadData();
+        });
+    }
   }
 
   private uploadData(): void {
-    this.uploadSubscription = this.ordersService
+    this.ordersService
       .findAllOrders(this.transformData())
-      .subscribe(data => this.dataSource = new MatTableDataSource(data));
+      .subscribe(data => {
+          this.dataSource = new MatTableDataSource(data)
+          this.orders = data;
+        });
+
   }
 
 

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import OrderDetails from "../../store/models/orderDetails";
 import {ActivatedRoute} from "@angular/router";
 import {OrderService} from "../../store/service/order/order.service";
-import {OrderStatus, Status, statuses} from "../../store/models/status";
+import {Status, statuses} from "../../store/models/status";
 import {DialogService} from "../../store/service/dialog/dialog.service";
 
 
@@ -56,9 +56,21 @@ export class DeliveryComponent implements OnInit {
   }
 
   private updateStatus(id, event): void {
-    this.ordersService.updateOrderStatus(new OrderStatus(id, event.value.statusId))
-      .subscribe(res => {
-        this.findOrderById()
-      });
+    if (event.value.statusName.toLowerCase() === "delivered") {
+      this.ordersService.updateOrderStatusConfirm(id)
+        .subscribe(res => {
+          this.findOrderById()
+          this.dialogService
+            .openMessage("Status successful updated to DELIVERED", 'close');
+        });
+    }
+    if (event.value.statusName.toLowerCase() === "fail") {
+      this.ordersService.updateOrderStatusFail(id)
+        .subscribe(res => {
+          this.findOrderById()
+          this.dialogService
+            .openMessage("Status successful updated to FAIL", 'close');
+        });
+    }
   }
 }
