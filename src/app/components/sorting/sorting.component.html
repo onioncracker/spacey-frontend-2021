@@ -1,6 +1,7 @@
 <div class="sorting-container">
   <mat-form-field appearance="fill">
-    <mat-select [(ngModel)]="selected">
+    <mat-label>Order by:</mat-label>
+    <mat-select>
       <mat-option
         *ngFor="let item of (sortingList | async)"
         [value]="item.name"

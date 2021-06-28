@@ -13,7 +13,6 @@ export class SortingComponent {
 
   @Output() selectSortingItem = new EventEmitter();
   selected = 'new';
-  selectedSorting = '';
 
   constructor(private productService: ProductService) {}
 
@@ -26,7 +25,7 @@ export class SortingComponent {
       let sortingValue = event.source.value
       let savedSorting = sessionStorage.getItem(SORTING_PARAM);
       if (savedSorting === null) {
-        sessionStorage.setItem(SORTING_PARAM, 'new');
+        sessionStorage.setItem(SORTING_PARAM, this.selected);
       } else {
         sessionStorage.setItem(SORTING_PARAM, sortingValue);
       }
