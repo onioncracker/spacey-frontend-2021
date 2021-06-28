@@ -1,0 +1,36 @@
+.paginator-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 90px;
+}
+
+.dl-row-button {
+  width: 40px;
+  height: 40px;
+  background: #f8f8f8;
+}
+
+.prev-btn-container {
+  margin-right: 20px;
+}
+
+.next-btn-container {
+  margin-left: 20px;
+}
+
+.dl-circle-icon {
+  color: rgba(18, 18, 18, 0.1);
+}
+
+.page-title {
+  padding-top: 10px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 17px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #121212;
+  opacity: 0.9;
+}

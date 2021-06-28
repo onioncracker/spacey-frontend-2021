@@ -23,8 +23,8 @@
 
 .cards {
   display: flex;
-  justify-content: space-between;
+  justify-content: left;
   flex-wrap: wrap;
   max-width: 1140px;
-  margin: 0 auto;
+  margin: 0 auto 60px;
 }

@@ -6,6 +6,7 @@ import { IPrice, PricesMock } from '../../models/price.model';
 import { ProductModel } from '../../models/product.model';
 import { CategoryModel } from '../../models/category.model';
 import { ColorModel } from '../../models/color.model';
+import { ISorting, SortingMock } from '../../models/sorting.model';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +16,7 @@ export class ProductService {
   private colorUrl = `${environment.url}/api/v1/color/all`;
   private categoryUrl = `${environment.url}/api/v1/category/all`;
   private filterPricesStream = new BehaviorSubject<IPrice[]>(PricesMock);
+  private sortingStream = new BehaviorSubject<ISorting[]>(SortingMock);
 
   constructor(private http: HttpClient) {}
 
@@ -32,6 +34,10 @@ export class ProductService {
 
   getPrices(): Observable<IPrice[]> {
     return this.filterPricesStream.asObservable();
+  }
+
+  getSorting(): Observable<ISorting[]> {
+    return this.sortingStream.asObservable();
   }
 
   getProductById(id: number): Observable<ProductModel> {
