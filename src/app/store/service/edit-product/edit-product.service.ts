@@ -9,7 +9,7 @@ import { EditProduct } from '../../models/edit-product';
 })
 export class EditProductService {
   private editProductUrl = `${environment.url}/api/v1/product`;
-  private deleteProductUrl = `${environment.url}/api/v1/product/cancel/{id}`;
+  private deleteProductUrl = `${environment.url}/api/v1/product/cancel`;
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
