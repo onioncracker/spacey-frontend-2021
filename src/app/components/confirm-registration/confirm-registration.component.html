@@ -4,8 +4,18 @@
     mat-raised-button
     class="reg-btn"
     color="accent"
+    *ngIf="tokenIsOk"
     (click)="sendToken()"
   >
     CONFIRM
+  </button>
+  <button
+    mat-raised-button
+    class="reg-btn"
+    color="accent"
+    *ngIf="!tokenIsOk"
+    (click)="resendToken()"
+  >
+    SEND NEW LINK
   </button>
 </div>

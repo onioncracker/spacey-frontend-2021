@@ -1,0 +1,39 @@
+<div class="filter-container">
+  <!-- Category filter -->
+  <section class="filter-section">
+    <span class="title-section"> Category</span>
+    <ng-container *ngFor="let category of categoryFilter">
+      <ul>
+        <li>
+          <mat-checkbox
+            name="categories"
+            value="{{ category.id }}"
+            [(ngModel)]="category.isSelected"
+            (change)="changeSelection()"
+          >
+            {{ category.name }}
+          </mat-checkbox>
+        </li>
+      </ul>
+    </ng-container>
+  </section>
+
+  <!-- Color filter -->
+  <section class="filter-section">
+    <span class="title-section"> Color </span>
+    <ng-container *ngFor="let color of colorFilter">
+      <ul>
+        <li>
+          <mat-checkbox
+            name="colors"
+            value="{{ color.id }}"
+            [(ngModel)]="color.isSelected"
+            (change)="changeSelection()"
+          >
+            {{ color.name }}
+          </mat-checkbox>
+        </li>
+      </ul>
+    </ng-container>
+  </section>
+</div>

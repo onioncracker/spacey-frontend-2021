@@ -1,6 +1,6 @@
 <mat-label class="cart-label"><h1>SHOPPING CART</h1></mat-label>
 <div class="cart-form">
-  <!--    *ngFor="let product of products-->
+  <!--    *ngFor="let product-details of products-->
   <div class="product-description">
     <div class="cart-photo">
       <img
@@ -10,17 +10,17 @@
         alt=""
       />
       <div>
-        <h3 class="h3-name">{{ "product.name" }}</h3>
+        <h3 class="h3-name">{{ "product-details.name" }}</h3>
         <h3 class="h3-color-size">
-          {{ " product.color" }}, {{ "product.size" }}
+          {{ " product-details.color" }}, {{ "product-details.size" }}
         </h3>
         <!--      <button class="btn btn-primary" (click)="plus()"><i class="fa fa-plus"></i></button>-->
-        <h3 class="h3-amount">{{ "product.amount" }}</h3>
+        <h3 class="h3-amount">{{ "product-details.amount" }}</h3>
         <!--      <button class="btn btn-primary" (click)="minus()"><i clasns="fa fa-plus"></i></button>-->
       </div>
     </div>
     <div class="price-delete">
-      <h3 class="h3-price">{{ "product.price" }}</h3>
+      <h3 class="h3-price">{{ "product-details.price" }}</h3>
       <button class="h3-delete" mat-icon-button (click)="deleteProduct()">
         <mat-icon>delete</mat-icon>
       </button>
