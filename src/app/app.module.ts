@@ -51,6 +51,7 @@ import { ProductComponent } from './components/product/product.component';
 import { PillComponent } from './components/pill/pill.component';
 import { MatRadioModule } from '@angular/material/radio';
 import { EmployeeProfileComponent } from './components/employee-profile/employee-profile.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -83,6 +84,7 @@ import { EmployeeProfileComponent } from './components/employee-profile/employee
     ProductComponent,
     PillComponent,
     EmployeeProfileComponent,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,

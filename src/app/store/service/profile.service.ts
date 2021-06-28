@@ -4,6 +4,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { endpointUrls } from '../../../environments/endpoint-routes-manager';
 import { EmployeeProfileModel } from '../models/employee-profile.model';
+import { UserProfile } from '../models/user-profile.model';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +12,9 @@ import { EmployeeProfileModel } from '../models/employee-profile.model';
 export class ProfileService {
   private employeeInfoURL =
     environment.url + endpointUrls.apiPrefix + '/employee-info';
+  private userInfoURL = environment.url + endpointUrls.apiPrefix + '/profile';
+  private editUserURL =
+    environment.url + endpointUrls.apiPrefix + '/profile/edit';
   private httpOptions = { observe: 'response' as const };
 
   constructor(private http: HttpClient) {}
@@ -33,5 +37,9 @@ export class ProfileService {
       this.employeeInfoURL,
       this.httpOptions
     );
+  }
+
+  getUserInfo(): Observable<HttpResponse<UserProfile>> {
+    return this.http.get<UserProfile>(this.userInfoURL, this.httpOptions);
   }
 }

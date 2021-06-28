@@ -16,4 +16,5 @@ export const routeUrls = {
   confirmRegistration: 'confirm-registration',
   editProduct: 'edit/:id',
   manageProducts: 'manage/products',
+  userProfile: 'user-profile',
 };
