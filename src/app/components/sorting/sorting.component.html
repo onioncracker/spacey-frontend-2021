@@ -1,0 +1,11 @@
+<mat-form-field appearance="fill">
+  <mat-select [(ngModel)]="selected">
+    <mat-option
+      *ngFor="let item of (sortingList | async)"
+      [value]="item.name"
+      (onSelectionChange)="changeSorting($event)">
+      {{ item.name }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+

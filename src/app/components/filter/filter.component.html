@@ -1,6 +1,6 @@
 <div class="filter-container">
   <!-- Category filter -->
-  <section class="filter-section">
+  <div class="filter-section">
     <span class="title-section"> Category</span>
     <ng-container *ngFor="let category of categoryFilter">
       <ul>
@@ -16,10 +16,10 @@
         </li>
       </ul>
     </ng-container>
-  </section>
+  </div>
 
   <!-- Color filter -->
-  <section class="filter-section">
+  <div class="filter-section">
     <span class="title-section"> Color </span>
     <ng-container *ngFor="let color of colorFilter">
       <ul>
@@ -35,5 +35,42 @@
         </li>
       </ul>
     </ng-container>
-  </section>
+  </div>
+
+  <!-- Price filter -->
+  <div class="filter-section">
+    <span class="title-section"> Price </span>
+    <ng-container *ngFor="let price of priceFilter">
+      <ul>
+        <li>
+          <mat-checkbox
+            name="colors"
+            value="{{ price.id }}"
+            [(ngModel)]="price.isSelected"
+            (change)="changeSelection()"
+          >
+            {{ price.name }}
+          </mat-checkbox>
+        </li>
+      </ul>
+    </ng-container>
+  </div>
+
+  <!--  &lt;!&ndash; Price filter &ndash;&gt;
+    <section class="filter-section">
+      <span class="title-section"> Price </span>
+      <ul>
+        <li>
+          <mat-radio-group
+            class="example-radio-group">
+            <mat-radio-button class="example-radio-button"
+                              *ngFor="let price of (pricesList | async)"
+                              [ngValue]="price"
+                              (change)="onChange($event)">
+              {{price.name}} UAH
+            </mat-radio-button>
+          </mat-radio-group>
+        </li>
+      </ul>
+    </section>-->
 </div>

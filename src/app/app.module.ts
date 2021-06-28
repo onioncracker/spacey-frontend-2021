@@ -25,7 +25,6 @@ import { MatInputModule } from '@angular/material/input';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthInterceptor } from './store/service/AuthInterceptor';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
-import { PaginationComponent } from './components/pagination/pagination.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -47,6 +46,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { NgxCaptchaModule } from 'ngx-captcha';
 import { ProductsCatalogComponent } from './components/products-catalog/products-catalog.component';
 import { FilterComponent } from './components/filter/filter.component';
+import { SortingComponent } from "./components/sorting/sorting.component";
 import { ProductComponent } from './components/product/product.component';
 import { PillComponent } from './components/pill/pill.component';
 import { MatRadioModule } from '@angular/material/radio';
@@ -65,7 +65,6 @@ import { MatRadioModule } from '@angular/material/radio';
     CommentComponent,
     OrderComponent,
     ProductDetailsComponent,
-    PaginationComponent,
     AdminEmployeeComponent,
     AdminAddComponent,
     AdminEditComponent,
@@ -79,6 +78,7 @@ import { MatRadioModule } from '@angular/material/radio';
     HeaderComponent,
     ProductsCatalogComponent,
     FilterComponent,
+    SortingComponent,
     ProductComponent,
     PillComponent,
   ],
@@ -105,7 +105,6 @@ import { MatRadioModule } from '@angular/material/radio';
     MatSelectModule,
     MatDialogModule,
     NgxCaptchaModule,
-    MatRadioModule,
   ],
   providers: [
     {

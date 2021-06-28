@@ -2,9 +2,9 @@ import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { ColorModel } from '../../store/models/color.model';
 import { CategoryModel } from '../../store/models/category.model';
 import { ProductService } from '../../store/service/product/product.service';
-import { IPrice } from '../../store/models/price.model';
+import {IPrice, PricesMock} from '../../store/models/price.model';
 import { Observable } from 'rxjs';
-import { CATEGORIES_PARAM, COLORS_PARAM } from './filter-params.constants';
+import {CATEGORIES_PARAM, COLORS_PARAM, PRICE_PARAM} from './filter-params.constants';
 
 @Component({
   selector: 'app-filter',
@@ -16,6 +16,7 @@ export class FilterComponent implements OnInit {
 
   categoryFilter: CategoryModel[] = [];
   colorFilter: ColorModel[] = [];
+  priceFilter = PricesMock;
 
   constructor(private productService: ProductService) {}
 
@@ -48,13 +49,19 @@ export class FilterComponent implements OnInit {
       this.categoryFilter = JSON.parse(savedCategories);
 
     let savedColors = sessionStorage.getItem(COLORS_PARAM);
-    if (savedColors != null) this.colorFilter = JSON.parse(savedColors);
+    if (savedColors != null)
+      this.colorFilter = JSON.parse(savedColors);
+
+    let savedPrice = sessionStorage.getItem(PRICE_PARAM);
+    if (savedPrice != null)
+      this.priceFilter = JSON.parse(savedPrice);
   }
 
   selectedFilters(): void {
     if (
+      sessionStorage.getItem(CATEGORIES_PARAM) === null ||
       sessionStorage.getItem(COLORS_PARAM) === null ||
-      sessionStorage.getItem(CATEGORIES_PARAM) === null
+      sessionStorage.getItem(PRICE_PARAM) === null
     ) {
       this.getFiltersList();
     } else {
@@ -66,12 +73,16 @@ export class FilterComponent implements OnInit {
     this.selectedFilters();
   }
 
+/*  onChange(event): void {
+    const priceFilter = event.value;
+    sessionStorage.setItem(PRICE_PARAM, priceFilter);
+    this.selectFilterItem.emit();
+  }*/
+
   changeSelection(): void {
-    sessionStorage.setItem(
-      CATEGORIES_PARAM,
-      JSON.stringify(this.categoryFilter)
-    );
+    sessionStorage.setItem(CATEGORIES_PARAM, JSON.stringify(this.categoryFilter));
     sessionStorage.setItem(COLORS_PARAM, JSON.stringify(this.colorFilter));
+    sessionStorage.setItem(PRICE_PARAM, JSON.stringify(this.priceFilter));
     this.selectFilterItem.emit();
   }
 }
