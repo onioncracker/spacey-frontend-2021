@@ -1,12 +1,12 @@
 <div>
   <h1 align="center" class="display-4 mb-5">CONFIRM ORDER</h1>
 </div>
-<div class="summary">
-  <app-orders [checkout]="checkout"></app-orders>
-  <app-personal-information [personalInformation]="checkout"></app-personal-information>
+<div *ngIf="order" class="summary">
+  <app-order-products [products]="products"></app-order-products>
+  <app-personal-information (personalInformationEvent)=getPersonalInformation($event) [personalInformation]="order"></app-personal-information>
   <app-delivery></app-delivery>
-  <app-comment></app-comment>
-  <app-confirm [checkout]="checkout"></app-confirm>
+  <app-comment (commentEvent)=getComment($event)></app-comment>
+  <app-confirm [checkout]="order"></app-confirm>
 </div>
 <div class="button-div">
   <button mat-flat-button class="button-checkout" type="submit" (click)="onCheckout()">

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Order} from "../../store/models/order";
 
 @Component({
   selector: 'app-comment',
@@ -6,7 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./comment.component.css'],
 })
 export class CommentComponent {
-  constructor() {
-    // do nothing.
+  @Output() commentEvent = new EventEmitter<string>();
+  comment = '';
+
+  onChangeComment() {
+    this.commentEvent.emit(this.comment);
   }
 }

@@ -1,7 +1,7 @@
 <div style="margin-top: 30px;">
   <h2 class="orders-font">ITEMS</h2>
   <div>
-    <div *ngFor="let x of checkout.products">
+    <div *ngFor="let x of products">
       <div class="main-container">
         <div class="image-container">
           <img
@@ -17,9 +17,6 @@
         </div>
         <div class="dl-t7 price">
           <p class="dl-t3">{{ x.sum }} UAH</p>
-          <button class="delete-button" (click)="delete(x.productId)">
-            <mat-icon>delete</mat-icon>
-          </button>
         </div>
       </div>
       <hr>

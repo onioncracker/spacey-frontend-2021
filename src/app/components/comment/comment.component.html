@@ -2,7 +2,13 @@
   <h2 class="comment-font">COMMENTS</h2>
   <div>
     <label>
-      <textarea class="comment-area" placeholder="Type your wishes"></textarea>
+      <textarea id="comment"
+                class="comment-area"
+                placeholder="Type your wishes"
+                (change)="onChangeComment()"
+                [(ngModel)]="comment"
+      >
+      </textarea>
     </label>
     <hr>
   </div>

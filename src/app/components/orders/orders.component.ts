@@ -1,22 +1,15 @@
 import {Component, Input} from '@angular/core';
 import {CheckoutDto} from "../../store/models/checkout";
+import {ProductCheckoutDto} from "../../store/models/productCheckout";
+import CheckoutItem from "../../store/models/CheckoutItem";
 
 @Component({
-  selector: 'app-orders',
+  selector: 'app-order-products',
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.css'],
 })
 export class OrdersComponent {
-  @Input() checkout!: CheckoutDto
-
-  delete(id: number) {
-    alert("test!")
-    let index = this.checkout.products.findIndex(x => x.productId === id) ;
-    if (index > -1) {
-      this.checkout.products = this.checkout.products.splice(index, 1);
-    }
-    // this.checkout.products = this.checkout.products.splice(id, 1);
-  }
+  @Input() products!: CheckoutItem[];
 
   constructor() {
     // do nothing.
