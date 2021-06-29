@@ -14,7 +14,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { ConfirmComponent } from './components/confirm/confirm.component';
 import { OrdersComponent } from './components/orders/orders.component';
-import { DeliveryComponent } from './components/delivery/delivery.component';
+import { DeliveryInfoComponent } from './components/delivery-info/delivery-info.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { LoginComponent } from './components/login/login.component';
 import { AdminEmployeeComponent } from './components/admin-manage/admin-employee.component';
@@ -62,7 +62,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     CheckoutComponent,
     ConfirmComponent,
     OrdersComponent,
-    DeliveryComponent,
+    DeliveryInfoComponent,
     CommentComponent,
     ProductsComponent,
     ProductDetailsComponent,

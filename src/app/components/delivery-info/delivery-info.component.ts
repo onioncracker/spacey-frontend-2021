@@ -4,10 +4,10 @@ import {PersonalInformation} from "../../store/models/personal-information";
 
 @Component({
   selector: 'app-delivery',
-  templateUrl: './delivery.component.html',
-  styleUrls: ['./delivery.component.css'],
+  templateUrl: './delivery-info.component.html',
+  styleUrls: ['./delivery-info.component.css'],
 })
-export class DeliveryComponent {
+export class DeliveryInfoComponent {
   @Output() deliveryEvent = new EventEmitter<Delivery>();
   delivery!: Delivery;
   doNotDisturb = false;
