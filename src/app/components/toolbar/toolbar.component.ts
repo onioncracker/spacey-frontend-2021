@@ -23,8 +23,8 @@ export class ToolbarComponent {
     this.router.navigateByUrl(routeUrls.popular);
   }
 
-  routeToProductsCatalog(sex: string) {
-    this.router.navigate([routeUrls.productsCatalog], {
+  routeToProductCatalog(sex: string) {
+    this.router.navigate([routeUrls.productCatalog], {
       queryParams: { sex: sex },
     });
   }

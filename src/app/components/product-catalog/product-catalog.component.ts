@@ -15,10 +15,10 @@ import { SORTING_PARAM } from '../sorting/sorting-params.constants';
 
 @Component({
   selector: 'app-products-catalog',
-  templateUrl: './products-catalog.component.html',
-  styleUrls: ['products-catalog.component.css'],
+  templateUrl: './product-catalog.component.html',
+  styleUrls: ['product-catalog.component.css'],
 })
-export class ProductsCatalogComponent implements OnInit, OnDestroy {
+export class ProductCatalogComponent implements OnInit, OnDestroy {
   public showFilter = false;
   products: ProductModel[] = [];
   sexQueryParam = '';

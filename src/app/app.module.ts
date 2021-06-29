@@ -49,7 +49,7 @@ import { DialogMessageComponent } from './components/dialog-message/dialog-messa
 import { MatDialogModule } from '@angular/material/dialog';
 import { HeaderComponent } from './components/header/header.component';
 import { NgxCaptchaModule } from 'ngx-captcha';
-import { ProductsCatalogComponent } from './components/products-catalog/products-catalog.component';
+import { ProductCatalogComponent } from './components/product-catalog/product-catalog.component';
 import { FilterComponent } from './components/filter/filter.component';
 import { SortingComponent } from './components/sorting/sorting.component';
 import { ProductComponent } from './components/product/product.component';
@@ -81,7 +81,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     ShoppingCartComponent,
     ConfirmRegistrationComponent,
     HeaderComponent,
-    ProductsCatalogComponent,
+    ProductCatalogComponent,
     FilterComponent,
     SortingComponent,
     ProductComponent,
