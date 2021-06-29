@@ -8,7 +8,9 @@
       (personalInformationEvent)="getPersonalInformation($event)"
       [personalInformation]="order"
     ></app-personal-information>
-    <app-delivery-info (deliveryEvent)="getDelivery($event)"></app-delivery-info>
+    <app-delivery-info
+      (deliveryEvent)="getDelivery($event)"
+    ></app-delivery-info>
     <app-comment (commentEvent)="getComment($event)"></app-comment>
     <app-confirm [checkout]="order"></app-confirm>
   </div>
