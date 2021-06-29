@@ -1,0 +1,55 @@
+.profile-label {
+  display: flex;
+  justify-content: center;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+.form-class {
+  display: flex;
+  justify-content: center;
+}
+
+.form-column {
+  margin-left: 2%;
+  margin-right: 2%;
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+}
+
+.profile-info-form-field {
+  width: 100%;
+}
+
+.house-apartm-form-field {
+  width: 45%;
+}
+
+.save-btn {
+  width: 30%;
+  margin-left: 35%;
+  margin-right: 35%;
+  display: flex;
+  justify-content: center;
+  padding-left: 10%;
+  padding-right: 10%;
+  border-radius: 1px;
+  margin-top: 3%;
+}
+
+.house-apartm-line {
+  display: flex;
+  flex-direction: row;
+}
+
+.logout-div {
+  width: 100%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+
+.logout-btn {
+  margin-left: 85%;
+  width: 10%;
+}
