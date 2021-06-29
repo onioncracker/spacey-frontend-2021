@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { EmployeeService } from '../../store/service/employee/employeeService';
-import { EmployeeModel } from '../../store/models/EmployeeModel';
+import { EmployeeService } from '../../store/service/employee/employee.service';
+import { EmployeeModel } from '../../store/models/employee.model';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   templateUrl: './admin-employee.component.html',
   styleUrls: ['./admin-employee.component.css'],
 })
-export class AdminEmployeeComponent implements OnInit {
+export class AdminEmployeeComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = [
     'firstName',
     'lastName',
@@ -19,12 +19,15 @@ export class AdminEmployeeComponent implements OnInit {
     'phoneNumber',
     'email',
     'statusName',
-    'actions',
+    'userId',
   ];
   dataSource = new MatTableDataSource<EmployeeModel>();
-  employees!: EmployeeModel[];
-
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  employees!: EmployeeModel[];
+  search!: string;
+  length!: number;
+  pageSize!: number;
+  pageSizeOptions!: number[];
 
   constructor(
     private employeeService: EmployeeService,
@@ -33,26 +36,34 @@ export class AdminEmployeeComponent implements OnInit {
 
   getAllEmployees() {
     this.employeeService
-      .getAllEmployees()
+      .getAllEmployees(0, this.pageSize)
       .pipe()
       .subscribe((employees: EmployeeModel[]) => {
         this.employees = employees;
         this.dataSource = new MatTableDataSource(this.employees);
-      });
-  }
-  onChangeEvent(event: any) {
-    this.employeeService
-      .getAllEmployeesVariable(event.target.value)
-      .pipe()
-      .subscribe((employees: EmployeeModel[]) => {
-        this.employees = employees;
-        this.dataSource = new MatTableDataSource(this.employees);
+        // this.dataSource.paginator = this.paginator;
       });
   }
 
-  searchEmployees() {
+  onChangeEvent() {
+    console.log();
+    if (this.search.length > 1) {
+      this.employeeService
+        .getAllEmployeesVariable(0, this.pageSize, this.search)
+        .pipe()
+        .subscribe((employees: EmployeeModel[]) => {
+          this.employees = employees;
+          this.dataSource = new MatTableDataSource(this.employees);
+        });
+    } else {
+      this.getAllEmployees();
+    }
+  }
+
+  onPaginateChange(event) {
+    this.pageSize = event.pageSize;
     this.employeeService
-      .getAllEmployees()
+      .getAllEmployeesVariable(event.page, event.pageSize, this.search)
       .pipe()
       .subscribe((employees: EmployeeModel[]) => {
         this.employees = employees;
@@ -65,7 +76,11 @@ export class AdminEmployeeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.pageSize = 5;
+    this.pageSizeOptions = [5, 10, 20];
     this.getAllEmployees();
-    this.dataSource.paginator! = this.paginator;
+  }
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
   }
 }

@@ -55,9 +55,6 @@
             {{ role.name }}
           </mat-option>
         </mat-select>
-        <!--        <mat-error *ngIf="addEmployeeForm.get('roleId')?.hasError('required')">-->
-        <!--          Role is required!-->
-        <!--        </mat-error>-->
       </mat-form-field>
     </div>
 
@@ -79,12 +76,11 @@
 
       <mat-label><h3>PHONE NUMBER</h3></mat-label>
       <mat-form-field class="emp-form-field" appearance="fill">
-        <span matPrefix>+380 &nbsp;</span>
         <input
           matInput
           formControlName="phoneNumber"
           type="text"
-          placeholder="989898988"
+          placeholder="+380989898988"
         />
         <mat-icon matSuffix>mode_edit</mat-icon>
       </mat-form-field>
@@ -96,9 +92,6 @@
             {{ status.name }}
           </mat-option>
         </mat-select>
-        <!--        <mat-error *ngIf="addEmployeeForm.get('statusId')?.hasError('required')">-->
-        <!--          Status is required!-->
-        <!--        </mat-error>-->
       </mat-form-field>
     </div>
   </div>
@@ -113,6 +106,9 @@
       color="accent"
     >
       ADD
+    </button>
+    <button mat-raised-button class="add" (click)="back()" color="accent">
+      EMPLOYEE LIST
     </button>
   </div>
   <span></span>
