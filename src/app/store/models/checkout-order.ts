@@ -1,7 +1,7 @@
 import {ProductCreateOrderDto} from "./productCreateOrder";
 import {CheckoutDto} from "./checkout";
 
-export class Order {
+export class CheckoutOrder {
   products!: ProductCreateOrderDto[]
   orderStatusId!: number;
   userId!: number;

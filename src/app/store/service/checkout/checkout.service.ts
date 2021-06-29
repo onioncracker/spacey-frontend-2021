@@ -3,7 +3,7 @@ import {CheckoutDto} from "../../models/checkout";
 import {from, Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import { environment} from "../../../../environments/environment";
-import {Order} from "../../models/order";
+import {CheckoutOrder} from "../../models/checkout-order";
 
 @Injectable({
   providedIn: 'root',
@@ -21,8 +21,8 @@ export default class CheckoutService {
     return this.http.get<CheckoutDto>(checkoutUrl);
   }
 
-  makeOrder(order: Order): Observable<Order> {
+  makeOrder(order: CheckoutOrder): Observable<CheckoutOrder> {
     const checkoutUrl = environment.url + '/api/order';
-    return this.http.post<Order>(checkoutUrl, order);
+    return this.http.post<CheckoutOrder>(checkoutUrl, order);
   }
 }

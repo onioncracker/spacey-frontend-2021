@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import CheckoutService from '../../store/service/checkout/checkout.service';
-import {Order} from "../../store/models/order";
+import {CheckoutOrder} from "../../store/models/checkout-order";
 import {PersonalInformation} from "../../store/models/personal-information";
 import {CheckoutDto} from "../../store/models/checkout";
 import CheckoutItem from "../../store/models/CheckoutItem";
@@ -12,7 +12,7 @@ import {Delivery} from "../../store/models/delivery";
   styleUrls: ['./checkout.component.css'],
 })
 export class CheckoutComponent implements OnInit {
-  order!: Order;
+  order!: CheckoutOrder;
   products!: CheckoutItem[];
 
   isFormValid = true;
@@ -49,7 +49,7 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.checkoutService.getCheckout().subscribe((checkout: CheckoutDto) => {
-      this.order = new Order(checkout);
+      this.order = new CheckoutOrder(checkout);
       this.products = checkout.products;
     });
   }

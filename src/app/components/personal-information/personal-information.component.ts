@@ -1,7 +1,7 @@
 import {Component, Input, OnChanges, OnInit, Output, EventEmitter} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {PersonalInformation} from "../../store/models/personal-information";
-import {Order} from "../../store/models/order";
+import {CheckoutOrder} from "../../store/models/checkout-order";
 
 @Component({
   selector: 'app-personal-information',
@@ -13,7 +13,7 @@ export class PersonalInformationComponent implements OnInit, OnChanges{
   personalInformationForm!: FormGroup;
   @Output() personalInformationEvent = new EventEmitter<PersonalInformation>();
   userContactInfo!: PersonalInformation;
-  @Input() personalInformation!: Order;
+  @Input() personalInformation!: CheckoutOrder;
   isAuthUser!: boolean;
   isEdit!: boolean;
 

@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {Order} from "../../store/models/order";
+import {CheckoutOrder} from "../../store/models/checkout-order";
 
 @Component({
   selector: 'app-comment',
