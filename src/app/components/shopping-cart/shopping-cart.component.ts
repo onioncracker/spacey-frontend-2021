@@ -3,6 +3,7 @@ import { CartService } from '../../store/service/cart.service';
 import { ActivatedRoute } from '@angular/router';
 import { ProductForCartModel } from '../../store/models/product-for-cart.model';
 import { EditCartModel } from '../../store/models/edit-cart.model';
+import { HeaderTitleService } from "../../store/service/header/header-title.service";
 
 @Component({
   selector: 'app-shopping-cart',
@@ -15,11 +16,13 @@ export class ShoppingCartComponent implements OnInit {
   checkoutAvailable = false;
 
   constructor(
+    private headerTitleService: HeaderTitleService,
     private route: ActivatedRoute,
     private cartService: CartService
   ) {}
 
   ngOnInit(): void {
+    this.headerTitleService.setTitle('shopping cart')
     this.getProducts();
   }
 
