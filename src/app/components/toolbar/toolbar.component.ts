@@ -34,7 +34,7 @@ export class ToolbarComponent {
   }
 
   routeToCart() {
-    this.router.navigateByUrl(routeUrls.checkout);
+    this.router.navigateByUrl(routeUrls.shoppingCart);
   }
 
   routeToProfile() {

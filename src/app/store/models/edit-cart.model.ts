@@ -1,5 +1,5 @@
 export class EditCartModel {
   productId!: number;
-  size!: number;
+  sizeId!: number;
   amount!: number;
 }
