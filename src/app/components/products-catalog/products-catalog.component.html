@@ -1,6 +1,8 @@
 <div class="products-catalog">
   <app-header></app-header>
 
+  <app-sorting (selectSortingItem)="onSelectedSorting()"></app-sorting>
+
   <button class="products-toggle-filter" (click)="onToggleFilters()">
     Filter
   </button>
@@ -15,5 +17,6 @@
     </ng-container>
   </div>
 
-  <app-pagination></app-pagination>
+  <app-pagination (selectPage)="onSelectedPage()" [items]="products">
+  </app-pagination>
 </div>

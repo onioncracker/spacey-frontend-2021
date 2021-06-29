@@ -1,0 +1,73 @@
+.dl-h1 {
+  text-align: center;
+  padding: 25px 0 25px 0;
+  background: #f8f8f8;
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0;
+}
+
+.radio-button {
+  margin: 5px;
+}
+
+.dl-top-elem {
+  display: flex;
+  padding-left: 1%;
+  width: 97%;
+  justify-content: space-between;
+}
+
+.dl-top-elem-child {
+  display: flex;
+  margin-left: 1%;
+  width: 500px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.default_padding {
+  padding-left: 2%;
+}
+
+.card-img {
+  padding-left: 2%;
+  width: 83px;
+  height: 104px;
+}
+
+.product-info {
+  padding-left: 5%;
+}
+
+.main-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 97%;
+}
+
+.image-container {
+  padding-left: 2%;
+  padding-bottom: 8px;
+  padding-top: 8px;
+  display: flex;
+}
+
+.solid {
+  width: 97%;
+}
+
+.delivery-info-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 95%;
+  padding-left: 2%;
+  padding-top: 8px;
+}

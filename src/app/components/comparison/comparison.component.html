@@ -27,7 +27,9 @@
     </tr>
     <tr>
       <td class="prod-name compare-field" *ngFor="let product of products">
-        <a routerLink="/products/{{ product.id }}">{{ product.name }}</a>
+        <a routerLink="/products-catalog/{{ product.id }}">{{
+          product.name
+        }}</a>
       </td>
     </tr>
     <tr>
@@ -129,15 +131,15 @@
       class="btn-add-more"
       type="submit"
       color="accent"
-      routerLink="/products"
+      routerLink="/products-catalog"
     >
       ADD MORE
     </button>
   </div>
 </div>
-<div *ngIf="products.length < 2">
+<div *ngIf="products.length < 2" routerLink="/products-catalog">
   <h3>
     You add to compere less then 2 products. Please, go to
-    <a routerLink="/products">catalog</a> and add more.
+    <a routerLink="/products-catalog">catalog</a> and add more.
   </h3>
 </div>

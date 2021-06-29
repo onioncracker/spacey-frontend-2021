@@ -14,7 +14,6 @@ import { FooterComponent } from './components/footer/footer.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { ConfirmComponent } from './components/confirm/confirm.component';
 import { OrdersComponent } from './components/orders/orders.component';
-import { DeliveryComponent } from './components/delivery/delivery.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { OrderComponent } from './components/order/order.component';
 import { LoginComponent } from './components/login/login.component';
@@ -25,7 +24,6 @@ import { MatInputModule } from '@angular/material/input';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthInterceptor } from './store/service/AuthInterceptor';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
-import { PaginationComponent } from './components/pagination/pagination.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -35,20 +33,28 @@ import { MatSelectModule } from '@angular/material/select';
 import { ComparisonComponent } from './components/comparison/comparison.component';
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { EditProductComponent } from './components/edit-product/edit-product.component';
-import { MatOptionModule } from '@angular/material/core';
+import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
+import { DeliveryComponent } from './components/delivery/delivery.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatDividerModule } from '@angular/material/divider';
+import { DeliveriesComponent } from './components/deliveries/deliveries.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { DatePipe } from '@angular/common';
+import { MatRadioModule } from '@angular/material/radio';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { ConfirmRegistrationComponent } from './components/confirm-registration/confirm-registration.component';
 import { DialogMessageComponent } from './components/dialog-message/dialog-message.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { ManageProductsComponent } from './components/manage-products/manage-products.component';
 import { HeaderComponent } from './components/header/header.component';
 import { NgxCaptchaModule } from 'ngx-captcha';
 import { ProductsCatalogComponent } from './components/products-catalog/products-catalog.component';
 import { FilterComponent } from './components/filter/filter.component';
+import { SortingComponent } from './components/sorting/sorting.component';
 import { ProductComponent } from './components/product/product.component';
 import { PillComponent } from './components/pill/pill.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 import { MatRadioModule } from '@angular/material/radio';
 import { EmployeeProfileComponent } from './components/employee-profile/employee-profile.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
@@ -63,26 +69,27 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     CheckoutComponent,
     ConfirmComponent,
     OrdersComponent,
-    DeliveryComponent,
+    DeliveriesComponent,
     CommentComponent,
     OrderComponent,
     ProductDetailsComponent,
-    PaginationComponent,
     AdminEmployeeComponent,
     AdminAddComponent,
     AdminEditComponent,
     ComparisonComponent,
     AddProductComponent,
     EditProductComponent,
+    DeliveryComponent,
     DialogMessageComponent,
-    ManageProductsComponent,
     ShoppingCartComponent,
     ConfirmRegistrationComponent,
     HeaderComponent,
     ProductsCatalogComponent,
     FilterComponent,
+    SortingComponent,
     ProductComponent,
     PillComponent,
+    PaginationComponent,
     EmployeeProfileComponent,
     UserProfileComponent,
   ],
@@ -107,6 +114,11 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     MatAutocompleteModule,
     MatChipsModule,
     MatSelectModule,
+    MatGridListModule,
+    MatDividerModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatRadioModule,
     MatDialogModule,
     NgxCaptchaModule,
     MatRadioModule,
@@ -117,6 +129,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
       useClass: AuthInterceptor,
       multi: true,
     },
+    DatePipe,
   ],
   bootstrap: [AppComponent],
 })
