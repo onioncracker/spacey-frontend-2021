@@ -31,7 +31,7 @@ export class AdminEmployeeComponent implements OnInit, AfterViewInit {
 
   constructor(
     private employeeService: EmployeeService,
-    private router: Router,
+    private router: Router
   ) {}
 
   getAllEmployees() {

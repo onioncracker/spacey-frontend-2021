@@ -17,10 +17,14 @@ export class EmployeeService {
     const params = new HttpParams()
       .append('page', page)
       .append('pageSize', pageSize);
-    return this.http.get(this.employeeUrl, {params});
+    return this.http.get(this.employeeUrl, { params });
   }
 
-  getAllEmployeesVariable(page: number, pageSize: number, prompt: string): Observable<any> {
+  getAllEmployeesVariable(
+    page: number,
+    pageSize: number,
+    prompt: string
+  ): Observable<any> {
     const params = new HttpParams()
       .append('page', page)
       .append('pageSize', pageSize);

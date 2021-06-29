@@ -55,7 +55,10 @@
         <ng-container matColumnDef="userId">
           <th mat-header-cell *matHeaderCellDef>Edit</th>
           <td mat-cell *matCellDef="let element">
-            <a [routerLink]="['/admin-edit', element.userId]" style="color: black">
+            <a
+              [routerLink]="['/admin-edit', element.userId]"
+              style="color: black"
+            >
               <button mat-stroked-button>Edit</button>
             </a>
           </td>

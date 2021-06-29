@@ -38,7 +38,9 @@
         <mat-error
           *ngIf="
             editEmployeeForm.get('email')?.hasError('email') &&
-            !editEmployeeForm.get('email')?.hasError('required')">
+            !editEmployeeForm.get('email')?.hasError('required')
+          "
+        >
           Please write correct address!
         </mat-error>
         <mat-error *ngIf="editEmployeeForm.get('email')?.hasError('required')">
@@ -46,16 +48,21 @@
         </mat-error>
       </mat-form-field>
 
-    <mat-label><h3>ROLE</h3></mat-label>
-    <mat-form-field class="emp-form-field" appearance="fill">
-      <mat-select [(value)]="employee.roleId" class="emp-form-field" formControlName="roleId" [compareWith]="compareObjects">
-<!--      <mat-select class="emp-form-field" formControlName="roleId" [compareWith]="compareObjects">-->
-      <mat-option *ngFor="let role of roles" [value]="role.id">
-        {{ role.name }}
-      </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
+      <mat-label><h3>ROLE</h3></mat-label>
+      <mat-form-field class="emp-form-field" appearance="fill">
+        <mat-select
+          [(value)]="employee.roleId"
+          class="emp-form-field"
+          formControlName="roleId"
+          [compareWith]="compareObjects"
+        >
+          <!--      <mat-select class="emp-form-field" formControlName="roleId" [compareWith]="compareObjects">-->
+          <mat-option *ngFor="let role of roles" [value]="role.id">
+            {{ role.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
 
     <div class="column">
       <mat-label><h3>LAST NAME</h3></mat-label>
@@ -88,7 +95,12 @@
 
       <mat-label><h3>STATUS</h3></mat-label>
       <mat-form-field class="emp-form-field" appearance="fill">
-        <mat-select [(value)]="employee.statusId" class="emp-form-field" formControlName="statusId" [compareWith]="compareObjects">
+        <mat-select
+          [(value)]="employee.statusId"
+          class="emp-form-field"
+          formControlName="statusId"
+          [compareWith]="compareObjects"
+        >
           <mat-option *ngFor="let status of statuses" [value]="status.id">
             {{ status.name }}
           </mat-option>
