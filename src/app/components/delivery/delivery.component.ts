@@ -10,13 +10,15 @@ import {PersonalInformation} from "../../store/models/personal-information";
 export class DeliveryComponent {
   @Output() deliveryEvent = new EventEmitter<Delivery>();
   delivery!: Delivery;
+  doNotDisturb = false;
+  noContact = false;
 
   onChangeDelivery() {
     this.delivery = new Delivery(
-      this.delivery.date,
-      this.delivery.doNotDisturb,
-      this.delivery.noContact
+      new Date(),
+      this.doNotDisturb,
+      this.noContact
     );
-    this.deliveryEvent.emit(this.delivery);
+    this.deliveryEvent.emit(this.delivery)
   }
 }

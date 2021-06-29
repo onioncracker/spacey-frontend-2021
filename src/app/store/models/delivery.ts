@@ -3,7 +3,6 @@ export class Delivery {
   doNotDisturb!: boolean;
   noContact!: boolean;
 
-
   constructor(date: Date, doNotDisturb: boolean, noContact: boolean) {
     this.date = date;
     this.doNotDisturb = doNotDisturb;

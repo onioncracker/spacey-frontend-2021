@@ -34,12 +34,14 @@ export class CheckoutComponent implements OnInit {
 
   getDelivery(delivery: Delivery) {
     console.log(delivery)
+    this.order.date = delivery.date;
     this.order.noContact = delivery.noContact;
     this.order.doNotDisturb = delivery.doNotDisturb;
   }
 
   onCheckout() {
     console.log(this.order);
+    this.checkoutService.makeOrder(this.order).subscribe(res => alert(res));
   }
 
   constructor(private checkoutService: CheckoutService) {

@@ -21,8 +21,8 @@ export default class CheckoutService {
     return this.http.get<CheckoutDto>(checkoutUrl);
   }
 
-  makeOrder(order: Order): void {
+  makeOrder(order: Order): Observable<Order> {
     const checkoutUrl = environment.url + '/api/order';
-    this.http.post(checkoutUrl, order);
+    return this.http.post<Order>(checkoutUrl, order);
   }
 }
