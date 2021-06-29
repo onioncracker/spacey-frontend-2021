@@ -5,7 +5,7 @@ import { PersonalInformation } from '../../store/models/personal-information';
 import { CheckoutDto } from '../../store/models/checkout';
 import CheckoutItem from '../../store/models/CheckoutItem';
 import { Delivery } from '../../store/models/delivery';
-import {DialogService} from "../../store/service/dialog/dialog.service";
+import { DialogService } from '../../store/service/dialog/dialog.service';
 
 @Component({
   selector: 'app-checkout',
@@ -50,7 +50,9 @@ export class CheckoutComponent implements OnInit {
     this.dialogService.openConfirm(this.options);
     this.dialogService.confirmed().subscribe((confirmed) => {
       if (confirmed) {
-        this.checkoutService.makeOrder(this.order).subscribe((res) => alert(res));
+        this.checkoutService
+          .makeOrder(this.order)
+          .subscribe((res) => alert(res));
       }
     });
   }
