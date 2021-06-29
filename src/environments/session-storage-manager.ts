@@ -3,5 +3,5 @@ export const sessionStorageKeys = {
   USERNAME_KEY: 'username',
   AUTHORITIES_KEY: 'AuthAuthorities',
   CART_KEY: 'shoppingCart',
-  ROLE_KEY:  'role'
+  ROLE_KEY: 'role',
 };
