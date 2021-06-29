@@ -3,10 +3,10 @@ import {CheckoutOrder} from "../../store/models/checkout-order";
 
 @Component({
   selector: 'app-confirm',
-  templateUrl: './confirm.component.html',
-  styleUrls: ['./confirm.component.css', '../checkout/checkout.component.css'],
+  templateUrl: './summary.component.html',
+  styleUrls: ['./summary.component.css', '../checkout/checkout.component.css'],
 })
-export class ConfirmComponent implements OnInit {
+export class SummaryComponent implements OnInit {
   @Input() checkout!: CheckoutOrder;
   constructor() { }
 
