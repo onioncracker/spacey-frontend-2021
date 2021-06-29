@@ -143,32 +143,32 @@
         </div>
       </td>
       <td rowspan="5" class="sizes">
-        <tr *ngFor="let size of sizesAmount; let i = index; trackBy: onTrackBy">
-          <td>
-            <div class="sizes">
-              <mat-label class="add-h"> {{ size.name }}: </mat-label>
-              <mat-form-field class="size-amount" appearance="fill">
-                <input
-                  matInput
-                  type="number"
-                  placeholder="Amount"
-                  formControlName="sizes"
-                  [(ngModel)]="sizesAmount[i].quantity"
-                />
-              </mat-form-field>
-              <br />
-            </div>
-          </td>
-        </tr>
+    <tr *ngFor="let size of sizesAmount; let i = index; trackBy: onTrackBy">
+      <td>
+        <div class="sizes">
+          <mat-label class="add-h"> {{ size.name }}:</mat-label>
+          <mat-form-field class="size-amount" appearance="fill">
+            <input
+              matInput
+              type="number"
+              placeholder="Amount"
+              formControlName="sizes"
+              [(ngModel)]="sizesAmount[i].quantity"
+            />
+          </mat-form-field>
+          <br/>
+        </div>
       </td>
+    </tr>
+    </td>
     </tr>
   </table>
 
-  <br />
+  <br/>
   <div class="save-wrapper">
     <button mat-raised-button class="add-btn" type="submit" color="accent">
       SAVE PRODUCT
     </button>
-    <br />
+    <br/>
   </div>
 </form>

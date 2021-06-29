@@ -17,19 +17,21 @@
           >
             X
           </button>
-          <img
-            src="{{ product.photo }}"
-            class="photo"
-            alt="{{ product.name }}"
-          />
+          <a [routerLink]="['/products-catalog', product.id]">
+            <img
+              src="{{ product.photo }}"
+              class="photo"
+              alt="{{ product.name }}"
+            />
+          </a>
         </div>
       </td>
     </tr>
     <tr>
-      <td class="prod-name compare-field" *ngFor="let product of products">
-        <a routerLink="/products-catalog/{{ product.id }}">{{
+      <td class="compare-field" *ngFor="let product of products">
+        <a routerLink="/products-catalog/{{ product.id }}" class="prod-name">{{
           product.name
-        }}</a>
+          }}</a>
       </td>
     </tr>
     <tr>
@@ -137,9 +139,19 @@
     </button>
   </div>
 </div>
-<div *ngIf="products.length < 2" routerLink="/products-catalog">
+<div *ngIf="products.length < 2" routerLink="/products-catalog" class="table-comparison">
   <h3>
-    You add to compere less then 2 products. Please, go to
-    <a routerLink="/products-catalog">catalog</a> and add more.
+    You add to compere less then 2 products. Please, go to catalog and add more.
   </h3>
+  <div class="button-div">
+    <button
+      mat-raised-button
+      class="btn-add-more"
+      type="submit"
+      color="accent"
+      routerLink="/products-catalog"
+    >
+      Catalog
+    </button>
+  </div>
 </div>
