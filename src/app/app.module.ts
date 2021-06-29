@@ -47,6 +47,8 @@ import { DialogMessageComponent } from './components/dialog-message/dialog-messa
 import { MatDialogModule } from '@angular/material/dialog';
 import { ManageProductsComponent } from './components/manage-products/manage-products.component';
 import { HeaderComponent } from './components/header/header.component';
+import { AddAuctionComponent } from './components/add-auction/add-auction.component';
+import { EditAuctionComponent } from './components/edit-auction/edit-auction.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +79,8 @@ import { HeaderComponent } from './components/header/header.component';
     ShoppingCartComponent,
     ConfirmRegistrationComponent,
     HeaderComponent,
+    AddAuctionComponent,
+    EditAuctionComponent,
   ],
   imports: [
     BrowserModule,

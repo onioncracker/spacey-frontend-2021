@@ -1,0 +1,58 @@
+.head-prod-add {
+  height: 70px;
+  background: #f8f8f8;
+  display: flex;
+  justify-content: center;
+}
+
+.add-label {
+  margin: 17px auto 17px;
+}
+
+.add-h {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.table-add {
+  margin: 18px auto 0;
+}
+
+.add-btn {
+  padding-left: 10%;
+  padding-right: 10%;
+  border-radius: 1px;
+  height: 48px;
+}
+
+.save-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+.input-name {
+  width: 614px;
+}
+
+.photo {
+  width: 193px;
+  height: 240px;
+}
+
+.material-field {
+  width: 822px;
+}
+
+.input-description {
+  width: 822px;
+}
+
+.description {
+  height: 300px;
+}
+
+.size-amount {
+  float: right;
+}
