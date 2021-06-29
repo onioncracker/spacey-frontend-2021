@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../store/service/cart.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductForCartModel } from '../../store/models/product-for-cart.model';
 import { EditCartModel } from '../../store/models/edit-cart.model';
+import { routeUrls } from '../../../environments/router-manager';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -16,6 +17,7 @@ export class ShoppingCartComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private cartService: CartService
   ) {}
 
@@ -79,5 +81,7 @@ export class ShoppingCartComponent implements OnInit {
     }
   }
 
-  deleteProduct() {}
+  goToCheckout() {
+    this.router.navigateByUrl(routeUrls.checkout);
+  }
 }

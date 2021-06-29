@@ -28,10 +28,7 @@
       </div>
     </div>
     <div class="price-delete">
-      <h3 class="h3-price">{{ product.overallPrice }}</h3>
-      <button class="h3-delete" mat-icon-button (click)="deleteProduct()">
-        <mat-icon>delete</mat-icon>
-      </button>
+      <h3 class="h3-price">{{ product.overallPrice }} UAH</h3>
     </div>
   </div>
   <hr class="solid" />
@@ -49,6 +46,7 @@
     class="check"
     color="accent"
     *ngIf="checkoutAvailable"
+    (click)="goToCheckout()"
   >
     CHECK OUT
   </button>

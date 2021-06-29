@@ -33,11 +33,7 @@
   <button mat-icon-button (click)="routeToProfile()">
     <mat-icon>perm_identity</mat-icon>
   </button>
-  <button
-    mat-icon-button
-    *ngIf="authService.isAuthorised()"
-    (click)="routeToCheckout()"
-  >
+  <button mat-icon-button (click)="routeToCheckout()">
     <mat-icon>shopping_cart</mat-icon>
   </button>
 </mat-toolbar>
