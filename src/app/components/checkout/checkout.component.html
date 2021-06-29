@@ -3,13 +3,22 @@
 </div>
 <div *ngIf="order" class="summary">
   <app-order-products [products]="products"></app-order-products>
-  <app-personal-information (personalInformationEvent)=getPersonalInformation($event) [personalInformation]="order"></app-personal-information>
-  <app-delivery (deliveryEvent)=getDelivery($event)></app-delivery>
-  <app-comment (commentEvent)=getComment($event)></app-comment>
+  <app-personal-information
+    (personalInformationEvent)="getPersonalInformation($event)"
+    [personalInformation]="order"
+  ></app-personal-information>
+  <app-delivery-info (deliveryEvent)="getDelivery($event)"></app-delivery-info>
+  <app-comment (commentEvent)="getComment($event)"></app-comment>
   <app-confirm [checkout]="order"></app-confirm>
 </div>
 <div class="button-div">
-  <button mat-flat-button class="button-checkout" type="submit" [disabled]="!isFormValid" (click)="onCheckout()">
+  <button
+    mat-flat-button
+    class="button-checkout"
+    type="submit"
+    [disabled]="!isFormValid"
+    (click)="onCheckout()"
+  >
     CHECK OUT
   </button>
 </div>

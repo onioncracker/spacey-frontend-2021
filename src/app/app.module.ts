@@ -36,9 +36,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
 import { DeliveryComponent } from './components/delivery/delivery.component';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { MatDividerModule } from '@angular/material/divider';
 import { DeliveriesComponent } from './components/deliveries/deliveries.component';
-import { MatDatepickerModule } from '@angular/material/datepicker';
 import { DatePipe } from '@angular/common';
 import { MatRadioModule } from '@angular/material/radio';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
@@ -47,12 +45,12 @@ import { DialogMessageComponent } from './components/dialog-message/dialog-messa
 import { MatDialogModule } from '@angular/material/dialog';
 import { HeaderComponent } from './components/header/header.component';
 import { MatSelectModule } from '@angular/material/select';
-import { MatSliderModule } from "@angular/material/slider";
+import { MatSliderModule } from '@angular/material/slider';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { PersonalInformationComponent } from './components/personal-information/personal-information.component';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { NgxCaptchaModule } from 'ngx-captcha';
 import { ProductsCatalogComponent } from './components/products-catalog/products-catalog.component';
 import { FilterComponent } from './components/filter/filter.component';
@@ -74,8 +72,6 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     DeliveryInfoComponent,
     DeliveriesComponent,
     CommentComponent,
-    ProductsComponent,
-    OrderComponent,
     ProductDetailsComponent,
     AdminEmployeeComponent,
     AdminAddComponent,

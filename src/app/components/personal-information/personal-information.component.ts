@@ -1,15 +1,21 @@
-import {Component, Input, OnChanges, OnInit, Output, EventEmitter} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {PersonalInformation} from "../../store/models/personal-information";
-import {CheckoutOrder} from "../../store/models/checkout-order";
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  EventEmitter,
+} from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { PersonalInformation } from '../../store/models/personal-information';
+import { CheckoutOrder } from '../../store/models/checkout-order';
 
 @Component({
   selector: 'app-personal-information',
   templateUrl: './personal-information.component.html',
-  styleUrls: ['./personal-information.component.css']
+  styleUrls: ['./personal-information.component.css'],
 })
-
-export class PersonalInformationComponent implements OnInit, OnChanges{
+export class PersonalInformationComponent implements OnInit, OnChanges {
   personalInformationForm!: FormGroup;
   @Output() personalInformationEvent = new EventEmitter<PersonalInformation>();
   userContactInfo!: PersonalInformation;
@@ -22,7 +28,7 @@ export class PersonalInformationComponent implements OnInit, OnChanges{
   }
 
   edit() {
-    this.isAuthUser = !this.isAuthUser
+    this.isAuthUser = !this.isAuthUser;
   }
 
   constructor(private formBuilder: FormBuilder) {
@@ -30,7 +36,14 @@ export class PersonalInformationComponent implements OnInit, OnChanges{
       email: ['', [Validators.required, Validators.email]],
       firstName: ['', [Validators.required, Validators.maxLength(20)]],
       lastName: ['', [Validators.required, Validators.maxLength(30)]],
-      phoneNumber: ['', [Validators.required,Validators.minLength(12), Validators.maxLength(12)]],
+      phoneNumber: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(12),
+          Validators.maxLength(12),
+        ],
+      ],
       city: ['', [Validators.required, Validators.maxLength(30)]],
       street: ['', [Validators.required, Validators.maxLength(50)]],
       house: ['', [Validators.required, Validators.maxLength(10)]],
@@ -39,7 +52,7 @@ export class PersonalInformationComponent implements OnInit, OnChanges{
   }
 
   ngOnInit(): void {
-    console.log(sessionStorage.getItem('token'))
+    console.log(sessionStorage.getItem('token'));
     if (this.isUserLogin()) {
       this.isAuthUser = true;
       this.isEdit = false;
@@ -55,11 +68,12 @@ export class PersonalInformationComponent implements OnInit, OnChanges{
       this.personalInformation.city,
       this.personalInformation.street,
       this.personalInformation.house,
-      this.personalInformation.apartment);
+      this.personalInformation.apartment
+    );
     this.personalInformationForm.setValue(this.userContactInfo);
   }
 
-  isUserLogin() : boolean {
+  isUserLogin(): boolean {
     return sessionStorage.getItem('token') != null;
   }
 }

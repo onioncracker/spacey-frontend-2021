@@ -1,8 +1,8 @@
-import {ProductCreateOrderDto} from "./productCreateOrder";
-import {CheckoutDto} from "./checkout";
+import { ProductCreateOrderDto } from './productCreateOrder';
+import { CheckoutDto } from './checkout';
 
 export class CheckoutOrder {
-  products!: ProductCreateOrderDto[]
+  products!: ProductCreateOrderDto[];
   orderStatusId!: number;
   userId!: number;
   firstName!: string;
@@ -31,4 +31,3 @@ export class CheckoutOrder {
     this.overallPrice = checkout.overallPrice;
   }
 }
-

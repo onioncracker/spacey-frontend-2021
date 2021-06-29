@@ -1,24 +1,20 @@
-<div style="margin-top: 25px;">
+<div style="margin-top: 25px">
   <div>
     <h2 class="delivery-font">DELIVERY</h2>
     <p>Choose the day and time of delivery</p>
-    <input class="datetime"  type="datetime-local" matInput>
+    <input class="datetime" type="datetime-local" matInput />
     <div>
       <section>
-        <mat-checkbox (change)="onChangeDelivery()"
-                      [(ngModel)]="doNotDisturb"
-        >
+        <mat-checkbox (change)="onChangeDelivery()" [(ngModel)]="doNotDisturb">
           'Do not disturb' option
         </mat-checkbox>
       </section>
       <section>
-        <mat-checkbox (change)="onChangeDelivery()"
-                      [(ngModel)]="noContact"
-        >
+        <mat-checkbox (change)="onChangeDelivery()" [(ngModel)]="noContact">
           'No contact' delivery
         </mat-checkbox>
       </section>
     </div>
-    <hr>
+    <hr />
   </div>
 </div>

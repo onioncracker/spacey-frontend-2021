@@ -1,10 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import CheckoutService from '../../store/service/checkout/checkout.service';
-import {CheckoutOrder} from "../../store/models/checkout-order";
-import {PersonalInformation} from "../../store/models/personal-information";
-import {CheckoutDto} from "../../store/models/checkout";
-import CheckoutItem from "../../store/models/CheckoutItem";
-import {Delivery} from "../../store/models/delivery";
+import { CheckoutOrder } from '../../store/models/checkout-order';
+import { PersonalInformation } from '../../store/models/personal-information';
+import { CheckoutDto } from '../../store/models/checkout';
+import CheckoutItem from '../../store/models/CheckoutItem';
+import { Delivery } from '../../store/models/delivery';
 
 @Component({
   selector: 'app-checkout',
@@ -33,7 +33,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   getDelivery(delivery: Delivery) {
-    console.log(delivery)
+    console.log(delivery);
     this.order.date = delivery.date;
     this.order.noContact = delivery.noContact;
     this.order.doNotDisturb = delivery.doNotDisturb;
@@ -41,11 +41,10 @@ export class CheckoutComponent implements OnInit {
 
   onCheckout() {
     console.log(this.order);
-    this.checkoutService.makeOrder(this.order).subscribe(res => alert(res));
+    this.checkoutService.makeOrder(this.order).subscribe((res) => alert(res));
   }
 
-  constructor(private checkoutService: CheckoutService) {
-  }
+  constructor(private checkoutService: CheckoutService) {}
 
   ngOnInit(): void {
     this.checkoutService.getCheckout().subscribe((checkout: CheckoutDto) => {

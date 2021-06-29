@@ -9,8 +9,17 @@ export class ProductCheckoutDto {
   amount: number;
   sum: number;
 
-
-  constructor(productId: number, productName: string, color: string, colorId: number, sizeName: string, sizeId: number, photo: string, amount: number, sum: number) {
+  constructor(
+    productId: number,
+    productName: string,
+    color: string,
+    colorId: number,
+    sizeName: string,
+    sizeId: number,
+    photo: string,
+    amount: number,
+    sum: number
+  ) {
     this.productId = productId;
     this.productName = productName;
     this.color = color;

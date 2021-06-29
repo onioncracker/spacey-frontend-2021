@@ -2,86 +2,109 @@
   <div class="space">
     <h2 class="personal-info-font">PERSONAL INFORMATION</h2>
     <div>
-      <a mat-button target="_blank" *ngIf="isAuthUser" (click)="isEdit = !isEdit">EDIT</a>
+      <a
+        mat-button
+        target="_blank"
+        *ngIf="isAuthUser"
+        (click)="isEdit = !isEdit"
+        >EDIT</a
+      >
     </div>
   </div>
   <div *ngIf="!isEdit">
-    <p>{{ personalInformation.firstName }} {{personalInformation.lastName}}</p>
+    <p>
+      {{ personalInformation.firstName }} {{ personalInformation.lastName }}
+    </p>
     <p>{{ personalInformation.phoneNumber }}</p>
     <p>{{ personalInformation.email }}</p>
-    <br>
+    <br />
     <div>
       <p>
         {{ personalInformation.city }}
-        <span *ngIf="personalInformation.city && personalInformation.street">,</span>
+        <span *ngIf="personalInformation.city && personalInformation.street"
+          >,</span
+        >
         {{ personalInformation.street }}
-        <span *ngIf="personalInformation.street && personalInformation.house">,</span>
+        <span *ngIf="personalInformation.street && personalInformation.house"
+          >,</span
+        >
         {{ personalInformation.house }}
-        <span style="white-space: nowrap;" *ngIf="personalInformation.house && personalInformation.apartment">/</span>
+        <span
+          style="white-space: nowrap"
+          *ngIf="personalInformation.house && personalInformation.apartment"
+          >/</span
+        >
         {{ personalInformation.apartment }}
       </p>
     </div>
-    <hr>
+    <hr />
   </div>
 
   <div *ngIf="!isAuthUser || isEdit">
     <div class="input-form">
       <div class="column">
         <mat-form-field class="emp-form-field">
-          <input class="input-area"
-                 matInput
-                 formControlName="firstName"
-                 type="text"
-                 (change)="onFormDataChange()"
-                 placeholder="First Name"
+          <input
+            class="input-area"
+            matInput
+            formControlName="firstName"
+            type="text"
+            (change)="onFormDataChange()"
+            placeholder="First Name"
           />
           <mat-error
-            *ngIf="personalInformationForm.get('firstName')?.hasError('required')"
+            *ngIf="
+              personalInformationForm.get('firstName')?.hasError('required')
+            "
           >
             First Name is required!
           </mat-error>
         </mat-form-field>
 
         <mat-form-field class="emp-form-field">
-          <input class="mt input-area"
-                 matInput
-                 formControlName="lastName"
-                 type="text"
-                 (change)="onFormDataChange()"
-
-                 placeholder="Last Name"
+          <input
+            class="mt input-area"
+            matInput
+            formControlName="lastName"
+            type="text"
+            (change)="onFormDataChange()"
+            placeholder="Last Name"
           />
           <mat-error
-            *ngIf="personalInformationForm.get('lastName')?.hasError('required')"
+            *ngIf="
+              personalInformationForm.get('lastName')?.hasError('required')
+            "
           >
             Last Name is required!
           </mat-error>
         </mat-form-field>
 
         <mat-form-field class="emp-form-field">
-          <input class="mt input-area"
-                 matInput
-                 formControlName="phoneNumber"
-                 type="text"
-                 (change)="onFormDataChange()"
-
-                 placeholder="Phone Number"
+          <input
+            class="mt input-area"
+            matInput
+            formControlName="phoneNumber"
+            type="text"
+            (change)="onFormDataChange()"
+            placeholder="Phone Number"
           />
           <mat-error
-            *ngIf="personalInformationForm.get('phoneNumber')?.hasError('required')"
+            *ngIf="
+              personalInformationForm.get('phoneNumber')?.hasError('required')
+            "
           >
             Phone Number is required!
           </mat-error>
         </mat-form-field>
 
         <mat-form-field class="emp-form-field">
-          <input class="mt input-area"
-                 matInput
-                 formControlName="email"
-                 (change)="onFormDataChange()"
-
-                 type="text"
-                 placeholder="Enter your email"
+          <input
+            class="mt input-area"
+            matInput
+            formControlName="email"
+            (change)="onFormDataChange()"
+            type="text"
+            placeholder="Enter your email"
           />
           <mat-error
             *ngIf="personalInformationForm.get('email')?.hasError('required')"
@@ -92,15 +115,17 @@
       </div>
 
       <div class="column">
-        <mat-label><h3 class="personal-info-font-small">DELIVERY ADDRESS</h3></mat-label>
+        <mat-label
+          ><h3 class="personal-info-font-small">DELIVERY ADDRESS</h3></mat-label
+        >
         <mat-form-field class="emp-form-field">
-          <input class="input-area"
-                 matInput
-                 formControlName="city"
-                 (change)="onFormDataChange()"
-
-                 type="text"
-                 placeholder="City"
+          <input
+            class="input-area"
+            matInput
+            formControlName="city"
+            (change)="onFormDataChange()"
+            type="text"
+            placeholder="City"
           />
           <mat-error
             *ngIf="personalInformationForm.get('city')?.hasError('required')"
@@ -110,13 +135,13 @@
         </mat-form-field>
 
         <mat-form-field class="emp-form-field">
-          <input class="mt input-area"
-                 matInput
-                 formControlName="street"
-                 type="text"
-                 (change)="onFormDataChange()"
-
-                 placeholder="Street"
+          <input
+            class="mt input-area"
+            matInput
+            formControlName="street"
+            type="text"
+            (change)="onFormDataChange()"
+            placeholder="Street"
           />
           <mat-error
             *ngIf="personalInformationForm.get('street')?.hasError('required')"
@@ -127,13 +152,13 @@
 
         <div class="apartment-building-info">
           <mat-form-field class="emp-form-field">
-            <input class="mt input-area-small"
-                   matInput
-                   formControlName="house"
-                   type="text"
-                   (change)="onFormDataChange()"
-
-                   placeholder="Building"
+            <input
+              class="mt input-area-small"
+              matInput
+              formControlName="house"
+              type="text"
+              (change)="onFormDataChange()"
+              placeholder="Building"
             />
             <mat-error
               *ngIf="personalInformationForm.get('house')?.hasError('required')"
@@ -143,15 +168,18 @@
           </mat-form-field>
 
           <mat-form-field class="emp-form-field">
-            <input class="mt input-area-small"
-                   matInput
-                   formControlName="apartment"
-                   type="text"
-                   (change)="onFormDataChange()"
-                   placeholder="Apartment"
+            <input
+              class="mt input-area-small"
+              matInput
+              formControlName="apartment"
+              type="text"
+              (change)="onFormDataChange()"
+              placeholder="Apartment"
             />
             <mat-error
-              *ngIf="personalInformationForm.get('apartment')?.hasError('required')"
+              *ngIf="
+                personalInformationForm.get('apartment')?.hasError('required')
+              "
             >
               Apartment is required!
             </mat-error>
@@ -159,7 +187,6 @@
         </div>
       </div>
     </div>
-    <hr>
+    <hr />
   </div>
 </form>
-

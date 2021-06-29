@@ -1,7 +1,7 @@
-import CheckoutItem from "./CheckoutItem";
+import CheckoutItem from './CheckoutItem';
 
 export class CheckoutDto {
-  products: CheckoutItem[]
+  products: CheckoutItem[];
   overallPrice: number;
   firstName: string;
   lastName: string;
@@ -12,8 +12,18 @@ export class CheckoutDto {
   house: string;
   apartment: string;
 
-  constructor(products: CheckoutItem[], overallPrice: number, firstName: string, lastName: string, phoneNumber: string,
-              email: string, city: string, street: string, house: string, apartment: string) {
+  constructor(
+    products: CheckoutItem[],
+    overallPrice: number,
+    firstName: string,
+    lastName: string,
+    phoneNumber: string,
+    email: string,
+    city: string,
+    street: string,
+    house: string,
+    apartment: string
+  ) {
     this.products = products;
     this.overallPrice = overallPrice;
     this.firstName = firstName;
