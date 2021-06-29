@@ -9,53 +9,61 @@
     <mat-label><h3>PERSONAL INFORMATION</h3></mat-label>
 
     <mat-form-field class="profile-info-form-field" appearance="fill">
-      <mat-label>{{ userInfo?.firstName }}</mat-label>
-      <input type="text" matInput formControlName="firstName" />
+      <mat-label> First name </mat-label>
+      <input type="text" matInput formControlName="firstName" [value]=" userInfo?.firstName " />
     </mat-form-field>
 
     <mat-form-field class="profile-info-form-field" appearance="fill">
-      <mat-label>{{ userInfo?.lastName }}</mat-label>
-      <input type="text" matInput formControlName="secondName" />
+      <mat-label> Last name </mat-label>
+      <input type="text" matInput formControlName="secondName" [value]=" userInfo?.lastName "/>
     </mat-form-field>
 
     <mat-form-field class="profile-info-form-field" appearance="fill">
-      <mat-label>{{ userInfo?.phoneNumber }}</mat-label>
-      <input type="text" matInput formControlName="phoneNumber" />
+      <mat-label> Phone number </mat-label>
+      <input type="text" matInput formControlName="phoneNumber" [value]=" userInfo?.phoneNumber "/>
     </mat-form-field>
 
     <mat-form-field class="profile-info-form-field" appearance="fill">
-      <mat-label>{{ userInfo?.dateOfBirth }}</mat-label>
-      <input type="text" matInput formControlName="dateOfBirth" />
+      <mat-label> Date of birth </mat-label>
+      <input type="text" matInput formControlName="dateOfBirth" [value]=" userInfo?.dateOfBirth?.getDate()?.toString() "/>
     </mat-form-field>
+
+    <mat-radio-group formControlName="sex">
+      <mat-radio-button value="male"> Male </mat-radio-button>
+      <mat-radio-button value="female"> Female </mat-radio-button>
+    </mat-radio-group>
+
   </div>
 
   <div class="form-column">
+    <mat-label><h3> ADDRESS </h3></mat-label>
+
     <mat-form-field class="profile-info-form-field" appearance="fill">
-      <mat-label>{{ userInfo?.city }}</mat-label>
-      <input type="text" matInput formControlName="city" />
+      <mat-label> City </mat-label>
+      <input type="text" matInput formControlName="city" [value]=" userInfo?.city "/>
     </mat-form-field>
 
     <mat-form-field class="profile-info-form-field" appearance="fill">
-      <mat-label>{{ userInfo?.street }}</mat-label>
-      <input type="text" matInput formControlName="street" />
+      <mat-label> Street </mat-label>
+      <input type="text" matInput formControlName="street" [value]=" userInfo?.street "/>
     </mat-form-field>
 
     <div class="house-apartm-line">
-      <mat-form-field class="profile-info-form-field" appearance="fill">
-        <mat-label>{{ userInfo?.house }}</mat-label>
-        <input type="text" matInput formControlName="house" />
+      <mat-form-field class="house-apartm-form-field" style="margin-right: 10%;" appearance="fill">
+        <mat-label> House </mat-label>
+        <input type="text" matInput formControlName="house" [value]=" userInfo?.house "/>
       </mat-form-field>
 
-      <mat-form-field class="profile-info-form-field" appearance="fill">
-        <mat-label>{{ userInfo?.apartment }}</mat-label>
-        <input type="text" matInput formControlName="apartment" />
+      <mat-form-field class="house-apartm-form-field" appearance="fill">
+        <mat-label> Apartment </mat-label>
+        <input type="text" matInput formControlName="apartment" [value]=" userInfo?.apartment "/>
       </mat-form-field>
     </div>
 
-    <mat-label><h3>EMAIL</h3></mat-label>
-    <mat-form-field class="profile-info-form-field" appearance="fill">
-      <mat-label>{{ userInfo?.email }}</mat-label>
-      <input type="email" matInput formControlName="email" />
+    <mat-label><h3> YOUR EMAIL </h3></mat-label>
+    <mat-form-field class="profile-info-form-field" appearance="fill" floatLabel="always">
+<!--      <mat-label> Email </mat-label>-->
+      <input type="email" matInput formControlName="email" [value]=" userInfo?.email "/>
     </mat-form-field>
   </div>
 
@@ -138,6 +146,7 @@
       disabled
       type="submit"
       color="accent"
+      (click) = "onSubmitPassword()"
     >
       CHANGE PASSWORD
     </button>
@@ -150,6 +159,7 @@
   [disabled]="!profileForm.valid"
   type="submit"
   color="accent"
+  (click) = "onSubmitProfile()"
 >
   SAVE CHANGES
 </button>

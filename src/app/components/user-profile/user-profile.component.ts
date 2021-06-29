@@ -10,7 +10,7 @@ import {
 } from '@angular/forms';
 import { ProfileService } from '../../store/service/profile.service';
 import { UserProfile } from '../../store/models/user-profile.model';
-import { EmployeeProfileErrorStateMatcher } from '../employee-profile/employee-profile.component';
+import {EditUserProfile} from "../../store/models/edit-user-profile.model";
 
 export class UserProfileErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -35,7 +35,7 @@ export class UserProfileComponent implements OnInit {
   userInfo?: UserProfile;
   profileForm: FormGroup;
   passwordForm: FormGroup;
-  errorMatcher = new EmployeeProfileErrorStateMatcher();
+  errorMatcher = new UserProfileErrorStateMatcher();
 
   hideOld = true;
   hideNew = true;
@@ -91,7 +91,27 @@ export class UserProfileComponent implements OnInit {
     this.changePassword();
   }
 
-  onSubmitProfile(): void {}
+  onSubmitProfile(): void {
+    console.log('submiting new info');
+    const editInfo = {
+      firstName: this.profileForm.get('firstName')?.value,
+    lastName: this.profileForm.get('secondName')?.value,
+    phoneNumber: this.profileForm.get('phoneNumber')?.value,
+    dateOfBirth: this.profileForm.get('dateOfBirth')?.value,
+    sex: this.profileForm.get('sex')?.value,
+    city: this.profileForm.get('city')?.value,
+    street: this.profileForm.get('street')?.value,
+    house: this.profileForm.get('house')?.value,
+    apartment: this.profileForm.get('apartment')?.value,
+    } as EditUserProfile;
+
+    this.profileService.editUserInfo(editInfo).subscribe((response) => {
+      alert("info changed");
+    }, (error) => {
+      console.error(error);
+      alert("something went wrong. try again later");
+    })
+  }
 
   private changePassword(): void {}
 
@@ -100,7 +120,6 @@ export class UserProfileComponent implements OnInit {
       (response) => {
         const data = response.body;
         this.userInfo = data!;
-        // this.dataLoaded = true;
         console.log('user info loaded');
       },
       (error) => {

@@ -5,6 +5,7 @@ import { environment } from '../../../environments/environment';
 import { endpointUrls } from '../../../environments/endpoint-routes-manager';
 import { EmployeeProfileModel } from '../models/employee-profile.model';
 import { UserProfile } from '../models/user-profile.model';
+import {EditUserProfile} from "../models/edit-user-profile.model";
 
 @Injectable({
   providedIn: 'root',
@@ -41,5 +42,12 @@ export class ProfileService {
 
   getUserInfo(): Observable<HttpResponse<UserProfile>> {
     return this.http.get<UserProfile>(this.userInfoURL, this.httpOptions);
+  }
+
+  editUserInfo(userData: EditUserProfile): Observable<HttpResponse<any>> {
+    return this.http.put(
+      this.editUserURL,
+      userData,
+      this.httpOptions);
   }
 }

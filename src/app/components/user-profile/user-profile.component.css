@@ -22,11 +22,21 @@
   width: 100%;
 }
 
+.house-apartm-form-field {
+  width: 45%;
+}
+
 .save-btn {
+  width: 100%;
   display: flex;
   justify-content: center;
   padding-left: 10%;
   padding-right: 10%;
   border-radius: 1px;
   margin-top: 3%;
+}
+
+.house-apartm-line {
+  display: flex;
+  flex-direction: row;
 }

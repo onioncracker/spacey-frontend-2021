@@ -42,7 +42,6 @@ import { MatDividerModule } from '@angular/material/divider';
 import { DeliveriesComponent } from './components/deliveries/deliveries.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { DatePipe } from '@angular/common';
-import { MatRadioModule } from '@angular/material/radio';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { ConfirmRegistrationComponent } from './components/confirm-registration/confirm-registration.component';
 import { DialogMessageComponent } from './components/dialog-message/dialog-message.component';
