@@ -11,6 +11,9 @@ import {
 import { ProfileService } from '../../store/service/profile.service';
 import { UserProfile } from '../../store/models/user-profile.model';
 import {EditUserProfile} from "../../store/models/edit-user-profile.model";
+import {TokenStorageService} from "../../store/service/auth/token-storage.service";
+import {Router} from "@angular/router";
+import {routeUrls} from "../../../environments/router-manager";
 
 export class UserProfileErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -43,7 +46,9 @@ export class UserProfileComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private tokenStorageService: TokenStorageService,
+    private router: Router
   ) {
     this.profileForm = this.formBuilder.group({
       firstName: ['', [Validators.required]],
@@ -89,6 +94,11 @@ export class UserProfileComponent implements OnInit {
 
   onSubmitPassword(): void {
     this.changePassword();
+  }
+
+  logout(): void {
+    this.tokenStorageService.signOut();
+    this.router.navigateByUrl(routeUrls.productsCatalog);
   }
 
   onSubmitProfile(): void {

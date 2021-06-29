@@ -1,3 +1,15 @@
+<div class="logout-div">
+  <button
+    mat-raised-button
+    class="logout-btn"
+    (click)="logout()"
+    color="accent">
+    Log out
+  </button>
+</div>
+
+<mat-label class="profile-label"><h1> PROFILE </h1></mat-label>
+
 <form
   class="form-class"
   (ngSubmit)="onSubmitProfile()"
@@ -29,7 +41,7 @@
     </mat-form-field>
 
     <mat-radio-group formControlName="sex">
-      <mat-radio-button value="male"> Male </mat-radio-button>
+      <mat-radio-button value="male" style="margin-right: 2%;"> Male </mat-radio-button>
       <mat-radio-button value="female"> Female </mat-radio-button>
     </mat-radio-group>
 
