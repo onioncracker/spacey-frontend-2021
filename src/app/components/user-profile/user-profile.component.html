@@ -3,12 +3,13 @@
     mat-raised-button
     class="logout-btn"
     (click)="logout()"
-    color="accent">
+    color="accent"
+  >
     Log out
   </button>
 </div>
 
-<mat-label class="profile-label"><h1> PROFILE </h1></mat-label>
+<mat-label class="profile-label"><h1>PROFILE</h1></mat-label>
 
 <form
   class="form-class"
@@ -22,60 +23,114 @@
 
     <mat-form-field class="profile-info-form-field" appearance="fill">
       <mat-label> First name </mat-label>
-      <input type="text" matInput formControlName="firstName" [value]=" userInfo?.firstName " />
+      <input
+        type="text"
+        matInput
+        formControlName="firstName"
+        [value]="userInfo?.firstName"
+      />
     </mat-form-field>
 
     <mat-form-field class="profile-info-form-field" appearance="fill">
       <mat-label> Last name </mat-label>
-      <input type="text" matInput formControlName="secondName" [value]=" userInfo?.lastName "/>
+      <input
+        type="text"
+        matInput
+        formControlName="secondName"
+        [value]="userInfo?.lastName"
+      />
     </mat-form-field>
 
     <mat-form-field class="profile-info-form-field" appearance="fill">
       <mat-label> Phone number </mat-label>
-      <input type="text" matInput formControlName="phoneNumber" [value]=" userInfo?.phoneNumber "/>
+      <input
+        type="text"
+        matInput
+        formControlName="phoneNumber"
+        [value]="userInfo?.phoneNumber"
+      />
     </mat-form-field>
 
     <mat-form-field class="profile-info-form-field" appearance="fill">
       <mat-label> Date of birth </mat-label>
-      <input type="text" matInput formControlName="dateOfBirth" [value]=" userInfo?.dateOfBirth?.getDate()?.toString() "/>
+      <input
+        type="text"
+        matInput
+        formControlName="dateOfBirth"
+        [value]="userInfo?.dateOfBirth?.getDate()?.toString()"
+      />
     </mat-form-field>
 
     <mat-radio-group formControlName="sex">
-      <mat-radio-button value="male" style="margin-right: 2%;"> Male </mat-radio-button>
+      <mat-radio-button value="male" style="margin-right: 2%;">
+        Male
+      </mat-radio-button>
       <mat-radio-button value="female"> Female </mat-radio-button>
     </mat-radio-group>
-
   </div>
 
   <div class="form-column">
-    <mat-label><h3> ADDRESS </h3></mat-label>
+    <mat-label><h3>ADDRESS</h3></mat-label>
 
     <mat-form-field class="profile-info-form-field" appearance="fill">
       <mat-label> City </mat-label>
-      <input type="text" matInput formControlName="city" [value]=" userInfo?.city "/>
+      <input
+        type="text"
+        matInput
+        formControlName="city"
+        [value]="userInfo?.city"
+      />
     </mat-form-field>
 
     <mat-form-field class="profile-info-form-field" appearance="fill">
       <mat-label> Street </mat-label>
-      <input type="text" matInput formControlName="street" [value]=" userInfo?.street "/>
+      <input
+        type="text"
+        matInput
+        formControlName="street"
+        [value]="userInfo?.street"
+      />
     </mat-form-field>
 
     <div class="house-apartm-line">
-      <mat-form-field class="house-apartm-form-field" style="margin-right: 10%;" appearance="fill">
+      <mat-form-field
+        class="house-apartm-form-field"
+        style="margin-right: 10%;"
+        appearance="fill"
+      >
         <mat-label> House </mat-label>
-        <input type="text" matInput formControlName="house" [value]=" userInfo?.house "/>
+        <input
+          type="text"
+          matInput
+          formControlName="house"
+          [value]="userInfo?.house"
+        />
       </mat-form-field>
 
       <mat-form-field class="house-apartm-form-field" appearance="fill">
         <mat-label> Apartment </mat-label>
-        <input type="text" matInput formControlName="apartment" [value]=" userInfo?.apartment "/>
+        <input
+          type="text"
+          matInput
+          formControlName="apartment"
+          [value]="userInfo?.apartment"
+        />
       </mat-form-field>
     </div>
 
-    <mat-label><h3> YOUR EMAIL </h3></mat-label>
-    <mat-form-field class="profile-info-form-field" appearance="fill" floatLabel="always">
-<!--      <mat-label> Email </mat-label>-->
-      <input type="email" matInput formControlName="email" [value]=" userInfo?.email "/>
+    <mat-label><h3>YOUR EMAIL</h3></mat-label>
+    <mat-form-field
+      class="profile-info-form-field"
+      appearance="fill"
+      floatLabel="always"
+    >
+      <!--      <mat-label> Email </mat-label>-->
+      <input
+        type="email"
+        matInput
+        formControlName="email"
+        [value]="userInfo?.email"
+      />
     </mat-form-field>
   </div>
 
@@ -158,7 +213,7 @@
       disabled
       type="submit"
       color="accent"
-      (click) = "onSubmitPassword()"
+      (click)="onSubmitPassword()"
     >
       CHANGE PASSWORD
     </button>
@@ -171,7 +226,7 @@
   [disabled]="!profileForm.valid"
   type="submit"
   color="accent"
-  (click) = "onSubmitProfile()"
+  (click)="onSubmitProfile()"
 >
   SAVE CHANGES
 </button>

@@ -10,10 +10,10 @@ import {
 } from '@angular/forms';
 import { ProfileService } from '../../store/service/profile.service';
 import { UserProfile } from '../../store/models/user-profile.model';
-import {EditUserProfile} from "../../store/models/edit-user-profile.model";
-import {TokenStorageService} from "../../store/service/auth/token-storage.service";
-import {Router} from "@angular/router";
-import {routeUrls} from "../../../environments/router-manager";
+import { EditUserProfile } from '../../store/models/edit-user-profile.model';
+import { TokenStorageService } from '../../store/service/auth/token-storage.service';
+import { Router } from '@angular/router';
+import { routeUrls } from '../../../environments/router-manager';
 
 export class UserProfileErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -98,29 +98,32 @@ export class UserProfileComponent implements OnInit {
 
   logout(): void {
     this.tokenStorageService.signOut();
-    this.router.navigateByUrl(routeUrls.productsCatalog);
+    this.router.navigateByUrl(routeUrls.login);
   }
 
   onSubmitProfile(): void {
     console.log('submiting new info');
     const editInfo = {
       firstName: this.profileForm.get('firstName')?.value,
-    lastName: this.profileForm.get('secondName')?.value,
-    phoneNumber: this.profileForm.get('phoneNumber')?.value,
-    dateOfBirth: this.profileForm.get('dateOfBirth')?.value,
-    sex: this.profileForm.get('sex')?.value,
-    city: this.profileForm.get('city')?.value,
-    street: this.profileForm.get('street')?.value,
-    house: this.profileForm.get('house')?.value,
-    apartment: this.profileForm.get('apartment')?.value,
+      lastName: this.profileForm.get('secondName')?.value,
+      phoneNumber: this.profileForm.get('phoneNumber')?.value,
+      dateOfBirth: this.profileForm.get('dateOfBirth')?.value,
+      sex: this.profileForm.get('sex')?.value,
+      city: this.profileForm.get('city')?.value,
+      street: this.profileForm.get('street')?.value,
+      house: this.profileForm.get('house')?.value,
+      apartment: this.profileForm.get('apartment')?.value,
     } as EditUserProfile;
 
-    this.profileService.editUserInfo(editInfo).subscribe((response) => {
-      alert("info changed");
-    }, (error) => {
-      console.error(error);
-      alert("something went wrong. try again later");
-    })
+    this.profileService.editUserInfo(editInfo).subscribe(
+      (response) => {
+        alert('info changed');
+      },
+      (error) => {
+        console.error(error);
+        alert('something went wrong. try again later');
+      }
+    );
   }
 
   private changePassword(): void {}
