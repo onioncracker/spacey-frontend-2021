@@ -1,18 +1,18 @@
-import {Injectable} from '@angular/core';
-import {environment} from '../../../../environments/environment';
-import {HttpClient} from '@angular/common/http';
-import {AddProductModel} from '../../models/add-product.model';
-import {Observable, Subscription} from 'rxjs';
-import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
-import {DialogMessageComponent} from '../../../components/dialog-message/dialog-message.component';
-import {DialogService} from "../dialog/dialog.service";
+import { Injectable } from '@angular/core';
+import { environment } from '../../../../environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { AddProductModel } from '../../models/add-product.model';
+import { Observable, Subscription } from 'rxjs';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { DialogMessageComponent } from '../../../components/dialog-message/dialog-message.component';
+import { DialogService } from '../dialog/dialog.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AddProductService {
   private addProductUrl = `${environment.url}/api/v1/product/add`;
-  private httpOptions = {observe: 'response' as const};
+  private httpOptions = { observe: 'response' as const };
   private allMaterialsUrl = `${environment.url}/api/v1/material/all`;
   private allColorsUrl = `${environment.url}/api/v1/color/all`;
   private allSizesUrl = `${environment.url}/api/v1/size/all`;
@@ -23,8 +23,7 @@ export class AddProductService {
     private http: HttpClient,
     private dialog: MatDialog,
     private dialogService: DialogService
-  ) {
-  }
+  ) {}
 
   addNewProduct(addProductData: AddProductModel): Observable<any> {
     console.log(this.httpOptions);
@@ -41,10 +40,7 @@ export class AddProductService {
     return this.http
       .post(`${this.imgUrl}/${id}`, formData)
       .subscribe((response) => {
-        this.dialogService.openMessage(
-          'Photo has been uploaded',
-          'Close'
-        );
+        this.dialogService.openMessage('Photo has been uploaded', 'Close');
       });
   }
 

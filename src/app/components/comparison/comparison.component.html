@@ -31,7 +31,7 @@
       <td class="compare-field" *ngFor="let product of products">
         <a routerLink="/products-catalog/{{ product.id }}" class="prod-name">{{
           product.name
-          }}</a>
+        }}</a>
       </td>
     </tr>
     <tr>
@@ -139,7 +139,11 @@
     </button>
   </div>
 </div>
-<div *ngIf="products.length < 2" routerLink="/products-catalog" class="table-comparison">
+<div
+  *ngIf="products.length < 2"
+  routerLink="/products-catalog"
+  class="table-comparison"
+>
   <h3>
     You add to compere less then 2 products. Please, go to catalog and add more.
   </h3>

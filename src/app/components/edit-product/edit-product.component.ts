@@ -1,17 +1,16 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {EditProductService} from '../../store/service/edit-product/edit-product.service';
-import {FormBuilder, Validators} from '@angular/forms';
-import {CategoryColorMaterialsModel} from '../../store/models/category-color-materials.model';
-import {Sizes} from '../../store/models/sizes';
-import {AddProductService} from '../../store/service/add-product/add-product.service';
-import {EditProductModel} from '../../store/models/edit-product.model';
-import {DialogService} from "../../store/service/dialog/dialog.service";
-import {routeUrls} from "../../../environments/router-manager";
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { EditProductService } from '../../store/service/edit-product/edit-product.service';
+import { FormBuilder, Validators } from '@angular/forms';
+import { CategoryColorMaterialsModel } from '../../store/models/category-color-materials.model';
+import { Sizes } from '../../store/models/sizes';
+import { AddProductService } from '../../store/service/add-product/add-product.service';
+import { EditProductModel } from '../../store/models/edit-product.model';
+import { DialogService } from '../../store/service/dialog/dialog.service';
+import { routeUrls } from '../../../environments/router-manager';
 
 class ImageSnippet {
-  constructor(public src: string, public file: File) {
-  }
+  constructor(public src: string, public file: File) {}
 }
 
 @Component({
@@ -42,8 +41,7 @@ export class EditProductComponent implements OnInit {
     private formBuilder: FormBuilder,
     private editProductService: EditProductService,
     private dialogService: DialogService
-  ) {
-  }
+  ) {}
 
   editProductForm = this.formBuilder.group({
     id: ['', [Validators.required]],
@@ -64,10 +62,7 @@ export class EditProductComponent implements OnInit {
     this.product = this.editProductForm.value;
     this.product.sizes = this.sizesAmount;
     this.updateProduct(this.product);
-    this.dialogService.openMessage(
-      'Product has been updated',
-      'close'
-    );
+    this.dialogService.openMessage('Product has been updated', 'close');
   }
 
   getProduct(): void {
@@ -104,10 +99,7 @@ export class EditProductComponent implements OnInit {
     this.dialogService.confirmed().subscribe((confirmed) => {
       if (confirmed) {
         this.editProductService.deleteProductById(id).subscribe(() => {
-          this.dialogService.openMessage(
-            'Product has been deleted',
-            'close'
-          );
+          this.dialogService.openMessage('Product has been deleted', 'close');
           this.goProductsCatalog();
         });
       }

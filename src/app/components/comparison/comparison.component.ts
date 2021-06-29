@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {CompareService} from '../../store/service/comparison/compare.service';
-import {SizesComparisonModel} from '../../store/models/sizes-comparison.model';
-import {ProductModel} from '../../store/models/product.model';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { CompareService } from '../../store/service/comparison/compare.service';
+import { SizesComparisonModel } from '../../store/models/sizes-comparison.model';
+import { ProductModel } from '../../store/models/product.model';
 
 @Component({
   selector: 'app-comparison',
@@ -16,8 +16,7 @@ export class ComparisonComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private comparisonService: CompareService
-  ) {
-  }
+  ) {}
 
   getAllComparison() {
     if (sessionStorage.getItem('token')) {

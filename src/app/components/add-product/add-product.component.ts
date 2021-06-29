@@ -1,20 +1,19 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {AddProductService} from '../../store/service/add-product/add-product.service';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { AddProductService } from '../../store/service/add-product/add-product.service';
 import {
   FormBuilder,
   FormGroup,
   FormGroupDirective,
   Validators,
 } from '@angular/forms';
-import {AddProductModel} from '../../store/models/add-product.model';
-import {CategoryColorMaterialsModel} from '../../store/models/category-color-materials.model';
-import {Sizes} from '../../store/models/sizes';
-import {DialogService} from "../../store/service/dialog/dialog.service";
+import { AddProductModel } from '../../store/models/add-product.model';
+import { CategoryColorMaterialsModel } from '../../store/models/category-color-materials.model';
+import { Sizes } from '../../store/models/sizes';
+import { DialogService } from '../../store/service/dialog/dialog.service';
 
 class ImageSnippet {
-  constructor(public src: string, public file: File) {
-  }
+  constructor(public src: string, public file: File) {}
 }
 
 @Component({
@@ -55,10 +54,7 @@ export class AddProductComponent implements OnInit {
   onSubmit(addProductForm: any, productForm: FormGroupDirective) {
     this.addProduct();
     productForm.resetForm();
-    this.dialogService.openMessage(
-      'Product has been added',
-      'Close'
-    );
+    this.dialogService.openMessage('Product has been added', 'Close');
   }
 
   public addProduct(): void {

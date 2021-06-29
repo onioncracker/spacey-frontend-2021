@@ -1,12 +1,12 @@
-import {Injectable} from '@angular/core';
-import {environment} from '../../../../environments/environment';
-import {HttpClient} from '@angular/common/http';
-import {Observable, of} from 'rxjs';
-import {ProductModel} from '../../models/product.model';
-import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
-import {DialogMessageComponent} from '../../../components/dialog-message/dialog-message.component';
-import {catchError} from 'rxjs/operators';
-import {DialogService} from "../dialog/dialog.service";
+import { Injectable } from '@angular/core';
+import { environment } from '../../../../environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
+import { ProductModel } from '../../models/product.model';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { DialogMessageComponent } from '../../../components/dialog-message/dialog-message.component';
+import { catchError } from 'rxjs/operators';
+import { DialogService } from '../dialog/dialog.service';
 
 @Injectable({
   providedIn: 'root',
@@ -19,8 +19,7 @@ export class CompareService {
     private http: HttpClient,
     private dialog: MatDialog,
     private dialogService: DialogService
-  ) {
-  }
+  ) {}
 
   getAllCompareProduct(): Observable<any> {
     return this.http.get(`${this.comparisonURL}`);
@@ -67,10 +66,7 @@ export class CompareService {
           comparison.filter((product) => product.id == productData.id).length >=
           1
         ) {
-          this.dialogService.openMessage(
-            'Product already compared',
-            'Close'
-          );
+          this.dialogService.openMessage('Product already compared', 'Close');
         } else {
           comparison.push(productData);
           localStorage.setItem(

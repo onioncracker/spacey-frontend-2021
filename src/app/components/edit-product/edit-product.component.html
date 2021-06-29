@@ -9,7 +9,7 @@
       <td>
         <h3 class="edit-h">ID</h3>
         <mat-form-field appearance="fill">
-          <input matInput type="text" placeholder="ID" formControlName="id"/>
+          <input matInput type="text" placeholder="ID" formControlName="id" />
         </mat-form-field>
       </td>
       <td>
@@ -152,28 +152,28 @@
         </div>
       </td>
       <td rowspan="5" class="sizes">
-    <tr *ngFor="let size of sizesAmount; let i = index; trackBy: onTrackBy">
-      <td>
-        <div class="sizes">
-          <mat-label class="edit-h"> {{ size.name }}:</mat-label>
-          <mat-form-field class="size-amount" appearance="fill">
-            <input
-              matInput
-              type="number"
-              placeholder="Amount"
-              [(ngModel)]="sizesAmount[i].quantity"
-              [ngModelOptions]="{ standalone: true }"
-            />
-          </mat-form-field>
-          <br/>
-        </div>
+        <tr *ngFor="let size of sizesAmount; let i = index; trackBy: onTrackBy">
+          <td>
+            <div class="sizes">
+              <mat-label class="edit-h"> {{ size.name }}:</mat-label>
+              <mat-form-field class="size-amount" appearance="fill">
+                <input
+                  matInput
+                  type="number"
+                  placeholder="Amount"
+                  [(ngModel)]="sizesAmount[i].quantity"
+                  [ngModelOptions]="{ standalone: true }"
+                />
+              </mat-form-field>
+              <br />
+            </div>
+          </td>
+        </tr>
       </td>
-    </tr>
-    </td>
     </tr>
   </table>
 
-  <br/>
+  <br />
   <div class="wrapper">
     <button
       mat-raised-button
@@ -184,7 +184,7 @@
       SAVE CHANGES
     </button>
   </div>
-  <br/>
+  <br />
 </form>
 <div class="wrapper">
   <button
