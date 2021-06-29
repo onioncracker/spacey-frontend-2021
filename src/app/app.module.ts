@@ -38,7 +38,6 @@ import { DeliveryComponent } from './components/delivery/delivery.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { DeliveriesComponent } from './components/deliveries/deliveries.component';
 import { DatePipe } from '@angular/common';
-import { MatRadioModule } from '@angular/material/radio';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { ConfirmRegistrationComponent } from './components/confirm-registration/confirm-registration.component';
 import { DialogMessageComponent } from './components/dialog-message/dialog-message.component';
@@ -58,6 +57,10 @@ import { SortingComponent } from './components/sorting/sorting.component';
 import { ProductComponent } from './components/product/product.component';
 import { PillComponent } from './components/pill/pill.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { MatRadioModule } from '@angular/material/radio';
+import { EmployeeProfileComponent } from './components/employee-profile/employee-profile.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { ConfirmComponent } from './components/confirm/confirm.component';
 
 @NgModule({
   declarations: [
@@ -91,6 +94,9 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     PillComponent,
     PaginationComponent,
     PersonalInformationComponent,
+    EmployeeProfileComponent,
+    UserProfileComponent,
+    ConfirmComponent,
   ],
   imports: [
     BrowserModule,
