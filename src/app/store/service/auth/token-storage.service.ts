@@ -30,7 +30,7 @@ export class TokenStorageService {
     sessionStorage.setItem(ROLE_KEY, role);
   }
 
-  public  getRole() {
+  public getRole() {
     return sessionStorage.getItem(ROLE_KEY) as string;
   }
 
