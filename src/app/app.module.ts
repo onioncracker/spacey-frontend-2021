@@ -60,6 +60,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
 import { MatRadioModule } from '@angular/material/radio';
 import { EmployeeProfileComponent } from './components/employee-profile/employee-profile.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { ConfirmComponent} from "./components/confirm/confirm.component";
 
 @NgModule({
   declarations: [
@@ -95,6 +96,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     PersonalInformationComponent,
     EmployeeProfileComponent,
     UserProfileComponent,
+    ConfirmComponent,
   ],
   imports: [
     BrowserModule,
