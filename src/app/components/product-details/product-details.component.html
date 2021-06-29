@@ -1,0 +1,73 @@
+<div *ngIf="product">
+  <div class="title-container">
+    <h1 class="display-4 mb-5">{{ product.name }}</h1>
+  </div>
+
+  <div class="body-container">
+    <div class="photos-container">
+      <img
+        class="card-img-top"
+        src="{{ product.photo }}"
+        alt="{{ product.name }}"
+      />
+    </div>
+
+    <div class="info-container">
+      <div class="underlining-container">
+        <div>
+          <h5 class="h5-title-parameter">Color:</h5>
+          <p class="parameter">{{ product.color }}</p>
+          <img
+            class="card-img-description"
+            src="{{ product.photo }}"
+            alt="{{ product.name }}"
+          />
+        </div>
+        <div>
+          <div class="button-container" *ngFor="let size of product.sizes">
+            <button type="button" class="button">
+              {{ size.name }}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-info-container underlining-container">
+        <h5 class="price">{{ product.price }} UAH</h5>
+        <button type="button" class="purchase-button" (click)="addToCart()">
+          Add to cart
+        </button>
+        <button
+          type="button"
+          class="purchase-button"
+          (click)="addProductToCompare(product)"
+        >
+          Add to compare
+        </button>
+      </div>
+
+      <div class="product-info-container underlining-container">
+        <h5 class="product-info-title">Description</h5>
+        <p class="description">{{ product.description }}</p>
+      </div>
+
+      <div class="underlining-container">
+        <h5 class="product-info-title">Additional information</h5>
+        <div>
+          <h5 class="h5-additional-info-title">Color:</h5>
+          <p class="additional-info">{{ product.color }}</p>
+        </div>
+        <div>
+          <h5 class="h5-additional-info-title">Sizes:</h5>
+          <p class="additional-info" *ngFor="let size of product.sizes">
+            {{ size.name }}
+          </p>
+        </div>
+        <div>
+          <h5 class="h5-additional-info-title">Materials:</h5>
+          <p class="additional-info">{{ product.materials }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

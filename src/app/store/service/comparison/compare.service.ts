@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { Product } from '../../models/product';
+import { ProductModel } from '../../models/product.model';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DialogMessageComponent } from '../../../components/dialog-message/dialog-message.component';
 import { catchError } from 'rxjs/operators';
@@ -29,7 +29,7 @@ export class CompareService {
   }
 
   deleteLocalStorageProduct(id: number) {
-    let comparison: Product[];
+    let comparison: ProductModel[];
     comparison = JSON.parse(
       <string>localStorage.getItem(this.comparisonLocalStorage)
     );
@@ -40,25 +40,25 @@ export class CompareService {
     );
   }
 
-  addProductToCompareSessionStorage(productData: Product) {
+  addProductToCompareSessionStorage(productData: ProductModel) {
     if (!localStorage.getItem(this.comparisonLocalStorage)) {
-      let comparison: Product[] = [productData];
+      let comparison: ProductModel[] = [productData];
       localStorage.setItem(
         this.comparisonLocalStorage,
         JSON.stringify(comparison)
       );
     } else {
-      let comparison: Product[] = JSON.parse(
+      let comparison: ProductModel[] = JSON.parse(
         <string>localStorage.getItem(this.comparisonLocalStorage)
       );
       if (comparison.length >= 4) {
-        this.openDialog('You can`t add more then 4 product');
+        this.openDialog('You can`t add more then 4 product-details');
       } else {
         if (
           comparison.filter((product) => product.id == productData.id).length >=
           1
         ) {
-          this.openDialog('Product already compared');
+          this.openDialog('ProductModel already compared');
         } else {
           comparison.push(productData);
           localStorage.setItem(
@@ -93,7 +93,7 @@ export class CompareService {
       });
   }
 
-  addProductToCompare(comparison: Product) {
+  addProductToCompare(comparison: ProductModel) {
     if (this.isUserLogIn()) {
       this.addProductToCompareServer(comparison.id);
     } else {

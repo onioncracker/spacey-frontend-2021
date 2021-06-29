@@ -23,11 +23,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthInterceptor } from './store/service/AuthInterceptor';
-import { ProductsComponent } from './components/products/products.component';
-import { ProductDetailsComponent } from './components/product/product-details.component';
-import { FilterComponent } from './components/products/filter/filter.component';
-import { CategoryComponent } from './components/products/category/category.component';
-import { PaginationComponent } from './components/pagination/pagination.component';
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTableModule } from '@angular/material/table';
@@ -35,14 +31,20 @@ import { AdminEditComponent } from './components/admin-edit/admin-edit.component
 import { ComparisonComponent } from './components/comparison/comparison.component';
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { EditProductComponent } from './components/edit-product/edit-product.component';
-import { MatOptionModule } from '@angular/material/core';
+import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
+import { DeliveryComponent } from './components/delivery/delivery.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatDividerModule } from '@angular/material/divider';
+import { DeliveriesComponent } from './components/deliveries/deliveries.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { DatePipe } from '@angular/common';
+import { MatRadioModule } from '@angular/material/radio';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { ConfirmRegistrationComponent } from './components/confirm-registration/confirm-registration.component';
 import { DialogMessageComponent } from './components/dialog-message/dialog-message.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { ManageProductsComponent } from './components/manage-products/manage-products.component';
 import { HeaderComponent } from './components/header/header.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSliderModule } from "@angular/material/slider";
@@ -51,6 +53,13 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { PersonalInformationComponent } from './components/personal-information/personal-information.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { NgxCaptchaModule } from 'ngx-captcha';
+import { ProductsCatalogComponent } from './components/products-catalog/products-catalog.component';
+import { FilterComponent } from './components/filter/filter.component';
+import { SortingComponent } from './components/sorting/sorting.component';
+import { ProductComponent } from './components/product/product.component';
+import { PillComponent } from './components/pill/pill.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -63,23 +72,28 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     SummaryComponent,
     OrdersComponent,
     DeliveryInfoComponent,
+    DeliveriesComponent,
     CommentComponent,
     ProductsComponent,
+    OrderComponent,
     ProductDetailsComponent,
-    CategoryComponent,
-    FilterComponent,
-    PaginationComponent,
     AdminEmployeeComponent,
     AdminAddComponent,
     AdminEditComponent,
     ComparisonComponent,
     AddProductComponent,
     EditProductComponent,
+    DeliveryComponent,
     DialogMessageComponent,
-    ManageProductsComponent,
     ShoppingCartComponent,
     ConfirmRegistrationComponent,
     HeaderComponent,
+    ProductsCatalogComponent,
+    FilterComponent,
+    SortingComponent,
+    ProductComponent,
+    PillComponent,
+    PaginationComponent,
     PersonalInformationComponent,
   ],
   imports: [
@@ -104,7 +118,14 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     MatAutocompleteModule,
     MatChipsModule,
     MatSelectModule,
+    MatGridListModule,
+    MatDividerModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatRadioModule,
     MatDialogModule,
+    NgxCaptchaModule,
+    MatRadioModule,
     MatCheckboxModule,
     MatSelectModule,
     MatDividerModule,
@@ -115,6 +136,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
       useClass: AuthInterceptor,
       multi: true,
     },
+    DatePipe,
   ],
   bootstrap: [AppComponent],
 })

@@ -1,0 +1,99 @@
+<div>
+  <h1 class="dl-h1">{{ title }}</h1>
+</div>
+<div class="dl-top-elem">
+  <div class="dl-top-elem-child">
+    <div>
+      <h3 class="bold">ORDER # {{ order.orderId }}</h3>
+    </div>
+    <div class="default_padding">
+      <h3>{{ order.dateCreate | date: "medium" }}</h3>
+    </div>
+  </div>
+  <div>
+    <mat-accordion>
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>{{ order.orderStatus }}</mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-radio-group class="radio-group" [(ngModel)]="status">
+          <mat-radio-button
+            class="radio-button"
+            *ngFor="let status of statuses"
+            [value]="status"
+            (change)="onChange($event)"
+          >
+            {{ status.statusName }}
+          </mat-radio-button>
+          <br />
+        </mat-radio-group>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>
+<div class="dl-item-container">
+  <h1 class="default_padding">Items</h1>
+  <div *ngFor="let product of order.products" class="dl-item-container">
+    <div class="main-container">
+      <div class="image-container">
+        <img
+          class="card-img"
+          src="{{ product.photo }}"
+          alt="{{ product.name }}"
+        />
+        <div class="product-info">
+          <h4>{{ product.name }}</h4>
+          <h4>{{ product.color }},{{ product.size }}</h4>
+          <h4>x {{ product.amount }}</h4>
+        </div>
+      </div>
+      <div>
+        <h3>{{ product.price }} UAH</h3>
+      </div>
+    </div>
+    <hr class="solid" />
+  </div>
+</div>
+<div class="delivery-info-container">
+  <div>
+    <h3 class="dl-t3">DELIVERY INFORMATION</h3>
+    <h3 class="dl-t2">
+      {{ order.firstName }}
+      {{ order.lastName }}
+      <br />
+      {{ order.city }}
+      {{ order.street }}
+      {{ order.house }}
+      <br />
+      <div *ngIf="order.apartment">Apartment {{ order.apartment }}</div>
+      Tel: {{ order.phoneNumber }}
+      <br />
+      {{ order.dateDelivery | date: "short" }}
+    </h3>
+  </div>
+  <div>
+    <h3>COMMENT</h3>
+    <h4>
+      {{ order.comment }}
+    </h4>
+  </div>
+</div>
+<hr class="solid" />
+<div class="delivery-info-container">
+  <div>
+    <h3>
+      Items
+      <br />
+      Delivery
+    </h3>
+    <h3>Total</h3>
+  </div>
+  <div>
+    <h3>
+      {{ order.overallPrice }} UAH
+      <br />
+      0 UAH
+    </h3>
+    <h3>{{ order.overallPrice }} UAH</h3>
+  </div>
+</div>
