@@ -7,10 +7,11 @@ import {
   NgForm,
   Validators,
 } from '@angular/forms';
-import { EmployeeService } from '../../store/service/employee/employeeService';
+import { EmployeeService } from '../../store/service/employee/employee.service';
 import { RegistrationErrorStateMatcher } from '../register/register.component';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { AddEmployeeModel } from '../../store/models/AddEmployeeModel';
+import { Router } from '@angular/router';
 
 interface Roles {
   id: number;
@@ -45,18 +46,19 @@ export class AdminAddComponent {
   disableSelect = new FormControl(false);
   roles: Roles[] = [
     { id: 1, name: 'Courier' },
-    { id: 2, name: 'ProductModel Manager' },
+    { id: 2, name: 'Product Manager' },
   ];
 
   statuses: Statuses[] = [
-    { id: 1, name: 'Active' },
-    { id: 2, name: 'Terminated' },
-    { id: 3, name: 'Inactive' },
+    { id: 1, name: 'Inactive' },
+    { id: 2, name: 'Active' },
+    { id: 3, name: 'Terminate' },
   ];
 
   constructor(
     private formBuilder: FormBuilder,
-    private messageService: EmployeeService
+    private messageService: EmployeeService,
+    private router: Router
   ) {
     this.addEmployeeForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -99,9 +101,7 @@ export class AdminAddComponent {
     this.addEmployeeForm.controls.firstName.disable();
     this.addEmployeeForm.controls.lastName.disable();
     this.addEmployeeForm.controls.roleId.disable();
-    // this.addEmployeeForm.controls.roleName.disable();
     this.addEmployeeForm.controls.statusId.disable();
-    // this.addEmployeeForm.controls.statusName.disable();
     this.addEmployeeForm.controls.phoneNumber.disable();
 
     this.messageService.addEmployee(addEmployeeData).subscribe(
@@ -115,11 +115,13 @@ export class AdminAddComponent {
         this.addEmployeeForm.controls.firstName.enable();
         this.addEmployeeForm.controls.lastName.enable();
         this.addEmployeeForm.controls.roleId.enable();
-        // this.addEmployeeForm.controls.roleName.enable();
         this.addEmployeeForm.controls.statusId.enable();
-        // this.addEmployeeForm.controls.statusName.enable();
         this.addEmployeeForm.controls.phoneNumber.enable();
       }
     );
+  }
+
+  back() {
+    this.router.navigate(['/admin-manage']);
   }
 }
