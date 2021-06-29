@@ -131,15 +131,18 @@
       class="btn-add-more"
       type="submit"
       color="accent"
-      routerLink="/products-catalog"
+      (click)="routeToProductCatalog('women')"
     >
       ADD MORE
     </button>
   </div>
 </div>
-<div *ngIf="products.length < 2" routerLink="/products-catalog">
+<div *ngIf="products.length < 2" (click)="routeToProductCatalog('women')">
   <h3>
     You add to compere less then 2 products. Please, go to
-    <a routerLink="/products-catalog">catalog</a> and add more.
+    <a class="link-title" (click)="routeToProductCatalog('women')"
+      >product catalog</a
+    >
+    and add more.
   </h3>
 </div>

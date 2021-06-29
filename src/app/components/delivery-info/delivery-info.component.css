@@ -1,0 +1,46 @@
+.delivery-font {
+  font-family: Spartan;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.mat-form-field--inline {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.mat-form-field--inline .mat-form-field {
+  display: inline-block;
+  height: auto;
+  width: 25%;
+  vertical-align: middle;
+}
+
+.mat-form-field--inline .mat-form-field:nth-child(1) {
+  margin-right: 50px;
+}
+
+.solid {
+  border-top: 2px solid #bbb;
+  width: 95%;
+}
+
+.datetime {
+  background: #f8f8f8;
+  font-family: Spartan, sans-serif;
+  width: 340px;
+  height: 48px;
+  padding: 10px 0 0 10px;
+  border: 0;
+  outline: none;
+  resize: none;
+}
+
+.datetime:focus {
+  outline: none;
+}

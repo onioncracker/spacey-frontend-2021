@@ -1,0 +1,89 @@
+.personal-info-font {
+  font-family: Spartan, sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.personal-info-font-small {
+  font-family: Spartan, sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 24px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.mat-form-field--inline {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.space {
+  margin-top: 25px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.input-area,
+.input-area-small {
+  height: 48px;
+  caret-color: black;
+  background: #f8f8f8;
+  font-family: Spartan, sans-serif;
+}
+
+.input-area {
+  width: 355px;
+  padding: 10px 0 0 10px;
+  border: 0;
+  outline: none;
+  resize: none;
+}
+
+.mt {
+  margin-top: 25px;
+}
+
+.input-area-small {
+  background: #f8f8f8;
+  font-family: Spartan, sans-serif;
+  padding: 10px 0 0 10px;
+  width: 152px;
+  border: 0;
+  outline: none;
+}
+
+.apartment-building-info {
+  display: flex;
+  justify-content: space-between;
+  max-width: 350px;
+}
+
+.input-area-small:not(:first-child) {
+  margin-left: 10px;
+}
+
+.input-area:focus {
+  outline: none;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  margin-right: 5%;
+  margin-bottom: 2%;
+  width: 25%;
+  margin-top: 25px;
+}
+
+.input-form {
+  display: flex;
+  flex: 0 0 100%;
+  justify-content: flex-start;
+}
