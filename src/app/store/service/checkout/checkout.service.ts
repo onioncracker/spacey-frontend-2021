@@ -14,12 +14,12 @@ export default class CheckoutService {
   }
 
   getCheckout(): Observable<CheckoutDto> {
-    const checkoutUrl = environment.url + '/api/checkout/';
+    const checkoutUrl = environment.url + '/api/v1/checkout/';
     return this.http.get<CheckoutDto>(checkoutUrl);
   }
 
   makeOrder(order: CheckoutOrder): Observable<CheckoutOrder> {
-    const checkoutUrl = environment.url + '/api/order';
+    const checkoutUrl = environment.url + '/api/v1/order-authorized/';
     return this.http.post<CheckoutOrder>(checkoutUrl, order);
   }
 }
