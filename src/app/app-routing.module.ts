@@ -15,6 +15,7 @@ import { EditProductComponent } from './components/edit-product/edit-product.com
 import { DeliveryComponent } from './components/delivery/delivery.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { ConfirmRegistrationComponent } from './components/confirm-registration/confirm-registration.component';
+import { ProductCatalogComponent } from './components/product-catalog/product-catalog.component';
 import { ProductsCatalogComponent } from './components/products-catalog/products-catalog.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
@@ -32,7 +33,7 @@ const routes: Routes = [
   { path: routeUrls.addProduct, component: AddProductComponent },
   { path: routeUrls.editProduct, component: EditProductComponent },
   { path: routeUrls.shoppingCart, component: ShoppingCartComponent },
-  { path: routeUrls.productsCatalog, component: ProductsCatalogComponent },
+  { path: routeUrls.productCatalog, component: ProductCatalogComponent },
   {
     path: routeUrls.confirmRegistration,
     component: ConfirmRegistrationComponent,

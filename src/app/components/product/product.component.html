@@ -5,7 +5,7 @@
 
   <a
     [title]="item.name + ' details'"
-    [routerLink]="['/products-catalog', item.id]"
+    [routerLink]="['/product-catalog', item.id]"
   >
     <img class="card-img-top" src="{{ item.photo }}" alt="{{ item.name }}" />
   </a>
@@ -13,7 +13,7 @@
     <h3>
       <a
         [title]="item.name + ' details'"
-        [routerLink]="['/products-catalog', item.id]"
+        [routerLink]="['/product-catalog', item.id]"
         class="title-link"
       >
         {{ item.name }}

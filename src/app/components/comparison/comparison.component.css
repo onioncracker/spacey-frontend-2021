@@ -66,3 +66,9 @@
   height: 48px;
   width: 340px;
 }
+
+.link-title {
+  text-transform: capitalize;
+  font-weight: bold;
+  cursor: pointer;
+}
