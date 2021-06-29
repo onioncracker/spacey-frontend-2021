@@ -15,16 +15,18 @@ export class ToolbarComponent {
     this.router.navigateByUrl(routeUrls.checkout);
   }
 
-  routeToHomepage() {
-    this.router.navigateByUrl(routeUrls.homepage);
+  routeToHomepage(sex: string) {
+    this.router.navigate([routeUrls.homepage], { queryParams: { sex: sex } });
   }
 
   routeToPopular() {
     this.router.navigateByUrl(routeUrls.popular);
   }
 
-  routeToProducts() {
-    this.router.navigateByUrl(routeUrls.products);
+  routeToProductCatalog(sex: string) {
+    this.router.navigate([routeUrls.productCatalog], {
+      queryParams: { sex: sex },
+    });
   }
 
   routeToAuctions() {

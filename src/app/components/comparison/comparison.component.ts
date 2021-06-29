@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CompareService } from '../../store/service/comparison/compare.service';
-import { SizesComparison } from '../../store/models/sizesComparison';
-import { Product } from '../../store/models/product';
+import { SizesComparison } from '../../store/models/sizes-comparison';
+import { ProductModel } from '../../store/models/product.model';
+import { routeUrls } from '../../../environments/router-manager';
 
 @Component({
   selector: 'app-comparison',
@@ -10,11 +11,12 @@ import { Product } from '../../store/models/product';
   styleUrls: ['./comparison.component.css'],
 })
 export class ComparisonComponent implements OnInit {
-  products: Product[] = [];
+  products: ProductModel[] = [];
   sizes!: SizesComparison[];
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private comparisonService: CompareService
   ) {}
 
@@ -23,7 +25,7 @@ export class ComparisonComponent implements OnInit {
       this.comparisonService
         .getAllCompareProduct()
         .pipe()
-        .subscribe((products: Product[]) => {
+        .subscribe((products: ProductModel[]) => {
           this.products = products;
           localStorage.setItem('comparisonArray', JSON.stringify(products));
         });
@@ -54,5 +56,11 @@ export class ComparisonComponent implements OnInit {
 
   ngOnInit() {
     this.getAllComparison();
+  }
+
+  routeToProductCatalog(sex: string) {
+    this.router.navigate([routeUrls.productCatalog], {
+      queryParams: { sex: sex },
+    });
   }
 }

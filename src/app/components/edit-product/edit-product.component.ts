@@ -1,11 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EditProductService } from '../../store/service/edit-product/edit-product.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CatergoryMaterialsAdd } from '../../store/models/catergoryMaterialsAdd';
-import { SizesAdd } from '../../store/models/sizesAdd';
+import { FormBuilder, Validators } from '@angular/forms';
+import { CategoryColorMaterials } from '../../store/models/category-color-materials';
+import { Sizes } from '../../store/models/sizes';
 import { AddProductService } from '../../store/service/add-product/add-product.service';
-import { EditProduct } from '../../store/models/editProduct';
+import { EditProduct } from '../../store/models/edit-product';
 
 @Component({
   selector: 'app-edit-product',
@@ -14,89 +14,83 @@ import { EditProduct } from '../../store/models/editProduct';
 })
 export class EditProductComponent implements OnInit {
   product!: EditProduct;
-  editProductForm: FormGroup;
-  materialsList!: CatergoryMaterialsAdd[];
-  categories!: CatergoryMaterialsAdd[];
-  colors!: CatergoryMaterialsAdd[];
-  sizesAmount!: SizesAdd[];
+  materialsList!: CategoryColorMaterials[];
+  categories!: CategoryColorMaterials[];
+  colors!: CategoryColorMaterials[];
+  sizesAmount!: Sizes[];
+  selectedCategory!: number;
 
   constructor(
     private route: ActivatedRoute,
     private addProductService: AddProductService,
     private formBuilder: FormBuilder,
     private editProductService: EditProductService
-  ) {
-    this.editProductForm = this.formBuilder.group({
-      name: ['', [Validators.required]],
-      createDate: ['', [Validators.required]],
-      productSex: ['', [Validators.required]],
-      price: ['', [Validators.required]],
-      discount: ['', [Validators.required]],
-      photo: ['', [Validators.required]],
-      description: ['', [Validators.required]],
-      isAvailable: ['', [Validators.required]],
-      category: ['', [Validators.required]],
-      color: ['', [Validators.required]],
-      materials: ['', [Validators.required]],
-      sizes: ['', [Validators.required]],
-    });
-  }
+  ) {}
+
+  editProductForm = this.formBuilder.group({
+    id: ['', [Validators.required]],
+    name: ['', [Validators.required]],
+    productSex: ['', [Validators.required]],
+    price: ['', [Validators.required]],
+    discount: ['', [Validators.required]],
+    photo: ['', [Validators.required]],
+    description: ['', [Validators.required]],
+    isAvailable: ['', [Validators.required]],
+    category: ['', [Validators.required]],
+    color: ['', [Validators.required]],
+    materials: ['', [Validators.required]],
+    sizes: ['', [Validators.required]],
+  });
 
   onSubmit() {
-    this.updateProduct();
+    this.product = this.editProductForm.value;
+    this.product.sizes = this.sizesAmount;
+    console.log(this.product);
+    this.updateProduct(this.product);
   }
 
   getProduct(): void {
+    const id = parseInt(this.route.snapshot.paramMap.get('id')!);
     this.editProductService
-      .getProductById(61)
+      .getProductById(id)
       .pipe()
       .subscribe((product: EditProduct) => {
-        this.product = product;
+        this.product = new EditProduct(
+          product.id,
+          product.name,
+          product.category,
+          product.color,
+          product.materials,
+          product.productSex,
+          product.price,
+          product.discount,
+          product.photo,
+          product.description,
+          product.isAvailable,
+          product.sizes
+        );
+        this.editProductForm.setValue(this.product);
+        this.sizesAmount = product.sizes;
       });
   }
 
-  updateProduct() {}
+  updateProduct(product: EditProduct) {
+    this.editProductService.updateProductById(product).subscribe();
+  }
 
-  // public editProduct(): void {
-  //   this.product = {
-  //     id: this.editProductForm.get('id')?.value,
-  //     name: this.editProductForm.get('name')?.value,
-  //     createDate: this.editProductForm.get('createDate')?.value,
-  //     productSex: this.editProductForm.get('productSex')?.value,
-  //     price: this.editProductForm.get('price')?.value,
-  //     discount: this.editProductForm.get('discount')?.value,
-  //     photo: this.editProductForm.get('photo')?.value,
-  //     description: this.editProductForm.get('description')?.value,
-  //     isAvailable: this.editProductForm.get('isAvailable')?.value,
-  //     category: this.editProductForm.get('category')?.value,
-  //     color: this.editProductForm.get('color')?.value,
-  //     materials: this.editProductForm.get('materials')?.value,
-  //     sizes: this.sizesAmount,
-  //   }
-  //   this.editProductForm.controls.id.disable();
-  //   this.editProductForm.controls.name.disable();
-  //   this.editProductForm.controls.createDate.disable();
-  //   this.editProductForm.controls.productSex.disable();
-  //   this.editProductForm.controls.price.disable();
-  //   this.editProductForm.controls.discount.disable();
-  //   this.editProductForm.controls.photo.disable();
-  //   this.editProductForm.controls.description.disable();
-  //   this.editProductForm.controls.isAvailable.disable();
-  //   this.editProductForm.controls.category.disable();
-  //   this.editProductForm.controls.color.disable();
-  //   this.editProductForm.controls.materials.disable();
-  //   this.editProductForm.controls.sizes.disable();
-  //
-  //   this.editProductService.getProductById(this.product).subscribe((response) =>{
-  //     const data = response.body;
-  //   })
-  // }
+  deleteProduct(id: number) {
+    this.editProductService.deleteProductById(id).subscribe();
+  }
+
+  compareObjects(object1: any, object2: any) {
+    return object1 && object2 && object1.id == object2.id;
+  }
 
   allMaterials() {
     this.addProductService
       .getAllMaterials()
       .pipe()
-      .subscribe((materialsList: CatergoryMaterialsAdd[]) => {
+      .subscribe((materialsList: CategoryColorMaterials[]) => {
         this.materialsList = materialsList;
       });
   }
@@ -105,7 +99,7 @@ export class EditProductComponent implements OnInit {
     this.addProductService
       .getAllColors()
       .pipe()
-      .subscribe((colors: CatergoryMaterialsAdd[]) => {
+      .subscribe((colors: CategoryColorMaterials[]) => {
         this.colors = colors;
       });
   }
@@ -114,7 +108,7 @@ export class EditProductComponent implements OnInit {
     this.addProductService
       .getAllSizes()
       .pipe()
-      .subscribe((sizesAmount: SizesAdd[]) => {
+      .subscribe((sizesAmount: Sizes[]) => {
         this.sizesAmount = sizesAmount;
       });
   }
@@ -127,7 +121,7 @@ export class EditProductComponent implements OnInit {
     this.addProductService
       .getAllCategory()
       .pipe()
-      .subscribe((categories: CatergoryMaterialsAdd[]) => {
+      .subscribe((categories: CategoryColorMaterials[]) => {
         this.categories = categories;
       });
   }

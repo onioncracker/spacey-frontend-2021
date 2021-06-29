@@ -4,6 +4,7 @@ import { sessionStorageKeys } from '../../../../environments/session-storage-man
 const TOKEN_KEY = sessionStorageKeys.TOKEN_KEY;
 const USERNAME_KEY = sessionStorageKeys.USERNAME_KEY;
 const AUTHORITIES_KEY = sessionStorageKeys.AUTHORITIES_KEY;
+const ROLE_KEY = sessionStorageKeys.ROLE_KEY;
 
 @Injectable({
   providedIn: 'root',
@@ -14,13 +15,23 @@ export class TokenStorageService {
 
   signOut() {
     sessionStorage.removeItem(TOKEN_KEY);
-    sessionStorage.removeItem(AUTHORITIES_KEY);
+    // sessionStorage.removeItem(AUTHORITIES_KEY);
+    sessionStorage.removeItem(ROLE_KEY);
     sessionStorage.removeItem(USERNAME_KEY);
   }
 
   public saveToken(token: string) {
     sessionStorage.removeItem(TOKEN_KEY);
     sessionStorage.setItem(TOKEN_KEY, token);
+  }
+
+  public saveRole(role: string) {
+    sessionStorage.removeItem(ROLE_KEY);
+    sessionStorage.setItem(ROLE_KEY, role);
+  }
+
+  public getRole() {
+    return sessionStorage.getItem(ROLE_KEY) as string;
   }
 
   public getToken(): string {
@@ -36,18 +47,18 @@ export class TokenStorageService {
     return sessionStorage.getItem(USERNAME_KEY) as string;
   }
 
-  public saveAuthorities(authority: string) {
-    sessionStorage.removeItem(AUTHORITIES_KEY);
-    sessionStorage.setItem(AUTHORITIES_KEY, authority);
-  }
-
-  public getAuthorities(): string {
-    let res = sessionStorage.getItem(AUTHORITIES_KEY);
-    if (res) {
-      return res;
-    }
-    return '';
-  }
+  // public saveAuthorities(authority: string) {
+  //   sessionStorage.removeItem(AUTHORITIES_KEY);
+  //   sessionStorage.setItem(AUTHORITIES_KEY, authority);
+  // }
+  //
+  // public getAuthorities(): string {
+  //   let res = sessionStorage.getItem(AUTHORITIES_KEY);
+  //   if (res) {
+  //     return res;
+  //   }
+  //   return '';
+  // }
 
   public isAuthorised(): boolean {
     return (

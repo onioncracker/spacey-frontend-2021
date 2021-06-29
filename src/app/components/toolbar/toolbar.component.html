@@ -1,15 +1,23 @@
 <mat-toolbar color="primary">
-  <button mat-flat-button color="primary" (click)="routeToHomepage()">
+  <button mat-flat-button color="primary" (click)="routeToHomepage('women')">
     <h2>Spacey</h2>
   </button>
   <span class="gap"></span>
   <button mat-flat-button color="primary" (click)="routeToPopular()">
     Popular now
   </button>
-  <button mat-flat-button color="primary" (click)="routeToProducts()">
+  <button
+    mat-flat-button
+    color="primary"
+    (click)="routeToProductCatalog('women')"
+  >
     Women
   </button>
-  <button mat-flat-button color="primary" (click)="routeToProducts()">
+  <button
+    mat-flat-button
+    color="primary"
+    (click)="routeToProductCatalog('men')"
+  >
     Men
   </button>
   <button mat-flat-button color="primary" (click)="routeToAuctions()">
