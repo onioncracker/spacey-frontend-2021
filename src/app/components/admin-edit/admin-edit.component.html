@@ -7,7 +7,7 @@
 >
   <span></span>
 
-  <div class="input-form">
+  <div *ngIf="employee" class="input-form">
     <div class="column">
       <mat-label><h3>FIRST NAME</h3></mat-label>
       <mat-form-field class="emp-form-field" appearance="fill">
@@ -15,6 +15,7 @@
           matInput
           formControlName="firstName"
           type="text"
+          [(ngModel)]="employee.firstName"
           placeholder="Name"
         />
         <mat-error
@@ -31,14 +32,13 @@
           formControlName="email"
           type="text"
           [errorStateMatcher]="errorMatcher"
+          [(ngModel)]="employee.email"
           placeholder="email@example.com"
         />
         <mat-error
           *ngIf="
             editEmployeeForm.get('email')?.hasError('email') &&
-            !editEmployeeForm.get('email')?.hasError('required')
-          "
-        >
+            !editEmployeeForm.get('email')?.hasError('required')">
           Please write correct address!
         </mat-error>
         <mat-error *ngIf="editEmployeeForm.get('email')?.hasError('required')">
@@ -46,25 +46,24 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-label><h3>ROLE</h3></mat-label>
-      <mat-form-field class="emp-form-field" appearance="fill">
-        <mat-select class="emp-form-field" formControlName="userRole">
-          <mat-option value="Courier">Courier</mat-option>
-          <mat-option value="PM">ProductModel Manager</mat-option>
-        </mat-select>
-        <mat-error
-          *ngIf="editEmployeeForm.get('userRole')?.hasError('required')"
-        >
-          Role is required!
-        </mat-error>
-      </mat-form-field>
+    <mat-label><h3>ROLE</h3></mat-label>
+    <mat-form-field class="emp-form-field" appearance="fill">
+      <mat-select class="emp-form-field" formControlName="roleId" [compareWith]="compareObjects">
+      <mat-option *ngFor="let role of roles" [value]="role.id">
+        {{ role.name }}
+      </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
 
+    <div class="column">
       <mat-label><h3>LAST NAME</h3></mat-label>
       <mat-form-field class="emp-form-field" appearance="fill">
         <input
           matInput
           formControlName="lastName"
           type="text"
+          [(ngModel)]="employee.lastName"
           placeholder="Surname"
         />
         <mat-error
@@ -80,28 +79,23 @@
           matInput
           formControlName="phoneNumber"
           type="text"
-          placeholder="+8 800 555 35 35"
+          [(ngModel)]="employee.phoneNumber"
+          placeholder="+380989898988"
         />
-        <mat-error
-          *ngIf="editEmployeeForm.get('phoneNumber')?.hasError('required')"
-        >
-          Name is required!
-        </mat-error>
+        <mat-icon matSuffix>mode_edit</mat-icon>
       </mat-form-field>
 
       <mat-label><h3>STATUS</h3></mat-label>
       <mat-form-field class="emp-form-field" appearance="fill">
-        <mat-select class="emp-form-field" formControlName="status">
-          <mat-option value="Active">Active</mat-option>
-          <mat-option value="Terminated">Terminated</mat-option>
-          <mat-option value="Inactive">Inactive</mat-option>
+        <mat-select class="emp-form-field" formControlName="statusId">
+          <mat-option *ngFor="let status of statuses" [value]="status.id">
+            {{ status.name }}
+          </mat-option>
         </mat-select>
-        <mat-error *ngIf="editEmployeeForm.get('status')?.hasError('required')">
-          Status is required!
-        </mat-error>
       </mat-form-field>
     </div>
   </div>
+
   <div class="edit-employee">
     <button
       mat-raised-button
@@ -112,6 +106,9 @@
       color="accent"
     >
       EDIT
+    </button>
+    <button mat-raised-button class="edit" (click)="back()" color="accent">
+      EMPLOYEE LIST
     </button>
   </div>
   <span></span>

@@ -1,31 +1,34 @@
 export class EmployeeModel {
-  userId: string;
+  userId: number;
   email: string;
-  roleId: string;
-  roleName: string;
   firstName: string;
   lastName: string;
-  statusId: string;
+  tokenId: number | undefined;
+  roleId: number;
+  roleName: string;
+  statusId: number;
   statusName: string;
   phoneNumber: string;
 
   constructor(
-    userId: string,
+    userId: number,
     email: string,
-    roleId: string,
-    roleName: string,
     firstName: string,
     lastName: string,
-    statusId: string,
+    tokenId: number,
+    roleId: number,
+    roleName: string,
+    statusId: number,
     statusName: string,
     phoneNumber: string
   ) {
     this.userId = userId;
     this.email = email;
-    this.roleId = roleId;
-    this.roleName = roleName;
     this.firstName = firstName;
     this.lastName = lastName;
+    this.tokenId = tokenId;
+    this.roleId = roleId;
+    this.roleName = roleName;
     this.statusId = statusId;
     this.statusName = statusName;
     this.phoneNumber = phoneNumber;
