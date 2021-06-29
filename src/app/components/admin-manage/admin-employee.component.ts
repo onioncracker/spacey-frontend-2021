@@ -4,7 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { EmployeeService } from '../../store/service/employee/employee.service';
 import { EmployeeModel } from '../../store/models/employee.model';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-employee',
@@ -19,7 +19,7 @@ export class AdminEmployeeComponent implements OnInit, AfterViewInit {
     'phoneNumber',
     'email',
     'statusName',
-    'actions',
+    'userId',
   ];
   dataSource = new MatTableDataSource<EmployeeModel>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -32,7 +32,6 @@ export class AdminEmployeeComponent implements OnInit, AfterViewInit {
   constructor(
     private employeeService: EmployeeService,
     private router: Router,
-    private route: ActivatedRoute
   ) {}
 
   getAllEmployees() {

@@ -48,7 +48,8 @@
 
     <mat-label><h3>ROLE</h3></mat-label>
     <mat-form-field class="emp-form-field" appearance="fill">
-      <mat-select class="emp-form-field" formControlName="roleId" [compareWith]="compareObjects">
+      <mat-select [(value)]="employee.roleId" class="emp-form-field" formControlName="roleId" [compareWith]="compareObjects">
+<!--      <mat-select class="emp-form-field" formControlName="roleId" [compareWith]="compareObjects">-->
       <mat-option *ngFor="let role of roles" [value]="role.id">
         {{ role.name }}
       </mat-option>
@@ -87,7 +88,7 @@
 
       <mat-label><h3>STATUS</h3></mat-label>
       <mat-form-field class="emp-form-field" appearance="fill">
-        <mat-select class="emp-form-field" formControlName="statusId">
+        <mat-select [(value)]="employee.statusId" class="emp-form-field" formControlName="statusId" [compareWith]="compareObjects">
           <mat-option *ngFor="let status of statuses" [value]="status.id">
             {{ status.name }}
           </mat-option>

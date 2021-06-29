@@ -66,11 +66,15 @@ export class AdminEditComponent implements OnInit {
     private router: Router
   ) {
     this.editEmployeeForm = this.formBuilder.group({
+      userId: [''],
       email: ['', [Validators.required, Validators.email]],
       firstName: ['', [Validators.required, Validators.maxLength(20)]],
       lastName: ['', [Validators.required, Validators.maxLength(30)]],
-      roleId: ['', [Validators.required]],
-      statusId: ['', [Validators.required]],
+      roleId: [''],
+      roleName: ['', [Validators.required]],
+      tokenId: [''],
+      statusId: [''],
+      statusName: ['', [Validators.required]],
       phoneNumber: ['', [Validators.required, Validators.maxLength(13)]],
     });
     this.errorMatcher = new RegistrationErrorStateMatcher();
@@ -81,6 +85,7 @@ export class AdminEditComponent implements OnInit {
     this.employeeService.getEmployee(id).subscribe((employee) => {
       this.employee = employee;
       this.editEmployeeForm.setValue(this.employee);
+      console.log(employee);
     });
   }
 
@@ -97,6 +102,7 @@ export class AdminEditComponent implements OnInit {
     const statusName = this.statuses.find((el) => el.id == statusId)?.name;
 
     const editEmployeeData = {
+      userId: this.editEmployeeForm.get('userId')?.value,
       email: this.editEmployeeForm.get('email')?.value,
       firstName: this.editEmployeeForm.get('firstName')?.value,
       lastName: this.editEmployeeForm.get('lastName')?.value,

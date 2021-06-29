@@ -46,13 +46,13 @@ export class AdminAddComponent {
   disableSelect = new FormControl(false);
   roles: Roles[] = [
     { id: 1, name: 'Courier' },
-    { id: 2, name: 'ProductModel Manager' }
+    { id: 2, name: 'Product Manager' }
   ];
 
   statuses: Statuses[] = [
-    { id: 1, name: 'UNACTIVATED' },
-    { id: 2, name: 'ACTIVATED' },
-    { id: 3, name: 'TERMINATED' }
+    { id: 1, name: 'Inactive' },
+    { id: 2, name: 'Active' },
+    { id: 3, name: 'Terminate' }
   ];
 
   constructor(
