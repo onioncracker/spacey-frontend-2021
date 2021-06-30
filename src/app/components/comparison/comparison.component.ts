@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { CompareService } from '../../store/service/comparison/compare.service';
 import { SizesComparisonModel } from '../../store/models/sizes-comparison.model';
 import { ProductModel } from '../../store/models/product.model';
+import {routeUrls} from "../../../environments/router-manager";
 
 @Component({
   selector: 'app-comparison',
@@ -14,6 +15,7 @@ export class ComparisonComponent implements OnInit {
   sizes!: SizesComparisonModel[];
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private comparisonService: CompareService
   ) {}
@@ -50,6 +52,12 @@ export class ComparisonComponent implements OnInit {
 
   filterProductArray(id: number): void {
     this.products = this.products.filter((product) => product.id !== id);
+  }
+
+  routeToProductCatalog(sex: string) {
+    this.router.navigate([routeUrls.productCatalog], {
+      queryParams: { sex: sex },
+    });
   }
 
   ngOnInit() {
