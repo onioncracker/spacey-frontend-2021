@@ -1,4 +1,4 @@
-export class SizesComparison {
+export class SizesComparisonModel {
   size!: string;
   quantity!: number;
 }
