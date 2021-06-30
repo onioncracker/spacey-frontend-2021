@@ -15,9 +15,11 @@ export const routeUrls = {
   adminAdd: 'admin-add',
   comparisons: 'comparison',
   addProduct: 'add',
+  addAuction: 'add-auction',
   shoppingCart: 'shopping-cart',
   confirmRegistration: 'confirm-registration',
   editProduct: 'edit/:id',
+  editAuction: 'edit-auction',
   manageProducts: 'manage/products',
   userProfile: 'user-profile',
 };

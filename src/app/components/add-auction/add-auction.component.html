@@ -1,0 +1,128 @@
+<div class="head-prod-add">
+  <mat-label class="add-label">
+    <h1 class="add-h">ADD AUCTION</h1>
+  </mat-label>
+</div>
+<form
+  name="AddAuction"
+  [formGroup]="addAuctionForm"
+  (ngSubmit)="onSubmit(addAuctionForm, auctionForm)"
+  #auctionForm="ngForm"
+>
+  <table class="table-add">
+    <tr>
+      <td colspan="3">
+        <h3 class="add-h">Auction Name</h3>
+        <mat-form-field class="input-name" appearance="fill">
+          <input
+            matInput
+            type="text"
+            placeholder="AuctionName"
+            [formGroup]="addAuctionForm"
+            formControlName="auctionName"
+          />
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <h3 class="add-h">Product</h3>
+        <mat-form-field appearance="fill">
+          <mat-select
+            [formGroup]="addAuctionForm"
+            formControlName="product"
+            placeholder="Product"
+          >
+            <mat-option *ngFor="let product of products" [value]="product">
+              {{ product.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </td>
+      <td>
+        <h3 class="add-h">Size</h3>
+        <mat-form-field appearance="fill">
+          <mat-select
+            [formGroup]="addAuctionForm"
+            formControlName="size"
+            placeholder="Size"
+          >
+            <mat-option *ngFor="let size of sizes" [value]="sizes">
+              {{ size.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </td>
+      <td>
+        <h3 class="add-h">Amount</h3>
+        <mat-form-field class="input-field" appearance="fill">
+          <input
+            matInput
+            [formGroup]="addAuctionForm"
+            formControlName="price"
+            type="number"
+            placeholder="Price"
+          />
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <h3 class="add-h">Type</h3>
+        <mat-form-field appearance="fill">
+          <mat-select
+            [formGroup]="addAuctionForm"
+            formControlName="type"
+            placeholder="Type"
+          >
+            <mat-option value="Increase">INCREASE</mat-option>
+            <mat-option value="Decrease">DECREASE</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </td>
+      <td>
+        <h3 class="add-h">Start Price</h3>
+        <mat-form-field class="input-field" appearance="fill">
+          <input
+            matInput
+            [formGroup]="addAuctionForm"
+            formControlName="startPrice"
+            type="number"
+            placeholder="StartPrice"
+          />
+        </mat-form-field>
+      </td>
+      <td>
+        <h3 class="add-h">End Price</h3>
+        <mat-form-field class="input-field" appearance="fill">
+          <input
+            matInput
+            [formGroup]="addAuctionForm"
+            formControlName="endPrice"
+            type="number"
+            placeholder="EndPrice"
+          />
+        </mat-form-field>
+      </td>
+      <td>
+        <h3 class="add-h">Price Step</h3>
+        <mat-form-field class="input-field" appearance="fill">
+          <input
+            matInput
+            [formGroup]="addAuctionForm"
+            formControlName="priceStep"
+            type="number"
+            placeholder="PriceStep"
+          />
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+  <br />
+  <div class="save-wrapper">
+    <button mat-raised-button class="add-btn" type="submit" color="accent">
+      SAVE AUCTION
+    </button>
+    <br />
+  </div>
+</form>

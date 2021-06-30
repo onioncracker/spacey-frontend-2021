@@ -1,0 +1,68 @@
+.head-prod-edit {
+  height: 70px;
+  background: #f8f8f8;
+  display: flex;
+  justify-content: center;
+}
+
+.edit-label {
+  margin: 17px auto 17px;
+}
+
+.edit-h {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.table-edit {
+  margin: 18px auto 0;
+}
+
+.edit-btn {
+  width: 340px;
+  border-radius: 1px;
+  height: 48px;
+  margin: 38px auto 8px;
+}
+
+.btn-hover:hover {
+  background: #4b4a4a;
+  border: 2px solid #4b4a4a;
+  box-sizing: border-box;
+}
+
+.delete-btn {
+  background: #e6e6e6;
+  color: #121212;
+  margin: 0 auto 80px;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.input-name {
+  width: 406px;
+}
+
+.photo {
+  width: 174px;
+  height: 217px;
+}
+
+.material-field {
+  width: 822px;
+}
+
+.input-description {
+  width: 822px;
+}
+
+.description {
+  height: 300px;
+}
+
+.size-amount {
+  float: right;
+}
