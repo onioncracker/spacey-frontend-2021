@@ -99,8 +99,8 @@
 }
 
 .price {
-  display: inline-block;
-  margin: 6px 30px 6px 0;
+  display: block;
+  margin: 6px 30px 15px 0;
   font-style: normal;
   font-weight: bold;
   font-size: 22px;

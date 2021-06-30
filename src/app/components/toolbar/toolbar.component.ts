@@ -34,12 +34,12 @@ export class ToolbarComponent {
   }
 
   routeToCart() {
-    this.router.navigateByUrl(routeUrls.checkout);
+    this.router.navigateByUrl(routeUrls.shoppingCart);
   }
 
   routeToProfile() {
     if (this.authService.isAuthorised()) {
-      this.router.navigateByUrl(routeUrls.homepage); // todo change to profile page
+      this.router.navigateByUrl(routeUrls.userProfile);
     } else {
       this.router.navigateByUrl(routeUrls.login);
     }

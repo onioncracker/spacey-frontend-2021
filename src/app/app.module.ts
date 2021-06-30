@@ -12,10 +12,10 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { FooterComponent } from './components/footer/footer.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
-import { ConfirmComponent } from './components/confirm/confirm.component';
+import { SummaryComponent } from './components/summary/summary.component';
 import { OrdersComponent } from './components/orders/orders.component';
+import { DeliveryInfoComponent } from './components/delivery-info/delivery-info.component';
 import { CommentComponent } from './components/comment/comment.component';
-import { OrderComponent } from './components/order/order.component';
 import { LoginComponent } from './components/login/login.component';
 import { AdminEmployeeComponent } from './components/admin-manage/admin-employee.component';
 import { AdminAddComponent } from './components/admin-add/admin-add.component';
@@ -25,11 +25,9 @@ import { RegisterComponent } from './components/register/register.component';
 import { AuthInterceptor } from './store/service/AuthInterceptor';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTableModule } from '@angular/material/table';
 import { AdminEditComponent } from './components/admin-edit/admin-edit.component';
-import { MatSelectModule } from '@angular/material/select';
 import { ComparisonComponent } from './components/comparison/comparison.component';
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { EditProductComponent } from './components/edit-product/edit-product.component';
@@ -38,16 +36,20 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
 import { DeliveryComponent } from './components/delivery/delivery.component';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { MatDividerModule } from '@angular/material/divider';
 import { DeliveriesComponent } from './components/deliveries/deliveries.component';
-import { MatDatepickerModule } from '@angular/material/datepicker';
 import { DatePipe } from '@angular/common';
-import { MatRadioModule } from '@angular/material/radio';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { ConfirmRegistrationComponent } from './components/confirm-registration/confirm-registration.component';
 import { DialogMessageComponent } from './components/dialog-message/dialog-message.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HeaderComponent } from './components/header/header.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { PersonalInformationComponent } from './components/personal-information/personal-information.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { NgxCaptchaModule } from 'ngx-captcha';
 import { ProductCatalogComponent } from './components/product-catalog/product-catalog.component';
 import { FilterComponent } from './components/filter/filter.component';
@@ -55,6 +57,10 @@ import { SortingComponent } from './components/sorting/sorting.component';
 import { ProductComponent } from './components/product/product.component';
 import { PillComponent } from './components/pill/pill.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { MatRadioModule } from '@angular/material/radio';
+import { EmployeeProfileComponent } from './components/employee-profile/employee-profile.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { ConfirmComponent } from './components/confirm/confirm.component';
 
 @NgModule({
   declarations: [
@@ -64,11 +70,11 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     ToolbarComponent,
     FooterComponent,
     CheckoutComponent,
-    ConfirmComponent,
+    SummaryComponent,
     OrdersComponent,
+    DeliveryInfoComponent,
     DeliveriesComponent,
     CommentComponent,
-    OrderComponent,
     ProductDetailsComponent,
     AdminEmployeeComponent,
     AdminAddComponent,
@@ -87,11 +93,16 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     ProductComponent,
     PillComponent,
     PaginationComponent,
+    PersonalInformationComponent,
+    EmployeeProfileComponent,
+    UserProfileComponent,
+    ConfirmComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
@@ -117,6 +128,9 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     MatDialogModule,
     NgxCaptchaModule,
     MatRadioModule,
+    MatCheckboxModule,
+    MatSelectModule,
+    MatDividerModule,
   ],
   providers: [
     {
