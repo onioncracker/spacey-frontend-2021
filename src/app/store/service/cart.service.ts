@@ -21,6 +21,8 @@ export class CartService {
   getCartUrl = `${environment.url}${endpointUrls.apiPrefix}${endpointUrls.getCart}`;
   addProductUrl =
     environment.url + endpointUrls.apiPrefix + endpointUrls.addProduct;
+  removeProductUrl =
+    environment.url + endpointUrls.apiPrefix + endpointUrls.deleteProduct;
   checkProductUrl =
     environment.url + endpointUrls.apiPrefix + endpointUrls.checkProduct;
   getUnauthorizedCartUrl =
@@ -77,6 +79,12 @@ export class CartService {
       .pipe(catchError(this.handleError));
   }
 
+  removeProductFromCart(data: EditCartModel): Observable<HttpResponse<any>> {
+    return this.http
+      .post<any>(this.removeProductUrl, data, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
   checkProduct(data: EditCartModel): Observable<HttpResponse<any>> {
     return this.http
       .post(this.checkProductUrl, data, this.httpOptions)
@@ -89,7 +97,7 @@ export class CartService {
     for (let product of cart) {
       if (
         product.productId == productToAdd.productId &&
-        product.size == productToAdd.size
+        product.sizeId == productToAdd.sizeId
       ) {
         product.amount += productToAdd.amount;
         isInCart = true;
@@ -102,6 +110,25 @@ export class CartService {
     }
     this.saveUnauthorizedCart(cart);
     console.log(cart.toString());
+  }
+
+  removeProductFromUnauthorizedCart(productToRemove: EditCartModel): void {
+    const cart = this.getUnauthorizedCart();
+    cart.forEach((product, index) => {
+      if (
+        product.productId == productToRemove.productId &&
+        product.sizeId == productToRemove.sizeId
+      ) {
+        if (product.amount == 1) {
+          cart.splice(index, 1);
+          console.log('item found in cart, amount decreased');
+        } else {
+          product.amount -= productToRemove.amount;
+          console.log('item has been removed from local shopping cart');
+        }
+      }
+    });
+    this.saveUnauthorizedCart(cart);
   }
 
   getUnauthorizedCart(): EditCartModel[] {
@@ -126,5 +153,12 @@ export class CartService {
     return this.tokenStorageService.isAuthorised();
   }
 
-  private;
+  checkAvailability(products: ProductForCartModel[]): boolean {
+    let unavailableCounter = 0;
+    for (let product of products) {
+      console.log(product.id);
+      unavailableCounter += product.unavailableAmount;
+    }
+    return unavailableCounter === 0;
+  }
 }
