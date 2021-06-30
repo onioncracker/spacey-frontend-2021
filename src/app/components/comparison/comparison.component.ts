@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CompareService } from '../../store/service/comparison/compare.service';
 import { SizesComparisonModel } from '../../store/models/sizes-comparison.model';
 import { ProductModel } from '../../store/models/product.model';
-import {routeUrls} from "../../../environments/router-manager";
+import { routeUrls } from '../../../environments/router-manager';
 
 @Component({
   selector: 'app-comparison',
