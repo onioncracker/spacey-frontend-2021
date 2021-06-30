@@ -17,7 +17,7 @@
           >
             X
           </button>
-          <a [routerLink]="['/products-catalog', product.id]">
+          <a [routerLink]="['/product-catalog', product.id]">
             <img
               src="{{ product.photo }}"
               class="photo"
@@ -29,7 +29,7 @@
     </tr>
     <tr>
       <td class="compare-field" *ngFor="let product of products">
-        <a routerLink="/products-catalog/{{ product.id }}" class="prod-name">{{
+        <a routerLink="/product-catalog/{{ product.id }}" class="prod-name">{{
           product.name
         }}</a>
       </td>
@@ -133,7 +133,7 @@
       class="btn-add-more"
       type="submit"
       color="accent"
-      routerLink="/products-catalog"
+      (click)="routeToProductCatalog('women')"
     >
       ADD MORE
     </button>
@@ -153,7 +153,7 @@
       class="btn-add-more"
       type="submit"
       color="accent"
-      routerLink="/products-catalog"
+      (click)="routeToProductCatalog('women')"
     >
       Catalog
     </button>
