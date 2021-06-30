@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { CompareService } from '../../store/service/comparison/compare.service';
-import { SizesComparison } from '../../store/models/sizes-comparison';
+import { SizesComparisonModel } from '../../store/models/sizes-comparison.model';
 import { ProductModel } from '../../store/models/product.model';
-import { routeUrls } from '../../../environments/router-manager';
 
 @Component({
   selector: 'app-comparison',
@@ -12,11 +11,10 @@ import { routeUrls } from '../../../environments/router-manager';
 })
 export class ComparisonComponent implements OnInit {
   products: ProductModel[] = [];
-  sizes!: SizesComparison[];
+  sizes!: SizesComparisonModel[];
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
     private comparisonService: CompareService
   ) {}
 
@@ -56,11 +54,5 @@ export class ComparisonComponent implements OnInit {
 
   ngOnInit() {
     this.getAllComparison();
-  }
-
-  routeToProductCatalog(sex: string) {
-    this.router.navigate([routeUrls.productCatalog], {
-      queryParams: { sex: sex },
-    });
   }
 }

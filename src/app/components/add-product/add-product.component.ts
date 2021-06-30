@@ -7,9 +7,10 @@ import {
   FormGroupDirective,
   Validators,
 } from '@angular/forms';
-import { AddProduct } from '../../store/models/add-product';
-import { CategoryColorMaterials } from '../../store/models/category-color-materials';
+import { CategoryColorMaterialsModel } from '../../store/models/category-color-materials.model';
 import { Sizes } from '../../store/models/sizes';
+import { DialogService } from '../../store/service/dialog/dialog.service';
+import { AddProduct } from '../../store/models/add-product';
 
 class ImageSnippet {
   constructor(public src: string, public file: File) {}
@@ -23,16 +24,17 @@ class ImageSnippet {
 export class AddProductComponent implements OnInit {
   product!: AddProduct;
   addProductForm: FormGroup;
-  materialsList!: CategoryColorMaterials[];
-  categories!: CategoryColorMaterials[];
-  colors!: CategoryColorMaterials[];
+  materialsList!: CategoryColorMaterialsModel[];
+  categories!: CategoryColorMaterialsModel[];
+  colors!: CategoryColorMaterialsModel[];
   sizesAmount!: Sizes[];
   selectedFile!: ImageSnippet;
 
   constructor(
     private route: ActivatedRoute,
     private addProductService: AddProductService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private dialogService: DialogService
   ) {
     this.addProductForm = this.formBuilder.group({
       name: ['', [Validators.required]],
@@ -52,6 +54,7 @@ export class AddProductComponent implements OnInit {
   onSubmit(addProductForm: any, productForm: FormGroupDirective) {
     this.addProduct();
     productForm.resetForm();
+    this.dialogService.openMessage('Product has been added', 'Close');
   }
 
   public addProduct(): void {
@@ -92,7 +95,7 @@ export class AddProductComponent implements OnInit {
     this.addProductService
       .getAllMaterials()
       .pipe()
-      .subscribe((materialsList: CategoryColorMaterials[]) => {
+      .subscribe((materialsList: CategoryColorMaterialsModel[]) => {
         this.materialsList = materialsList;
       });
   }
@@ -101,7 +104,7 @@ export class AddProductComponent implements OnInit {
     this.addProductService
       .getAllColors()
       .pipe()
-      .subscribe((colors: CategoryColorMaterials[]) => {
+      .subscribe((colors: CategoryColorMaterialsModel[]) => {
         this.colors = colors;
       });
   }
@@ -119,7 +122,7 @@ export class AddProductComponent implements OnInit {
     this.addProductService
       .getAllCategory()
       .pipe()
-      .subscribe((categories: CategoryColorMaterials[]) => {
+      .subscribe((categories: CategoryColorMaterialsModel[]) => {
         this.categories = categories;
       });
   }

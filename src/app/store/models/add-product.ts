@@ -1,4 +1,4 @@
-import { CategoryColorMaterials } from './category-color-materials';
+import { CategoryColorMaterialsModel } from './category-color-materials.model';
 import { Sizes } from './sizes';
 
 export class AddProduct {
@@ -9,8 +9,8 @@ export class AddProduct {
   photo!: string;
   description!: string;
   isAvailable!: boolean;
-  category!: CategoryColorMaterials;
-  color!: CategoryColorMaterials;
-  materials!: [CategoryColorMaterials];
+  category!: CategoryColorMaterialsModel;
+  color!: CategoryColorMaterialsModel;
+  materials!: [CategoryColorMaterialsModel];
   sizes!: Sizes[];
 }
