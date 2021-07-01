@@ -10,7 +10,7 @@ import {EditAuction} from "../../models/edit-auction";
 })
 export class EditAuctionService {
   private editAuctionUrl = `${environment.url}/api/v1/auction`;
-  private deleteAuctionUrl = `${environment.url}/api/v1/auction/cancel`;
+  private deleteAuctionUrl = `${environment.url}/api/v1/auction/delete`;
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };

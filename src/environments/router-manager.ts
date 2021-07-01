@@ -19,7 +19,7 @@ export const routeUrls = {
   shoppingCart: 'shopping-cart',
   confirmRegistration: 'confirm-registration',
   editProduct: 'edit/:id',
-  editAuction: 'edit-auction',
+  editAuction: 'edit-auction/:id',
   manageProducts: 'manage/products',
   userProfile: 'user-profile',
 };

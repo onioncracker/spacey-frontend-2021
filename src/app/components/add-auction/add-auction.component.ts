@@ -56,7 +56,7 @@ export class AddAuctionComponent implements OnInit {
       productSize: this.addAuctionForm.get('productSize')?.value,
       amount: this.addAuctionForm.get('amount')?.value,
       auctionName: this.addAuctionForm.get('auctionName')?.value,
-      auctionType: this.addAuctionForm.get('auctionType')?.value,
+      auctionType: this.addAuctionForm.get('auctionType')?.value == 'INCREASE',
       startPrice: this.addAuctionForm.get('startPrice')?.value,
       endPrice: this.addAuctionForm.get('endPrice')?.value,
       priceStep: this.addAuctionForm.get('priceStep')?.value,

@@ -10,10 +10,9 @@ import {AddAuction} from "../../models/add-auction";
   providedIn: 'root',
 })
 export class AddAuctionService {
-  // TODO: set proper url
   private addAuctionUrl = `${environment.url}/api/v1/auction/add`;
   private httpOptions = { observe: 'response' as const };
-  private allProductsUrl = `${environment.url}/api/v1/products/all`;
+  private allProductsUrl = `${environment.url}/api/v1/products`;
   private allSizesUrl = `${environment.url}/api/v1/size/all`;
 
   constructor(
@@ -22,7 +21,7 @@ export class AddAuctionService {
   ) {}
 
   addNewAuction(addAuctionData: AddAuction): Observable<any> {
-    console.log(this.httpOptions);
+    console.log(addAuctionData);
     return this.http.post<AddAuction>(
       this.addAuctionUrl,
       addAuctionData,
