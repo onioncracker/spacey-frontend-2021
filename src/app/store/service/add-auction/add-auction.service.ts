@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DialogMessageComponent } from '../../../components/dialog-message/dialog-message.component';
-import {AddAuction} from "../../models/add-auction";
+import { AddAuction } from '../../models/add-auction';
 
 @Injectable({
   providedIn: 'root',
@@ -15,10 +15,7 @@ export class AddAuctionService {
   private allProductsUrl = `${environment.url}/api/v1/products`;
   private allSizesUrl = `${environment.url}/api/v1/size/all`;
 
-  constructor(
-    private http: HttpClient,
-    private dialog: MatDialog
-  ) {}
+  constructor(private http: HttpClient, private dialog: MatDialog) {}
 
   addNewAuction(addAuctionData: AddAuction): Observable<any> {
     console.log(addAuctionData);

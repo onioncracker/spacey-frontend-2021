@@ -5,10 +5,10 @@ import { CategoryColorMaterialsModel } from '../../store/models/category-color-m
 import { Sizes } from '../../store/models/sizes';
 import { DialogService } from '../../store/service/dialog/dialog.service';
 import { routeUrls } from '../../../environments/router-manager';
-import {EditAuction} from "../../store/models/edit-auction";
-import {AuctionProductsModel} from "../../store/models/auction-products-model";
-import {EditAuctionService} from "../../store/service/edit-auction/edit-auction.service";
-import {AddAuctionService} from "../../store/service/add-auction/add-auction.service";
+import { EditAuction } from '../../store/models/edit-auction';
+import { AuctionProductsModel } from '../../store/models/auction-products-model';
+import { EditAuctionService } from '../../store/service/edit-auction/edit-auction.service';
+import { AddAuctionService } from '../../store/service/add-auction/add-auction.service';
 
 @Component({
   selector: 'app-edit-auction',

@@ -3,7 +3,7 @@ import { environment } from '../../../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { EditProduct } from '../../models/edit-product';
-import {EditAuction} from "../../models/edit-auction";
+import { EditAuction } from '../../models/edit-auction';
 
 @Injectable({
   providedIn: 'root',

@@ -7,10 +7,10 @@ import {
   Validators,
 } from '@angular/forms';
 import { DialogService } from '../../store/service/dialog/dialog.service';
-import {AddAuction} from "../../store/models/add-auction";
-import {AuctionProductsModel} from "../../store/models/auction-products-model";
-import {AddAuctionService} from "../../store/service/add-auction/add-auction.service";
-import {Sizes} from "../../store/models/sizes";
+import { AddAuction } from '../../store/models/add-auction';
+import { AuctionProductsModel } from '../../store/models/auction-products-model';
+import { AddAuctionService } from '../../store/service/add-auction/add-auction.service';
+import { Sizes } from '../../store/models/sizes';
 
 @Component({
   selector: 'app-add-auction',
