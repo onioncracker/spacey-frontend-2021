@@ -9,6 +9,7 @@ export const routeUrls = {
   deliveries: 'deliveries',
   delivery: 'delivery/:id',
   productCatalog: 'product-catalog',
+  auctionCatalog: 'auction-catalog',
   productDetails: 'product-catalog/:id',
   adminEmployee: 'admin-manage',
   adminEdit: 'admin-edit/:id',

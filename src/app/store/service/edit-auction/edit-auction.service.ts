@@ -28,7 +28,7 @@ export class EditAuctionService {
   updateAuctionById(editAuctionData: EditAuction): Observable<any> {
     return this.http
       .put(
-        `${this.editAuctionUrl}/edit/${editAuctionData.id}`,
+        `${this.editAuctionUrl}/edit/${editAuctionData.auctionId}`,
         editAuctionData,
         this.httpOptions
       )

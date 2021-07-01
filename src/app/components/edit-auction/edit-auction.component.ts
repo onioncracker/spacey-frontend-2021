@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategoryColorMaterialsModel } from '../../store/models/category-color-materials.model';
 import { Sizes } from '../../store/models/sizes';
 import { DialogService } from '../../store/service/dialog/dialog.service';
@@ -18,8 +18,6 @@ import { AddAuctionService } from '../../store/service/add-auction/add-auction.s
 export class EditAuctionComponent implements OnInit {
   auction!: EditAuction;
   sizes!: Sizes[];
-  products!: AuctionProductsModel[];
-  sizesList!: CategoryColorMaterialsModel[];
 
   options = {
     title: 'Do you want to delete a auction?',
@@ -38,8 +36,8 @@ export class EditAuctionComponent implements OnInit {
   ) {}
 
   editAuctionForm = this.formBuilder.group({
-    id: ['', [Validators.required]],
-    auctionProduct: ['', [Validators.required]],
+    auctionId: ['', [Validators.required]],
+    auctionProductId: ['', [Validators.required]],
     productSize: ['', [Validators.required]],
     amount: [0, [Validators.required]],
     auctionName: ['', [Validators.required]],
@@ -62,11 +60,10 @@ export class EditAuctionComponent implements OnInit {
     const id = parseInt(this.route.snapshot.paramMap.get('id')!);
     this.editAuctionService
       .getAuctionById(id)
-      .pipe()
       .subscribe((auction: EditAuction) => {
         this.auction = new EditAuction(
-          auction.id,
-          auction.auctionProduct,
+          auction.auctionId,
+          auction.auctionProductId,
           auction.productSize,
           auction.amount,
           auction.auctionName,
@@ -78,6 +75,8 @@ export class EditAuctionComponent implements OnInit {
           auction.endTime,
           auction.status
         );
+        // this.editAuctionForm.setValue(auction);
+        console.log(this.auction);
         this.editAuctionForm.setValue(this.auction);
       });
   }
@@ -99,20 +98,11 @@ export class EditAuctionComponent implements OnInit {
   }
 
   goAuctionsCatalog() {
-    this.router.navigateByUrl(routeUrls.productCatalog);
+    this.router.navigateByUrl(routeUrls.auctionCatalog);
   }
 
   compareObjects(object1: any, object2: any) {
     return object1 && object2 && object1.id == object2.id;
-  }
-
-  allProducts() {
-    this.addAuctionService
-      .getAllProducts()
-      .pipe()
-      .subscribe((products: AuctionProductsModel[]) => {
-        this.products = products;
-      });
   }
 
   allSizes() {
@@ -125,8 +115,8 @@ export class EditAuctionComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.allProducts();
     this.allSizes();
     this.getAuction();
+    // console.log(this.auction);
   }
 }

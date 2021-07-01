@@ -20,7 +20,6 @@ import { Sizes } from '../../store/models/sizes';
 export class AddAuctionComponent implements OnInit {
   auction!: AddAuction;
   addAuctionForm: FormGroup;
-  products!: AuctionProductsModel[];
   sizes!: Sizes[];
 
   constructor(
@@ -30,7 +29,7 @@ export class AddAuctionComponent implements OnInit {
     private dialogService: DialogService
   ) {
     this.addAuctionForm = this.formBuilder.group({
-      auctionProduct: ['', [Validators.required]],
+      auctionProductId: ['', [Validators.required]],
       productSize: ['', [Validators.required]],
       amount: [0, [Validators.required]],
       auctionName: ['', [Validators.required]],
@@ -52,7 +51,7 @@ export class AddAuctionComponent implements OnInit {
 
   public addAuction(): void {
     this.auction = {
-      auctionProduct: this.addAuctionForm.get('auctionProduct')?.value,
+      auctionProductId: this.addAuctionForm.get('auctionProduct')?.value,
       productSize: this.addAuctionForm.get('productSize')?.value,
       amount: this.addAuctionForm.get('amount')?.value,
       auctionName: this.addAuctionForm.get('auctionName')?.value,
@@ -64,7 +63,7 @@ export class AddAuctionComponent implements OnInit {
       endTime: this.addAuctionForm.get('endTime')?.value,
       status: this.addAuctionForm.get('status')?.value,
     };
-    this.addAuctionForm.controls.auctionProduct.enable();
+    this.addAuctionForm.controls.auctionProductId.enable();
     this.addAuctionForm.controls.productSize.enable();
     this.addAuctionForm.controls.amount.enable();
     this.addAuctionForm.controls.auctionName.enable();
@@ -82,15 +81,6 @@ export class AddAuctionComponent implements OnInit {
     });
   }
 
-  allProducts() {
-    this.addAuctionService
-      .getAllProducts()
-      .pipe()
-      .subscribe((products: AuctionProductsModel[]) => {
-        this.products = products;
-      });
-  }
-
   allSizes() {
     this.addAuctionService
       .getAllSizes()
@@ -101,7 +91,6 @@ export class AddAuctionComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.allProducts();
     this.allSizes();
   }
 }
