@@ -12,6 +12,8 @@
 .add-h {
   text-transform: uppercase;
   font-weight: bold;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .table-add {
@@ -43,7 +45,7 @@
 }
 
 .input-name {
-  width: 614px;
+  width: 808px;
 }
 
 .photo {
@@ -76,8 +78,21 @@
   border: 0;
   outline: none;
   resize: none;
+  margin-right: 405px;
 }
 
 .datetime:focus {
   outline: none;
+}
+
+.space {
+  display: flex;
+  flex: 0 0 100%;
+  justify-content: flex-start;
+  margin-right: auto;
+  margin-left: 200px;
+}
+
+.input-field {
+  margin-right: 100px;
 }
