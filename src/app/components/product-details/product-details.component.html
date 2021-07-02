@@ -34,16 +34,27 @@
 
       <div class="product-info-container underlining-container">
         <h5 class="price">{{ product.price }} UAH</h5>
-        <button type="button" class="purchase-button" (click)="addToCart()">
-          Add to cart
-        </button>
-        <button
-          type="button"
-          class="purchase-button"
-          (click)="addProductToCompare(product)"
-        >
-          Add to compare
-        </button>
+        <ng-container *ngIf="isCustomer()">
+          <button type="button" class="purchase-button" (click)="addToCart()">
+            Add to cart
+          </button>
+          <button
+            type="button"
+            class="purchase-button"
+            (click)="addProductToCompare(product)"
+          >
+            Add to compare
+          </button>
+        </ng-container>
+        <ng-container *ngIf="isProductManager()">
+          <button
+            type="button"
+            class="purchase-button"
+            [routerLink]="['/edit', product.id]"
+          >
+            Edit product
+          </button>
+        </ng-container>
       </div>
 
       <div class="product-info-container underlining-container">

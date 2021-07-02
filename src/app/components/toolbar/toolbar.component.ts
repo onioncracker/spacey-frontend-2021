@@ -9,7 +9,17 @@ import { AuthService } from '../../store/service/auth/auth.service';
   styleUrls: ['./toolbar.component.css'],
 })
 export class ToolbarComponent {
+  private userRole = 'USER_ROLE';
+
   constructor(private router: Router, public authService: AuthService) {}
+
+  isCustomer(): boolean {
+    return this.userRole === null || this.userRole === 'USER_ROLE';
+  }
+
+  isProductManager(): boolean {
+    return this.userRole === 'PRODUCT_MANAGER_ROLE';
+  }
 
   routeToCheckout() {
     this.router.navigateByUrl(routeUrls.checkout);
