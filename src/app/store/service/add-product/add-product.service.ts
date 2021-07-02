@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subscription } from 'rxjs';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { DialogMessageComponent } from '../../../components/dialog-message/dialog-message.component';
+import { MatDialog } from '@angular/material/dialog';
 import { DialogService } from '../dialog/dialog.service';
 import { AddProduct } from '../../models/add-product';
 
