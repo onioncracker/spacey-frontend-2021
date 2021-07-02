@@ -56,15 +56,7 @@ export class AddProductService {
     return this.http.get(`${this.allSizesUrl}`);
   }
 
-  getAllCategory(): Observable<any> {
+  getAllCategories(): Observable<any> {
     return this.http.get(`${this.allCategoryUrl}`);
-  }
-
-  openDialog(title: string) {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.data = {
-      messageTitle: title,
-    };
-    this.dialog.open(DialogMessageComponent, dialogConfig);
   }
 }

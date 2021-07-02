@@ -63,6 +63,8 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { ConfirmComponent } from './components/confirm/confirm.component';
 import { AddAuctionComponent } from './components/add-auction/add-auction.component';
 import { EditAuctionComponent } from './components/edit-auction/edit-auction.component';
+import { CustomizationComponent } from './components/customization/customization.component';
+import { DialogInputComponent } from './components/dialog-input/dialog-input.component';
 
 @NgModule({
   declarations: [
@@ -101,6 +103,8 @@ import { EditAuctionComponent } from './components/edit-auction/edit-auction.com
     ConfirmComponent,
     AddAuctionComponent,
     EditAuctionComponent,
+    CustomizationComponent,
+    DialogInputComponent,
   ],
   imports: [
     BrowserModule,

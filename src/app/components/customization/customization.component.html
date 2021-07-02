@@ -1,0 +1,56 @@
+<div class="head-custom">
+  <mat-label class="custom-label">
+    <h1 class="custom-h">Customisation</h1>
+  </mat-label>
+</div>
+<div>
+  <div class="custom-row">
+    <h3>Color</h3>
+    <mat-form-field appearance="fill">
+      <mat-select
+        placeholder="Color"
+        [(value)]="selectedColor"
+      >
+
+        <mat-option *ngFor="let color of colors" [value]="color">
+          {{ color.name }}
+        </mat-option>
+
+
+      </mat-select>
+    </mat-form-field>
+    <div class="custom-buttons">
+      <button
+        mat-raised-button
+        class="custom-buttons"
+        (click)="save()"
+      >
+        SAVE
+      </button>
+    </div>
+    <div class="custom-buttons">
+      <button
+        mat-raised-button
+        class="custom-buttons"
+        (click)="delete()"
+      >
+        DELETE
+      </button>
+    </div>
+    <div>
+      <button mat-raised-button (click)="add()">
+        Add new
+      </button>
+    </div>
+  </div>
+  <div class="custom-row">
+    <mat-form-field class="size-amount" appearance="fill"
+    >
+      <input
+        matInput
+        placeholder="Value"
+        [(ngModel)]="selectedColor.name"
+      />
+    </mat-form-field>
+  </div>
+</div>

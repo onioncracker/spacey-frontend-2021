@@ -19,6 +19,7 @@ import { ConfirmRegistrationComponent } from './components/confirm-registration/
 import { ProductCatalogComponent } from './components/product-catalog/product-catalog.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { EditAuctionComponent } from './components/edit-auction/edit-auction.component';
+import {CustomizationComponent} from "./components/customization/customization.component";
 
 const routes: Routes = [
   { path: routeUrls.login, component: LoginComponent },
@@ -38,10 +39,10 @@ const routes: Routes = [
   { path: routeUrls.addAuction, component: AddAuctionComponent },
   { path: routeUrls.editAuction, component: EditAuctionComponent },
   {
-    path: routeUrls.confirmRegistration,
-    component: ConfirmRegistrationComponent,
+    path: routeUrls.confirmRegistration, component: ConfirmRegistrationComponent,
   },
   { path: routeUrls.userProfile, component: UserProfileComponent },
+  { path: routeUrls.customization, component: CustomizationComponent },
 ];
 
 @NgModule({
