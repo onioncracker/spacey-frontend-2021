@@ -67,6 +67,10 @@ import {
   NgxMatDatetimePickerModule,
   NgxMatTimepickerModule,
 } from '@angular-material-components/datetime-picker';
+import { AuctionCatalogComponent } from './components/auction-catalog/auction-catalog.component';
+import { AuctionComponent } from './components/auction/auction.component';
+import { PillAuctionComponent } from './components/pill-auction/pill-auction.component';
+import { AuctionDetailsComponent } from './components/auction-details/auction-details.component';
 
 @NgModule({
   declarations: [
@@ -105,6 +109,10 @@ import {
     ConfirmComponent,
     AddAuctionComponent,
     EditAuctionComponent,
+    AuctionCatalogComponent,
+    AuctionComponent,
+    PillAuctionComponent,
+    AuctionDetailsComponent,
   ],
   imports: [
     BrowserModule,

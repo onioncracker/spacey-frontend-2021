@@ -12,7 +12,7 @@
       (deliveryEvent)="getDelivery($event)"
     ></app-delivery-info>
     <app-comment (commentEvent)="getComment($event)"></app-comment>
-    <app-confirm [checkout]="order"></app-confirm>
+    <app-summary [checkout]="order"></app-summary>
   </div>
   <div class="button-div">
     <button
@@ -28,5 +28,5 @@
 </ng-template>
 
 <ng-template #notShow>
-  <h4 align="center" class="mb-5">Order checkout is empty</h4>
+  <h2 align="center" class="mb-5 space">Checkout is empty</h2>
 </ng-template>

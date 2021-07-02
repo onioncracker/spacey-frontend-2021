@@ -11,6 +11,7 @@ export const routeUrls = {
   productCatalog: 'product-catalog',
   auctionCatalog: 'auction-catalog',
   productDetails: 'product-catalog/:id',
+  auctionDetails: 'auction-catalog/:id',
   adminEmployee: 'admin-manage',
   adminEdit: 'admin-edit/:id',
   adminAdd: 'admin-add',

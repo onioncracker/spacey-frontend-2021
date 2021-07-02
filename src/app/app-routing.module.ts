@@ -19,6 +19,8 @@ import { ConfirmRegistrationComponent } from './components/confirm-registration/
 import { ProductCatalogComponent } from './components/product-catalog/product-catalog.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { EditAuctionComponent } from './components/edit-auction/edit-auction.component';
+import { AuctionCatalogComponent } from './components/auction-catalog/auction-catalog.component';
+import { AuctionDetailsComponent } from './components/auction-details/auction-details.component';
 
 const routes: Routes = [
   { path: routeUrls.login, component: LoginComponent },
@@ -37,6 +39,8 @@ const routes: Routes = [
   { path: routeUrls.productCatalog, component: ProductCatalogComponent },
   { path: routeUrls.addAuction, component: AddAuctionComponent },
   { path: routeUrls.editAuction, component: EditAuctionComponent },
+  { path: routeUrls.auctionCatalog, component: AuctionCatalogComponent },
+  { path: routeUrls.auctionDetails, component: AuctionDetailsComponent },
   {
     path: routeUrls.confirmRegistration,
     component: ConfirmRegistrationComponent,
