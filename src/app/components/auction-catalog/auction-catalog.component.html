@@ -1,0 +1,12 @@
+<div class="auction-catalog">
+  <app-header></app-header>
+
+  <div class="cards">
+    <ng-container *ngFor="let auction of auctions">
+      <app-auction [item]="auction"></app-auction>
+    </ng-container>
+  </div>
+
+  <!--<app-pagination (selectPage)="onSelectedPage()" [items]="products">
+  </app-pagination>-->
+</div>

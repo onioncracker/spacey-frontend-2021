@@ -44,10 +44,8 @@ import { DialogMessageComponent } from './components/dialog-message/dialog-messa
 import { MatDialogModule } from '@angular/material/dialog';
 import { HeaderComponent } from './components/header/header.component';
 import { MatSelectModule } from '@angular/material/select';
-import { MatSliderModule } from '@angular/material/slider';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDividerModule } from '@angular/material/divider';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { PersonalInformationComponent } from './components/personal-information/personal-information.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { NgxCaptchaModule } from 'ngx-captcha';
@@ -65,6 +63,14 @@ import { AddAuctionComponent } from './components/add-auction/add-auction.compon
 import { EditAuctionComponent } from './components/edit-auction/edit-auction.component';
 import { CustomizationComponent } from './components/customization/customization.component';
 import { DialogInputComponent } from './components/dialog-input/dialog-input.component';
+import {
+  NgxMatDatetimePickerModule,
+  NgxMatTimepickerModule,
+} from '@angular-material-components/datetime-picker';
+import { AuctionCatalogComponent } from './components/auction-catalog/auction-catalog.component';
+import { AuctionComponent } from './components/auction/auction.component';
+import { PillAuctionComponent } from './components/pill-auction/pill-auction.component';
+import { AuctionDetailsComponent } from './components/auction-details/auction-details.component';
 
 @NgModule({
   declarations: [
@@ -105,6 +111,10 @@ import { DialogInputComponent } from './components/dialog-input/dialog-input.com
     EditAuctionComponent,
     CustomizationComponent,
     DialogInputComponent,
+    AuctionCatalogComponent,
+    AuctionComponent,
+    PillAuctionComponent,
+    AuctionDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -139,6 +149,8 @@ import { DialogInputComponent } from './components/dialog-input/dialog-input.com
     MatCheckboxModule,
     MatSelectModule,
     MatDividerModule,
+    NgxMatDatetimePickerModule,
+    NgxMatTimepickerModule,
   ],
   providers: [
     {
