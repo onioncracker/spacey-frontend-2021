@@ -39,23 +39,33 @@
       </td>
       <td rowspan="3" class="cell-photo">
         <input
-          type="image"
           class="photo"
           value="Photo"
           alt="Photo"
           [src]="product.photo"
+          #imageInput
+          type="file"
+          accept="image/*"
+          (change)="processFile(imageInput)"
         />
+        <div class="wrapper">
+          <button
+            mat-raised-button
+            class="edit-btn btn-hover"
+            type="submit"
+            color="accent"
+            (change)="processFile(imageInput)"
+          >
+            SAVE PHOTO
+          </button>
+        </div>
       </td>
     </tr>
     <tr>
       <td>
         <h3 class="edit-h">Sex</h3>
         <mat-form-field appearance="fill">
-          <mat-select
-            formControlName="productSex"
-            placeholder="Sex"
-            [compareWith]="compareObjects"
-          >
+          <mat-select formControlName="productSex" placeholder="Sex">
             <mat-option value="MEN">MEN</mat-option>
             <mat-option value="WOMEN">WOMEN</mat-option>
           </mat-select>
@@ -141,7 +151,7 @@
         <tr *ngFor="let size of sizesAmount; let i = index; trackBy: onTrackBy">
           <td>
             <div class="sizes">
-              <mat-label class="edit-h"> {{ size.name }}: </mat-label>
+              <mat-label class="edit-h"> {{ size.name }}:</mat-label>
               <mat-form-field class="size-amount" appearance="fill">
                 <input
                   matInput
@@ -163,24 +173,22 @@
   <div class="wrapper">
     <button
       mat-raised-button
-      class="edit-btn"
+      class="edit-btn btn-hover"
       type="submit"
       color="accent"
-      (click)="onSubmit()"
     >
       SAVE CHANGES
     </button>
   </div>
   <br />
-  <div class="wrapper">
-    <button
-      mat-raised-button
-      class="edit-btn delete-btn"
-      type="submit"
-      color="accent"
-      (click)="deleteProduct(product.id)"
-    >
-      DELETE PRODUCT
-    </button>
-  </div>
 </form>
+<div class="wrapper">
+  <button
+    mat-raised-button
+    class="edit-btn delete-btn btn-hover"
+    color="accent"
+    (click)="deleteProduct(product.id)"
+  >
+    DELETE PRODUCT
+  </button>
+</div>

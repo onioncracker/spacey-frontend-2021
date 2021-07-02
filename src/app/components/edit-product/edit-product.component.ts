@@ -1,11 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EditProductService } from '../../store/service/edit-product/edit-product.service';
 import { FormBuilder, Validators } from '@angular/forms';
-import { CategoryColorMaterials } from '../../store/models/category-color-materials';
+import { CategoryColorMaterialsModel } from '../../store/models/category-color-materials.model';
 import { Sizes } from '../../store/models/sizes';
 import { AddProductService } from '../../store/service/add-product/add-product.service';
+import { DialogService } from '../../store/service/dialog/dialog.service';
+import { routeUrls } from '../../../environments/router-manager';
 import { EditProduct } from '../../store/models/edit-product';
+
+class ImageSnippet {
+  constructor(public src: string, public file: File) {}
+}
 
 @Component({
   selector: 'app-edit-product',
@@ -14,17 +20,27 @@ import { EditProduct } from '../../store/models/edit-product';
 })
 export class EditProductComponent implements OnInit {
   product!: EditProduct;
-  materialsList!: CategoryColorMaterials[];
-  categories!: CategoryColorMaterials[];
-  colors!: CategoryColorMaterials[];
+  materialsList!: CategoryColorMaterialsModel[];
+  categories!: CategoryColorMaterialsModel[];
+  colors!: CategoryColorMaterialsModel[];
   sizesAmount!: Sizes[];
   selectedCategory!: number;
+  selectedFile!: ImageSnippet;
+
+  options = {
+    title: 'Do you want to delete a product?',
+    message: 'This product will be permanently removed',
+    cancelText: 'CANCEL',
+    confirmText: 'CONTINUE',
+  };
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private addProductService: AddProductService,
     private formBuilder: FormBuilder,
-    private editProductService: EditProductService
+    private editProductService: EditProductService,
+    private dialogService: DialogService
   ) {}
 
   editProductForm = this.formBuilder.group({
@@ -45,8 +61,8 @@ export class EditProductComponent implements OnInit {
   onSubmit() {
     this.product = this.editProductForm.value;
     this.product.sizes = this.sizesAmount;
-    console.log(this.product);
     this.updateProduct(this.product);
+    this.dialogService.openMessage('Product has been updated', 'close');
   }
 
   getProduct(): void {
@@ -79,7 +95,19 @@ export class EditProductComponent implements OnInit {
   }
 
   deleteProduct(id: number) {
-    this.editProductService.deleteProductById(id).subscribe();
+    this.dialogService.openConfirm(this.options);
+    this.dialogService.confirmed().subscribe((confirmed) => {
+      if (confirmed) {
+        this.editProductService.deleteProductById(id).subscribe(() => {
+          this.dialogService.openMessage('Product has been deleted', 'close');
+          this.goProductsCatalog();
+        });
+      }
+    });
+  }
+
+  goProductsCatalog() {
+    this.router.navigateByUrl(routeUrls.productCatalog);
   }
 
   compareObjects(object1: any, object2: any) {
@@ -90,7 +118,7 @@ export class EditProductComponent implements OnInit {
     this.addProductService
       .getAllMaterials()
       .pipe()
-      .subscribe((materialsList: CategoryColorMaterials[]) => {
+      .subscribe((materialsList: CategoryColorMaterialsModel[]) => {
         this.materialsList = materialsList;
       });
   }
@@ -99,7 +127,7 @@ export class EditProductComponent implements OnInit {
     this.addProductService
       .getAllColors()
       .pipe()
-      .subscribe((colors: CategoryColorMaterials[]) => {
+      .subscribe((colors: CategoryColorMaterialsModel[]) => {
         this.colors = colors;
       });
   }
@@ -119,11 +147,20 @@ export class EditProductComponent implements OnInit {
 
   allCategory() {
     this.addProductService
-      .getAllCategory()
+      .getAllCategories()
       .pipe()
-      .subscribe((categories: CategoryColorMaterials[]) => {
+      .subscribe((categories: CategoryColorMaterialsModel[]) => {
         this.categories = categories;
       });
+  }
+
+  processFile(imageInput: any) {
+    const file: File = imageInput.files[0];
+    const reader = new FileReader();
+    reader.addEventListener('load', (event: any) => {
+      this.selectedFile = new ImageSnippet(event.target.result, file);
+    });
+    reader.readAsDataURL(file);
   }
 
   ngOnInit() {

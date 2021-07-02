@@ -1,0 +1,231 @@
+<div class="logout-div">
+  <button
+    mat-raised-button
+    class="logout-btn"
+    (click)="logout()"
+    color="accent"
+  >
+    Log out
+  </button>
+</div>
+
+<mat-label class="profile-label"><h1>PROFILE</h1></mat-label>
+
+<form
+  class="form-class"
+  (ngSubmit)="onSubmitProfile()"
+  [formGroup]="profileForm"
+>
+  <span></span>
+
+  <div class="form-column">
+    <mat-label><h3>PERSONAL INFORMATION</h3></mat-label>
+
+    <mat-form-field class="profile-info-form-field" appearance="fill">
+      <mat-label> First name </mat-label>
+      <input
+        type="text"
+        matInput
+        formControlName="firstName"
+        [value]="userInfo?.firstName"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="profile-info-form-field" appearance="fill">
+      <mat-label> Last name </mat-label>
+      <input
+        type="text"
+        matInput
+        formControlName="secondName"
+        [value]="userInfo?.lastName"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="profile-info-form-field" appearance="fill">
+      <mat-label> Phone number </mat-label>
+      <input
+        type="text"
+        matInput
+        formControlName="phoneNumber"
+        [value]="userInfo?.phoneNumber"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="profile-info-form-field" appearance="fill">
+      <mat-label> Date of birth </mat-label>
+      <input
+        type="text"
+        matInput
+        formControlName="dateOfBirth"
+        [value]="userInfo?.dateOfBirth?.getDate()?.toString()"
+      />
+    </mat-form-field>
+
+    <mat-radio-group formControlName="sex">
+      <mat-radio-button value="male" style="margin-right: 2%">
+        Male
+      </mat-radio-button>
+      <mat-radio-button value="female"> Female </mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+  <div class="form-column">
+    <mat-label><h3>ADDRESS</h3></mat-label>
+
+    <mat-form-field class="profile-info-form-field" appearance="fill">
+      <mat-label> City </mat-label>
+      <input
+        type="text"
+        matInput
+        formControlName="city"
+        [value]="userInfo?.city"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="profile-info-form-field" appearance="fill">
+      <mat-label> Street </mat-label>
+      <input
+        type="text"
+        matInput
+        formControlName="street"
+        [value]="userInfo?.street"
+      />
+    </mat-form-field>
+
+    <div class="house-apartm-line">
+      <mat-form-field class="house-apartm-form-field" appearance="fill">
+        <mat-label> House </mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="house"
+          [value]="userInfo?.house"
+        />
+      </mat-form-field>
+
+      <mat-form-field
+        class="house-apartm-form-field apartm-part"
+        appearance="fill"
+      >
+        <mat-label> Apartment </mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="apartment"
+          [value]="userInfo?.apartment"
+        />
+      </mat-form-field>
+    </div>
+
+    <mat-label><h3>YOUR EMAIL</h3></mat-label>
+    <mat-form-field
+      class="profile-info-form-field"
+      appearance="fill"
+      floatLabel="always"
+    >
+      <!--      <mat-label> Email </mat-label>-->
+      <input
+        type="email"
+        matInput
+        formControlName="email"
+        [value]="userInfo?.email"
+      />
+    </mat-form-field>
+  </div>
+
+  <form
+    class="form-column"
+    (ngSubmit)="onSubmitPassword()"
+    [formGroup]="passwordForm"
+  >
+    <mat-label><h3>OLD PASSWORD</h3></mat-label>
+    <mat-form-field class="login-form-field" appearance="fill">
+      <mat-label>password</mat-label>
+      <input
+        matInput
+        formControlName="passwordOld"
+        [type]="hideOld ? 'passwordOld' : 'text'"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hideOld = !hideOld"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hideOld"
+      >
+        <mat-icon>{{ hideOld ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+      <mat-error *ngIf="passwordForm.get('passwordOld')?.hasError('required')">
+        Password is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-label><h3>NEW PASSWORD</h3></mat-label>
+    <mat-form-field class="login-form-field" appearance="fill">
+      <mat-label>new password</mat-label>
+      <input
+        matInput
+        formControlName="passwordNew"
+        [type]="hideNew ? 'passwordNew' : 'text'"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hideNew = !hideNew"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hideNew"
+      >
+        <mat-icon>{{ hideNew ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+      <mat-error *ngIf="passwordForm.get('passwordNew')?.hasError('required')">
+        Password is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-label><h3>REPEAT PASSWORD</h3></mat-label>
+    <mat-form-field class="login-form-field" appearance="fill">
+      <mat-label>new password</mat-label>
+      <input
+        matInput
+        formControlName="passwordRepeat"
+        [type]="hideRepeat ? 'passwordRepeat' : 'text'"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hideRepeat = !hideRepeat"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hideRepeat"
+      >
+        <mat-icon>{{ hideRepeat ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+      <mat-error
+        *ngIf="passwordForm.get('passwordRepeat')?.hasError('required')"
+      >
+        Password is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <button
+      mat-raised-button
+      class="change-pswrd-btn"
+      [disabled]="!passwordForm.valid"
+      disabled
+      type="submit"
+      color="accent"
+      (click)="onSubmitPassword()"
+    >
+      CHANGE PASSWORD
+    </button>
+  </form>
+  <span></span>
+</form>
+<button
+  mat-raised-button
+  class="save-btn"
+  [disabled]="!profileForm.valid"
+  type="submit"
+  color="accent"
+  (click)="onSubmitProfile()"
+>
+  SAVE CHANGES
+</button>

@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CartService } from '../../store/service/cart.service';
 import { CompareService } from '../../store/service/comparison/compare.service';
 import { EditCartModel } from '../../store/models/edit-cart.model';
+import { SizeModel } from '../../store/models/size.model';
 
 @Component({
   selector: 'app-product-details',
@@ -13,7 +14,7 @@ import { EditCartModel } from '../../store/models/edit-cart.model';
 })
 export class ProductDetailsComponent implements OnInit {
   product!: ProductModel;
-  choosedSize: string | undefined = 'S'; // TODO change string to id
+  chosenSize: number | undefined;
 
   constructor(
     private route: ActivatedRoute,
@@ -29,21 +30,25 @@ export class ProductDetailsComponent implements OnInit {
     });
   }
 
+  chooseSize(size: SizeModel) {
+    this.chosenSize = size.id;
+  }
+
   addToCart() {
     const productToAdd = {
       productId: this.product.id,
-      size: 1, // TODO change to choosedSize
+      sizeId: this.chosenSize,
       amount: 1,
     } as EditCartModel;
 
     if (this.cartService.isAuthorised()) {
       this.cartService.addProductToCart(productToAdd).subscribe((response) => {
-        window.alert('product-details added to cart!');
+        window.alert('product added to cart!');
       });
     } else {
       this.cartService.checkProduct(productToAdd).subscribe((response) => {
         this.cartService.addProductToUnauthorizedCart(productToAdd);
-        window.alert('product-details added to cart!');
+        window.alert('product added to cart!');
       });
     }
   }

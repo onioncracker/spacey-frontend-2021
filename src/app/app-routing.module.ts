@@ -11,11 +11,17 @@ import { AdminAddComponent } from './components/admin-add/admin-add.component';
 import { AdminEditComponent } from './components/admin-edit/admin-edit.component';
 import { ComparisonComponent } from './components/comparison/comparison.component';
 import { AddProductComponent } from './components/add-product/add-product.component';
+import { AddAuctionComponent } from './components/add-auction/add-auction.component';
 import { EditProductComponent } from './components/edit-product/edit-product.component';
 import { DeliveryComponent } from './components/delivery/delivery.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { ConfirmRegistrationComponent } from './components/confirm-registration/confirm-registration.component';
 import { ProductCatalogComponent } from './components/product-catalog/product-catalog.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { EditAuctionComponent } from './components/edit-auction/edit-auction.component';
+import { CustomizationComponent } from './components/customization/customization.component';
+import { AuctionCatalogComponent } from './components/auction-catalog/auction-catalog.component';
+import { AuctionDetailsComponent } from './components/auction-details/auction-details.component';
 
 const routes: Routes = [
   { path: routeUrls.login, component: LoginComponent },
@@ -32,10 +38,16 @@ const routes: Routes = [
   { path: routeUrls.editProduct, component: EditProductComponent },
   { path: routeUrls.shoppingCart, component: ShoppingCartComponent },
   { path: routeUrls.productCatalog, component: ProductCatalogComponent },
+  { path: routeUrls.addAuction, component: AddAuctionComponent },
+  { path: routeUrls.editAuction, component: EditAuctionComponent },
+  { path: routeUrls.auctionCatalog, component: AuctionCatalogComponent },
+  { path: routeUrls.auctionDetails, component: AuctionDetailsComponent },
   {
     path: routeUrls.confirmRegistration,
     component: ConfirmRegistrationComponent,
   },
+  { path: routeUrls.userProfile, component: UserProfileComponent },
+  { path: routeUrls.customization, component: CustomizationComponent },
 ];
 
 @NgModule({

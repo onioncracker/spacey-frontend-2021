@@ -5,6 +5,7 @@ import { PersonalInformation } from '../../store/models/personal-information';
 import { CheckoutDto } from '../../store/models/checkout';
 import CheckoutItem from '../../store/models/CheckoutItem';
 import { Delivery } from '../../store/models/delivery';
+import { DialogService } from '../../store/service/dialog/dialog.service';
 
 @Component({
   selector: 'app-checkout',
@@ -14,8 +15,13 @@ import { Delivery } from '../../store/models/delivery';
 export class CheckoutComponent implements OnInit {
   order!: CheckoutOrder;
   products!: CheckoutItem[];
-
   isFormValid = true;
+  options = {
+    title: 'Do checkout?',
+    message: 'Order will be delivered soon',
+    cancelText: 'CANCEL',
+    confirmText: 'YES',
+  };
 
   getPersonalInformation(personalInformation: PersonalInformation) {
     this.order.firstName = personalInformation.firstName;
@@ -41,10 +47,20 @@ export class CheckoutComponent implements OnInit {
 
   onCheckout() {
     console.log(this.order);
-    this.checkoutService.makeOrder(this.order).subscribe((res) => alert(res));
+    this.dialogService.openConfirm(this.options);
+    this.dialogService.confirmed().subscribe((confirmed) => {
+      if (confirmed) {
+        this.checkoutService
+          .makeOrder(this.order)
+          .subscribe((res) => alert(res));
+      }
+    });
   }
 
-  constructor(private checkoutService: CheckoutService) {}
+  constructor(
+    private checkoutService: CheckoutService,
+    private dialogService: DialogService
+  ) {}
 
   ngOnInit(): void {
     this.checkoutService.getCheckout().subscribe((checkout: CheckoutDto) => {
