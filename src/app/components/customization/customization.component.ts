@@ -1,37 +1,65 @@
-import {Component, OnInit} from '@angular/core';
-import {AddProductService} from "../../store/service/add-product/add-product.service";
-import {CategoryColorMaterialsModel} from "../../store/models/category-color-materials.model";
-import {DialogService} from "../../store/service/dialog/dialog.service";
-import {CustomizationService} from "../../store/service/customization/customization.service";
+import { Component, OnInit } from '@angular/core';
+import { AddProductService } from '../../store/service/add-product/add-product.service';
+import { CategoryColorMaterialsModel } from '../../store/models/category-color-materials.model';
+import { DialogService } from '../../store/service/dialog/dialog.service';
+import { CustomizationService } from '../../store/service/customization/customization.service';
 
 @Component({
   selector: 'app-customization',
   templateUrl: './customization.component.html',
-  styleUrls: ['./customization.component.css']
+  styleUrls: ['./customization.component.css'],
 })
 export class CustomizationComponent implements OnInit {
-
   colors: CategoryColorMaterialsModel[] = [];
+  categories: CategoryColorMaterialsModel[] = [];
+  materials: CategoryColorMaterialsModel[] = [];
+  sizes: CategoryColorMaterialsModel[] = [];
 
-  selectedColor: CategoryColorMaterialsModel = new CategoryColorMaterialsModel(0, "test");
+  selectedColor: CategoryColorMaterialsModel = new CategoryColorMaterialsModel(
+    0,
+    'test'
+  );
+  selectedCategory: CategoryColorMaterialsModel =
+    new CategoryColorMaterialsModel(0, 'test');
+  selectedMaterial: CategoryColorMaterialsModel =
+    new CategoryColorMaterialsModel(0, 'test');
+  selectedSize: CategoryColorMaterialsModel = new CategoryColorMaterialsModel(
+    0,
+    'test'
+  );
 
   constructor(
     private addProductService: AddProductService,
     private dialogService: DialogService,
-    private customizationService: CustomizationService,
-  ) {
-  }
+    private customizationService: CustomizationService
+  ) {}
 
-  options = {
-    title: 'Update status?',
-    message: 'Status order will be changed.',
+  deleteOptions = {
+    title: 'Delete custom?',
+    message: 'Custom will be deleted.',
     cancelText: 'CANCEL',
-    confirmText: 'YES',
+    confirmText: 'DELETE',
+  };
+
+  addOptions = {
+    title: 'Add custom?',
+    message: 'Custom will be added.',
+    cancelText: 'CANCEL',
+    confirmText: 'ADD',
+  };
+
+  saveOptions = {
+    title: 'Save custom?',
+    message: 'Custom will be saved.',
+    cancelText: 'CANCEL',
+    confirmText: 'SAVE',
   };
 
   ngOnInit(): void {
     this.allColors();
-    console.log(this.colors)
+    this.allCategories();
+    this.allMaterials();
+    this.allSizes();
   }
 
   allColors(): void {
@@ -40,44 +68,199 @@ export class CustomizationComponent implements OnInit {
       .subscribe((colors: CategoryColorMaterialsModel[]) => {
         this.colors = colors;
         this.selectedColor = colors[0];
-        console.log(this.selectedColor);
       });
   }
 
-  save(): void {
-    this.dialogService.openConfirm(this.options);
+  allCategories(): void {
+    this.addProductService
+      .getAllCategories()
+      .subscribe((categories: CategoryColorMaterialsModel[]) => {
+        this.categories = categories;
+        this.selectedCategory = categories[0];
+      });
+  }
+
+  allMaterials(): void {
+    this.addProductService
+      .getAllMaterials()
+      .subscribe((materials: CategoryColorMaterialsModel[]) => {
+        this.materials = materials;
+        this.selectedMaterial = materials[0];
+      });
+  }
+
+  allSizes(): void {
+    this.addProductService
+      .getAllSizes()
+      .subscribe((sizes: CategoryColorMaterialsModel[]) => {
+        this.sizes = sizes;
+        this.selectedSize = sizes[0];
+      });
+  }
+
+  saveColor(): void {
+    this.dialogService.openConfirm(this.saveOptions);
     this.dialogService.confirmed().subscribe((confirm) => {
       if (confirm) {
-        this.customizationService.saveColor(this.selectedColor).subscribe((res) =>{
-          alert(res);
+        this.customizationService
+          .saveColor(this.selectedColor)
+          .subscribe(() => {
+            this.dialogService.openMessage('Changes has been saved', 'Close');
+          });
+      }
+    });
+  }
+
+  saveCategory(): void {
+    this.dialogService.openConfirm(this.saveOptions);
+    this.dialogService.confirmed().subscribe((confirm) => {
+      if (confirm) {
+        this.customizationService
+          .saveCategory(this.selectedCategory)
+          .subscribe(() => {
+            this.dialogService.openMessage('Changes has been saved', 'Close');
+          });
+      }
+    });
+  }
+
+  saveMaterial(): void {
+    this.dialogService.openConfirm(this.saveOptions);
+    this.dialogService.confirmed().subscribe((confirm) => {
+      if (confirm) {
+        this.customizationService
+          .saveMaterial(this.selectedMaterial)
+          .subscribe(() => {
+            this.dialogService.openMessage('Changes has been saved', 'Close');
+          });
+      }
+    });
+  }
+
+  saveSize(): void {
+    this.dialogService.openConfirm(this.saveOptions);
+    this.dialogService.confirmed().subscribe((confirm) => {
+      if (confirm) {
+        this.customizationService.saveSize(this.selectedSize).subscribe(() => {
+          this.dialogService.openMessage('Changes has been saved', 'Close');
         });
       }
     });
   }
 
-  add(): void {
-    this.dialogService.openInput(this.options);
+  addColor(): void {
+    this.dialogService.openInput(this.addOptions);
     this.dialogService.getInputMessage().subscribe((input: string) => {
       if (input.length === 0) {
-        this.dialogService.openMessage("Input value and try again", "Close");
+        this.dialogService.openMessage('Input value and try again', 'Close');
       }
       if (input) {
-        alert(input);
-        this.customizationService.addNewColor(new CategoryColorMaterialsModel(0, input))
-          .subscribe((error) => alert(error));
+        this.customizationService
+          .addNewColor(new CategoryColorMaterialsModel(0, input))
+          .subscribe(() =>
+            this.dialogService.openMessage('Custom has been added', 'Close')
+          );
       }
     });
   }
 
-  delete(): void {
-    this.dialogService.openConfirm(this.options);
-    this.dialogService.confirmed().subscribe((confirm) => {
-        if (confirm) {
-           this.customizationService.deleteColor(this.selectedColor.id).subscribe((res) => {
-             alert(res);
-           });
-        }
+  addCategory(): void {
+    this.dialogService.openInput(this.addOptions);
+    this.dialogService.getInputMessage().subscribe((input: string) => {
+      if (input.length === 0) {
+        this.dialogService.openMessage('Input value and try again', 'Close');
+      }
+      if (input) {
+        this.customizationService
+          .addNewCategory(new CategoryColorMaterialsModel(0, input))
+          .subscribe(() =>
+            this.dialogService.openMessage('Custom has been added', 'Close')
+          );
+      }
     });
+  }
 
+  addMaterial(): void {
+    this.dialogService.openInput(this.addOptions);
+    this.dialogService.getInputMessage().subscribe((input: string) => {
+      if (input.length === 0) {
+        this.dialogService.openMessage('Input value and try again', 'Close');
+      }
+      if (input) {
+        this.customizationService
+          .addNewMaterial(new CategoryColorMaterialsModel(0, input))
+          .subscribe(() =>
+            this.dialogService.openMessage('Custom has been added', 'Close')
+          );
+      }
+    });
+  }
+
+  addSize(): void {
+    this.dialogService.openInput(this.addOptions);
+    this.dialogService.getInputMessage().subscribe((input: string) => {
+      if (input.length === 0) {
+        this.dialogService.openMessage('Input value and try again', 'Close');
+      }
+      if (input) {
+        this.customizationService
+          .addNewSize(new CategoryColorMaterialsModel(0, input))
+          .subscribe(() =>
+            this.dialogService.openMessage('Custom has been added', 'Close')
+          );
+      }
+    });
+  }
+
+  deleteColor(): void {
+    this.dialogService.openConfirm(this.deleteOptions);
+    this.dialogService.confirmed().subscribe((confirm) => {
+      if (confirm) {
+        this.customizationService
+          .deleteColor(this.selectedColor.id)
+          .subscribe(() => {
+            this.dialogService.openMessage('Custom has been deleted', 'Close');
+          });
+      }
+    });
+  }
+
+  deleteCategory(): void {
+    this.dialogService.openConfirm(this.deleteOptions);
+    this.dialogService.confirmed().subscribe((confirm) => {
+      if (confirm) {
+        this.customizationService
+          .deleteCategory(this.selectedCategory.id)
+          .subscribe(() => {
+            this.dialogService.openMessage('Custom has been deleted', 'Close');
+          });
+      }
+    });
+  }
+
+  deleteMaterial(): void {
+    this.dialogService.openConfirm(this.deleteOptions);
+    this.dialogService.confirmed().subscribe((confirm) => {
+      if (confirm) {
+        this.customizationService
+          .deleteMaterial(this.selectedMaterial.id)
+          .subscribe(() => {
+            this.dialogService.openMessage('Custom has been deleted', 'Close');
+          });
+      }
+    });
+  }
+
+  deleteSize(): void {
+    this.dialogService.openConfirm(this.deleteOptions);
+    this.dialogService.confirmed().subscribe((confirm) => {
+      if (confirm) {
+        this.customizationService
+          .deleteSize(this.selectedSize.id)
+          .subscribe(() => {
+            this.dialogService.openMessage('Custom has been deleted', 'Close');
+          });
+      }
+    });
   }
 }

@@ -1,10 +1,10 @@
-import {Injectable} from '@angular/core';
-import {MatDialog, MatDialogRef} from '@angular/material/dialog';
-import {DialogMessageComponent} from '../../../components/dialog-message/dialog-message.component';
-import {ConfirmComponent} from '../../../components/confirm/confirm.component';
-import {Observable} from 'rxjs';
-import {map, take} from 'rxjs/operators';
-import {DialogInputComponent} from "../../../components/dialog-input/dialog-input.component";
+import { Injectable } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { DialogMessageComponent } from '../../../components/dialog-message/dialog-message.component';
+import { ConfirmComponent } from '../../../components/confirm/confirm.component';
+import { Observable } from 'rxjs';
+import { map, take } from 'rxjs/operators';
+import { DialogInputComponent } from '../../../components/dialog-input/dialog-input.component';
 
 @Injectable({
   providedIn: 'root',
@@ -14,8 +14,7 @@ export class DialogService {
   dialogRefConfirm!: MatDialogRef<ConfirmComponent>;
   dialogRefInput!: MatDialogRef<DialogInputComponent>;
 
-  constructor(private dialog: MatDialog) {
-  }
+  constructor(private dialog: MatDialog) {}
 
   public openMessage(messageText: string, buttonName: string) {
     this.dialogRefMessage = this.dialog.open(DialogMessageComponent, {
