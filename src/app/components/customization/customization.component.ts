@@ -106,6 +106,7 @@ export class CustomizationComponent implements OnInit {
           .saveColor(this.selectedColor)
           .subscribe(() => {
             this.dialogService.openMessage('Changes has been saved', 'Close');
+            this.allColors();
           });
       }
     });
@@ -119,6 +120,7 @@ export class CustomizationComponent implements OnInit {
           .saveCategory(this.selectedCategory)
           .subscribe(() => {
             this.dialogService.openMessage('Changes has been saved', 'Close');
+            this.allCategories();
           });
       }
     });
@@ -132,6 +134,7 @@ export class CustomizationComponent implements OnInit {
           .saveMaterial(this.selectedMaterial)
           .subscribe(() => {
             this.dialogService.openMessage('Changes has been saved', 'Close');
+            this.allMaterials();
           });
       }
     });
@@ -143,6 +146,7 @@ export class CustomizationComponent implements OnInit {
       if (confirm) {
         this.customizationService.saveSize(this.selectedSize).subscribe(() => {
           this.dialogService.openMessage('Changes has been saved', 'Close');
+          this.allSizes();
         });
       }
     });
@@ -157,9 +161,10 @@ export class CustomizationComponent implements OnInit {
       if (input) {
         this.customizationService
           .addNewColor(new CategoryColorMaterialsModel(0, input))
-          .subscribe(() =>
-            this.dialogService.openMessage('Custom has been added', 'Close')
-          );
+          .subscribe(() => {
+            this.dialogService.openMessage('Custom has been added', 'Close');
+            this.allColors();
+          });
       }
     });
   }
@@ -173,9 +178,10 @@ export class CustomizationComponent implements OnInit {
       if (input) {
         this.customizationService
           .addNewCategory(new CategoryColorMaterialsModel(0, input))
-          .subscribe(() =>
-            this.dialogService.openMessage('Custom has been added', 'Close')
-          );
+          .subscribe(() => {
+            this.dialogService.openMessage('Custom has been added', 'Close');
+            this.allCategories();
+          });
       }
     });
   }
@@ -189,9 +195,10 @@ export class CustomizationComponent implements OnInit {
       if (input) {
         this.customizationService
           .addNewMaterial(new CategoryColorMaterialsModel(0, input))
-          .subscribe(() =>
-            this.dialogService.openMessage('Custom has been added', 'Close')
-          );
+          .subscribe(() => {
+            this.dialogService.openMessage('Custom has been added', 'Close');
+            this.allMaterials();
+          });
       }
     });
   }
@@ -205,9 +212,10 @@ export class CustomizationComponent implements OnInit {
       if (input) {
         this.customizationService
           .addNewSize(new CategoryColorMaterialsModel(0, input))
-          .subscribe(() =>
-            this.dialogService.openMessage('Custom has been added', 'Close')
-          );
+          .subscribe(() => {
+            this.dialogService.openMessage('Custom has been added', 'Close');
+            this.allSizes();
+          });
       }
     });
   }
@@ -220,6 +228,7 @@ export class CustomizationComponent implements OnInit {
           .deleteColor(this.selectedColor.id)
           .subscribe(() => {
             this.dialogService.openMessage('Custom has been deleted', 'Close');
+            this.allColors();
           });
       }
     });
@@ -233,6 +242,7 @@ export class CustomizationComponent implements OnInit {
           .deleteCategory(this.selectedCategory.id)
           .subscribe(() => {
             this.dialogService.openMessage('Custom has been deleted', 'Close');
+            this.allCategories();
           });
       }
     });
@@ -246,6 +256,7 @@ export class CustomizationComponent implements OnInit {
           .deleteMaterial(this.selectedMaterial.id)
           .subscribe(() => {
             this.dialogService.openMessage('Custom has been deleted', 'Close');
+            this.allMaterials();
           });
       }
     });
@@ -259,6 +270,7 @@ export class CustomizationComponent implements OnInit {
           .deleteSize(this.selectedSize.id)
           .subscribe(() => {
             this.dialogService.openMessage('Custom has been deleted', 'Close');
+            this.allSizes();
           });
       }
     });
