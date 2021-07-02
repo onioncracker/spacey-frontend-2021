@@ -49,7 +49,7 @@ export class EditProductComponent implements OnInit {
     productSex: ['', [Validators.required]],
     price: ['', [Validators.required]],
     discount: ['', [Validators.required]],
-    photo: ['', [Validators.required]],
+    // photo: ['', [Validators.required]],
     description: ['', [Validators.required]],
     isAvailable: ['', [Validators.required]],
     category: ['', [Validators.required]],
@@ -80,7 +80,7 @@ export class EditProductComponent implements OnInit {
           product.productSex,
           product.price,
           product.discount,
-          product.photo,
+          // product.photo,
           product.description,
           product.isAvailable,
           product.sizes

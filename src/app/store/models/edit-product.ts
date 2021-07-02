@@ -7,7 +7,7 @@ export class EditProduct {
   productSex!: string;
   price!: number;
   discount!: number;
-  photo!: string;
+  // photo!: string;
   description!: string;
   isAvailable!: boolean;
   category!: CategoryColorMaterialsModel;
@@ -23,7 +23,7 @@ export class EditProduct {
     sex: string,
     price: number,
     discount: number,
-    photo: string,
+    // photo: string,
     description: string,
     isAvailable: boolean,
     sizes: Sizes[]
@@ -36,7 +36,7 @@ export class EditProduct {
     this.productSex = sex;
     this.price = price;
     this.discount = discount;
-    this.photo = photo;
+    // this.photo = photo;
     this.description = description;
     this.isAvailable = isAvailable;
     this.sizes = sizes;
