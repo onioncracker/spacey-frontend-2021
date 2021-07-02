@@ -32,15 +32,17 @@
     </div>
     <div class="space" style="margin-top: 20px">
       <td>
-        <h3 class="edit-h">Product Id</h3>
+        <h3 class="edit-h">Product</h3>
         <mat-form-field class="input-field" appearance="fill">
-          <input
-            matInput
+          <mat-select
             [formGroup]="editAuctionForm"
-            formControlName="auctionProductId"
-            type="number"
+            formControlName="auctionProduct"
             placeholder="Product"
-          />
+          >
+            <mat-option *ngFor="let product of products" [value]="product">
+              {{ product.name }}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
       </td>
       <td>

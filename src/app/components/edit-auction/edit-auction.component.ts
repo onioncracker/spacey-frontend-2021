@@ -17,6 +17,7 @@ import { AddAuctionService } from '../../store/service/add-auction/add-auction.s
 })
 export class EditAuctionComponent implements OnInit {
   auction!: EditAuction;
+  products!: AuctionProductsModel[];
   sizes!: Sizes[];
 
   options = {
@@ -37,7 +38,7 @@ export class EditAuctionComponent implements OnInit {
 
   editAuctionForm = this.formBuilder.group({
     auctionId: ['', [Validators.required]],
-    auctionProductId: ['', [Validators.required]],
+    auctionProduct: ['', [Validators.required]],
     productSize: ['', [Validators.required]],
     amount: [0, [Validators.required]],
     auctionName: ['', [Validators.required]],
@@ -63,7 +64,7 @@ export class EditAuctionComponent implements OnInit {
       .subscribe((auction: EditAuction) => {
         this.auction = new EditAuction(
           auction.auctionId,
-          auction.auctionProductId,
+          auction.auctionProduct,
           auction.productSize,
           auction.amount,
           auction.auctionName,

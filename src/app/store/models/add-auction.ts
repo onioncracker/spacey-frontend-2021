@@ -2,7 +2,7 @@ import { Sizes } from './sizes';
 import { AuctionProductsModel } from './auction-products-model';
 
 export class AddAuction {
-  auctionProductId!: number;
+  auctionProduct!: AuctionProductsModel;
   productSize!: Sizes;
   amount!: number;
   auctionName!: string;
@@ -14,20 +14,8 @@ export class AddAuction {
   endTime!: Date;
   status!: string;
 
-  constructor(
-    auctionProductId: number,
-    productSize: Sizes,
-    amount: number,
-    auctionName: string,
-    auctionType: boolean,
-    startPrice: number,
-    endPrice: number,
-    priceStep: number,
-    startTime: Date,
-    endTime: Date,
-    status: string
-  ) {
-    this.auctionProductId = auctionProductId;
+  constructor(auctionProduct: AuctionProductsModel, productSize: Sizes, amount: number, auctionName: string, auctionType: boolean, startPrice: number, endPrice: number, priceStep: number, startTime: Date, endTime: Date, status: string) {
+    this.auctionProduct = auctionProduct;
     this.productSize = productSize;
     this.amount = amount;
     this.auctionName = auctionName;
