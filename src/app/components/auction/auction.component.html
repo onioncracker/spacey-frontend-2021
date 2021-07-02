@@ -1,0 +1,36 @@
+<div class="card mb-4">
+  <div class="card-pill">
+    <app-pill-auction [pill]="getPill()"></app-pill-auction>
+  </div>
+
+  <a
+    [title]="item.auctionName + ' details'"
+    [routerLink]="['/auction-catalog', item.auctionId]"
+  >
+    <img
+      class="card-img-top"
+      src="{{ item.auctionProduct.photo }}"
+      alt="{{ item.auctionProduct.name }}"
+    />
+  </a>
+  <div class="card-body">
+    <h3>
+      <a
+        [title]="item.auctionName + ' details'"
+        [routerLink]="['/auction-catalog', item.auctionId]"
+        class="title-link"
+      >
+        {{ item.auctionName }}
+      </a>
+    </h3>
+    <div class="auction-prise-type">
+      <p class="card-text" *ngIf="item.startPrice">{{ item.startPrice }} UAH</p>
+      <ng-container *ngIf="item.auctionType === true">
+        <p class="auction-type-title">increase auction</p>
+      </ng-container>
+      <ng-container *ngIf="item.auctionType === false">
+        <p class="auction-type-title">decrease auction</p>
+      </ng-container>
+    </div>
+  </div>
+</div>
