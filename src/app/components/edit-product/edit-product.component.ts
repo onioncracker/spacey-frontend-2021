@@ -147,7 +147,7 @@ export class EditProductComponent implements OnInit {
 
   allCategory() {
     this.addProductService
-      .getAllCategory()
+      .getAllCategories()
       .pipe()
       .subscribe((categories: CategoryColorMaterialsModel[]) => {
         this.categories = categories;
