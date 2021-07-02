@@ -61,6 +61,12 @@ import { MatRadioModule } from '@angular/material/radio';
 import { EmployeeProfileComponent } from './components/employee-profile/employee-profile.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { ConfirmComponent } from './components/confirm/confirm.component';
+import { AddAuctionComponent } from './components/add-auction/add-auction.component';
+import { EditAuctionComponent } from './components/edit-auction/edit-auction.component';
+import {
+  NgxMatDatetimePickerModule,
+  NgxMatTimepickerModule,
+} from '@angular-material-components/datetime-picker';
 
 @NgModule({
   declarations: [
@@ -97,6 +103,8 @@ import { ConfirmComponent } from './components/confirm/confirm.component';
     EmployeeProfileComponent,
     UserProfileComponent,
     ConfirmComponent,
+    AddAuctionComponent,
+    EditAuctionComponent,
   ],
   imports: [
     BrowserModule,
@@ -131,6 +139,8 @@ import { ConfirmComponent } from './components/confirm/confirm.component';
     MatCheckboxModule,
     MatSelectModule,
     MatDividerModule,
+    NgxMatDatetimePickerModule,
+    NgxMatTimepickerModule,
   ],
   providers: [
     {
