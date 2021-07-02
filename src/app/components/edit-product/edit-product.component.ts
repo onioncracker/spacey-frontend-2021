@@ -47,15 +47,15 @@ export class EditProductComponent implements OnInit {
     id: ['', [Validators.required]],
     name: ['', [Validators.required]],
     productSex: ['', [Validators.required]],
-    price: ['', [Validators.required]],
-    discount: ['', [Validators.required]],
-    photo: ['', [Validators.required]],
+    price: ['', [Validators.min(0), Validators.required]],
+    discount: [0, [Validators.min(0), Validators.required]],
+    // photo: ['', [Validators.required]],
     description: ['', [Validators.required]],
     isAvailable: ['', [Validators.required]],
     category: ['', [Validators.required]],
     color: ['', [Validators.required]],
     materials: ['', [Validators.required]],
-    sizes: ['', [Validators.required]],
+    sizes: [0, [Validators.min(0), Validators.required]],
   });
 
   onSubmit() {
@@ -80,7 +80,7 @@ export class EditProductComponent implements OnInit {
           product.productSex,
           product.price,
           product.discount,
-          product.photo,
+          // product.photo,
           product.description,
           product.isAvailable,
           product.sizes
