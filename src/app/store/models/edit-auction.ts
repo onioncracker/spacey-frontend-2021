@@ -2,8 +2,8 @@ import { AuctionProductsModel } from './auction-products-model';
 import { Sizes } from './sizes';
 
 export class EditAuction {
-  id!: number;
-  auctionProduct!: AuctionProductsModel;
+  auctionId!: number;
+  auctionProductId!: number;
   productSize!: Sizes;
   amount!: number;
   auctionName!: string;
@@ -16,8 +16,8 @@ export class EditAuction {
   status!: string;
 
   constructor(
-    id: number,
-    auctionProduct: AuctionProductsModel,
+    auctionId: number,
+    auctionProductId: number,
     productSize: Sizes,
     amount: number,
     auctionName: string,
@@ -29,8 +29,8 @@ export class EditAuction {
     endTime: Date,
     status: string
   ) {
-    this.id = id;
-    this.auctionProduct = auctionProduct;
+    this.auctionId = auctionId;
+    this.auctionProductId = auctionProductId;
     this.productSize = productSize;
     this.amount = amount;
     this.auctionName = auctionName;

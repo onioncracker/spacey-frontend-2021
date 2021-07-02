@@ -43,7 +43,7 @@
 }
 
 .input-name {
-  width: 406px;
+  width: 812px;
 }
 
 .photo {
@@ -76,8 +76,21 @@
   border: 0;
   outline: none;
   resize: none;
+  margin-right: 405px;
 }
 
 .datetime:focus {
   outline: none;
+}
+
+.space {
+  display: flex;
+  flex: 0 0 100%;
+  justify-content: flex-start;
+  margin-right: auto;
+  margin-left: 200px;
+}
+
+.input-field {
+  margin-right: 100px;
 }

@@ -30,7 +30,7 @@ export class ToolbarComponent {
   }
 
   routeToAuctions() {
-    this.router.navigateByUrl(routeUrls.auctions);
+    this.router.navigateByUrl(routeUrls.auctionCatalog);
   }
 
   routeToCart() {

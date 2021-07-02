@@ -72,6 +72,7 @@ export class LoginComponent {
       (response) => {
         const data = response.body;
         this.storageService.saveToken(data!.authToken);
+        this.storageService.saveRole(data!.role);
         this.router.navigate(['/']);
         console.warn('logged in successfully');
         console.log(this.storageService.getToken());
@@ -86,6 +87,9 @@ export class LoginComponent {
             break;
           case 403:
             alert('Невірно вказаний пароль. спробуйте ще раз');
+            break;
+          case 401:
+            alert('Підтвердіть свій e-mail');
             break;
           default:
             console.error('Unexpected server response: ' + error);

@@ -43,6 +43,10 @@
   flex-direction: row;
 }
 
+.apartm-part {
+  margin-left: 10%;
+}
+
 .logout-div {
   width: 100%;
   margin-top: 1%;
