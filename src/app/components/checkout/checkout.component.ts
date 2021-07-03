@@ -6,6 +6,7 @@ import { CheckoutDto } from '../../store/models/checkout';
 import CheckoutItem from '../../store/models/CheckoutItem';
 import { Delivery } from '../../store/models/delivery';
 import { DialogService } from '../../store/service/dialog/dialog.service';
+import {AuthService} from "../../store/service/auth/auth.service";
 
 @Component({
   selector: 'app-checkout',
@@ -15,6 +16,7 @@ import { DialogService } from '../../store/service/dialog/dialog.service';
 export class CheckoutComponent implements OnInit {
   order!: CheckoutOrder;
   products!: CheckoutItem[];
+  isUserLogin = false;
   isFormValid = true;
   options = {
     title: 'Do checkout?',
@@ -57,15 +59,30 @@ export class CheckoutComponent implements OnInit {
     });
   }
 
+  getProducts() {
+      return JSON.parse(<string>sessionStorage.getItem('shoppingCart'));
+  }
+
   constructor(
     private checkoutService: CheckoutService,
+    private authService: AuthService,
     private dialogService: DialogService
   ) {}
 
   ngOnInit(): void {
-    this.checkoutService.getCheckout().subscribe((checkout: CheckoutDto) => {
-      this.order = new CheckoutOrder(checkout);
-      this.products = checkout.products;
-    });
+    this.isUserLogin = this.authService.isAuthorised();
+    console.log(this.getProducts());
+    if (!this.isUserLogin) {
+      this.order = new CheckoutOrder(new CheckoutDto(this.products,
+        0, '', '',
+        '', '', '', '', '', ''));
+      this.order.products = this.getProducts();
+    }
+    if (this.isUserLogin) {
+      this.checkoutService.getCheckout().subscribe((checkout: CheckoutDto) => {
+        this.order = new CheckoutOrder(checkout);
+        this.products = checkout.products;
+      });
+    }
   }
 }
