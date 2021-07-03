@@ -71,12 +71,9 @@ import { AuctionCatalogComponent } from './components/auction-catalog/auction-ca
 import { AuctionComponent } from './components/auction/auction.component';
 import { PillAuctionComponent } from './components/pill-auction/pill-auction.component';
 import { AuctionDetailsComponent } from './components/auction-details/auction-details.component';
-<<<<<<< HEAD
 import { ErrorPageComponent } from './components/error-page/error-page.component';
-=======
 import { ProfileComponent } from './components/profile/profile.component';
 import { RecoverPasswordComponent } from './components/recover-password/recover-password.component';
->>>>>>> 281b027258d9aaeffab9b37160c78b142abe73eb
 
 @NgModule({
   declarations: [
@@ -121,12 +118,9 @@ import { RecoverPasswordComponent } from './components/recover-password/recover-
     AuctionComponent,
     PillAuctionComponent,
     AuctionDetailsComponent,
-<<<<<<< HEAD
     ErrorPageComponent,
-=======
     ProfileComponent,
     RecoverPasswordComponent,
->>>>>>> 281b027258d9aaeffab9b37160c78b142abe73eb
   ],
   imports: [
     BrowserModule,
