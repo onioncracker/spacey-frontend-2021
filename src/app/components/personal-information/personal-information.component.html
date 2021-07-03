@@ -1,6 +1,8 @@
 <form [formGroup]="personalInformationForm">
   <div class="space">
-    <a id="personal-information" class="personal-info-font">PERSONAL INFORMATION</a>
+    <a id="personal-information" class="personal-info-font"
+      >PERSONAL INFORMATION</a
+    >
     <div>
       <a
         id="edit-personal-info-btn"
@@ -14,7 +16,8 @@
   </div>
   <div *ngIf="!isEdit">
     <p>
-      {{ personalInformation.ordererFirstName }} {{ personalInformation.ordererLastName }}
+      {{ personalInformation.ordererFirstName }}
+      {{ personalInformation.ordererLastName }}
     </p>
     <p>{{ personalInformation.phoneNumber }}</p>
     <p>{{ personalInformation.email }}</p>

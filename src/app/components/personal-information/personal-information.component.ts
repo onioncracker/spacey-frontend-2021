@@ -32,19 +32,12 @@ export class PersonalInformationComponent implements OnInit, OnChanges {
     this.isAuthUser = !this.isAuthUser;
   }
 
-
   constructor(private formBuilder: FormBuilder) {
     this.personalInformationForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       firstName: ['', [Validators.required, Validators.maxLength(20)]],
       lastName: ['', [Validators.required, Validators.maxLength(30)]],
-      phoneNumber: [
-        '',
-        [
-          Validators.required,
-          Validators.maxLength(30),
-        ],
-      ],
+      phoneNumber: ['', [Validators.required, Validators.maxLength(30)]],
       city: ['', [Validators.required, Validators.maxLength(30)]],
       street: ['', [Validators.required, Validators.maxLength(50)]],
       house: ['', [Validators.required, Validators.maxLength(10)]],

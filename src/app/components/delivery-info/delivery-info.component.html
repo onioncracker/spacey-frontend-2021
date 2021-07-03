@@ -5,7 +5,11 @@
     <input class="datetime" type="datetime-local" matInput />
     <div>
       <section>
-        <mat-checkbox style="margin-top: 15px" (change)="onChangeDelivery()" [(ngModel)]="doNotDisturb">
+        <mat-checkbox
+          style="margin-top: 15px"
+          (change)="onChangeDelivery()"
+          [(ngModel)]="doNotDisturb"
+        >
           'Do not disturb' option
         </mat-checkbox>
       </section>
