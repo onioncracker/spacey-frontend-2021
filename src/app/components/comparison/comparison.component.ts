@@ -4,7 +4,8 @@ import { CompareService } from '../../store/service/comparison/compare.service';
 import { SizesComparisonModel } from '../../store/models/sizes-comparison.model';
 import { ProductModel } from '../../store/models/product.model';
 import { routeUrls } from '../../../environments/router-manager';
-import {TokenStorageService} from "../../store/service/auth/token-storage.service";
+import { TokenStorageService } from '../../store/service/auth/token-storage.service';
+import { ErrorPageService } from '../../store/service/error/error-page.service';
 
 @Component({
   selector: 'app-comparison',
@@ -20,14 +21,14 @@ export class ComparisonComponent implements OnInit {
     private route: ActivatedRoute,
     private comparisonService: CompareService,
     private tokenStorageService: TokenStorageService,
+    private errorPageService: ErrorPageService
   ) {}
 
-  private isUserRole(): boolean  {
+  private isUserRole(): boolean {
     let userRole = this.tokenStorageService.getRole();
-    if (userRole === "USER") {
+    if (userRole === 'USER') {
       return true;
-    }
-    else if (userRole === null) {
+    } else if (userRole === null) {
       return true;
     }
     return false;
@@ -74,12 +75,10 @@ export class ComparisonComponent implements OnInit {
   }
 
   ngOnInit() {
-
     if (this.isUserRole()) {
       this.getAllComparison();
-    }
-    else {
-
+    } else {
+      this.errorPageService.openErrorPage('Access is denied');
     }
   }
 }

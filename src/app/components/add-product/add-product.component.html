@@ -1,4 +1,4 @@
-<div *ngIf="isProductManager">
+<div>
   <div class="head-prod-add">
     <mat-label class="add-label">
       <h1 class="add-h">ADD PRODUCT</h1>
@@ -20,7 +20,10 @@
               formControlName="category"
               placeholder="Category"
             >
-              <mat-option *ngFor="let category of categories" [value]="category">
+              <mat-option
+                *ngFor="let category of categories"
+                [value]="category"
+              >
                 {{ category.name }}
               </mat-option>
             </mat-select>
@@ -126,14 +129,14 @@
         <td colspan="4" rowspan="5">
           <h3 class="add-h">Description</h3>
           <mat-form-field class="input-description" appearance="fill">
-          <textarea
-            matInput
-            class="description"
-            placeholder="Some information about product"
-            [formGroup]="addProductForm"
-            formControlName="description"
-          >
-          </textarea>
+            <textarea
+              matInput
+              class="description"
+              placeholder="Some information about product"
+              [formGroup]="addProductForm"
+              formControlName="description"
+            >
+            </textarea>
           </mat-form-field>
           <div class="deactivate-box">
             <mat-checkbox
@@ -145,24 +148,26 @@
           </div>
         </td>
         <td rowspan="5" class="sizes">
-      <tr *ngFor="let size of sizesAmount; let i = index; trackBy: onTrackBy">
-        <td>
-          <div class="sizes">
-            <mat-label class="add-h"> {{ size.name }}:</mat-label>
-            <mat-form-field class="size-amount" appearance="fill">
-              <input
-                matInput
-                type="number"
-                placeholder="Amount"
-                formControlName="sizes"
-                [(ngModel)]="sizesAmount[i].quantity"
-              />
-            </mat-form-field>
-            <br />
-          </div>
+          <tr
+            *ngFor="let size of sizesAmount; let i = index; trackBy: onTrackBy"
+          >
+            <td>
+              <div class="sizes">
+                <mat-label class="add-h"> {{ size.name }}:</mat-label>
+                <mat-form-field class="size-amount" appearance="fill">
+                  <input
+                    matInput
+                    type="number"
+                    placeholder="Amount"
+                    formControlName="sizes"
+                    [(ngModel)]="sizesAmount[i].quantity"
+                  />
+                </mat-form-field>
+                <br />
+              </div>
+            </td>
+          </tr>
         </td>
-      </tr>
-      </td>
       </tr>
     </table>
 
@@ -180,7 +185,4 @@
       <br />
     </div>
   </form>
-</div>
-<div *ngIf="!isProductManager">
-  error
 </div>

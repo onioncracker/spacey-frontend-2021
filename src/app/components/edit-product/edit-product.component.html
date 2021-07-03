@@ -1,10 +1,14 @@
-<div *ngIf="isProductManager">
+<div>
   <div class="head-prod-edit">
     <mat-label class="edit-label">
       <h1 class="edit-h">EDIT PRODUCT</h1>
     </mat-label>
   </div>
-  <form name="EditProduct" [formGroup]="editProductForm" (ngSubmit)="onSubmit()">
+  <form
+    name="EditProduct"
+    [formGroup]="editProductForm"
+    (ngSubmit)="onSubmit()"
+  >
     <table class="table-edit">
       <tr>
         <td>
@@ -21,7 +25,10 @@
               formControlName="category"
               [compareWith]="compareObjects"
             >
-              <mat-option *ngFor="let category of categories" [value]="category">
+              <mat-option
+                *ngFor="let category of categories"
+                [value]="category"
+              >
                 {{ category.name }}
               </mat-option>
             </mat-select>
@@ -132,14 +139,14 @@
         <td colspan="4" rowspan="5">
           <h3 class="edit-h">Description</h3>
           <mat-form-field class="input-description" appearance="fill">
-          <textarea
-            matInput
-            spellcheck="true"
-            class="description"
-            placeholder="Some information about product"
-            formControlName="description"
-          >
-          </textarea>
+            <textarea
+              matInput
+              spellcheck="true"
+              class="description"
+              placeholder="Some information about product"
+              formControlName="description"
+            >
+            </textarea>
           </mat-form-field>
           <div class="deactivate-box">
             <mat-checkbox formControlName="isAvailable">
@@ -148,24 +155,26 @@
           </div>
         </td>
         <td rowspan="5" class="sizes">
-      <tr *ngFor="let size of sizesAmount; let i = index; trackBy: onTrackBy">
-        <td>
-          <div class="sizes">
-            <mat-label class="edit-h"> {{ size.name }}:</mat-label>
-            <mat-form-field class="size-amount" appearance="fill">
-              <input
-                matInput
-                type="number"
-                placeholder="Amount"
-                [(ngModel)]="sizesAmount[i].quantity"
-                [ngModelOptions]="{ standalone: true }"
-              />
-            </mat-form-field>
-            <br />
-          </div>
+          <tr
+            *ngFor="let size of sizesAmount; let i = index; trackBy: onTrackBy"
+          >
+            <td>
+              <div class="sizes">
+                <mat-label class="edit-h"> {{ size.name }}:</mat-label>
+                <mat-form-field class="size-amount" appearance="fill">
+                  <input
+                    matInput
+                    type="number"
+                    placeholder="Amount"
+                    [(ngModel)]="sizesAmount[i].quantity"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
+                </mat-form-field>
+                <br />
+              </div>
+            </td>
+          </tr>
         </td>
-      </tr>
-      </td>
       </tr>
     </table>
 
@@ -193,7 +202,4 @@
       DELETE PRODUCT
     </button>
   </div>
-</div>
-<div *ngIf="!isProductManager">
-  error
 </div>

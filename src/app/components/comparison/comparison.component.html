@@ -1,4 +1,4 @@
-<div *ngIf="isUser">
+<div>
   <div class="head-prod-comparison">
     <mat-label class="comparison-label">
       <h1 class="compare-h">Comparison</h1>
@@ -33,7 +33,7 @@
         <td class="compare-field" *ngFor="let product of products">
           <a routerLink="/product-catalog/{{ product.id }}" class="prod-name">{{
             product.name
-            }}</a>
+          }}</a>
         </td>
       </tr>
       <tr>
@@ -93,9 +93,9 @@
       </tr>
       <tr>
         <td class="compare-field" *ngFor="let product of products">
-        <span *ngFor="let size of product.sizes">
-          {{ size.name }}
-        </span>
+          <span *ngFor="let size of product.sizes">
+            {{ size.name }}
+          </span>
         </td>
       </tr>
       <tr>
@@ -147,7 +147,8 @@
     class="table-comparison"
   >
     <h3>
-      You add to compere less then 2 products. Please, go to catalog and add more.
+      You add to compere less then 2 products. Please, go to catalog and add
+      more.
     </h3>
     <div class="button-div">
       <button
@@ -162,4 +163,3 @@
     </div>
   </div>
 </div>
-

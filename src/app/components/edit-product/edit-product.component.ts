@@ -8,7 +8,8 @@ import { AddProductService } from '../../store/service/add-product/add-product.s
 import { DialogService } from '../../store/service/dialog/dialog.service';
 import { routeUrls } from '../../../environments/router-manager';
 import { EditProduct } from '../../store/models/edit-product';
-import {TokenStorageService} from "../../store/service/auth/token-storage.service";
+import { TokenStorageService } from '../../store/service/auth/token-storage.service';
+import { ErrorPageService } from '../../store/service/error/error-page.service';
 
 class ImageSnippet {
   constructor(public src: string, public file: File) {}
@@ -27,8 +28,6 @@ export class EditProductComponent implements OnInit {
   sizesAmount!: Sizes[];
   selectedCategory!: number;
   selectedFile!: ImageSnippet;
-  userRole = this.tokenStorageService.getRole();
-  isProductManager = false;
 
   options = {
     title: 'Do you want to delete a product?',
@@ -44,7 +43,8 @@ export class EditProductComponent implements OnInit {
     private formBuilder: FormBuilder,
     private editProductService: EditProductService,
     private dialogService: DialogService,
-    private tokenStorageService: TokenStorageService
+    private tokenStorageService: TokenStorageService,
+    private errorPageService: ErrorPageService
   ) {}
 
   editProductForm = this.formBuilder.group({
@@ -62,8 +62,9 @@ export class EditProductComponent implements OnInit {
     sizes: [0, [Validators.min(0), Validators.required]],
   });
 
-  private isProductManagerRole(): boolean  {
-    return this.userRole === "PRODUCT_MANAGER";
+  private isProductManagerRole(): boolean {
+    let userRole = this.tokenStorageService.getRole();
+    return userRole === 'PRODUCT_MANAGER';
   }
 
   onSubmit() {
@@ -177,6 +178,8 @@ export class EditProductComponent implements OnInit {
     this.allSizes();
     this.allCategory();
     this.getProduct();
-    this.isProductManager = this.isProductManagerRole();
+    if (!this.isProductManagerRole()) {
+      this.errorPageService.openErrorPage('Access is denied');
+    }
   }
 }

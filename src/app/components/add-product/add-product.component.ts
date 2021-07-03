@@ -11,7 +11,8 @@ import { CategoryColorMaterialsModel } from '../../store/models/category-color-m
 import { Sizes } from '../../store/models/sizes';
 import { DialogService } from '../../store/service/dialog/dialog.service';
 import { AddProduct } from '../../store/models/add-product';
-import {TokenStorageService} from "../../store/service/auth/token-storage.service";
+import { TokenStorageService } from '../../store/service/auth/token-storage.service';
+import { ErrorPageService } from '../../store/service/error/error-page.service';
 
 class ImageSnippet {
   constructor(public src: string, public file: File) {}
@@ -30,15 +31,14 @@ export class AddProductComponent implements OnInit {
   colors!: CategoryColorMaterialsModel[];
   sizesAmount!: Sizes[];
   selectedFile!: ImageSnippet;
-  userRole = this.tokenStorageService.getRole();
-  isProductManager = false;
 
   constructor(
     private route: ActivatedRoute,
     private addProductService: AddProductService,
     private formBuilder: FormBuilder,
     private dialogService: DialogService,
-    private tokenStorageService: TokenStorageService
+    private tokenStorageService: TokenStorageService,
+    private errorPageService: ErrorPageService
   ) {
     this.addProductForm = this.formBuilder.group({
       name: ['', [Validators.required]],
@@ -55,8 +55,9 @@ export class AddProductComponent implements OnInit {
     });
   }
 
-  private isProductManagerRole(): boolean  {
-    return this.userRole === "PRODUCT_MANAGER";
+  private isProductManagerRole(): boolean {
+    let userRole = this.tokenStorageService.getRole();
+    return userRole === 'PRODUCT_MANAGER';
   }
 
   onSubmit(addProductForm: any, productForm: FormGroupDirective) {
@@ -153,6 +154,8 @@ export class AddProductComponent implements OnInit {
     this.allColors();
     this.allSizes();
     this.allCategory();
-    this.isProductManager = this.isProductManagerRole();
+    if (!this.isProductManagerRole()) {
+      this.errorPageService.openErrorPage('Access is denied');
+    }
   }
 }
