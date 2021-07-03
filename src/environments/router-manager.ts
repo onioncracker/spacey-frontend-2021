@@ -25,4 +25,5 @@ export const routeUrls = {
   manageProducts: 'manage/products',
   userProfile: 'user-profile',
   profile: 'profile',
+  customization: 'customization',
 };

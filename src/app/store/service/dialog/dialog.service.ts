@@ -4,6 +4,7 @@ import { DialogMessageComponent } from '../../../components/dialog-message/dialo
 import { ConfirmComponent } from '../../../components/confirm/confirm.component';
 import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
+import { DialogInputComponent } from '../../../components/dialog-input/dialog-input.component';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +12,7 @@ import { map, take } from 'rxjs/operators';
 export class DialogService {
   dialogRefMessage!: MatDialogRef<DialogMessageComponent>;
   dialogRefConfirm!: MatDialogRef<ConfirmComponent>;
+  dialogRefInput!: MatDialogRef<DialogInputComponent>;
 
   constructor(private dialog: MatDialog) {}
 
@@ -41,5 +43,29 @@ export class DialogService {
         return res;
       })
     );
+  }
+
+  public openInput(options): void {
+    this.dialogRefInput = this.dialog.open(DialogInputComponent, {
+      data: {
+        title: options.title,
+        message: options.message,
+        cancelText: options.cancelText,
+        confirmText: options.confirmText,
+      },
+    });
+  }
+
+  public confirmedInput(): Observable<boolean> {
+    return this.dialogRefConfirm.afterClosed().pipe(
+      take(1),
+      map((res) => {
+        return res;
+      })
+    );
+  }
+
+  public getInputMessage(): Observable<string> {
+    return this.dialogRefInput.afterClosed();
   }
 }

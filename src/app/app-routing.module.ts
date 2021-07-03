@@ -18,6 +18,7 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
 import { ConfirmRegistrationComponent } from './components/confirm-registration/confirm-registration.component';
 import { ProductCatalogComponent } from './components/product-catalog/product-catalog.component';
 import { EditAuctionComponent } from './components/edit-auction/edit-auction.component';
+import { CustomizationComponent } from './components/customization/customization.component';
 import { AuctionCatalogComponent } from './components/auction-catalog/auction-catalog.component';
 import { AuctionDetailsComponent } from './components/auction-details/auction-details.component';
 import { ProfileComponent } from './components/profile/profile.component';
@@ -45,6 +46,7 @@ const routes: Routes = [
     path: routeUrls.confirmRegistration,
     component: ConfirmRegistrationComponent,
   },
+  { path: routeUrls.customization, component: CustomizationComponent },
   { path: routeUrls.profile, component: ProfileComponent },
 ];
 
