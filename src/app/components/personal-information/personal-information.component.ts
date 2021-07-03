@@ -62,8 +62,8 @@ export class PersonalInformationComponent implements OnInit, OnChanges {
 
   ngOnChanges(): void {
     this.userContactInfo = new PersonalInformation(
-      this.personalInformation.firstName,
-      this.personalInformation.lastName,
+      this.personalInformation.ordererFirstName,
+      this.personalInformation.ordererLastName,
       this.personalInformation.phoneNumber,
       this.personalInformation.email,
       this.personalInformation.city,

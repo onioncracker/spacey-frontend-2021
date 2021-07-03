@@ -30,8 +30,8 @@ export class CheckoutComponent implements OnInit {
   getPersonalInformation(personalInformationForm: FormGroup) {
     let personalInformation = personalInformationForm.value;
     this.isFormValid = personalInformationForm.valid;
-    this.order.firstName = personalInformation.firstName;
-    this.order.lastName = personalInformation.lastName;
+    this.order.ordererFirstName = personalInformation.firstName;
+    this.order.ordererLastName = personalInformation.lastName;
     this.order.phoneNumber = personalInformation.phoneNumber;
     this.order.email = personalInformation.email;
     this.order.city = personalInformation.city;
@@ -46,7 +46,7 @@ export class CheckoutComponent implements OnInit {
 
   getDelivery(delivery: Delivery) {
     console.log(delivery);
-    this.order.date = delivery.date;
+    this.order.dateDelivery = delivery.date;
     this.order.noContact = delivery.noContact;
     this.order.doNotDisturb = delivery.doNotDisturb;
   }
