@@ -22,6 +22,7 @@ import { EditAuctionComponent } from './components/edit-auction/edit-auction.com
 import { CustomizationComponent } from './components/customization/customization.component';
 import { AuctionCatalogComponent } from './components/auction-catalog/auction-catalog.component';
 import { AuctionDetailsComponent } from './components/auction-details/auction-details.component';
+import {ErrorPageComponent} from "./components/error-page/error-page.component";
 
 const routes: Routes = [
   { path: routeUrls.login, component: LoginComponent },
@@ -48,6 +49,7 @@ const routes: Routes = [
   },
   { path: routeUrls.userProfile, component: UserProfileComponent },
   { path: routeUrls.customization, component: CustomizationComponent },
+  { path: routeUrls.errorPage, component: ErrorPageComponent },
 ];
 
 @NgModule({

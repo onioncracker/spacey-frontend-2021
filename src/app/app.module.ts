@@ -71,6 +71,7 @@ import { AuctionCatalogComponent } from './components/auction-catalog/auction-ca
 import { AuctionComponent } from './components/auction/auction.component';
 import { PillAuctionComponent } from './components/pill-auction/pill-auction.component';
 import { AuctionDetailsComponent } from './components/auction-details/auction-details.component';
+import { ErrorPageComponent } from './components/error-page/error-page.component';
 
 @NgModule({
   declarations: [
@@ -115,6 +116,7 @@ import { AuctionDetailsComponent } from './components/auction-details/auction-de
     AuctionComponent,
     PillAuctionComponent,
     AuctionDetailsComponent,
+    ErrorPageComponent,
   ],
   imports: [
     BrowserModule,
