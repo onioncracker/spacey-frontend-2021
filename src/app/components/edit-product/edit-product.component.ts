@@ -8,6 +8,7 @@ import { AddProductService } from '../../store/service/add-product/add-product.s
 import { DialogService } from '../../store/service/dialog/dialog.service';
 import { routeUrls } from '../../../environments/router-manager';
 import { EditProduct } from '../../store/models/edit-product';
+import {TokenStorageService} from "../../store/service/auth/token-storage.service";
 
 class ImageSnippet {
   constructor(public src: string, public file: File) {}
@@ -26,6 +27,8 @@ export class EditProductComponent implements OnInit {
   sizesAmount!: Sizes[];
   selectedCategory!: number;
   selectedFile!: ImageSnippet;
+  userRole = this.tokenStorageService.getRole();
+  isProductManager = false;
 
   options = {
     title: 'Do you want to delete a product?',
@@ -40,7 +43,8 @@ export class EditProductComponent implements OnInit {
     private addProductService: AddProductService,
     private formBuilder: FormBuilder,
     private editProductService: EditProductService,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private tokenStorageService: TokenStorageService
   ) {}
 
   editProductForm = this.formBuilder.group({
@@ -57,6 +61,10 @@ export class EditProductComponent implements OnInit {
     materials: ['', [Validators.required]],
     sizes: [0, [Validators.min(0), Validators.required]],
   });
+
+  private isProductManagerRole(): boolean  {
+    return this.userRole === "PRODUCT_MANAGER";
+  }
 
   onSubmit() {
     this.product = this.editProductForm.value;
@@ -169,5 +177,6 @@ export class EditProductComponent implements OnInit {
     this.allSizes();
     this.allCategory();
     this.getProduct();
+    this.isProductManager = this.isProductManagerRole();
   }
 }

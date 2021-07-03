@@ -4,6 +4,7 @@ import { CompareService } from '../../store/service/comparison/compare.service';
 import { SizesComparisonModel } from '../../store/models/sizes-comparison.model';
 import { ProductModel } from '../../store/models/product.model';
 import { routeUrls } from '../../../environments/router-manager';
+import {TokenStorageService} from "../../store/service/auth/token-storage.service";
 
 @Component({
   selector: 'app-comparison',
@@ -17,8 +18,20 @@ export class ComparisonComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private comparisonService: CompareService
+    private comparisonService: CompareService,
+    private tokenStorageService: TokenStorageService,
   ) {}
+
+  private isUserRole(): boolean  {
+    let userRole = this.tokenStorageService.getRole();
+    if (userRole === "USER") {
+      return true;
+    }
+    else if (userRole === null) {
+      return true;
+    }
+    return false;
+  }
 
   getAllComparison() {
     if (sessionStorage.getItem('token')) {
@@ -61,6 +74,12 @@ export class ComparisonComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getAllComparison();
+
+    if (this.isUserRole()) {
+      this.getAllComparison();
+    }
+    else {
+
+    }
   }
 }

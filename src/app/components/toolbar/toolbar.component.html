@@ -23,7 +23,7 @@
   <button mat-flat-button color="primary" (click)="routeToAuctions()">
     Auctions
   </button>
-  <button mat-flat-button color="primary" routerLink="/comparison">
+  <button mat-flat-button color="primary" routerLink="/comparison" *ngIf="isUser">
     Comparison
   </button>
   <span class="gap"></span>
