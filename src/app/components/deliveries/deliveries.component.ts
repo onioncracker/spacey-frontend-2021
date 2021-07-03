@@ -6,6 +6,8 @@ import Order from '../../store/models/order';
 import { FormControl } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { DialogService } from '../../store/service/dialog/dialog.service';
+import { TokenStorageService } from '../../store/service/auth/token-storage.service';
+import { ErrorPageService } from '../../store/service/error/error-page.service';
 
 @Component({
   selector: 'app-delivery',
@@ -15,14 +17,16 @@ import { DialogService } from '../../store/service/dialog/dialog.service';
 export class DeliveriesComponent implements OnInit {
   displayedColumns: string[] = [
     'orderId',
-    'status',
     'dateTime',
     'address',
     'phoneNumber',
+    'status',
     'actions',
     'action1',
     'action2',
   ];
+  role = 'courier';
+  finalStates = ['delivered', 'fail'];
   dataSource = new MatTableDataSource<Order>();
   orders: Order[] = [];
   date = new FormControl(new Date());
@@ -39,7 +43,9 @@ export class DeliveriesComponent implements OnInit {
     private route: ActivatedRoute,
     private ordersService: OrderService,
     private datePipe: DatePipe,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private tokenStorageService: TokenStorageService,
+    private errorPageService: ErrorPageService
   ) {}
 
   pickDataEvent() {
@@ -89,6 +95,28 @@ export class DeliveriesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.isCourierRole()) {
+      this.errorPageService.openErrorPage(
+        'Access denied, please log-in as a courier'
+      );
+    }
     this.uploadData();
+  }
+
+  isCourierRole(): boolean {
+    if (this.tokenStorageService.getRole() === null) {
+      return false;
+    }
+    return this.tokenStorageService.getRole().toLowerCase() === this.role;
+  }
+
+  isStatusFinal(state: string): boolean {
+    if (state.toLowerCase() === this.finalStates[0]) {
+      return true;
+    }
+    if (state.toLowerCase() === this.finalStates[1]) {
+      return true;
+    }
+    return false;
   }
 }
