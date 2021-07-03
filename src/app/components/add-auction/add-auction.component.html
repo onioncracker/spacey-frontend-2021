@@ -73,8 +73,9 @@
             formControlName="auctionType"
             placeholder="Type"
           >
-            <mat-option value="Increase">INCREASE</mat-option>
-            <mat-option value="Decrease">DECREASE</mat-option>
+            <mat-option *ngFor="let type of types" [value]="type">
+              {{ type }}
+            </mat-option>
           </mat-select>
         </mat-form-field>
       </td>
@@ -121,11 +122,12 @@
         <mat-form-field class="input-field" appearance="fill">
           <mat-select
             [formGroup]="addAuctionForm"
-            formControlName="auctionType"
-            placeholder="Type"
+            formControlName="status"
+            placeholder="Status"
           >
-            <mat-option value="Active">ACTIVE</mat-option>
-            <mat-option value="Inactive">INACTIVE</mat-option>
+            <mat-option *ngFor="let status of statuses" [value]="status">
+              {{ status }}
+            </mat-option>
           </mat-select>
         </mat-form-field>
       </td>
@@ -133,12 +135,13 @@
     <div class="space" style="margin-top: 20px">
       <td>
         <h3 class="add-h">START TIME</h3>
-        <input
-          class="datetime"
-          formControlName="startTime"
-          type="datetime-local"
-          matInput
-        />
+        <dp-date-picker [displayDate]="'displayDate'" [mode]="'daytime'" [theme]="'dp-material dp-main'"></dp-date-picker>
+<!--        <input-->
+<!--          class="datetime"-->
+<!--          formControlName="startTime"-->
+<!--          type="datetime-local"-->
+<!--          matInput-->
+<!--        />-->
       </td>
       <td>
         <h3 class="add-h">END TIME</h3>
