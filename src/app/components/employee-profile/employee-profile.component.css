@@ -22,11 +22,13 @@
   width: 100%;
 }
 
-.report-btn {
-  display: flex;
-  justify-content: center;
-  padding-left: 10%;
-  padding-right: 10%;
-  border-radius: 1px;
-  margin-top: 3%;
+.logout-div {
+  width: 100%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+
+.logout-btn {
+  margin-left: 85%;
+  width: 10%;
 }
