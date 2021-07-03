@@ -17,19 +17,21 @@ import { CheckoutOrder } from '../../store/models/checkout-order';
 })
 export class PersonalInformationComponent implements OnInit, OnChanges {
   personalInformationForm!: FormGroup;
-  @Output() personalInformationEvent = new EventEmitter<PersonalInformation>();
+  @Output() personalInformationEvent = new EventEmitter<FormGroup>();
   userContactInfo!: PersonalInformation;
   @Input() personalInformation!: CheckoutOrder;
-  isAuthUser!: boolean;
   isEdit!: boolean;
+  isAuthUser!: boolean;
 
   onFormDataChange() {
-    this.personalInformationEvent.emit(this.personalInformationForm.value);
+    this.personalInformationEvent.emit(this.personalInformationForm);
   }
 
   edit() {
+    this.isEdit = !this.isEdit;
     this.isAuthUser = !this.isAuthUser;
   }
+
 
   constructor(private formBuilder: FormBuilder) {
     this.personalInformationForm = this.formBuilder.group({
@@ -40,8 +42,7 @@ export class PersonalInformationComponent implements OnInit, OnChanges {
         '',
         [
           Validators.required,
-          Validators.minLength(12),
-          Validators.maxLength(12),
+          Validators.maxLength(30),
         ],
       ],
       city: ['', [Validators.required, Validators.maxLength(30)]],

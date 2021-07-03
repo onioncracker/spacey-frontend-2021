@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit} from '@angular/core';
 import CheckoutService from '../../store/service/checkout/checkout.service';
 import { CheckoutOrder } from '../../store/models/checkout-order';
-import { PersonalInformation } from '../../store/models/personal-information';
 import { CheckoutDto } from '../../store/models/checkout';
 import CheckoutItem from '../../store/models/CheckoutItem';
 import { Delivery } from '../../store/models/delivery';
 import { DialogService } from '../../store/service/dialog/dialog.service';
 import {AuthService} from "../../store/service/auth/auth.service";
+import {FormGroup} from "@angular/forms";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-checkout',
@@ -17,15 +18,18 @@ export class CheckoutComponent implements OnInit {
   order!: CheckoutOrder;
   products!: CheckoutItem[];
   isUserLogin = false;
-  isFormValid = true;
+  isFormValid = false;
   options = {
     title: 'Do checkout?',
     message: 'Order will be delivered soon',
     cancelText: 'CANCEL',
     confirmText: 'YES',
   };
+  edit = false;
 
-  getPersonalInformation(personalInformation: PersonalInformation) {
+  getPersonalInformation(personalInformationForm: FormGroup) {
+    let personalInformation = personalInformationForm.value;
+    this.isFormValid = personalInformationForm.valid;
     this.order.firstName = personalInformation.firstName;
     this.order.lastName = personalInformation.lastName;
     this.order.phoneNumber = personalInformation.phoneNumber;
@@ -49,14 +53,26 @@ export class CheckoutComponent implements OnInit {
 
   onCheckout() {
     console.log(this.order);
-    this.dialogService.openConfirm(this.options);
-    this.dialogService.confirmed().subscribe((confirmed) => {
-      if (confirmed) {
-        this.checkoutService
-          .makeOrder(this.order)
-          .subscribe((res) => alert(res));
-      }
-    });
+    if (!this.isFormValid) {
+      this.snackBar.open('Please, specify all required personal information', '', {
+        duration: 2000
+      });
+      // @ts-ignore
+      document.getElementById('personal-information').scrollIntoView();
+      // @ts-ignore
+      document.getElementById('edit-personal-info-btn').click(() => {
+
+      });
+    } else {
+      this.dialogService.openConfirm(this.options);
+      this.dialogService.confirmed().subscribe((confirmed) => {
+        if (confirmed) {
+          this.checkoutService
+            .makeOrder(this.order)
+            .subscribe((res) => alert(res));
+        }
+      });
+    }
   }
 
   getProducts() {
@@ -66,7 +82,8 @@ export class CheckoutComponent implements OnInit {
   constructor(
     private checkoutService: CheckoutService,
     private authService: AuthService,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -84,5 +101,9 @@ export class CheckoutComponent implements OnInit {
         this.products = checkout.products;
       });
     }
+  }
+
+  getIsEdit(isEdit: boolean) {
+    this.edit = isEdit;
   }
 }

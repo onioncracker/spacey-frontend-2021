@@ -46,17 +46,13 @@
   resize: none;
 }
 
-.mt {
-  margin-top: 25px;
+.ml {
+  margin-left: 8px;
 }
 
-/*.input-area-small {*/
-/*  background: #f8f8f8;*/
-/*  font-family: Spartan, sans-serif;*/
-/*  width: 125px;*/
-/*  border: 0;*/
-/*  outline: none;*/
-/*}*/
+.input-area-small {
+  width: 60px;
+}
 
 .apartment-building-info {
   display: flex;

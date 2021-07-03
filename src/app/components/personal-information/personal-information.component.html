@@ -1,8 +1,9 @@
 <form [formGroup]="personalInformationForm">
   <div class="space">
-    <h2 class="personal-info-font">PERSONAL INFORMATION</h2>
+    <a id="personal-information" class="personal-info-font">PERSONAL INFORMATION</a>
     <div>
       <a
+        id="edit-personal-info-btn"
         mat-button
         target="_blank"
         *ngIf="isAuthUser"
@@ -43,7 +44,8 @@
   <div *ngIf="!isAuthUser || isEdit">
     <div class="input-form">
       <div class="column">
-        <mat-form-field class="emp-form-field">
+        <mat-form-field>
+          <mat-label> First name </mat-label>
           <input
             class="input-area"
             matInput
@@ -61,7 +63,7 @@
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field class="emp-form-field">
+        <mat-form-field>
           <input
             class="mt input-area"
             matInput
@@ -79,14 +81,14 @@
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field class="emp-form-field">
+        <mat-form-field>
+          <mat-label> Phone number </mat-label>
           <input
-            class="mt input-area"
+            class="input-area"
             matInput
             formControlName="phoneNumber"
             type="text"
             (change)="onFormDataChange()"
-            placeholder="Phone Number"
           />
           <mat-error
             *ngIf="
@@ -150,10 +152,10 @@
           </mat-error>
         </mat-form-field>
 
-        <div class="apartment-builaddding-info">
+        <div class="apartment-building-info">
           <mat-form-field class="emp-form-field">
             <input
-              class="mt input-area-small"
+              class="input-area-small"
               matInput
               formControlName="house"
               type="text"
@@ -169,7 +171,7 @@
 
           <mat-form-field class="emp-form-field">
             <input
-              class="mt input-area-small"
+              class="ml input-area-small"
               matInput
               formControlName="apartment"
               type="text"

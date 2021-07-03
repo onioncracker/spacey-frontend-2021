@@ -139,6 +139,7 @@ import {
     MatCheckboxModule,
     MatSelectModule,
     MatDividerModule,
+    MatSnackBarModule,
     NgxMatDatetimePickerModule,
     NgxMatTimepickerModule,
   ],
