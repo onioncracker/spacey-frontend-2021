@@ -8,17 +8,19 @@ import { LoginModel } from '../../models/login.model';
 import { environment } from '../../../../environments/environment';
 import { endpointUrls } from '../../../../environments/endpoint-routes-manager';
 import { TokenStorageService } from './token-storage.service';
+import { RecoverPassword } from '../../models/recover-password.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private registerURL = environment.url + endpointUrls.apiPrefix + '/register';
-  private loginURL = environment.url + endpointUrls.apiPrefix + '/login';
-  private confirmURL =
-    environment.url + endpointUrls.apiPrefix + '/registration_confirm';
-  private resendConfirmURL =
-    environment.url + endpointUrls.apiPrefix + '/resend_registration_token';
+  private hostURL = environment.url + endpointUrls.apiPrefix;
+
+  private registerURL = this.hostURL + '/register';
+  private loginURL = this.hostURL + '/login';
+  private confirmURL = this.hostURL + '/registration_confirm';
+  private resendConfirmURL = this.hostURL + '/resend_registration_token';
+  private recoverPasswordURL = this.hostURL + '/???'; // todo change link;
 
   private httpOptions = { observe: 'response' as const };
 
@@ -76,5 +78,13 @@ export class AuthService {
 
   resendRegistration(token: string): Observable<HttpResponse<any>> {
     return this.http.get<any>(this.resendConfirmURL + '?token=' + token);
+  }
+
+  recoverPassword(recoverData: RecoverPassword): Observable<HttpResponse<any>> {
+    return this.http.post(
+      this.recoverPasswordURL,
+      recoverData,
+      this.httpOptions
+    );
   }
 }

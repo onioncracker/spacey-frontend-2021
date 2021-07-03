@@ -17,7 +17,11 @@ import { AddAuctionService } from '../../store/service/add-auction/add-auction.s
 })
 export class EditAuctionComponent implements OnInit {
   auction!: EditAuction;
+  products!: AuctionProductsModel[];
   sizes!: Sizes[];
+  types!: boolean[];
+  type!: string;
+  statuses!: string[];
 
   options = {
     title: 'Do you want to delete a auction?',
@@ -37,7 +41,7 @@ export class EditAuctionComponent implements OnInit {
 
   editAuctionForm = this.formBuilder.group({
     auctionId: ['', [Validators.required]],
-    auctionProductId: ['', [Validators.required]],
+    auctionProduct: ['', [Validators.required]],
     productSize: ['', [Validators.required]],
     amount: [0, [Validators.required]],
     auctionName: ['', [Validators.required]],
@@ -60,10 +64,11 @@ export class EditAuctionComponent implements OnInit {
     const id = parseInt(this.route.snapshot.paramMap.get('id')!);
     this.editAuctionService
       .getAuctionById(id)
+      .pipe()
       .subscribe((auction: EditAuction) => {
         this.auction = new EditAuction(
           auction.auctionId,
-          auction.auctionProductId,
+          auction.auctionProduct,
           auction.productSize,
           auction.amount,
           auction.auctionName,
@@ -75,9 +80,14 @@ export class EditAuctionComponent implements OnInit {
           auction.endTime,
           auction.status
         );
-        // this.editAuctionForm.setValue(auction);
         console.log(this.auction);
+        if (!this.auction.auctionType) {
+          this.type = 'DECREASE';
+        } else {
+          this.type = 'INCREASE';
+        }
         this.editAuctionForm.setValue(this.auction);
+        console.log(this.editAuctionForm);
       });
   }
 
@@ -105,6 +115,15 @@ export class EditAuctionComponent implements OnInit {
     return object1 && object2 && object1.id == object2.id;
   }
 
+  allProducts() {
+    this.addAuctionService
+      .getAllProducts()
+      .pipe()
+      .subscribe((products: AuctionProductsModel[]) => {
+        this.products = products;
+      });
+  }
+
   allSizes() {
     this.addAuctionService
       .getAllSizes()
@@ -114,9 +133,21 @@ export class EditAuctionComponent implements OnInit {
       });
   }
 
+  allTypes() {
+    this.types = new Array<boolean>();
+    this.types.push(true, false);
+  }
+
+  allStatuses() {
+    this.statuses = new Array<string>();
+    this.statuses.push('ACTIVE', 'INACTIVE');
+  }
+
   ngOnInit() {
+    this.allProducts();
+    this.allTypes();
     this.allSizes();
+    this.allStatuses();
     this.getAuction();
-    // console.log(this.auction);
   }
 }

@@ -12,6 +12,7 @@ import { AuthService } from '../../store/service/auth/auth.service';
 import { Router } from '@angular/router';
 import { LoginModel } from '../../store/models/login.model';
 import { TokenStorageService } from '../../store/service/auth/token-storage.service';
+import { routeUrls } from '../../../environments/router-manager';
 
 export class LoginErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -72,9 +73,9 @@ export class LoginComponent {
       (response) => {
         const data = response.body;
         this.storageService.saveToken(data!.authToken);
-        this.router.navigate(['/']);
+        this.storageService.saveRole(data!.role);
         console.warn('logged in successfully');
-        console.log(this.storageService.getToken());
+        this.router.navigateByUrl(routeUrls.profile);
       },
       (error) => {
         console.warn('LOGIN FAILED: ');
@@ -87,10 +88,12 @@ export class LoginComponent {
           case 403:
             alert('Невірно вказаний пароль. спробуйте ще раз');
             break;
+          case 401:
+            alert('Підтвердіть свій e-mail');
+            break;
           default:
             console.error('Unexpected server response: ' + error);
             alert('Сталася помилка сервера. Спробуйте пізніше');
-          // this.router.navigate(['/main-page']);
         }
 
         this.loginForm.controls.email.enable();

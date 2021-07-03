@@ -1,0 +1,50 @@
+.card {
+  position: relative;
+  flex: 0 1 calc(100% / 4 - 15px);
+  min-height: 378px;
+  min-width: 255px;
+  margin: 30px 0 30px 30px;
+}
+
+.card-img-top {
+  width: 255px;
+  height: 318px;
+}
+
+.card-text {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  color: #121212;
+}
+
+.title-link {
+  text-decoration: none;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+  color: #121212;
+  opacity: 0.7;
+}
+
+.title-link:hover {
+  font-weight: bold;
+  opacity: 0.9;
+}
+
+.auction-prise-type {
+  display: flex;
+  justify-content: space-between;
+}
+
+.auction-type-title {
+  text-transform: capitalize;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+  color: #121212;
+  opacity: 0.6;
+}

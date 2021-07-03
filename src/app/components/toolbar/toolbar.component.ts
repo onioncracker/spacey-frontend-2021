@@ -30,7 +30,7 @@ export class ToolbarComponent {
   }
 
   routeToAuctions() {
-    this.router.navigateByUrl(routeUrls.auctions);
+    this.router.navigateByUrl(routeUrls.auctionCatalog);
   }
 
   routeToCart() {
@@ -39,7 +39,7 @@ export class ToolbarComponent {
 
   routeToProfile() {
     if (this.authService.isAuthorised()) {
-      this.router.navigateByUrl(routeUrls.userProfile);
+      this.router.navigateByUrl(routeUrls.profile);
     } else {
       this.router.navigateByUrl(routeUrls.login);
     }
