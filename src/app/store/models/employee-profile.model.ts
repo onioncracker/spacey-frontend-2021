@@ -1,8 +1,8 @@
 export class EmployeeProfileModel {
   firstName!: string;
-  secondName!: string;
+  lastName!: string;
   email!: string;
   phoneNumber!: string;
-  role!: string;
-  status!: string;
+  roleName!: string;
+  statusName!: string;
 }
