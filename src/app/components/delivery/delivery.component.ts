@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { OrderService } from '../../store/service/order/order.service';
 import { Status, statuses } from '../../store/models/status';
 import { DialogService } from '../../store/service/dialog/dialog.service';
+import { TokenStorageService } from '../../store/service/auth/token-storage.service';
+import { ErrorPageService } from '../../store/service/error/error-page.service';
 
 @Component({
   selector: 'app-delivery',
@@ -15,6 +17,8 @@ export class DeliveryComponent implements OnInit {
   order!: OrderDetails;
   status!: string;
   statuses: Status[] = statuses;
+  finalStates = ['delivered', 'fail'];
+  role = 'courier';
 
   options = {
     title: 'Update status?',
@@ -26,7 +30,9 @@ export class DeliveryComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private ordersService: OrderService,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private tokenStorageService: TokenStorageService,
+    private errorPageService: ErrorPageService
   ) {}
 
   onChange(event) {
@@ -39,7 +45,13 @@ export class DeliveryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.findOrderById();
+    if (!this.isCourierRole()) {
+      this.errorPageService.openErrorPage(
+        'Access denied, please log-in as a courier'
+      );
+    } else {
+      this.findOrderById();
+    }
   }
 
   private getOrderId(): number {
@@ -71,5 +83,22 @@ export class DeliveryComponent implements OnInit {
         );
       });
     }
+  }
+
+  isCourierRole(): boolean {
+    if (this.tokenStorageService.getRole() === null) {
+      return false;
+    }
+    return this.tokenStorageService.getRole().toLowerCase() === this.role;
+  }
+
+  isStatusFinal(state: string): boolean {
+    if (state.toLowerCase() === this.finalStates[0]) {
+      return true;
+    }
+    if (state.toLowerCase() === this.finalStates[1]) {
+      return true;
+    }
+    return false;
   }
 }
