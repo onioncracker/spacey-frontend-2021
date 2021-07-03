@@ -72,6 +72,7 @@ import { AuctionComponent } from './components/auction/auction.component';
 import { PillAuctionComponent } from './components/pill-auction/pill-auction.component';
 import { AuctionDetailsComponent } from './components/auction-details/auction-details.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { RecoverPasswordComponent } from './components/recover-password/recover-password.component';
 
 @NgModule({
   declarations: [
@@ -117,6 +118,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     PillAuctionComponent,
     AuctionDetailsComponent,
     ProfileComponent,
+    RecoverPasswordComponent,
   ],
   imports: [
     BrowserModule,

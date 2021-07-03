@@ -26,4 +26,5 @@ export const routeUrls = {
   userProfile: 'user-profile',
   profile: 'profile',
   customization: 'customization',
+  recoverPassword: 'recover-password',
 };

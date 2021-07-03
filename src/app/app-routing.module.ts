@@ -22,6 +22,7 @@ import { CustomizationComponent } from './components/customization/customization
 import { AuctionCatalogComponent } from './components/auction-catalog/auction-catalog.component';
 import { AuctionDetailsComponent } from './components/auction-details/auction-details.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { RecoverPassword } from './store/models/recover-password.model';
 
 const routes: Routes = [
   { path: routeUrls.login, component: LoginComponent },
@@ -48,6 +49,7 @@ const routes: Routes = [
   },
   { path: routeUrls.customization, component: CustomizationComponent },
   { path: routeUrls.profile, component: ProfileComponent },
+  { path: routeUrls.recoverPassword, component: RecoverPassword },
 ];
 
 @NgModule({
