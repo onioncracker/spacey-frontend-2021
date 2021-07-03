@@ -63,7 +63,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { ConfirmComponent } from './components/confirm/confirm.component';
 import { AddAuctionComponent } from './components/add-auction/add-auction.component';
 import { EditAuctionComponent } from './components/edit-auction/edit-auction.component';
-import {DpDatePickerModule} from 'ng2-date-picker';
+import { DpDatePickerModule } from 'ng2-date-picker';
 import {
   NgxMatDatetimePickerModule,
   NgxMatTimepickerModule,

@@ -14,7 +14,19 @@ export class AddAuction {
   endTime!: Date;
   status!: string;
 
-  constructor(auctionProduct: AuctionProductsModel, productSize: Sizes, amount: number, auctionName: string, auctionType: boolean, startPrice: number, endPrice: number, priceStep: number, startTime: Date, endTime: Date, status: string) {
+  constructor(
+    auctionProduct: AuctionProductsModel,
+    productSize: Sizes,
+    amount: number,
+    auctionName: string,
+    auctionType: boolean,
+    startPrice: number,
+    endPrice: number,
+    priceStep: number,
+    startTime: Date,
+    endTime: Date,
+    status: string
+  ) {
     this.auctionProduct = auctionProduct;
     this.productSize = productSize;
     this.amount = amount;

@@ -22,12 +22,8 @@ export class AddAuctionComponent implements OnInit {
   addAuctionForm: FormGroup;
   products!: AuctionProductsModel[];
   sizes!: Sizes[];
-  types:Array<string> = [
-    "INCREASE", "DECREASE"
-  ];
-  statuses:Array<string> = [
-    "ACTIVE", "INACTIVE"
-  ];
+  types: Array<string> = ['INCREASE', 'DECREASE'];
+  statuses: Array<string> = ['ACTIVE', 'INACTIVE'];
 
   constructor(
     private route: ActivatedRoute,
