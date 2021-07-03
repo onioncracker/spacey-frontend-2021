@@ -62,7 +62,6 @@ import { ConfirmComponent } from './components/confirm/confirm.component';
 import { AddAuctionComponent } from './components/add-auction/add-auction.component';
 import { EditAuctionComponent } from './components/edit-auction/edit-auction.component';
 import { DpDatePickerModule } from 'ng2-date-picker';
-import {DpDatePickerModule} from 'ng2-date-picker';
 import { CustomizationComponent } from './components/customization/customization.component';
 import { DialogInputComponent } from './components/dialog-input/dialog-input.component';
 import {
