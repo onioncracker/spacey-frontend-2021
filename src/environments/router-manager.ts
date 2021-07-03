@@ -24,5 +24,8 @@ export const routeUrls = {
   editAuction: 'edit-auction/:id',
   manageProducts: 'manage/products',
   userProfile: 'user-profile',
+  profile: 'profile',
   customization: 'customization',
+  errorPage: 'error-page',
+  recoverPassword: 'recover-password',
 };

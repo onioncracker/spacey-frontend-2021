@@ -61,6 +61,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { ConfirmComponent } from './components/confirm/confirm.component';
 import { AddAuctionComponent } from './components/add-auction/add-auction.component';
 import { EditAuctionComponent } from './components/edit-auction/edit-auction.component';
+import { DpDatePickerModule } from 'ng2-date-picker';
 import { CustomizationComponent } from './components/customization/customization.component';
 import { DialogInputComponent } from './components/dialog-input/dialog-input.component';
 import {
@@ -71,6 +72,9 @@ import { AuctionCatalogComponent } from './components/auction-catalog/auction-ca
 import { AuctionComponent } from './components/auction/auction.component';
 import { PillAuctionComponent } from './components/pill-auction/pill-auction.component';
 import { AuctionDetailsComponent } from './components/auction-details/auction-details.component';
+import { ErrorPageComponent } from './components/error-page/error-page.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { RecoverPasswordComponent } from './components/recover-password/recover-password.component';
 
 @NgModule({
   declarations: [
@@ -115,6 +119,9 @@ import { AuctionDetailsComponent } from './components/auction-details/auction-de
     AuctionComponent,
     PillAuctionComponent,
     AuctionDetailsComponent,
+    ErrorPageComponent,
+    ProfileComponent,
+    RecoverPasswordComponent,
   ],
   imports: [
     BrowserModule,
@@ -151,6 +158,7 @@ import { AuctionDetailsComponent } from './components/auction-details/auction-de
     MatDividerModule,
     NgxMatDatetimePickerModule,
     NgxMatTimepickerModule,
+    DpDatePickerModule,
   ],
   providers: [
     {
