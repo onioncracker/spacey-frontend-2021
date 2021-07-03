@@ -144,11 +144,12 @@
       <input
         matInput
         formControlName="passwordOld"
-        [type]="hideOld ? 'passwordOld' : 'text'"
+        [type]="hideOld ? 'password' : 'text'"
       />
       <button
         mat-icon-button
         matSuffix
+        type="button"
         (click)="hideOld = !hideOld"
         [attr.aria-label]="'Hide password'"
         [attr.aria-pressed]="hideOld"
@@ -166,11 +167,12 @@
       <input
         matInput
         formControlName="passwordNew"
-        [type]="hideNew ? 'passwordNew' : 'text'"
+        [type]="hideNew ? 'password' : 'text'"
       />
       <button
         mat-icon-button
         matSuffix
+        type="button"
         (click)="hideNew = !hideNew"
         [attr.aria-label]="'Hide password'"
         [attr.aria-pressed]="hideNew"
@@ -188,11 +190,12 @@
       <input
         matInput
         formControlName="passwordRepeat"
-        [type]="hideRepeat ? 'passwordRepeat' : 'text'"
+        [type]="hideRepeat ? 'password' : 'text'"
       />
       <button
         mat-icon-button
         matSuffix
+        type="button"
         (click)="hideRepeat = !hideRepeat"
         [attr.aria-label]="'Hide password'"
         [attr.aria-pressed]="hideRepeat"
