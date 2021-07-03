@@ -32,7 +32,7 @@ export class CartService {
 
   private httpOptions = { observe: 'response' as const };
 
-  // private unauthorizedCart: EditCartModel[] = [];
+  private unauthorizedCart: ProductForCartModel[] | undefined;
 
   constructor(
     private http: HttpClient,
@@ -160,5 +160,9 @@ export class CartService {
       unavailableCounter += product.unavailableAmount;
     }
     return unavailableCounter === 0;
+  }
+
+  saveCartForCheckout(wholeCart: ProductForCartModel[]): void {
+    this.unauthorizedCart = wholeCart;
   }
 }
