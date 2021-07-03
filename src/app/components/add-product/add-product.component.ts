@@ -39,15 +39,15 @@ export class AddProductComponent implements OnInit {
     this.addProductForm = this.formBuilder.group({
       name: ['', [Validators.required]],
       productSex: ['', [Validators.required]],
-      price: ['', [Validators.required]],
-      discount: [0, [Validators.required]],
-      photo: ['', [Validators.required]],
+      price: ['', [Validators.min(0), Validators.required]],
+      discount: [0, [Validators.min(0), Validators.required]],
+      photo: [null, [Validators.required]],
       description: ['', [Validators.required]],
       isAvailable: [true, [Validators.required]],
       category: ['', [Validators.required]],
       color: ['', [Validators.required]],
       materials: ['', [Validators.required]],
-      sizes: [0, [Validators.required]],
+      sizes: [0, [Validators.min(0), Validators.required]],
     });
   }
 
@@ -120,7 +120,7 @@ export class AddProductComponent implements OnInit {
 
   allCategory() {
     this.addProductService
-      .getAllCategory()
+      .getAllCategories()
       .pipe()
       .subscribe((categories: CategoryColorMaterialsModel[]) => {
         this.categories = categories;

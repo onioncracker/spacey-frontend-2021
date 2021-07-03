@@ -43,3 +43,8 @@
 .button-checkout:disabled {
   border: none;
 }
+
+.space {
+  margin-top: 120px;
+  margin-bottom: 200px;
+}

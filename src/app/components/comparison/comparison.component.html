@@ -12,10 +12,11 @@
       >
         <div class="photo-and-button">
           <button
+            mat-icon-button
             class="button-x"
             (click)="deleteProductFromCompare(product.id)"
           >
-            X
+            <mat-icon>delete</mat-icon>
           </button>
           <a [routerLink]="['/product-catalog', product.id]">
             <img
