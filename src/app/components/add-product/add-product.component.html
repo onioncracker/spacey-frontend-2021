@@ -43,6 +43,7 @@
           #imageInput
           type="file"
           accept="image/*"
+          formControlName="photo"
           (change)="processFile(imageInput)"
         />
       </td>
@@ -166,7 +167,13 @@
 
   <br />
   <div class="save-wrapper">
-    <button mat-raised-button class="add-btn" type="submit" color="accent">
+    <button
+      mat-raised-button
+      class="add-btn"
+      type="submit"
+      color="accent"
+      [disabled]="!addProductForm.valid"
+    >
       SAVE PRODUCT
     </button>
     <br />

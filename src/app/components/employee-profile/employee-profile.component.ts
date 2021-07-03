@@ -10,6 +10,9 @@ import {
 } from '@angular/forms';
 import { ProfileService } from '../../store/service/profile.service';
 import { EmployeeProfileModel } from '../../store/models/employee-profile.model';
+import { ChangePassword } from '../../store/models/change-password.model';
+import { routeUrls } from '../../../environments/router-manager';
+import { Router } from '@angular/router';
 
 export class EmployeeProfileErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -26,7 +29,7 @@ export class EmployeeProfileErrorStateMatcher implements ErrorStateMatcher {
 }
 
 @Component({
-  selector: 'app-profile-info',
+  selector: 'app-employee-profile',
   templateUrl: './employee-profile.component.html',
   styleUrls: ['./employee-profile.component.css'],
 })
@@ -41,15 +44,16 @@ export class EmployeeProfileComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private router: Router
   ) {
     this.profileForm = this.formBuilder.group({
-      firstName: ['Cristopher'],
-      email: ['cris@email.com'],
-      secondName: ['Robin'],
-      phoneNumber: ['0997775533'],
-      role: ['Courier'],
-      status: ['Inactive'],
+      firstName: [''],
+      email: [''],
+      secondName: [''],
+      phoneNumber: [''],
+      role: [''],
+      status: [''],
       passwordOld: [
         '',
         [
@@ -75,7 +79,7 @@ export class EmployeeProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.loadProfileInfo();
+    this.loadProfileInfo();
     this.profileForm.controls.firstName.disable();
     this.profileForm.controls.email.disable();
     this.profileForm.controls.secondName.disable();
@@ -88,7 +92,21 @@ export class EmployeeProfileComponent implements OnInit {
     this.changePassword();
   }
 
-  private changePassword(): void {}
+  private changePassword(): void {
+    const newPassData = {
+      email: this.profileInfo?.email,
+      password: this.profileForm.get('passwordNew')?.value,
+      passwordRepeat: this.profileForm.get('passwordRepeat')?.value,
+    } as ChangePassword;
+    this.profileService.changePassword(newPassData).subscribe(
+      (response) => {
+        alert('password changed successfully');
+      },
+      (error) => {
+        alert('something go wrong');
+      }
+    );
+  }
 
   private loadProfileInfo(): void {
     this.profileService.getEmployeeInfo().subscribe(
@@ -103,5 +121,10 @@ export class EmployeeProfileComponent implements OnInit {
         this.profileService.handleError(error);
       }
     );
+  }
+
+  logout(): void {
+    this.profileService.logOut();
+    this.router.navigateByUrl(routeUrls.login);
   }
 }
