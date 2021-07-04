@@ -24,6 +24,7 @@ import { AuctionDetailsComponent } from './components/auction-details/auction-de
 import { ErrorPageComponent } from './components/error-page/error-page.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RecoverPassword } from './store/models/recover-password.model';
+import { HomepageComponent } from './components/homepage/homepage.component';
 import { ImageUploaderComponent } from './components/image-uploader/image-uploader/image-uploader.component';
 import { EmailForRecoverPassComponent } from './components/email-for-recover-pass/email-for-recover-pass.component';
 import { RecoverPasswordComponent } from './components/recover-password/recover-password.component';
@@ -55,6 +56,7 @@ const routes: Routes = [
   { path: routeUrls.errorPage, component: ErrorPageComponent },
   { path: routeUrls.profile, component: ProfileComponent },
   { path: routeUrls.recoverPassword, component: RecoverPassword },
+  { path: routeUrls.homepage, component: HomepageComponent },
   { path: routeUrls.imageUploader, component: ImageUploaderComponent },
   { path: routeUrls.recoverPassword, component: RecoverPasswordComponent },
   { path: routeUrls.emailForRecover, component: EmailForRecoverPassComponent },

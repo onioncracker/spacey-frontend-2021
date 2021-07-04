@@ -79,6 +79,7 @@ import { RecoverPasswordComponent } from './components/recover-password/recover-
 import { ImageUploaderComponent } from './components/image-uploader/image-uploader/image-uploader.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { HomepageComponent } from './components/homepage/homepage.component';
 import { EmailForRecoverPassComponent } from './components/email-for-recover-pass/email-for-recover-pass.component';
 
 @NgModule({
@@ -127,6 +128,7 @@ import { EmailForRecoverPassComponent } from './components/email-for-recover-pas
     ErrorPageComponent,
     ProfileComponent,
     RecoverPasswordComponent,
+    HomepageComponent,
     ImageUploaderComponent,
     EmailForRecoverPassComponent,
   ],

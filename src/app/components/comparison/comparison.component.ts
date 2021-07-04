@@ -13,6 +13,7 @@ import { ErrorPageService } from '../../store/service/error/error-page.service';
   styleUrls: ['./comparison.component.css'],
 })
 export class ComparisonComponent implements OnInit {
+  title = 'Comparison';
   products: ProductModel[] = [];
   sizes!: SizesComparisonModel[];
 
@@ -68,10 +69,8 @@ export class ComparisonComponent implements OnInit {
     this.products = this.products.filter((product) => product.id !== id);
   }
 
-  routeToProductCatalog(sex: string) {
-    this.router.navigate([routeUrls.productCatalog], {
-      queryParams: { sex: sex },
-    });
+  routeToProductCatalog() {
+    this.router.navigate([routeUrls.homepage]);
   }
 
   ngOnInit() {

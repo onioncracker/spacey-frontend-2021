@@ -1,0 +1,25 @@
+<div>
+  <h1 class="head-general">{{ title }}</h1>
+</div>
+<div class="images">
+  <div class="women-div">
+    <a (click)="routeToProductCatalog('women')">
+      <img
+        class="img-women"
+        alt="Women"
+        src="https://spacey-photo-storage.s3.eu-west-2.amazonaws.com/main-page-g.jpg"
+      />
+    </a>
+    <button class="btn" (click)="routeToProductCatalog('women')">WOMEN</button>
+  </div>
+  <div class="men-div">
+    <a (click)="routeToProductCatalog('men')">
+      <img
+        class="img-men"
+        alt="men"
+        src="https://spacey-photo-storage.s3.eu-west-2.amazonaws.com/main-page-m.jpg"
+      />
+    </a>
+    <button class="btn" (click)="routeToProductCatalog('men')">MEN</button>
+  </div>
+</div>

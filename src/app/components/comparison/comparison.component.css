@@ -1,20 +1,9 @@
-.head-prod-comparison {
-  height: 70px;
+.head-comparison {
+  text-align: center;
+  padding: 25px 0 25px 0;
   background: #f8f8f8;
-  display: flex;
-  justify-content: center;
-}
-
-.comparison-label {
-  margin: 17px auto 17px;
-}
-
-.label-field {
-  margin: 24px auto 0;
-}
-
-.h-comparison {
-  margin: 17px auto 17px;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 .photo {
