@@ -75,6 +75,7 @@ import { AuctionDetailsComponent } from './components/auction-details/auction-de
 import { ErrorPageComponent } from './components/error-page/error-page.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RecoverPasswordComponent } from './components/recover-password/recover-password.component';
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 @NgModule({
   declarations: [

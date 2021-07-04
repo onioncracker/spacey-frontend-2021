@@ -1,14 +1,15 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit} from '@angular/core';
 import CheckoutService from '../../store/service/checkout/checkout.service';
-import { CheckoutOrder } from '../../store/models/checkout-order';
-import { CheckoutDto } from '../../store/models/checkout';
+import {CheckoutOrder} from '../../store/models/checkout-order';
+import {CheckoutDto} from '../../store/models/checkout';
 import CheckoutItem from '../../store/models/CheckoutItem';
-import { Delivery } from '../../store/models/delivery';
-import { DialogService } from '../../store/service/dialog/dialog.service';
-import { AuthService } from '../../store/service/auth/auth.service';
-import { FormGroup } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import {Delivery} from '../../store/models/delivery';
+import {DialogService} from '../../store/service/dialog/dialog.service';
+import {AuthService} from '../../store/service/auth/auth.service';
+import {FormGroup} from '@angular/forms';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import {CartService} from "../../store/service/cart.service";
+import {ProductForCartModel} from "../../store/models/product-for-cart.model";
 
 @Component({
   selector: 'app-checkout',
@@ -65,7 +66,8 @@ export class CheckoutComponent implements OnInit {
       // @ts-ignore
       document.getElementById('personal-information').scrollIntoView();
       // @ts-ignore
-      document.getElementById('edit-personal-info-btn').click(() => {});
+      document.getElementById('edit-personal-info-btn').click(() => {
+      });
     } else {
       this.dialogService.openConfirm(this.options);
       this.dialogService.confirmed().subscribe((confirmed) => {
@@ -88,15 +90,25 @@ export class CheckoutComponent implements OnInit {
     private dialogService: DialogService,
     private snackBar: MatSnackBar,
     private cartService: CartService
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.isUserLogin = this.authService.isAuthorised();
-    console.log(this.cartService.getUnauthorizedCart());
     if (!this.isUserLogin) {
       this.order = new CheckoutOrder(
         new CheckoutDto(this.products, 0, '', '', '', '', '', '', '', '')
       );
+      this.cartService.getProducts().subscribe((data) => {
+        // @ts-ignore
+        this.order.products = data.body;
+        // @ts-ignore
+        this.products = data.body;
+        // @ts-ignore
+        this.countPriceForProduct(this.products);
+        // @ts-ignore
+        this.order.overallPrice = this.countTotalPrice(data.body);
+      });
       this.order.products = this.getProducts();
     }
     if (this.isUserLogin) {
@@ -105,6 +117,16 @@ export class CheckoutComponent implements OnInit {
         this.products = checkout.products;
       });
     }
+  }
+
+  countTotalPrice(products: ProductForCartModel[]): number {
+    return products.reduce((sum, {overallPrice, amount}) => sum + overallPrice, 0)
+  }
+
+  countPriceForProduct(products: ProductForCartModel[]): void {
+    products.forEach(function (item) {
+      item.overallPrice = item.amount * item.overallPrice;
+    });
   }
 
   getIsEdit(isEdit: boolean) {

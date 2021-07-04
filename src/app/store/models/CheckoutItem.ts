@@ -1,11 +1,11 @@
 export default class CheckoutItem {
   productId!: number;
-  productName!: string;
+  name!: string;
   color!: string;
-  sizeName!: string;
+  size!: string;
   photo!: string;
   amount!: number;
-  sum!: number;
+  overallPrice!: number;
 
   constructor(
     productId: number,
@@ -17,11 +17,11 @@ export default class CheckoutItem {
     sum: number
   ) {
     this.productId = productId;
-    this.productName = productName;
+    this.name = productName;
     this.color = color;
-    this.sizeName = sizeName;
+    this.size = sizeName;
     this.photo = photo;
     this.amount = amount;
-    this.sum = sum;
+    this.overallPrice = sum;
   }
 }
