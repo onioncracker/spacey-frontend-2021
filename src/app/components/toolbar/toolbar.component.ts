@@ -10,8 +10,10 @@ import { TokenStorageService } from '../../store/service/auth/token-storage.serv
   styleUrls: ['./toolbar.component.css'],
 })
 export class ToolbarComponent implements OnInit {
-  userRole = this.tokenStorageService.getRole();
   isUser = false;
+  isAuthorizedUser = false;
+  isCourier = false;
+  isProductManager = false;
 
   constructor(
     private router: Router,
@@ -19,13 +21,22 @@ export class ToolbarComponent implements OnInit {
     private tokenStorageService: TokenStorageService
   ) {}
 
-  private isUserRole(): boolean {
-    if (this.userRole === 'USER') {
-      return true;
-    } else if (this.userRole === null) {
-      return true;
+  getUserRole(): void {
+    const userRole = this.tokenStorageService.getRole();
+    switch (userRole) {
+      case null:
+        this.isUser = true;
+        break;
+      case 'USER':
+        this.isAuthorizedUser = true;
+        break;
+      case 'COURIER':
+        this.isCourier = true;
+        break;
+      case 'PRODUCT_MANAGER':
+        this.isProductManager = true;
+        break;
     }
-    return false;
   }
 
   routeToCheckout() {
@@ -36,10 +47,6 @@ export class ToolbarComponent implements OnInit {
     this.router.navigate([routeUrls.homepage], { queryParams: { sex: sex } });
   }
 
-  routeToPopular() {
-    this.router.navigateByUrl(routeUrls.popular);
-  }
-
   routeToProductCatalog(sex: string) {
     this.router.navigate([routeUrls.productCatalog], {
       queryParams: { sex: sex },
@@ -48,6 +55,18 @@ export class ToolbarComponent implements OnInit {
 
   routeToAuctions() {
     this.router.navigateByUrl(routeUrls.auctionCatalog);
+  }
+
+  routeToAddProduct() {
+    this.router.navigateByUrl(routeUrls.addProduct);
+  }
+
+  routeToAddAuction() {
+    this.router.navigateByUrl(routeUrls.addAuction);
+  }
+
+  routeToCourierOrders() {
+    this.router.navigateByUrl(routeUrls.deliveries);
   }
 
   routeToCart() {
@@ -63,6 +82,6 @@ export class ToolbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.isUser = this.isUserRole();
+    this.getUserRole();
   }
 }

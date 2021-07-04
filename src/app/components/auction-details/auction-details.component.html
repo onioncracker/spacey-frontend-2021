@@ -14,7 +14,7 @@
 
     <div class="info-container">
       <div class="underlining-container">
-        <div>
+        <div *ngIf="isProductManager">
           <h5 class="h5-title-parameter">id:</h5>
           <p class="parameter">{{ auction.auctionId }}</p>
         </div>

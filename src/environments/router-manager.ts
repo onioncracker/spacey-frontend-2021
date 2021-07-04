@@ -2,7 +2,6 @@ export const routeUrls = {
   login: 'login',
   register: 'register',
   homepage: 'product-catalog',
-  popular: 'popular',
   checkout: 'checkout',
   auctions: 'auctions',
   products: 'products',
