@@ -1,27 +1,30 @@
 export default class CheckoutItem {
   productId!: number;
-  name!: string;
+  productName!: string;
   color!: string;
-  size!: string;
+  sizeId!: number;
+  sizeName!: string;
   photo!: string;
   amount!: number;
-  overallPrice!: number;
+  sum!: number;
 
   constructor(
     productId: number,
     productName: string,
     color: string,
+    sizeId: number,
     sizeName: string,
     photo: string,
     amount: number,
     sum: number
   ) {
     this.productId = productId;
-    this.name = productName;
+    this.productName = productName;
     this.color = color;
-    this.size = sizeName;
+    this.sizeId = sizeId;
+    this.sizeName = sizeName;
     this.photo = photo;
     this.amount = amount;
-    this.overallPrice = sum;
+    this.sum = sum;
   }
 }

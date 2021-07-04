@@ -102,17 +102,18 @@ export class CheckoutComponent implements OnInit {
         this.order.products = data.body;
         // @ts-ignore
         this.products = data.body;
+        console.log('products', this.products);
         // @ts-ignore
         this.countPriceForProduct(this.products);
         // @ts-ignore
         this.order.overallPrice = this.countTotalPrice(data.body);
       });
       this.order.products = this.getProducts();
-    }
-    if (this.isUserLogin) {
+    } else {
       this.checkoutService.getCheckout().subscribe((checkout: CheckoutDto) => {
         this.order = new CheckoutOrder(checkout);
         this.products = checkout.products;
+        console.log(this.products);
       });
     }
   }
@@ -128,9 +129,5 @@ export class CheckoutComponent implements OnInit {
     products.forEach(function (item) {
       item.overallPrice = item.amount * item.overallPrice;
     });
-  }
-
-  getIsEdit(isEdit: boolean) {
-    this.edit = isEdit;
   }
 }
