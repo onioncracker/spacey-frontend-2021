@@ -75,6 +75,8 @@ import { AuctionDetailsComponent } from './components/auction-details/auction-de
 import { ErrorPageComponent } from './components/error-page/error-page.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RecoverPasswordComponent } from './components/recover-password/recover-password.component';
+import { ImageUploaderComponent } from './components/image-uploader/image-uploader/image-uploader.component';
+import {ImageCropperModule} from "ngx-image-cropper";
 
 @NgModule({
   declarations: [
@@ -122,6 +124,7 @@ import { RecoverPasswordComponent } from './components/recover-password/recover-
     ErrorPageComponent,
     ProfileComponent,
     RecoverPasswordComponent,
+    ImageUploaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -159,6 +162,7 @@ import { RecoverPasswordComponent } from './components/recover-password/recover-
     NgxMatDatetimePickerModule,
     NgxMatTimepickerModule,
     DpDatePickerModule,
+    ImageCropperModule
   ],
   providers: [
     {

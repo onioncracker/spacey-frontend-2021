@@ -46,22 +46,15 @@
           </mat-form-field>
         </td>
         <td rowspan="3" class="cell-photo">
-          <input
-            class="photo"
-            value="Photo"
-            alt="Photo"
-            #imageInput
-            type="file"
-            accept="image/*"
-            (change)="processFile(imageInput)"
-          />
+         <app-image-uploader (sendPhoto)="getPhoto($event)">
+         </app-image-uploader>
           <div class="wrapper">
             <button
               mat-raised-button
               class="edit-btn btn-hover"
               type="submit"
               color="accent"
-              (change)="processFile(imageInput)"
+              (click)="saveImage()"
             >
               SAVE PHOTO
             </button>

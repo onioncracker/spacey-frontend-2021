@@ -41,16 +41,8 @@
             />
           </mat-form-field>
         </td>
-        <td rowspan="3" class="cell-photo">
-          <span>Select Image</span>
-          <input
-            #imageInput
-            type="file"
-            accept="image/*"
-            formControlName="photo"
-            (change)="processFile(imageInput)"
-          />
-        </td>
+        <app-image-uploader (sendPhoto)="getPhoto($event)">
+        </app-image-uploader>
       </tr>
       <tr>
         <td>
