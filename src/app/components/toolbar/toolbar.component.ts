@@ -33,7 +33,7 @@ export class ToolbarComponent implements OnInit {
   }
 
   routeToHomepage(sex: string) {
-    this.router.navigate([routeUrls.homepage], { queryParams: { sex: sex } });
+    this.router.navigate([routeUrls.homepage]);
   }
 
   routeToPopular() {

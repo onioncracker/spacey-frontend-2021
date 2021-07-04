@@ -21,6 +21,7 @@ class ImageSnippet {
   styleUrls: ['./edit-product.component.css'],
 })
 export class EditProductComponent implements OnInit {
+  title = 'Update product';
   product!: EditProduct;
   materialsList!: CategoryColorMaterialsModel[];
   categories!: CategoryColorMaterialsModel[];
@@ -116,7 +117,7 @@ export class EditProductComponent implements OnInit {
   }
 
   goProductsCatalog() {
-    this.router.navigateByUrl(routeUrls.productCatalog);
+    this.router.navigateByUrl(routeUrls.homepage);
   }
 
   compareObjects(object1: any, object2: any) {

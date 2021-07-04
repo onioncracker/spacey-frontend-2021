@@ -24,6 +24,7 @@ import { AuctionDetailsComponent } from './components/auction-details/auction-de
 import { ErrorPageComponent } from './components/error-page/error-page.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RecoverPassword } from './store/models/recover-password.model';
+import { HomepageComponent } from './components/homepage/homepage.component';
 
 const routes: Routes = [
   { path: routeUrls.login, component: LoginComponent },
@@ -52,6 +53,7 @@ const routes: Routes = [
   { path: routeUrls.errorPage, component: ErrorPageComponent },
   { path: routeUrls.profile, component: ProfileComponent },
   { path: routeUrls.recoverPassword, component: RecoverPassword },
+  { path: routeUrls.homepage, component: HomepageComponent },
 ];
 
 @NgModule({

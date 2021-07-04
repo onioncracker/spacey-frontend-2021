@@ -1,8 +1,6 @@
 <div>
-  <div class="head-prod-comparison">
-    <mat-label class="comparison-label">
-      <h1 class="compare-h">Comparison</h1>
-    </mat-label>
+  <div>
+    <h1 class="head-comparison">{{ title }}</h1>
   </div>
   <div class="table-comparison" *ngIf="products.length > 1">
     <table>
@@ -135,7 +133,7 @@
         class="btn-add-more"
         type="submit"
         color="accent"
-        (click)="routeToProductCatalog('women')"
+        (click)="routeToProductCatalog()"
       >
         ADD MORE
       </button>
@@ -156,7 +154,7 @@
         class="btn-add-more"
         type="submit"
         color="accent"
-        (click)="routeToProductCatalog('women')"
+        (click)="routeToProductCatalog()"
       >
         Catalog
       </button>

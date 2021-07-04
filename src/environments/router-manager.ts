@@ -1,7 +1,7 @@
 export const routeUrls = {
   login: 'login',
   register: 'register',
-  homepage: 'product-catalog',
+  homepage: 'homepage',
   popular: 'popular',
   checkout: 'checkout',
   auctions: 'auctions',

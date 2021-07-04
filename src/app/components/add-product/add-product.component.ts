@@ -24,6 +24,7 @@ class ImageSnippet {
   styleUrls: ['./add-product.component.css'],
 })
 export class AddProductComponent implements OnInit {
+  title = 'Add product';
   product!: AddProduct;
   addProductForm: FormGroup;
   materialsList!: CategoryColorMaterialsModel[];
