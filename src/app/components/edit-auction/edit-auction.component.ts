@@ -43,12 +43,12 @@ export class EditAuctionComponent implements OnInit {
     auctionId: ['', [Validators.required]],
     auctionProduct: ['', [Validators.required]],
     productSize: ['', [Validators.required]],
-    amount: [0, [Validators.required]],
+    amount: [0, [Validators.min(0), Validators.required]],
     auctionName: ['', [Validators.required]],
     auctionType: [true, [Validators.required]],
-    startPrice: [0, [Validators.required]],
-    endPrice: [0, [Validators.required]],
-    priceStep: [0, [Validators.required]],
+    startPrice: [0, [Validators.min(0), Validators.required]],
+    endPrice: [0, [Validators.min(0), Validators.required]],
+    priceStep: [0, [Validators.min(0), Validators.required]],
     startTime: ['', [Validators.required]],
     endTime: ['', [Validators.required]],
     status: ['', [Validators.required]],
@@ -144,6 +144,7 @@ export class EditAuctionComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.editAuctionForm.controls.auctionId.disable();
     this.allProducts();
     this.allTypes();
     this.allSizes();

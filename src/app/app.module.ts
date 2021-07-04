@@ -66,7 +66,8 @@ import { CustomizationComponent } from './components/customization/customization
 import { DialogInputComponent } from './components/dialog-input/dialog-input.component';
 import {
   NgxMatDatetimePickerModule,
-  NgxMatTimepickerModule,
+  NgxMatNativeDateModule,
+  NgxMatTimepickerModule
 } from '@angular-material-components/datetime-picker';
 import { AuctionCatalogComponent } from './components/auction-catalog/auction-catalog.component';
 import { AuctionComponent } from './components/auction/auction.component';
@@ -161,6 +162,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     NgxMatDatetimePickerModule,
     NgxMatTimepickerModule,
     DpDatePickerModule,
+    NgxMatNativeDateModule,
   ],
   providers: [
     {
