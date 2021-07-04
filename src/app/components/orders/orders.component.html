@@ -7,16 +7,16 @@
           <img
             class="card-img"
             [src]="product.photo"
-            alt="{{ product.productName }}"
+            alt="{{ product.name }}"
           />
           <div>
-            <p class="dl-t4">{{ product.productName }}</p>
-            <p class="dl-t5">{{ product.color }}, {{ product.sizeName }}</p>
+            <p class="dl-t4">{{ product.name }}</p>
+            <p class="dl-t5">{{ product.color }}, {{ product.size }}</p>
             <p class="dl-t6">x {{ product.amount }}</p>
           </div>
         </div>
         <div class="dl-t7 price">
-          <p class="dl-t3">{{ product.sum }} UAH</p>
+          <p class="dl-t3">{{ product.overallPrice }} UAH</p>
         </div>
       </div>
       <hr />
