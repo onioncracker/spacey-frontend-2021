@@ -83,8 +83,8 @@
             placeholder="Type"
           >
             <mat-option *ngFor="let type of types" [value]="type">
-              <div *ngIf="type===false">DECREASE</div>
-              <div *ngIf="type===true">INCREASE</div>
+              <div *ngIf="type === false">DECREASE</div>
+              <div *ngIf="type === true">INCREASE</div>
             </mat-option>
           </mat-select>
         </mat-form-field>

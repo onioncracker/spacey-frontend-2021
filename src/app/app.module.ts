@@ -67,7 +67,7 @@ import { DialogInputComponent } from './components/dialog-input/dialog-input.com
 import {
   NgxMatDatetimePickerModule,
   NgxMatNativeDateModule,
-  NgxMatTimepickerModule
+  NgxMatTimepickerModule,
 } from '@angular-material-components/datetime-picker';
 import { AuctionCatalogComponent } from './components/auction-catalog/auction-catalog.component';
 import { AuctionComponent } from './components/auction/auction.component';
