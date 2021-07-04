@@ -31,7 +31,7 @@ export class AddProductComponent implements OnInit {
   categories!: CategoryColorMaterialsModel[];
   colors!: CategoryColorMaterialsModel[];
   sizesAmount!: Sizes[];
-  selectedFile!: ImageSnippet;
+  photoFile!: File;
 
   constructor(
     private route: ActivatedRoute,
@@ -46,7 +46,6 @@ export class AddProductComponent implements OnInit {
       productSex: ['', [Validators.required]],
       price: ['', [Validators.min(0), Validators.required]],
       discount: [0, [Validators.min(0), Validators.required]],
-      photo: [null, [Validators.required]],
       description: ['', [Validators.required]],
       isAvailable: [true, [Validators.required]],
       category: ['', [Validators.required]],
@@ -65,6 +64,7 @@ export class AddProductComponent implements OnInit {
     this.addProduct();
     productForm.resetForm();
     this.dialogService.openMessage('Product has been added', 'Close');
+    console.log(this.photoFile);
   }
 
   public addProduct(): void {
@@ -96,8 +96,8 @@ export class AddProductComponent implements OnInit {
     this.addProductService.addNewProduct(this.product).subscribe((response) => {
       const data = response.body;
       console.log(data);
-      this.addProductService.uploadImage(this.selectedFile.file, data);
-      console.log(this.selectedFile, data);
+      this.addProductService.uploadImage(this.photoFile, data);
+      console.log(this.photoFile, data);
     });
   }
 
@@ -141,13 +141,8 @@ export class AddProductComponent implements OnInit {
     return index;
   }
 
-  processFile(imageInput: any) {
-    const file: File = imageInput.files[0];
-    const reader = new FileReader();
-    reader.addEventListener('load', (event: any) => {
-      this.selectedFile = new ImageSnippet(event.target.result, file);
-    });
-    reader.readAsDataURL(file);
+  getPhoto(event) {
+    this.photoFile = event;
   }
 
   ngOnInit() {

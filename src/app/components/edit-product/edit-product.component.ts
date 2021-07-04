@@ -28,7 +28,8 @@ export class EditProductComponent implements OnInit {
   colors!: CategoryColorMaterialsModel[];
   sizesAmount!: Sizes[];
   selectedCategory!: number;
-  selectedFile!: ImageSnippet;
+  photoFile!: File;
+  productId = parseInt(this.route.snapshot.paramMap.get('id')!);
 
   options = {
     title: 'Do you want to delete a product?',
@@ -76,9 +77,8 @@ export class EditProductComponent implements OnInit {
   }
 
   getProduct(): void {
-    const id = parseInt(this.route.snapshot.paramMap.get('id')!);
     this.editProductService
-      .getProductById(id)
+      .getProductById(this.productId)
       .pipe()
       .subscribe((product: EditProduct) => {
         this.product = new EditProduct(
@@ -164,13 +164,12 @@ export class EditProductComponent implements OnInit {
       });
   }
 
-  processFile(imageInput: any) {
-    const file: File = imageInput.files[0];
-    const reader = new FileReader();
-    reader.addEventListener('load', (event: any) => {
-      this.selectedFile = new ImageSnippet(event.target.result, file);
-    });
-    reader.readAsDataURL(file);
+  getPhoto(event) {
+    this.photoFile = event;
+  }
+
+  saveImage() {
+    this.addProductService.uploadImage(this.photoFile, this.productId);
   }
 
   ngOnInit() {
