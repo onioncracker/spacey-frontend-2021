@@ -1,181 +1,188 @@
-<div class="head-prod-add">
-  <mat-label class="add-label">
-    <h1 class="add-h">ADD PRODUCT</h1>
-  </mat-label>
-</div>
-<form
-  name="AddProduct"
-  [formGroup]="addProductForm"
-  (ngSubmit)="onSubmit(addProductForm, productForm)"
-  #productForm="ngForm"
->
-  <table class="table-add">
-    <tr>
-      <td>
-        <h3 class="add-h">Category</h3>
-        <mat-form-field appearance="fill">
-          <mat-select
-            [formGroup]="addProductForm"
-            formControlName="category"
-            placeholder="Category"
-          >
-            <mat-option *ngFor="let category of categories" [value]="category">
-              {{ category.name }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </td>
-      <td colspan="3">
-        <h3 class="add-h">Name</h3>
-        <mat-form-field class="input-name" appearance="fill">
-          <input
-            matInput
-            type="text"
-            placeholder="Name"
-            [formGroup]="addProductForm"
-            formControlName="name"
-          />
-        </mat-form-field>
-      </td>
-      <td rowspan="3" class="cell-photo">
-        <span>Select Image</span>
-        <input
-          #imageInput
-          type="file"
-          accept="image/*"
-          formControlName="photo"
-          (change)="processFile(imageInput)"
-        />
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <h3 class="add-h">Sex</h3>
-        <mat-form-field appearance="fill">
-          <mat-select
-            [formGroup]="addProductForm"
-            formControlName="productSex"
-            placeholder="Sex"
-          >
-            <mat-option value="MEN">MEN</mat-option>
-            <mat-option value="WOMEN">WOMEN</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </td>
-      <td>
-        <h3 class="add-h">Color</h3>
-        <mat-form-field appearance="fill">
-          <mat-select
-            [formGroup]="addProductForm"
-            formControlName="color"
-            placeholder="Color"
-          >
-            <mat-option *ngFor="let color of colors" [value]="color">
-              {{ color.name }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </td>
-      <td>
-        <h3 class="add-h">Price</h3>
-        <mat-form-field class="input-field" appearance="fill">
-          <input
-            matInput
-            [formGroup]="addProductForm"
-            formControlName="price"
-            type="number"
-            placeholder="Price"
-          />
-        </mat-form-field>
-      </td>
-      <td>
-        <h3 class="add-h">Discount</h3>
-        <mat-form-field class="input-field" appearance="fill">
-          <input
-            matInput
-            [formGroup]="addProductForm"
-            formControlName="discount"
-            type="number"
-            placeholder="Discount"
-          />
-        </mat-form-field>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="4">
-        <h3 class="add-h">Material</h3>
-        <mat-form-field appearance="fill" class="material-field">
-          <mat-select
-            [formGroup]="addProductForm"
-            formControlName="materials"
-            multiple
-            placeholder="Select materials"
-          >
-            <mat-option
-              *ngFor="let material of materialsList"
-              [value]="material"
-            >
-              {{ material.name }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="4" rowspan="5">
-        <h3 class="add-h">Description</h3>
-        <mat-form-field class="input-description" appearance="fill">
-          <textarea
-            matInput
-            class="description"
-            placeholder="Some information about product"
-            [formGroup]="addProductForm"
-            formControlName="description"
-          >
-          </textarea>
-        </mat-form-field>
-        <div class="deactivate-box">
-          <mat-checkbox
-            [formGroup]="addProductForm"
-            formControlName="isAvailable"
-          >
-            <mat-label class="add-h">Activate product</mat-label>
-          </mat-checkbox>
-        </div>
-      </td>
-      <td rowspan="5" class="sizes">
-        <tr *ngFor="let size of sizesAmount; let i = index; trackBy: onTrackBy">
-          <td>
-            <div class="sizes">
-              <mat-label class="add-h"> {{ size.name }}:</mat-label>
-              <mat-form-field class="size-amount" appearance="fill">
-                <input
-                  matInput
-                  type="number"
-                  placeholder="Amount"
-                  formControlName="sizes"
-                  [(ngModel)]="sizesAmount[i].quantity"
-                />
-              </mat-form-field>
-              <br />
-            </div>
-          </td>
-        </tr>
-      </td>
-    </tr>
-  </table>
-
-  <br />
-  <div class="save-wrapper">
-    <button
-      mat-raised-button
-      class="add-btn"
-      type="submit"
-      color="accent"
-      [disabled]="!addProductForm.valid"
-    >
-      SAVE PRODUCT
-    </button>
-    <br />
+<div>
+  <div class="head-prod-add">
+    <mat-label class="add-label">
+      <h1 class="add-h">ADD PRODUCT</h1>
+    </mat-label>
   </div>
-</form>
+  <form
+    name="AddProduct"
+    [formGroup]="addProductForm"
+    (ngSubmit)="onSubmit(addProductForm, productForm)"
+    #productForm="ngForm"
+  >
+    <table class="table-add">
+      <tr>
+        <td>
+          <h3 class="add-h">Category</h3>
+          <mat-form-field appearance="fill">
+            <mat-select
+              [formGroup]="addProductForm"
+              formControlName="category"
+              placeholder="Category"
+            >
+              <mat-option
+                *ngFor="let category of categories"
+                [value]="category"
+              >
+                {{ category.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+        <td colspan="3">
+          <h3 class="add-h">Name</h3>
+          <mat-form-field class="input-name" appearance="fill">
+            <input
+              matInput
+              type="text"
+              placeholder="Name"
+              [formGroup]="addProductForm"
+              formControlName="name"
+            />
+          </mat-form-field>
+        </td>
+        <td rowspan="3" class="cell-photo">
+          <span>Select Image</span>
+          <input
+            #imageInput
+            type="file"
+            accept="image/*"
+            formControlName="photo"
+            (change)="processFile(imageInput)"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h3 class="add-h">Sex</h3>
+          <mat-form-field appearance="fill">
+            <mat-select
+              [formGroup]="addProductForm"
+              formControlName="productSex"
+              placeholder="Sex"
+            >
+              <mat-option value="MEN">MEN</mat-option>
+              <mat-option value="WOMEN">WOMEN</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+        <td>
+          <h3 class="add-h">Color</h3>
+          <mat-form-field appearance="fill">
+            <mat-select
+              [formGroup]="addProductForm"
+              formControlName="color"
+              placeholder="Color"
+            >
+              <mat-option *ngFor="let color of colors" [value]="color">
+                {{ color.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+        <td>
+          <h3 class="add-h">Price</h3>
+          <mat-form-field class="input-field" appearance="fill">
+            <input
+              matInput
+              [formGroup]="addProductForm"
+              formControlName="price"
+              type="number"
+              placeholder="Price"
+            />
+          </mat-form-field>
+        </td>
+        <td>
+          <h3 class="add-h">Discount</h3>
+          <mat-form-field class="input-field" appearance="fill">
+            <input
+              matInput
+              [formGroup]="addProductForm"
+              formControlName="discount"
+              type="number"
+              placeholder="Discount"
+            />
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="4">
+          <h3 class="add-h">Material</h3>
+          <mat-form-field appearance="fill" class="material-field">
+            <mat-select
+              [formGroup]="addProductForm"
+              formControlName="materials"
+              multiple
+              placeholder="Select materials"
+            >
+              <mat-option
+                *ngFor="let material of materialsList"
+                [value]="material"
+              >
+                {{ material.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="4" rowspan="5">
+          <h3 class="add-h">Description</h3>
+          <mat-form-field class="input-description" appearance="fill">
+            <textarea
+              matInput
+              class="description"
+              placeholder="Some information about product"
+              [formGroup]="addProductForm"
+              formControlName="description"
+            >
+            </textarea>
+          </mat-form-field>
+          <div class="deactivate-box">
+            <mat-checkbox
+              [formGroup]="addProductForm"
+              formControlName="isAvailable"
+            >
+              <mat-label class="add-h">Activate product</mat-label>
+            </mat-checkbox>
+          </div>
+        </td>
+        <td rowspan="5" class="sizes">
+          <tr
+            *ngFor="let size of sizesAmount; let i = index; trackBy: onTrackBy"
+          >
+            <td>
+              <div class="sizes">
+                <mat-label class="add-h"> {{ size.name }}:</mat-label>
+                <mat-form-field class="size-amount" appearance="fill">
+                  <input
+                    matInput
+                    type="number"
+                    placeholder="Amount"
+                    formControlName="sizes"
+                    [(ngModel)]="sizesAmount[i].quantity"
+                  />
+                </mat-form-field>
+                <br />
+              </div>
+            </td>
+          </tr>
+        </td>
+      </tr>
+    </table>
+
+    <br />
+    <div class="save-wrapper">
+      <button
+        mat-raised-button
+        class="add-btn"
+        type="submit"
+        color="accent"
+        [disabled]="!addProductForm.valid"
+      >
+        SAVE PRODUCT
+      </button>
+      <br />
+    </div>
+  </form>
+</div>
