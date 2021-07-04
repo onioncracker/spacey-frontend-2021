@@ -10,8 +10,4 @@ import CheckoutItem from '../../store/models/CheckoutItem';
 })
 export class OrdersComponent {
   @Input() products!: CheckoutItem[];
-
-  constructor() {
-    // do nothing.
-  }
 }

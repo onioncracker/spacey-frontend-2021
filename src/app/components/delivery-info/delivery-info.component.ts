@@ -11,11 +11,23 @@ import { Timeslot } from '../../store/models/timeslots.model';
 })
 export class DeliveryInfoComponent {
   @Output() deliveryEvent = new EventEmitter<Delivery>();
+  datePicker = new FormControl(new Date());
   delivery!: Delivery;
-  dates!: Timeslot[];
+  dates: Timeslot[] = [
+    new Timeslot(new Date()),
+    new Timeslot(new Date()),
+    new Timeslot(new Date()),
+    new Timeslot(new Date()),
+    new Timeslot(new Date()),
+    new Timeslot(new Date()),
+    new Timeslot(new Date()),
+    new Timeslot(new Date()),
+    new Timeslot(new Date()),
+    new Timeslot(new Date()),
+    new Timeslot(new Date()),
+  ];
   doNotDisturb = false;
   noContact = false;
-  datePicker = new FormControl(new Date());
 
   constructor(private checkoutService: CheckoutService) {}
 
@@ -31,13 +43,4 @@ export class DeliveryInfoComponent {
         this.dates = data;
       });
   }
-  //
-  //
-  // getTimeSlots(date: Timeslots): void {
-  //   this.checkoutService.getTimeSlots().subscribe(data => this.dates = data);
-  // }
-  //
-  // ngOnInit(): void {
-  //   this.getTimeSlots();
-  // }
 }
