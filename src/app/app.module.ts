@@ -66,6 +66,7 @@ import { CustomizationComponent } from './components/customization/customization
 import { DialogInputComponent } from './components/dialog-input/dialog-input.component';
 import {
   NgxMatDatetimePickerModule,
+  NgxMatNativeDateModule,
   NgxMatTimepickerModule,
 } from '@angular-material-components/datetime-picker';
 import { AuctionCatalogComponent } from './components/auction-catalog/auction-catalog.component';
@@ -163,6 +164,7 @@ import { EmailForRecoverPassComponent } from './components/email-for-recover-pas
     NgxMatDatetimePickerModule,
     NgxMatTimepickerModule,
     DpDatePickerModule,
+    NgxMatNativeDateModule,
   ],
   providers: [
     {

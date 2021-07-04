@@ -2,7 +2,25 @@
   <div>
     <h2 class="delivery-font">DELIVERY</h2>
     <p>Choose the day and time of delivery</p>
-    <input class="datetime" type="datetime-local" matInput />
+    <mat-form-field class="datepicker-styles">
+      <input
+        matInput
+        [matDatepicker]="picker"
+        placeholder="Choose date"
+        (dateChange)="pickDataEvent()"
+        [formControl]="datePicker"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field class="timepicker-styles">
+      <mat-label>Choose a time</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let currentDate of dates">{{
+          currentDate.date | date: "hh:mm"
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
     <div>
       <section>
         <mat-checkbox
