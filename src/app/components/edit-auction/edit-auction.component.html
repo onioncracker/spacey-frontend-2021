@@ -6,17 +6,6 @@
 <form name="EditAuction" [formGroup]="editAuctionForm" (ngSubmit)="onSubmit()">
   <table class="table-edit">
     <div class="space">
-      <td>
-        <h3 class="edit-h">ID</h3>
-        <mat-form-field class="input-field" appearance="fill">
-          <input
-            matInput
-            type="text"
-            placeholder="ID"
-            formControlName="auctionId"
-          />
-        </mat-form-field>
-      </td>
       <td colspan="3">
         <h3 class="edit-h">Auction Name</h3>
         <mat-form-field class="input-name" appearance="fill">
@@ -183,7 +172,7 @@
     mat-raised-button
     class="edit-btn delete-btn btn-hover"
     color="accent"
-    (click)="deleteAuction(auction.auctionId)"
+    (click)="deleteAuction()"
   >
     DELETE AUCTION
   </button>
