@@ -57,6 +57,7 @@
         <h3 class="add-h">Amount</h3>
         <mat-form-field class="input-field" appearance="fill">
           <input
+            min="0"
             matInput
             [formGroup]="addAuctionForm"
             formControlName="amount"
@@ -85,6 +86,7 @@
         <h3 class="add-h">Start Price</h3>
         <mat-form-field class="input-field" appearance="fill">
           <input
+            min="0"
             matInput
             [formGroup]="addAuctionForm"
             formControlName="startPrice"
@@ -97,6 +99,7 @@
         <h3 class="add-h">End Price</h3>
         <mat-form-field class="input-field" appearance="fill">
           <input
+            min="0"
             matInput
             [formGroup]="addAuctionForm"
             formControlName="endPrice"
@@ -109,6 +112,7 @@
         <h3 class="add-h">Price Step</h3>
         <mat-form-field class="input-field" appearance="fill">
           <input
+            min="0"
             matInput
             [formGroup]="addAuctionForm"
             formControlName="priceStep"
@@ -135,17 +139,12 @@
     <div class="space" style="margin-top: 20px">
       <td>
         <h3 class="add-h">START TIME</h3>
-        <dp-date-picker
-          [displayDate]="'displayDate'"
-          [mode]="'daytime'"
-          [theme]="'dp-material dp-main'"
-        ></dp-date-picker>
-        <!--        <input-->
-        <!--          class="datetime"-->
-        <!--          formControlName="startTime"-->
-        <!--          type="datetime-local"-->
-        <!--          matInput-->
-        <!--        />-->
+        <input
+          class="datetime"
+          formControlName="startTime"
+          type="datetime-local"
+          matInput
+        />
       </td>
       <td>
         <h3 class="add-h">END TIME</h3>

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CategoryColorMaterialsModel } from '../../store/models/category-color-materials.model';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Sizes } from '../../store/models/sizes';
 import { DialogService } from '../../store/service/dialog/dialog.service';
 import { routeUrls } from '../../../environments/router-manager';
@@ -43,12 +42,12 @@ export class EditAuctionComponent implements OnInit {
     auctionId: ['', [Validators.required]],
     auctionProduct: ['', [Validators.required]],
     productSize: ['', [Validators.required]],
-    amount: [0, [Validators.required]],
+    amount: [0, [Validators.min(0), Validators.required]],
     auctionName: ['', [Validators.required]],
     auctionType: [true, [Validators.required]],
-    startPrice: [0, [Validators.required]],
-    endPrice: [0, [Validators.required]],
-    priceStep: [0, [Validators.required]],
+    startPrice: [0, [Validators.min(0), Validators.required]],
+    endPrice: [0, [Validators.min(0), Validators.required]],
+    priceStep: [0, [Validators.min(0), Validators.required]],
     startTime: ['', [Validators.required]],
     endTime: ['', [Validators.required]],
     status: ['', [Validators.required]],
@@ -144,6 +143,7 @@ export class EditAuctionComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.editAuctionForm.controls.auctionId.disable();
     this.allProducts();
     this.allTypes();
     this.allSizes();
