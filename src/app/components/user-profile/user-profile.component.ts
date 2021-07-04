@@ -128,9 +128,9 @@ export class UserProfileComponent implements OnInit {
 
   private changePassword(): void {
     const newPassData = {
-      email: this.userInfo?.email,
-      password: this.passwordForm.get('passwordNew')?.value,
-      passwordRepeat: this.passwordForm.get('passwordRepeat')?.value,
+      oldPassword: this.passwordForm.get('passwordOld')?.value,
+      newPassword: this.passwordForm.get('passwordNew')?.value,
+      newPasswordRepeat: this.passwordForm.get('passwordRepeat')?.value,
     } as ChangePassword;
     this.profileService.changePassword(newPassData).subscribe(
       (response) => {

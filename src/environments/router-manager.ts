@@ -28,4 +28,5 @@ export const routeUrls = {
   customization: 'customization',
   errorPage: 'error-page',
   recoverPassword: 'recover-password',
+  emailForRecover: 'email-password-recover',
 };

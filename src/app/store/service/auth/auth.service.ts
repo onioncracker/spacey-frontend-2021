@@ -20,7 +20,8 @@ export class AuthService {
   private loginURL = this.hostURL + '/login';
   private confirmURL = this.hostURL + '/registration_confirm';
   private resendConfirmURL = this.hostURL + '/resend_registration_token';
-  private recoverPasswordURL = this.hostURL + '/???'; // todo change link;
+  private recoverPasswordURL = this.hostURL + '/reset-password-save';
+  private emailForRecoverURL = this.hostURL + '/reset-password';
 
   private httpOptions = { observe: 'response' as const };
 
@@ -80,10 +81,21 @@ export class AuthService {
     return this.http.get<any>(this.resendConfirmURL + '?token=' + token);
   }
 
-  recoverPassword(recoverData: RecoverPassword): Observable<HttpResponse<any>> {
+  recoverPassword(
+    token: string,
+    recoverData: RecoverPassword
+  ): Observable<HttpResponse<any>> {
     return this.http.post(
-      this.recoverPasswordURL,
+      this.recoverPasswordURL + '?token=' + token,
       recoverData,
+      this.httpOptions
+    );
+  }
+
+  sendEmailForRecover(email: string): Observable<HttpResponse<any>> {
+    return this.http.post(
+      this.emailForRecoverURL + '?email=' + email,
+      null,
       this.httpOptions
     );
   }

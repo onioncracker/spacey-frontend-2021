@@ -13,20 +13,7 @@ import { EmployeeProfileModel } from '../../store/models/employee-profile.model'
 import { ChangePassword } from '../../store/models/change-password.model';
 import { routeUrls } from '../../../environments/router-manager';
 import { Router } from '@angular/router';
-
-export class EmployeeProfileErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(
-    control: FormControl | null,
-    form: FormGroupDirective | NgForm | null
-  ): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(
-      control &&
-      control.invalid &&
-      (control.dirty || control.touched || isSubmitted)
-    );
-  }
-}
+import { DefaultErrorStateMatcher } from '../../store/service/DefaultErrorStateMatcher';
 
 @Component({
   selector: 'app-employee-profile',
@@ -37,7 +24,7 @@ export class EmployeeProfileComponent implements OnInit {
   profileForm: FormGroup;
   profileInfo?: EmployeeProfileModel;
   dataLoaded = false;
-  errorMatcher = new EmployeeProfileErrorStateMatcher();
+  errorMatcher = new DefaultErrorStateMatcher();
   hideOld = false;
   hideNew = true;
   hideRepeat = true;
@@ -94,9 +81,9 @@ export class EmployeeProfileComponent implements OnInit {
 
   private changePassword(): void {
     const newPassData = {
-      email: this.profileInfo?.email,
-      password: this.profileForm.get('passwordNew')?.value,
-      passwordRepeat: this.profileForm.get('passwordRepeat')?.value,
+      oldPassword: this.profileForm.get('passwordOld')?.value,
+      newPassword: this.profileForm.get('passwordNew')?.value,
+      newPasswordRepeat: this.profileForm.get('passwordRepeat')?.value,
     } as ChangePassword;
     this.profileService.changePassword(newPassData).subscribe(
       (response) => {

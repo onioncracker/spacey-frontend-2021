@@ -1,59 +1,52 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { PAGE_PARAM } from '../filter/filter-params.constants';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { ProductModel } from '../../store/models/product.model';
+import { ActivatedRoute } from '@angular/router';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-pagination',
   templateUrl: './pagination.component.html',
   styleUrls: ['pagination.component.css'],
 })
-export class PaginationComponent implements OnInit {
+export class PaginationComponent implements OnInit, OnDestroy {
   @Input() items!: ProductModel[];
-  @Output() selectPage = new EventEmitter();
-  pageNumber!: number;
+  @Output() selectPage = new EventEmitter<number>();
+  pageNumber = 0;
+  private destroyStream = new Subject<void>();
 
-  getPageFromSessionStorage(): void {
-    let stringNumber = (sessionStorage.getItem(PAGE_PARAM) || null) as string;
-    this.pageNumber = +stringNumber;
-  }
+  constructor(private activatedRoute: ActivatedRoute) {}
 
   onTogglePrev(): void {
-    this.prevPage();
-    this.selectPage.emit();
+    this.pageNumber = this.pageNumber - 1;
+    this.selectPage.emit(this.pageNumber);
   }
 
   onToggleNext(): void {
     if (this.items.length === 8) {
-      this.nextPage();
+      this.pageNumber = this.pageNumber + 1;
     }
-    this.selectPage.emit();
-  }
-
-  prevPage(): void {
-    let savedPage = sessionStorage.getItem('pageNum');
-    if (savedPage === null) {
-      sessionStorage.setItem('pageNum', '0');
-    } else if (+savedPage > 0) {
-      let prevPage = +savedPage;
-      prevPage--;
-      this.pageNumber = prevPage;
-      sessionStorage.setItem('pageNum', prevPage.toString());
-    }
-  }
-
-  nextPage(): void {
-    let savedPage = sessionStorage.getItem('pageNum');
-    if (savedPage === null) {
-      sessionStorage.setItem('pageNum', '0');
-    } else {
-      let nextPage = +savedPage;
-      nextPage++;
-      this.pageNumber = nextPage;
-      sessionStorage.setItem('pageNum', nextPage.toString());
-    }
+    this.selectPage.emit(this.pageNumber);
   }
 
   ngOnInit(): void {
-    this.getPageFromSessionStorage();
+    this.activatedRoute.queryParams
+      .pipe(takeUntil(this.destroyStream))
+      .subscribe(() => {
+        this.pageNumber = 0;
+        this.selectPage.emit(0);
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.destroyStream.next();
+    this.destroyStream.complete();
   }
 }

@@ -6,6 +6,7 @@ import { CartService } from '../../store/service/cart.service';
 import { CompareService } from '../../store/service/comparison/compare.service';
 import { EditCartModel } from '../../store/models/edit-cart.model';
 import { SizeModel } from '../../store/models/size.model';
+import { TokenStorageService } from '../../store/service/auth/token-storage.service';
 
 @Component({
   selector: 'app-product-details',
@@ -15,9 +16,12 @@ import { SizeModel } from '../../store/models/size.model';
 export class ProductDetailsComponent implements OnInit {
   product!: ProductModel;
   chosenSize: number | undefined;
+  isUser = false;
+  isProductManager = false;
 
   constructor(
     private route: ActivatedRoute,
+    private tokenStorageService: TokenStorageService,
     private productService: ProductService,
     private compareService: CompareService,
     private cartService: CartService
@@ -53,11 +57,25 @@ export class ProductDetailsComponent implements OnInit {
     }
   }
 
-  addProductToCompare(product: ProductModel) {
+  addProductToCompare(product: ProductModel): void {
     this.compareService.addProductToCompare(product);
   }
 
+  getUserRole(): void {
+    const userRole = this.tokenStorageService.getRole();
+    switch (userRole) {
+      case null:
+      case 'USER':
+        this.isUser = true;
+        break;
+      case 'PRODUCT_MANAGER':
+        this.isProductManager = true;
+        break;
+    }
+  }
+
   ngOnInit() {
+    this.getUserRole();
     this.getProduct();
   }
 }

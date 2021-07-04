@@ -17,7 +17,7 @@ export class ProfileService {
   private userInfoURL = this.hostURL + '/profile';
   private editUserURL = this.hostURL + '/profile/edit';
   private employeeInfoURL = this.hostURL + '/profile/employee';
-  private changePasswordURL = this.hostURL + '/reset-password-save';
+  private changePasswordURL = this.hostURL + '/change-password-save';
   private httpOptions = { observe: 'response' as const };
 
   constructor(
