@@ -47,7 +47,19 @@
 
       <div class="product-info-container underlining-container">
         <h5 class="price">{{ auction.startPrice }} UAH</h5>
-        <button type="button" class="purchase-button">Bid</button>
+        <ng-container *ngIf="isUser">
+          <button type="button" class="purchase-button">Bid</button>
+        </ng-container>
+
+        <ng-container *ngIf="isProductManager">
+          <button
+            type="button"
+            class="purchase-button"
+            [routerLink]="['/edit-auction', auction.auctionId]"
+          >
+            Edit auction
+          </button>
+        </ng-container>
       </div>
 
       <div class="product-info-container underlining-container">
