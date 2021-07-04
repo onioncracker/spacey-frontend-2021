@@ -29,4 +29,5 @@ export const routeUrls = {
   errorPage: 'error-page',
   recoverPassword: 'recover-password',
   imageUploader: 'image-uploader',
+  emailForRecover: 'email-password-recover',
 };

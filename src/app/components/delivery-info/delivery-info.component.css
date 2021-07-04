@@ -30,17 +30,19 @@
   width: 95%;
 }
 
-.datetime {
+.datepicker-styles {
   background: #f8f8f8;
   font-family: Spartan, sans-serif;
-  width: 340px;
+  width: 240px;
   height: 48px;
   padding: 10px 0 0 10px;
-  border: 0;
-  outline: none;
-  resize: none;
+  margin-right: 50px;
 }
 
-.datetime:focus {
-  outline: none;
+.timepicker-styles {
+  background: #f8f8f8;
+  font-family: Spartan, sans-serif;
+  width: 240px;
+  height: 48px;
+  padding: 10px 0 0 10px;
 }

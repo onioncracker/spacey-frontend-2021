@@ -13,20 +13,7 @@ import { Router } from '@angular/router';
 import { LoginModel } from '../../store/models/login.model';
 import { TokenStorageService } from '../../store/service/auth/token-storage.service';
 import { routeUrls } from '../../../environments/router-manager';
-
-export class LoginErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(
-    control: FormControl | null,
-    form: FormGroupDirective | NgForm | null
-  ): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(
-      control &&
-      control.invalid &&
-      (control.dirty || control.touched || isSubmitted)
-    );
-  }
-}
+import { DefaultErrorStateMatcher } from '../../store/service/DefaultErrorStateMatcher';
 
 @Component({
   selector: 'app-login',
@@ -35,7 +22,7 @@ export class LoginErrorStateMatcher implements ErrorStateMatcher {
 })
 export class LoginComponent {
   loginForm: FormGroup;
-  errorMatcher = new LoginErrorStateMatcher();
+  errorMatcher = new DefaultErrorStateMatcher();
   hide = true;
   siteKey = '6LcVzFobAAAAAItOzCPLpCc8Xi83puwXPK3Njaab';
   public theme: 'light' | 'dark' = 'light';

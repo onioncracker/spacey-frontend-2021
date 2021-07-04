@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CategoryColorMaterialsModel } from '../../store/models/category-color-materials.model';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Sizes } from '../../store/models/sizes';
 import { DialogService } from '../../store/service/dialog/dialog.service';
 import { routeUrls } from '../../../environments/router-manager';
@@ -9,6 +8,8 @@ import { EditAuction } from '../../store/models/edit-auction';
 import { AuctionProductsModel } from '../../store/models/auction-products-model';
 import { EditAuctionService } from '../../store/service/edit-auction/edit-auction.service';
 import { AddAuctionService } from '../../store/service/add-auction/add-auction.service';
+import { TokenStorageService } from '../../store/service/auth/token-storage.service';
+import { ErrorPageService } from '../../store/service/error/error-page.service';
 
 @Component({
   selector: 'app-edit-auction',
@@ -16,12 +17,13 @@ import { AddAuctionService } from '../../store/service/add-auction/add-auction.s
   styleUrls: ['./edit-auction.component.css'],
 })
 export class EditAuctionComponent implements OnInit {
-  auction!: EditAuction;
   products!: AuctionProductsModel[];
-  sizes!: Sizes[];
-  types!: boolean[];
-  type!: string;
+  auction!: EditAuction;
   statuses!: string[];
+  auctionId: number;
+  types!: boolean[];
+  sizes!: Sizes[];
+  type!: string;
 
   options = {
     title: 'Do you want to delete a auction?',
@@ -31,28 +33,37 @@ export class EditAuctionComponent implements OnInit {
   };
 
   constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private addAuctionService: AddAuctionService,
-    private formBuilder: FormBuilder,
+    private tokenStorageService: TokenStorageService,
     private editAuctionService: EditAuctionService,
-    private dialogService: DialogService
-  ) {}
+    private addAuctionService: AddAuctionService,
+    private errorPageService: ErrorPageService,
+    private dialogService: DialogService,
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
+    this.auctionId = parseInt(this.route.snapshot.paramMap.get('id')!);
+  }
 
   editAuctionForm = this.formBuilder.group({
     auctionId: ['', [Validators.required]],
     auctionProduct: ['', [Validators.required]],
     productSize: ['', [Validators.required]],
-    amount: [0, [Validators.required]],
+    amount: [0, [Validators.min(0), Validators.required]],
     auctionName: ['', [Validators.required]],
     auctionType: [true, [Validators.required]],
-    startPrice: [0, [Validators.required]],
-    endPrice: [0, [Validators.required]],
-    priceStep: [0, [Validators.required]],
+    startPrice: [0, [Validators.min(0), Validators.required]],
+    endPrice: [0, [Validators.min(0), Validators.required]],
+    priceStep: [0, [Validators.min(0), Validators.required]],
     startTime: ['', [Validators.required]],
     endTime: ['', [Validators.required]],
     status: ['', [Validators.required]],
   });
+
+  private isProductManagerRole(): boolean {
+    let userRole = this.tokenStorageService.getRole();
+    return userRole === 'PRODUCT_MANAGER';
+  }
 
   onSubmit() {
     this.auction = this.editAuctionForm.value;
@@ -61,9 +72,8 @@ export class EditAuctionComponent implements OnInit {
   }
 
   getAuction(): void {
-    const id = parseInt(this.route.snapshot.paramMap.get('id')!);
     this.editAuctionService
-      .getAuctionById(id)
+      .getAuctionById(this.auctionId)
       .pipe()
       .subscribe((auction: EditAuction) => {
         this.auction = new EditAuction(
@@ -80,34 +90,31 @@ export class EditAuctionComponent implements OnInit {
           auction.endTime,
           auction.status
         );
-        console.log(this.auction);
-        if (!this.auction.auctionType) {
-          this.type = 'DECREASE';
-        } else {
-          this.type = 'INCREASE';
-        }
         this.editAuctionForm.setValue(this.auction);
-        console.log(this.editAuctionForm);
       });
   }
 
   updateAuction(auction: EditAuction) {
-    this.editAuctionService.updateAuctionById(auction).subscribe();
+    this.editAuctionService
+      .updateAuctionById(auction, this.auctionId)
+      .subscribe();
   }
 
-  deleteAuction(id: number) {
+  deleteAuction() {
     this.dialogService.openConfirm(this.options);
     this.dialogService.confirmed().subscribe((confirmed) => {
       if (confirmed) {
-        this.editAuctionService.deleteAuctionById(id).subscribe(() => {
-          this.dialogService.openMessage('Product has been deleted', 'close');
-          this.goAuctionsCatalog();
-        });
+        this.editAuctionService
+          .deleteAuctionById(this.auctionId)
+          .subscribe(() => {
+            this.dialogService.openMessage('Auction has been deleted', 'close');
+            this.navigateToAuctionsCatalog();
+          });
       }
     });
   }
 
-  goAuctionsCatalog() {
+  navigateToAuctionsCatalog() {
     this.router.navigateByUrl(routeUrls.auctionCatalog);
   }
 
@@ -115,7 +122,7 @@ export class EditAuctionComponent implements OnInit {
     return object1 && object2 && object1.id == object2.id;
   }
 
-  allProducts() {
+  getProducts() {
     this.addAuctionService
       .getAllProducts()
       .pipe()
@@ -124,7 +131,7 @@ export class EditAuctionComponent implements OnInit {
       });
   }
 
-  allSizes() {
+  getSizes() {
     this.addAuctionService
       .getAllSizes()
       .pipe()
@@ -133,21 +140,25 @@ export class EditAuctionComponent implements OnInit {
       });
   }
 
-  allTypes() {
+  getTypes() {
     this.types = new Array<boolean>();
     this.types.push(true, false);
   }
 
-  allStatuses() {
+  getStatuses() {
     this.statuses = new Array<string>();
     this.statuses.push('ACTIVE', 'INACTIVE');
   }
 
   ngOnInit() {
-    this.allProducts();
-    this.allTypes();
-    this.allSizes();
-    this.allStatuses();
+    this.editAuctionForm.controls.auctionId.disable();
+    this.getProducts();
+    this.getTypes();
+    this.getSizes();
+    this.getStatuses();
     this.getAuction();
+    if (!this.isProductManagerRole()) {
+      this.errorPageService.openErrorPage('Access is denied');
+    }
   }
 }

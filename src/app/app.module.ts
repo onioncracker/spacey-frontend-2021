@@ -66,6 +66,7 @@ import { CustomizationComponent } from './components/customization/customization
 import { DialogInputComponent } from './components/dialog-input/dialog-input.component';
 import {
   NgxMatDatetimePickerModule,
+  NgxMatNativeDateModule,
   NgxMatTimepickerModule,
 } from '@angular-material-components/datetime-picker';
 import { AuctionCatalogComponent } from './components/auction-catalog/auction-catalog.component';
@@ -77,6 +78,8 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { RecoverPasswordComponent } from './components/recover-password/recover-password.component';
 import { ImageUploaderComponent } from './components/image-uploader/image-uploader/image-uploader.component';
 import {ImageCropperModule} from "ngx-image-cropper";
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { EmailForRecoverPassComponent } from './components/email-for-recover-pass/email-for-recover-pass.component';
 
 @NgModule({
   declarations: [
@@ -125,6 +128,7 @@ import {ImageCropperModule} from "ngx-image-cropper";
     ProfileComponent,
     RecoverPasswordComponent,
     ImageUploaderComponent,
+    EmailForRecoverPassComponent,
   ],
   imports: [
     BrowserModule,
@@ -159,10 +163,12 @@ import {ImageCropperModule} from "ngx-image-cropper";
     MatCheckboxModule,
     MatSelectModule,
     MatDividerModule,
+    MatSnackBarModule,
     NgxMatDatetimePickerModule,
     NgxMatTimepickerModule,
     DpDatePickerModule,
-    ImageCropperModule
+    ImageCropperModule,
+    NgxMatNativeDateModule,
   ],
   providers: [
     {

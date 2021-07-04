@@ -172,6 +172,7 @@ export class EditProductComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.editProductForm.controls.id.disable();
     this.allMaterials();
     this.allColors();
     this.allSizes();

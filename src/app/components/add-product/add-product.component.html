@@ -76,6 +76,7 @@
           <h3 class="add-h">Price</h3>
           <mat-form-field class="input-field" appearance="fill">
             <input
+              min="0"
               matInput
               [formGroup]="addProductForm"
               formControlName="price"
@@ -88,6 +89,7 @@
           <h3 class="add-h">Discount</h3>
           <mat-form-field class="input-field" appearance="fill">
             <input
+              min="0"
               matInput
               [formGroup]="addProductForm"
               formControlName="discount"
