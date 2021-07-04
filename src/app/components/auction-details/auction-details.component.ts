@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuctionService } from '../../store/service/auction/auction.service';
 import { AuctionModel } from '../../store/models/auction.model';
+import { TokenStorageService } from '../../store/service/auth/token-storage.service';
 
 @Component({
   selector: 'app-auction-details',
@@ -10,9 +11,12 @@ import { AuctionModel } from '../../store/models/auction.model';
 })
 export class AuctionDetailsComponent implements OnInit {
   auction!: AuctionModel;
+  isUser = false;
+  isProductManager = false;
 
   constructor(
     private route: ActivatedRoute,
+    private tokenStorageService: TokenStorageService,
     private auctionService: AuctionService
   ) {}
 
@@ -23,7 +27,21 @@ export class AuctionDetailsComponent implements OnInit {
     });
   }
 
+  getUserRole(): void {
+    const userRole = this.tokenStorageService.getRole();
+    switch (userRole) {
+      case null:
+      case 'USER':
+        this.isUser = true;
+        break;
+      case 'PRODUCT_MANAGER':
+        this.isProductManager = true;
+        break;
+    }
+  }
+
   ngOnInit() {
+    this.getUserRole();
     this.getAuction();
   }
 }
