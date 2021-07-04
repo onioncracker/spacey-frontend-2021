@@ -4,7 +4,7 @@
   </button>
   <span class="gap"></span>
   <button mat-flat-button color="primary" (click)="routeToPopular()">
-    Popular Now
+    Popular now
   </button>
   <button
     mat-flat-button
@@ -23,19 +23,14 @@
   <button mat-flat-button color="primary" (click)="routeToAuctions()">
     Auctions
   </button>
-
-  <ng-container *ngIf="isCustomer()">
-    <button mat-flat-button color="primary" routerLink="/comparison">
-      Comparison
-    </button>
-  </ng-container>
-
-  <ng-container *ngIf="isProductManager()">
-    <button mat-flat-button color="primary" routerLink="/add">
-      Add Product
-    </button>
-  </ng-container>
-
+  <button
+    mat-flat-button
+    color="primary"
+    routerLink="/comparison"
+    *ngIf="isUser"
+  >
+    Comparison
+  </button>
   <span class="gap"></span>
   <button mat-icon-button>
     <mat-icon>search</mat-icon>

@@ -1,198 +1,207 @@
-<div class="head-prod-edit">
-  <mat-label class="edit-label">
-    <h1 class="edit-h">EDIT PRODUCT</h1>
-  </mat-label>
-</div>
-<form name="EditProduct" [formGroup]="editProductForm" (ngSubmit)="onSubmit()">
-  <table class="table-edit">
-    <tr>
-      <td>
-        <h3 class="edit-h">ID</h3>
-        <mat-form-field appearance="fill">
-          <input matInput type="text" placeholder="ID" formControlName="id" />
-        </mat-form-field>
-      </td>
-      <td>
-        <h3 class="edit-h">Category</h3>
-        <mat-form-field appearance="fill">
-          <mat-select
-            placeholder="Category"
-            formControlName="category"
-            [compareWith]="compareObjects"
-          >
-            <mat-option *ngFor="let category of categories" [value]="category">
-              {{ category.name }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </td>
-      <td colspan="2">
-        <h3 class="edit-h">Name</h3>
-        <mat-form-field class="input-name" appearance="fill">
-          <input
-            matInput
-            type="text"
-            placeholder="Name"
-            formControlName="name"
-          />
-        </mat-form-field>
-      </td>
-      <td rowspan="3" class="cell-photo">
-        <input
-          class="photo"
-          value="Photo"
-          alt="Photo"
-          [src]="product.photo"
-          #imageInput
-          type="file"
-          accept="image/*"
-          (change)="processFile(imageInput)"
-        />
-        <div class="wrapper">
-          <button
-            mat-raised-button
-            class="edit-btn btn-hover"
-            type="submit"
-            color="accent"
-            (change)="processFile(imageInput)"
-          >
-            SAVE PHOTO
-          </button>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <h3 class="edit-h">Sex</h3>
-        <mat-form-field appearance="fill">
-          <mat-select
-            formControlName="productSex"
-            placeholder="Sex"
-            [compareWith]="compareObjects"
-          >
-            <mat-option value="MEN">MEN</mat-option>
-            <mat-option value="WOMEN">WOMEN</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </td>
-      <td>
-        <h3 class="edit-h">Color</h3>
-        <mat-form-field appearance="fill">
-          <mat-select
-            placeholder="Color"
-            formControlName="color"
-            [compareWith]="compareObjects"
-          >
-            <mat-option *ngFor="let color of colors" [value]="color">
-              {{ color.name }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </td>
-      <td>
-        <h3 class="edit-h">Price</h3>
-        <mat-form-field class="input-field" appearance="fill">
-          <input
-            matInput
-            type="number"
-            placeholder="Price"
-            formControlName="price"
-          />
-        </mat-form-field>
-      </td>
-      <td>
-        <h3 class="edit-h">Discount</h3>
-        <mat-form-field class="input-field" appearance="fill">
-          <input
-            matInput
-            type="number"
-            placeholder="Discount"
-            formControlName="discount"
-          />
-        </mat-form-field>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="4">
-        <h3 class="edit-h">Material</h3>
-        <mat-form-field appearance="fill" class="material-field">
-          <mat-select
-            multiple
-            placeholder="Select materials"
-            formControlName="materials"
-            [compareWith]="compareObjects"
-          >
-            <mat-option
-              *ngFor="let material of materialsList"
-              [value]="material"
+<div>
+  <div class="head-prod-edit">
+    <mat-label class="edit-label">
+      <h1 class="edit-h">EDIT PRODUCT</h1>
+    </mat-label>
+  </div>
+  <form
+    name="EditProduct"
+    [formGroup]="editProductForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <table class="table-edit">
+      <tr>
+        <td>
+          <h3 class="edit-h">ID</h3>
+          <mat-form-field appearance="fill">
+            <input matInput type="text" placeholder="ID" formControlName="id" />
+          </mat-form-field>
+        </td>
+        <td>
+          <h3 class="edit-h">Category</h3>
+          <mat-form-field appearance="fill">
+            <mat-select
+              placeholder="Category"
+              formControlName="category"
+              [compareWith]="compareObjects"
             >
-              {{ material.name }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="4" rowspan="5">
-        <h3 class="edit-h">Description</h3>
-        <mat-form-field class="input-description" appearance="fill">
-          <textarea
-            matInput
-            spellcheck="true"
-            class="description"
-            placeholder="Some information about product"
-            formControlName="description"
+              <mat-option
+                *ngFor="let category of categories"
+                [value]="category"
+              >
+                {{ category.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+        <td colspan="2">
+          <h3 class="edit-h">Name</h3>
+          <mat-form-field class="input-name" appearance="fill">
+            <input
+              matInput
+              type="text"
+              placeholder="Name"
+              formControlName="name"
+            />
+          </mat-form-field>
+        </td>
+        <td rowspan="3" class="cell-photo">
+          <input
+            class="photo"
+            value="Photo"
+            alt="Photo"
+            #imageInput
+            type="file"
+            accept="image/*"
+            (change)="processFile(imageInput)"
+          />
+          <div class="wrapper">
+            <button
+              mat-raised-button
+              class="edit-btn btn-hover"
+              type="submit"
+              color="accent"
+              (change)="processFile(imageInput)"
+            >
+              SAVE PHOTO
+            </button>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h3 class="edit-h">Sex</h3>
+          <mat-form-field appearance="fill">
+            <mat-select formControlName="productSex" placeholder="Sex">
+              <mat-option value="MEN">MEN</mat-option>
+              <mat-option value="WOMEN">WOMEN</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+        <td>
+          <h3 class="edit-h">Color</h3>
+          <mat-form-field appearance="fill">
+            <mat-select
+              placeholder="Color"
+              formControlName="color"
+              [compareWith]="compareObjects"
+            >
+              <mat-option *ngFor="let color of colors" [value]="color">
+                {{ color.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+        <td>
+          <h3 class="edit-h">Price</h3>
+          <mat-form-field class="input-field" appearance="fill">
+            <input
+              min="0"
+              matInput
+              type="number"
+              placeholder="Price"
+              formControlName="price"
+            />
+          </mat-form-field>
+        </td>
+        <td>
+          <h3 class="edit-h">Discount</h3>
+          <mat-form-field class="input-field" appearance="fill">
+            <input
+              min="0"
+              matInput
+              type="number"
+              placeholder="Discount"
+              formControlName="discount"
+            />
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="4">
+          <h3 class="edit-h">Material</h3>
+          <mat-form-field appearance="fill" class="material-field">
+            <mat-select
+              multiple
+              placeholder="Select materials"
+              formControlName="materials"
+              [compareWith]="compareObjects"
+            >
+              <mat-option
+                *ngFor="let material of materialsList"
+                [value]="material"
+              >
+                {{ material.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="4" rowspan="5">
+          <h3 class="edit-h">Description</h3>
+          <mat-form-field class="input-description" appearance="fill">
+            <textarea
+              matInput
+              spellcheck="true"
+              class="description"
+              placeholder="Some information about product"
+              formControlName="description"
+            >
+            </textarea>
+          </mat-form-field>
+          <div class="deactivate-box">
+            <mat-checkbox formControlName="isAvailable">
+              <mat-label class="edit-h">Activate product</mat-label>
+            </mat-checkbox>
+          </div>
+        </td>
+        <td rowspan="5" class="sizes">
+          <tr
+            *ngFor="let size of sizesAmount; let i = index; trackBy: onTrackBy"
           >
-          </textarea>
-        </mat-form-field>
-        <div class="deactivate-box">
-          <mat-checkbox formControlName="isAvailable">
-            <mat-label class="edit-h">Activate product</mat-label>
-          </mat-checkbox>
-        </div>
-      </td>
-      <td rowspan="5" class="sizes">
-        <tr *ngFor="let size of sizesAmount; let i = index; trackBy: onTrackBy">
-          <td>
-            <div class="sizes">
-              <mat-label class="edit-h"> {{ size.name }}:</mat-label>
-              <mat-form-field class="size-amount" appearance="fill">
-                <input
-                  matInput
-                  type="number"
-                  placeholder="Amount"
-                  [(ngModel)]="sizesAmount[i].quantity"
-                  [ngModelOptions]="{ standalone: true }"
-                />
-              </mat-form-field>
-              <br />
-            </div>
-          </td>
-        </tr>
-      </td>
-    </tr>
-  </table>
+            <td>
+              <div class="sizes">
+                <mat-label class="edit-h"> {{ size.name }}:</mat-label>
+                <mat-form-field class="size-amount" appearance="fill">
+                  <input
+                    matInput
+                    type="number"
+                    placeholder="Amount"
+                    [(ngModel)]="sizesAmount[i].quantity"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
+                </mat-form-field>
+                <br />
+              </div>
+            </td>
+          </tr>
+        </td>
+      </tr>
+    </table>
 
-  <br />
+    <br />
+    <div class="wrapper">
+      <button
+        mat-raised-button
+        class="edit-btn btn-hover"
+        type="submit"
+        color="accent"
+        [disabled]="!editProductForm.valid"
+      >
+        SAVE CHANGES
+      </button>
+    </div>
+    <br />
+  </form>
   <div class="wrapper">
     <button
       mat-raised-button
-      class="edit-btn btn-hover"
-      type="submit"
+      class="edit-btn delete-btn btn-hover"
       color="accent"
+      (click)="deleteProduct(product.id)"
     >
-      SAVE CHANGES
+      DELETE PRODUCT
     </button>
   </div>
-  <br />
-</form>
-<div class="wrapper">
-  <button
-    mat-raised-button
-    class="edit-btn delete-btn btn-hover"
-    color="accent"
-    (click)="deleteProduct(product.id)"
-  >
-    DELETE PRODUCT
-  </button>
 </div>

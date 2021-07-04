@@ -1,24 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { routeUrls } from '../../../environments/router-manager';
 import { AuthService } from '../../store/service/auth/auth.service';
+import { TokenStorageService } from '../../store/service/auth/token-storage.service';
 
 @Component({
   selector: 'app-toolbar',
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.css'],
 })
-export class ToolbarComponent {
-  private userRole = 'USER_ROLE';
+export class ToolbarComponent implements OnInit {
+  userRole = this.tokenStorageService.getRole();
+  isUser = false;
 
-  constructor(private router: Router, public authService: AuthService) {}
+  constructor(
+    private router: Router,
+    public authService: AuthService,
+    private tokenStorageService: TokenStorageService
+  ) {}
 
-  isCustomer(): boolean {
-    return this.userRole === null || this.userRole === 'USER_ROLE';
-  }
-
-  isProductManager(): boolean {
-    return this.userRole === 'PRODUCT_MANAGER_ROLE';
+  private isUserRole(): boolean {
+    if (this.userRole === 'USER') {
+      return true;
+    } else if (this.userRole === null) {
+      return true;
+    }
+    return false;
   }
 
   routeToCheckout() {
@@ -49,9 +56,13 @@ export class ToolbarComponent {
 
   routeToProfile() {
     if (this.authService.isAuthorised()) {
-      this.router.navigateByUrl(routeUrls.userProfile);
+      this.router.navigateByUrl(routeUrls.profile);
     } else {
       this.router.navigateByUrl(routeUrls.login);
     }
+  }
+
+  ngOnInit() {
+    this.isUser = this.isUserRole();
   }
 }

@@ -1,161 +1,165 @@
-<div class="head-prod-comparison">
-  <mat-label class="comparison-label">
-    <h1 class="compare-h">Comparison</h1>
-  </mat-label>
-</div>
-<div class="table-comparison" *ngIf="products.length > 1">
-  <table>
-    <tr>
-      <td
-        class="compare-field"
-        *ngFor="let product of products; let i = index; trackBy: trackByFn"
-      >
-        <div class="photo-and-button">
-          <button
-            class="button-x"
-            (click)="deleteProductFromCompare(product.id)"
-          >
-            X
-          </button>
-          <a [routerLink]="['/product-catalog', product.id]">
-            <img
-              src="{{ product.photo }}"
-              class="photo"
-              alt="{{ product.name }}"
-            />
-          </a>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td class="compare-field" *ngFor="let product of products">
-        <a routerLink="/product-catalog/{{ product.id }}" class="prod-name">{{
-          product.name
-        }}</a>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="4" class="compare-field">
-        <h3 class="compare-h label-field">In Stock</h3>
-      </td>
-    </tr>
-    <tr>
-      <td class="compare-field" *ngFor="let product of products">
-        {{ product.availability }}
-      </td>
-    </tr>
-    <tr>
-      <td class="compare-field" colspan="4">
-        <h3 class="compare-h label-field">Discount</h3>
-      </td>
-    </tr>
-    <tr>
-      <td class="compare-field" *ngFor="let product of products">
-        -{{ product.discount }}%
-      </td>
-    </tr>
-    <tr>
-      <td class="compare-field" colspan="4">
-        <h3 class="compare-h label-field">Price</h3>
-      </td>
-    </tr>
-    <tr>
-      <td class="compare-field" *ngFor="let product of products">
-        {{ product.price }} UAH
-      </td>
-    </tr>
-    <tr>
-      <td class="compare-field" colspan="4">
-        <h3 class="compare-h label-field">Category</h3>
-      </td>
-    </tr>
-    <tr>
-      <td class="compare-field" *ngFor="let product of products">
-        {{ product.category }}
-      </td>
-    </tr>
-    <tr>
-      <td class="compare-field" colspan="4">
-        <h3 class="compare-h label-field">Sex</h3>
-      </td>
-    </tr>
-    <tr>
-      <td class="compare-field" *ngFor="let product of products">
-        {{ product.sex }}
-      </td>
-    </tr>
-    <tr>
-      <td class="compare-field" colspan="4">
-        <h3 class="compare-h label-field">Sizes</h3>
-      </td>
-    </tr>
-    <tr>
-      <td class="compare-field" *ngFor="let product of products">
-        <span *ngFor="let size of product.sizes">
-          {{ size.name }}
-        </span>
-      </td>
-    </tr>
-    <tr>
-      <td class="compare-field" colspan="4">
-        <h3 class="compare-h label-field">Color</h3>
-      </td>
-    </tr>
-    <tr>
-      <td class="compare-field" *ngFor="let product of products">
-        {{ product.color }}
-      </td>
-    </tr>
-    <tr>
-      <td class="compare-field" colspan="4">
-        <h3 class="compare-h label-field">Materials</h3>
-      </td>
-    </tr>
-    <tr>
-      <td class="compare-field" *ngFor="let product of products">
-        {{ product.materials }}
-      </td>
-    </tr>
-    <tr>
-      <td class="compare-field" colspan="4">
-        <h3 class="compare-h label-field">About items</h3>
-      </td>
-    </tr>
-    <tr>
-      <td class="compare-field" *ngFor="let product of products">
-        {{ product.description }}
-      </td>
-    </tr>
-  </table>
-  <div class="button-div">
-    <button
-      mat-raised-button
-      class="btn-add-more"
-      type="submit"
-      color="accent"
-      (click)="routeToProductCatalog('women')"
-    >
-      ADD MORE
-    </button>
+<div>
+  <div class="head-prod-comparison">
+    <mat-label class="comparison-label">
+      <h1 class="compare-h">Comparison</h1>
+    </mat-label>
   </div>
-</div>
-<div
-  *ngIf="products.length < 2"
-  routerLink="/products-catalog"
-  class="table-comparison"
->
-  <h3>
-    You add to compere less then 2 products. Please, go to catalog and add more.
-  </h3>
-  <div class="button-div">
-    <button
-      mat-raised-button
-      class="btn-add-more"
-      type="submit"
-      color="accent"
-      (click)="routeToProductCatalog('women')"
-    >
-      Catalog
-    </button>
+  <div class="table-comparison" *ngIf="products.length > 1">
+    <table>
+      <tr>
+        <td
+          class="compare-field"
+          *ngFor="let product of products; let i = index; trackBy: trackByFn"
+        >
+          <div class="photo-and-button">
+            <button
+              mat-icon-button
+              class="button-x"
+              (click)="deleteProductFromCompare(product.id)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+            <a [routerLink]="['/product-catalog', product.id]">
+              <img
+                src="{{ product.photo }}"
+                class="photo"
+                alt="{{ product.name }}"
+              />
+            </a>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="compare-field" *ngFor="let product of products">
+          <a routerLink="/product-catalog/{{ product.id }}" class="prod-name">{{
+            product.name
+          }}</a>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="4" class="compare-field">
+          <h3 class="compare-h label-field">In Stock</h3>
+        </td>
+      </tr>
+      <tr>
+        <td class="compare-field" *ngFor="let product of products">
+          {{ product.availability }}
+        </td>
+      </tr>
+      <tr>
+        <td class="compare-field" colspan="4">
+          <h3 class="compare-h label-field">Discount</h3>
+        </td>
+      </tr>
+      <tr>
+        <td class="compare-field" *ngFor="let product of products">
+          -{{ product.discount }}%
+        </td>
+      </tr>
+      <tr>
+        <td class="compare-field" colspan="4">
+          <h3 class="compare-h label-field">Price</h3>
+        </td>
+      </tr>
+      <tr>
+        <td class="compare-field" *ngFor="let product of products">
+          {{ product.price }} UAH
+        </td>
+      </tr>
+      <tr>
+        <td class="compare-field" colspan="4">
+          <h3 class="compare-h label-field">Category</h3>
+        </td>
+      </tr>
+      <tr>
+        <td class="compare-field" *ngFor="let product of products">
+          {{ product.category }}
+        </td>
+      </tr>
+      <tr>
+        <td class="compare-field" colspan="4">
+          <h3 class="compare-h label-field">Sex</h3>
+        </td>
+      </tr>
+      <tr>
+        <td class="compare-field" *ngFor="let product of products">
+          {{ product.sex }}
+        </td>
+      </tr>
+      <tr>
+        <td class="compare-field" colspan="4">
+          <h3 class="compare-h label-field">Sizes</h3>
+        </td>
+      </tr>
+      <tr>
+        <td class="compare-field" *ngFor="let product of products">
+          <span *ngFor="let size of product.sizes">
+            {{ size.name }}
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td class="compare-field" colspan="4">
+          <h3 class="compare-h label-field">Color</h3>
+        </td>
+      </tr>
+      <tr>
+        <td class="compare-field" *ngFor="let product of products">
+          {{ product.color }}
+        </td>
+      </tr>
+      <tr>
+        <td class="compare-field" colspan="4">
+          <h3 class="compare-h label-field">Materials</h3>
+        </td>
+      </tr>
+      <tr>
+        <td class="compare-field" *ngFor="let product of products">
+          {{ product.materials }}
+        </td>
+      </tr>
+      <tr>
+        <td class="compare-field" colspan="4">
+          <h3 class="compare-h label-field">About items</h3>
+        </td>
+      </tr>
+      <tr>
+        <td class="compare-field" *ngFor="let product of products">
+          {{ product.description }}
+        </td>
+      </tr>
+    </table>
+    <div class="button-div">
+      <button
+        mat-raised-button
+        class="btn-add-more"
+        type="submit"
+        color="accent"
+        (click)="routeToProductCatalog('women')"
+      >
+        ADD MORE
+      </button>
+    </div>
+  </div>
+  <div
+    *ngIf="products.length < 2"
+    routerLink="/products-catalog"
+    class="table-comparison"
+  >
+    <h3>
+      You add to compere less then 2 products. Please, go to catalog and add
+      more.
+    </h3>
+    <div class="button-div">
+      <button
+        mat-raised-button
+        class="btn-add-more"
+        type="submit"
+        color="accent"
+        (click)="routeToProductCatalog('women')"
+      >
+        Catalog
+      </button>
+    </div>
   </div>
 </div>

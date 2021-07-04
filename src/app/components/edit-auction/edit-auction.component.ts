@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CategoryColorMaterialsModel } from '../../store/models/category-color-materials.model';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Sizes } from '../../store/models/sizes';
 import { DialogService } from '../../store/service/dialog/dialog.service';
 import { routeUrls } from '../../../environments/router-manager';
@@ -17,7 +16,11 @@ import { AddAuctionService } from '../../store/service/add-auction/add-auction.s
 })
 export class EditAuctionComponent implements OnInit {
   auction!: EditAuction;
+  products!: AuctionProductsModel[];
   sizes!: Sizes[];
+  types!: boolean[];
+  type!: string;
+  statuses!: string[];
 
   options = {
     title: 'Do you want to delete a auction?',
@@ -37,14 +40,14 @@ export class EditAuctionComponent implements OnInit {
 
   editAuctionForm = this.formBuilder.group({
     auctionId: ['', [Validators.required]],
-    auctionProductId: ['', [Validators.required]],
+    auctionProduct: ['', [Validators.required]],
     productSize: ['', [Validators.required]],
-    amount: [0, [Validators.required]],
+    amount: [0, [Validators.min(0), Validators.required]],
     auctionName: ['', [Validators.required]],
     auctionType: [true, [Validators.required]],
-    startPrice: [0, [Validators.required]],
-    endPrice: [0, [Validators.required]],
-    priceStep: [0, [Validators.required]],
+    startPrice: [0, [Validators.min(0), Validators.required]],
+    endPrice: [0, [Validators.min(0), Validators.required]],
+    priceStep: [0, [Validators.min(0), Validators.required]],
     startTime: ['', [Validators.required]],
     endTime: ['', [Validators.required]],
     status: ['', [Validators.required]],
@@ -60,10 +63,11 @@ export class EditAuctionComponent implements OnInit {
     const id = parseInt(this.route.snapshot.paramMap.get('id')!);
     this.editAuctionService
       .getAuctionById(id)
+      .pipe()
       .subscribe((auction: EditAuction) => {
         this.auction = new EditAuction(
           auction.auctionId,
-          auction.auctionProductId,
+          auction.auctionProduct,
           auction.productSize,
           auction.amount,
           auction.auctionName,
@@ -75,9 +79,14 @@ export class EditAuctionComponent implements OnInit {
           auction.endTime,
           auction.status
         );
-        // this.editAuctionForm.setValue(auction);
         console.log(this.auction);
+        if (!this.auction.auctionType) {
+          this.type = 'DECREASE';
+        } else {
+          this.type = 'INCREASE';
+        }
         this.editAuctionForm.setValue(this.auction);
+        console.log(this.editAuctionForm);
       });
   }
 
@@ -105,6 +114,15 @@ export class EditAuctionComponent implements OnInit {
     return object1 && object2 && object1.id == object2.id;
   }
 
+  allProducts() {
+    this.addAuctionService
+      .getAllProducts()
+      .pipe()
+      .subscribe((products: AuctionProductsModel[]) => {
+        this.products = products;
+      });
+  }
+
   allSizes() {
     this.addAuctionService
       .getAllSizes()
@@ -114,9 +132,22 @@ export class EditAuctionComponent implements OnInit {
       });
   }
 
+  allTypes() {
+    this.types = new Array<boolean>();
+    this.types.push(true, false);
+  }
+
+  allStatuses() {
+    this.statuses = new Array<string>();
+    this.statuses.push('ACTIVE', 'INACTIVE');
+  }
+
   ngOnInit() {
+    this.editAuctionForm.controls.auctionId.disable();
+    this.allProducts();
+    this.allTypes();
     this.allSizes();
+    this.allStatuses();
     this.getAuction();
-    // console.log(this.auction);
   }
 }

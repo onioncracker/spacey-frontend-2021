@@ -11,6 +11,8 @@ import { CategoryColorMaterialsModel } from '../../store/models/category-color-m
 import { Sizes } from '../../store/models/sizes';
 import { DialogService } from '../../store/service/dialog/dialog.service';
 import { AddProduct } from '../../store/models/add-product';
+import { TokenStorageService } from '../../store/service/auth/token-storage.service';
+import { ErrorPageService } from '../../store/service/error/error-page.service';
 
 class ImageSnippet {
   constructor(public src: string, public file: File) {}
@@ -34,21 +36,28 @@ export class AddProductComponent implements OnInit {
     private route: ActivatedRoute,
     private addProductService: AddProductService,
     private formBuilder: FormBuilder,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private tokenStorageService: TokenStorageService,
+    private errorPageService: ErrorPageService
   ) {
     this.addProductForm = this.formBuilder.group({
       name: ['', [Validators.required]],
       productSex: ['', [Validators.required]],
-      price: ['', [Validators.required]],
-      discount: [0, [Validators.required]],
-      photo: ['', [Validators.required]],
+      price: ['', [Validators.min(0), Validators.required]],
+      discount: [0, [Validators.min(0), Validators.required]],
+      photo: [null, [Validators.required]],
       description: ['', [Validators.required]],
       isAvailable: [true, [Validators.required]],
       category: ['', [Validators.required]],
       color: ['', [Validators.required]],
       materials: ['', [Validators.required]],
-      sizes: [0, [Validators.required]],
+      sizes: [0, [Validators.min(0), Validators.required]],
     });
+  }
+
+  private isProductManagerRole(): boolean {
+    let userRole = this.tokenStorageService.getRole();
+    return userRole === 'PRODUCT_MANAGER';
   }
 
   onSubmit(addProductForm: any, productForm: FormGroupDirective) {
@@ -120,7 +129,7 @@ export class AddProductComponent implements OnInit {
 
   allCategory() {
     this.addProductService
-      .getAllCategory()
+      .getAllCategories()
       .pipe()
       .subscribe((categories: CategoryColorMaterialsModel[]) => {
         this.categories = categories;
@@ -145,5 +154,8 @@ export class AddProductComponent implements OnInit {
     this.allColors();
     this.allSizes();
     this.allCategory();
+    if (!this.isProductManagerRole()) {
+      this.errorPageService.openErrorPage('Access is denied');
+    }
   }
 }

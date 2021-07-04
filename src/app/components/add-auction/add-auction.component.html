@@ -25,16 +25,18 @@
       </td>
     </div>
     <div class="space" style="margin-top: 20px">
-      <td>
-        <h3 class="add-h">Product Id</h3>
+      <td colspan="4">
+        <h3 class="add-h">Product</h3>
         <mat-form-field class="input-field" appearance="fill">
-          <input
-            matInput
+          <mat-select
             [formGroup]="addAuctionForm"
-            formControlName="auctionProductId"
-            type="number"
+            formControlName="auctionProduct"
             placeholder="Product"
-          />
+          >
+            <mat-option *ngFor="let product of products" [value]="product">
+              {{ product.name }}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
       </td>
       <td>
@@ -55,6 +57,7 @@
         <h3 class="add-h">Amount</h3>
         <mat-form-field class="input-field" appearance="fill">
           <input
+            min="0"
             matInput
             [formGroup]="addAuctionForm"
             formControlName="amount"
@@ -71,8 +74,9 @@
             formControlName="auctionType"
             placeholder="Type"
           >
-            <mat-option value="Increase">INCREASE</mat-option>
-            <mat-option value="Decrease">DECREASE</mat-option>
+            <mat-option *ngFor="let type of types" [value]="type">
+              {{ type }}
+            </mat-option>
           </mat-select>
         </mat-form-field>
       </td>
@@ -82,6 +86,7 @@
         <h3 class="add-h">Start Price</h3>
         <mat-form-field class="input-field" appearance="fill">
           <input
+            min="0"
             matInput
             [formGroup]="addAuctionForm"
             formControlName="startPrice"
@@ -94,6 +99,7 @@
         <h3 class="add-h">End Price</h3>
         <mat-form-field class="input-field" appearance="fill">
           <input
+            min="0"
             matInput
             [formGroup]="addAuctionForm"
             formControlName="endPrice"
@@ -106,6 +112,7 @@
         <h3 class="add-h">Price Step</h3>
         <mat-form-field class="input-field" appearance="fill">
           <input
+            min="0"
             matInput
             [formGroup]="addAuctionForm"
             formControlName="priceStep"
@@ -119,11 +126,12 @@
         <mat-form-field class="input-field" appearance="fill">
           <mat-select
             [formGroup]="addAuctionForm"
-            formControlName="auctionType"
-            placeholder="Type"
+            formControlName="status"
+            placeholder="Status"
           >
-            <mat-option value="Active">ACTIVE</mat-option>
-            <mat-option value="Inactive">INACTIVE</mat-option>
+            <mat-option *ngFor="let status of statuses" [value]="status">
+              {{ status }}
+            </mat-option>
           </mat-select>
         </mat-form-field>
       </td>
