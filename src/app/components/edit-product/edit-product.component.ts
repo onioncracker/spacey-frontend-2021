@@ -28,7 +28,7 @@ export class EditProductComponent implements OnInit {
   sizesAmount!: Sizes[];
   selectedCategory!: number;
   photoFile!: File;
-  productId = parseInt(this.route.snapshot.paramMap.get('id')!)
+  productId = parseInt(this.route.snapshot.paramMap.get('id')!);
 
   options = {
     title: 'Do you want to delete a product?',

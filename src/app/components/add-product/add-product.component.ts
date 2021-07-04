@@ -144,7 +144,6 @@ export class AddProductComponent implements OnInit {
     this.photoFile = event;
   }
 
-
   ngOnInit() {
     this.allMaterials();
     this.allColors();
