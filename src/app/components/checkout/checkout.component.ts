@@ -92,7 +92,7 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.isUserLogin = this.authService.isAuthorised();
-    console.log(this.cartService.getProducts());
+    console.log(this.cartService.getUnauthorizedCart());
     if (!this.isUserLogin) {
       this.order = new CheckoutOrder(
         new CheckoutDto(this.products, 0, '', '', '', '', '', '', '', '')
