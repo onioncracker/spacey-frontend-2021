@@ -25,10 +25,11 @@ export class EditAuctionService {
     return this.http.delete(`${this.deleteAuctionUrl}/${id}`, this.httpOptions);
   }
 
-  updateAuctionById(editAuctionData: EditAuction): Observable<any> {
+  updateAuctionById(editAuctionData: EditAuction, id: number): Observable<any> {
+    console.log(editAuctionData);
     return this.http
       .put(
-        `${this.editAuctionUrl}/edit/${editAuctionData.auctionId}`,
+        `${this.editAuctionUrl}/edit/${id}`,
         editAuctionData,
         this.httpOptions
       )
