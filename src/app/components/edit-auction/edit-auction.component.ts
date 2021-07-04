@@ -21,6 +21,7 @@ export class EditAuctionComponent implements OnInit {
   types!: boolean[];
   type!: string;
   statuses!: string[];
+  auctionId = parseInt(this.route.snapshot.paramMap.get('id')!);
 
   options = {
     title: 'Do you want to delete a auction?',
@@ -60,9 +61,8 @@ export class EditAuctionComponent implements OnInit {
   }
 
   getAuction(): void {
-    const id = parseInt(this.route.snapshot.paramMap.get('id')!);
     this.editAuctionService
-      .getAuctionById(id)
+      .getAuctionById(this.auctionId)
       .pipe()
       .subscribe((auction: EditAuction) => {
         this.auction = new EditAuction(
@@ -79,29 +79,26 @@ export class EditAuctionComponent implements OnInit {
           auction.endTime,
           auction.status
         );
-        console.log(this.auction);
-        if (!this.auction.auctionType) {
-          this.type = 'DECREASE';
-        } else {
-          this.type = 'INCREASE';
-        }
         this.editAuctionForm.setValue(this.auction);
-        console.log(this.editAuctionForm);
       });
   }
 
   updateAuction(auction: EditAuction) {
-    this.editAuctionService.updateAuctionById(auction).subscribe();
+    this.editAuctionService
+      .updateAuctionById(auction, this.auctionId)
+      .subscribe();
   }
 
   deleteAuction(id: number) {
     this.dialogService.openConfirm(this.options);
     this.dialogService.confirmed().subscribe((confirmed) => {
       if (confirmed) {
-        this.editAuctionService.deleteAuctionById(id).subscribe(() => {
-          this.dialogService.openMessage('Product has been deleted', 'close');
-          this.goAuctionsCatalog();
-        });
+        this.editAuctionService
+          .deleteAuctionById(this.auctionId)
+          .subscribe(() => {
+            this.dialogService.openMessage('Auction has been deleted', 'close');
+            this.goAuctionsCatalog();
+          });
       }
     });
   }
