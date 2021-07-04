@@ -1,32 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import {
-  FormBuilder,
-  FormControl,
-  NgForm,
-  FormGroupDirective,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { User } from '../../store/models/user';
 import { AuthService } from '../../store/service/auth/auth.service';
 import { RegisterModel } from '../../store/models/register.model';
 import { routeUrls } from '../../../environments/router-manager';
-
-export class RegistrationErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(
-    control: FormControl | null,
-    form: FormGroupDirective | NgForm | null
-  ): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(
-      control &&
-      control.invalid &&
-      (control.dirty || control.touched || isSubmitted)
-    );
-  }
-}
+import { DefaultErrorStateMatcher } from '../../store/service/DefaultErrorStateMatcher';
 
 @Component({
   selector: 'app-register',
@@ -56,7 +36,7 @@ export class RegisterComponent {
       name: ['', [Validators.required, Validators.maxLength(40)]],
       surname: ['', [Validators.required, Validators.maxLength(40)]],
     });
-    this.errorMatcher = new RegistrationErrorStateMatcher();
+    this.errorMatcher = new DefaultErrorStateMatcher();
   }
 
   onSubmit() {
