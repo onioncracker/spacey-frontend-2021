@@ -1,3 +1,14 @@
+<div class="logout-div">
+  <button
+    mat-raised-button
+    class="logout-btn"
+    (click)="logout()"
+    color="accent"
+  >
+    Log out
+  </button>
+</div>
+
 <mat-label class="profile-label"><h1>PROFILE</h1></mat-label>
 
 <form class="form-class" (ngSubmit)="onSubmit()" [formGroup]="profileForm">
@@ -5,39 +16,69 @@
   <div class="form-column">
     <mat-label><h3>FIRST NAME</h3></mat-label>
     <mat-form-field class="profile-info-form-field" appearance="fill">
-      <mat-label>{{ profileInfo?.firstName }}</mat-label>
-      <input type="text" matInput formControlName="firstName" />
+      <mat-label> First name </mat-label>
+      <input
+        type="text"
+        matInput
+        formControlName="firstName"
+        [value]="profileInfo?.firstName"
+      />
     </mat-form-field>
 
     <mat-label><h3>EMAIL</h3></mat-label>
     <mat-form-field class="profile-info-form-field" appearance="fill">
-      <mat-label>{{ profileInfo?.email }}</mat-label>
-      <input type="email" matInput formControlName="email" />
+      <mat-label> Email </mat-label>
+      <input
+        type="email"
+        matInput
+        formControlName="email"
+        [value]="profileInfo?.email"
+      />
     </mat-form-field>
 
     <mat-label><h3>ROLE</h3></mat-label>
     <mat-form-field class="profile-info-form-field" appearance="fill">
-      <mat-label>{{ profileInfo?.role }}</mat-label>
-      <input type="text" matInput formControlName="role" />
+      <mat-label> Role </mat-label>
+      <input
+        type="text"
+        matInput
+        formControlName="role"
+        [value]="profileInfo?.roleName"
+      />
     </mat-form-field>
   </div>
   <div class="form-column">
     <mat-label><h3>SECOND NAME</h3></mat-label>
     <mat-form-field class="profile-info-form-field" appearance="fill">
-      <mat-label>{{ profileInfo?.secondName }}</mat-label>
-      <input type="text" matInput formControlName="secondName" />
+      <mat-label> Last name </mat-label>
+      <input
+        type="text"
+        matInput
+        formControlName="secondName"
+        [value]="profileInfo?.lastName"
+      />
     </mat-form-field>
 
     <mat-label><h3>PHONE NUMBER</h3></mat-label>
     <mat-form-field class="profile-info-form-field" appearance="fill">
-      <mat-label>{{ profileInfo?.phoneNumber }}</mat-label>
-      <input type="text" matInput formControlName="phoneNumber" />
+      <mat-label>Phone number </mat-label>
+      <input
+        type="text"
+        matInput
+        formControlName="phoneNumber"
+        [value]="profileInfo?.phoneNumber"
+      />
     </mat-form-field>
 
     <mat-label><h3>STATUS</h3></mat-label>
     <mat-form-field class="profile-info-form-field" appearance="fill">
-      <mat-label>{{ profileInfo?.status }}</mat-label>
-      <input type="text" matInput formControlName="status" />
+      <mat-label> Status </mat-label>
+      <input
+        type="text"
+        matInput
+        formControlName="status"
+        [value]="profileInfo?.statusName"
+      />
     </mat-form-field>
   </div>
   <div class="form-column">
@@ -47,11 +88,12 @@
       <input
         matInput
         formControlName="passwordOld"
-        [type]="hideOld ? 'passwordOld' : 'text'"
+        [type]="hideOld ? 'password' : 'text'"
       />
       <button
         mat-icon-button
         matSuffix
+        type="button"
         (click)="hideOld = !hideOld"
         [attr.aria-label]="'Hide password'"
         [attr.aria-pressed]="hideOld"
@@ -69,11 +111,12 @@
       <input
         matInput
         formControlName="passwordNew"
-        [type]="hideNew ? 'passwordNew' : 'text'"
+        [type]="hideNew ? 'password' : 'text'"
       />
       <button
         mat-icon-button
         matSuffix
+        type="button"
         (click)="hideNew = !hideNew"
         [attr.aria-label]="'Hide password'"
         [attr.aria-pressed]="hideNew"
@@ -91,11 +134,12 @@
       <input
         matInput
         formControlName="passwordRepeat"
-        [type]="hideRepeat ? 'passwordRepeat' : 'text'"
+        [type]="hideRepeat ? 'password' : 'text'"
       />
       <button
         mat-icon-button
         matSuffix
+        type="button"
         (click)="hideRepeat = !hideRepeat"
         [attr.aria-label]="'Hide password'"
         [attr.aria-pressed]="hideRepeat"
@@ -121,6 +165,3 @@
   </div>
   <span></span>
 </form>
-<button mat-raised-button class="report-btn" type="submit" color="accent">
-  REPORT MISTAKES
-</button>

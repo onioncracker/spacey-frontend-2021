@@ -11,7 +11,6 @@ import {
 import { ErrorStateMatcher } from '@angular/material/core';
 import { User } from '../../store/models/user';
 import { AuthService } from '../../store/service/auth/auth.service';
-import { TokenStorageService } from '../../store/service/auth/token-storage.service';
 import { RegisterModel } from '../../store/models/register.model';
 import { routeUrls } from '../../../environments/router-manager';
 
@@ -81,7 +80,7 @@ export class RegisterComponent {
       (response) => {
         console.log('user registered successfully');
         alert('Check your email to verify your account');
-        this.router.navigateByUrl(routeUrls.homepage);
+        this.router.navigateByUrl(routeUrls.login);
       },
       (error) => {
         console.warn('REGISTRATION FAILED');
