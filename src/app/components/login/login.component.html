@@ -52,6 +52,7 @@
     </mat-form-field>
   </div>
   <ngx-recaptcha2
+    class="captcha-div"
     [siteKey]="siteKey"
     [useGlobalDomain]="false"
     [size]="size"
@@ -82,5 +83,16 @@
     routerLink="/register"
   >
     CREATE YOUR ACCOUNT
+  </button>
+</div>
+<div class="create-acc">
+  <mat-label><h3>Forget your password?</h3></mat-label>
+  <button
+    mat-raised-button
+    class="login-btn"
+    color="accent"
+    routerLink="/email-password-recover"
+  >
+    RECOVER PASSWORD
   </button>
 </div>

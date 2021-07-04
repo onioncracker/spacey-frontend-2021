@@ -17,6 +17,6 @@
     </ng-container>
   </div>
 
-  <app-pagination (selectPage)="onSelectedPage()" [items]="products">
+  <app-pagination (selectPage)="onSelectedPage($event)" [items]="products">
   </app-pagination>
 </div>
