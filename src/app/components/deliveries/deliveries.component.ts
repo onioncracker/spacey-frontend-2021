@@ -95,7 +95,7 @@ export class DeliveriesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.isCourierRole()) {
+    if (!this.isCourierRole()) {
       this.errorPageService.openErrorPage(
         'Access denied, please log-in as a courier'
       );
