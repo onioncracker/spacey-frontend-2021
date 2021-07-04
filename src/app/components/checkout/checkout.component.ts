@@ -8,6 +8,7 @@ import { DialogService } from '../../store/service/dialog/dialog.service';
 import { AuthService } from '../../store/service/auth/auth.service';
 import { FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import {CartService} from "../../store/service/cart.service";
 
 @Component({
   selector: 'app-checkout',
@@ -85,12 +86,13 @@ export class CheckoutComponent implements OnInit {
     private checkoutService: CheckoutService,
     private authService: AuthService,
     private dialogService: DialogService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private cartService: CartService
   ) {}
 
   ngOnInit(): void {
     this.isUserLogin = this.authService.isAuthorised();
-    console.log(this.getProducts());
+    console.log(this.cartService.getProducts());
     if (!this.isUserLogin) {
       this.order = new CheckoutOrder(
         new CheckoutDto(this.products, 0, '', '', '', '', '', '', '', '')
