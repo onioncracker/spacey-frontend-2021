@@ -16,7 +16,8 @@ import { TokenStorageService } from '../../store/service/auth/token-storage.serv
 export class ProductDetailsComponent implements OnInit {
   product!: ProductModel;
   chosenSize: number | undefined;
-  private userRole = 'USER_ROLE';
+  isUser = false;
+  isProductManager = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -60,21 +61,21 @@ export class ProductDetailsComponent implements OnInit {
     this.compareService.addProductToCompare(product);
   }
 
-  /*getUserRole(): void {
-    this.userRole = this.tokenStorageService.getRole();
-    console.log(this.userRole);
-  }*/
-
-  isCustomer(): boolean {
-    return this.userRole === null || this.userRole === 'USER_ROLE';
-  }
-
-  isProductManager(): boolean {
-    return this.userRole === 'PRODUCT_MANAGER_ROLE';
+  getUserRole(): void {
+    const userRole = this.tokenStorageService.getRole();
+    switch (userRole) {
+      case null:
+      case 'USER':
+        this.isUser = true;
+        break;
+      case 'PRODUCT_MANAGER':
+        this.isProductManager = true;
+        break;
+    }
   }
 
   ngOnInit() {
-    /*this.getUserRole();*/
+    this.getUserRole();
     this.getProduct();
   }
 }

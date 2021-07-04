@@ -34,7 +34,7 @@
 
       <div class="product-info-container underlining-container">
         <h5 class="price">{{ product.price }} UAH</h5>
-        <ng-container *ngIf="isCustomer()">
+        <ng-container *ngIf="isUser">
           <button type="button" class="purchase-button" (click)="addToCart()">
             Add to cart
           </button>
@@ -46,7 +46,7 @@
             Add to compare
           </button>
         </ng-container>
-        <ng-container *ngIf="isProductManager()">
+        <ng-container *ngIf="isProductManager">
           <button
             type="button"
             class="purchase-button"
