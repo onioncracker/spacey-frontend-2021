@@ -1,10 +1,10 @@
 import {
   Component,
+  EventEmitter,
   Input,
   OnChanges,
   OnInit,
   Output,
-  EventEmitter,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PersonalInformation } from '../../store/models/personal-information';
@@ -16,12 +16,12 @@ import { CheckoutOrder } from '../../store/models/checkout-order';
   styleUrls: ['./personal-information.component.css'],
 })
 export class PersonalInformationComponent implements OnInit, OnChanges {
-  personalInformationForm!: FormGroup;
   @Output() personalInformationEvent = new EventEmitter<FormGroup>();
-  userContactInfo!: PersonalInformation;
   @Input() personalInformation!: CheckoutOrder;
-  isEdit!: boolean;
+  userContactInfo!: PersonalInformation;
+  personalInformationForm!: FormGroup;
   isAuthUser!: boolean;
+  isEdit!: boolean;
 
   onFormDataChange() {
     this.personalInformationEvent.emit(this.personalInformationForm);
@@ -46,7 +46,6 @@ export class PersonalInformationComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    console.log(sessionStorage.getItem('token'));
     if (this.isUserLogin()) {
       this.isAuthUser = true;
       this.isEdit = false;
@@ -67,6 +66,7 @@ export class PersonalInformationComponent implements OnInit, OnChanges {
     this.personalInformationForm.setValue(this.userContactInfo);
   }
 
+  // TODO: inject from Auth service
   isUserLogin(): boolean {
     return sessionStorage.getItem('token') != null;
   }

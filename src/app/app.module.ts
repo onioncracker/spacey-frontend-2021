@@ -78,6 +78,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { RecoverPasswordComponent } from './components/recover-password/recover-password.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HomepageComponent } from './components/homepage/homepage.component';
+import { EmailForRecoverPassComponent } from './components/email-for-recover-pass/email-for-recover-pass.component';
 
 @NgModule({
   declarations: [
@@ -126,6 +127,7 @@ import { HomepageComponent } from './components/homepage/homepage.component';
     ProfileComponent,
     RecoverPasswordComponent,
     HomepageComponent,
+    EmailForRecoverPassComponent,
   ],
   imports: [
     BrowserModule,
