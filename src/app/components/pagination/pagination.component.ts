@@ -18,7 +18,7 @@ import { Subject } from 'rxjs';
 })
 export class PaginationComponent implements OnInit, OnDestroy {
   @Input() items!: ProductModel[];
-  @Output() selectPage = new EventEmitter();
+  @Output() selectPage = new EventEmitter<number>();
   pageNumber = 0;
   private destroyStream = new Subject<void>();
 
