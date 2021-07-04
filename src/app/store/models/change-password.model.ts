@@ -1,5 +1,5 @@
 export class ChangePassword {
-  email!: string;
-  password!: string;
-  passwordRepeat!: string;
+  oldPassword!: string;
+  newPassword!: string;
+  newPasswordRepeat!: string;
 }

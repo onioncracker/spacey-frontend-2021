@@ -8,10 +8,10 @@ import {
   Validators,
 } from '@angular/forms';
 import { EmployeeService } from '../../store/service/employee/employee.service';
-import { RegistrationErrorStateMatcher } from '../register/register.component';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { AddEmployeeModel } from '../../store/models/AddEmployeeModel';
 import { Router } from '@angular/router';
+import { DefaultErrorStateMatcher } from '../../store/service/DefaultErrorStateMatcher';
 
 interface Roles {
   id: number;
@@ -69,7 +69,7 @@ export class AdminAddComponent {
       phoneNumber: ['', [Validators.required, Validators.maxLength(13)]],
     });
 
-    this.errorMatcher = new RegistrationErrorStateMatcher();
+    this.errorMatcher = new DefaultErrorStateMatcher();
   }
 
   onSubmit(addEmployeeForm: any, employeeForm: FormGroupDirective) {

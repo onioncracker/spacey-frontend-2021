@@ -54,9 +54,15 @@ export class RecoverPasswordComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.routeSub = this.route.queryParams.subscribe((params) => {
-      this.token = params['token'];
-    });
+    this.routeSub = this.route.queryParams.subscribe(
+      (params) => {
+        console.log(params['token']);
+        this.token = params['token'];
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   ngOnDestroy(): void {
@@ -68,9 +74,14 @@ export class RecoverPasswordComponent implements OnInit, OnDestroy {
       password: this.passwordForm.get('password')?.value,
       passwordRepeat: this.passwordForm.get('passwordRepeat')?.value,
     } as RecoverPassword;
-    this.authService.recoverPassword(recoverData).subscribe(() => {
-      console.log('password recovered successfully');
-      this.router.navigateByUrl(routeUrls.profile);
-    });
+    this.authService.recoverPassword(this.token, recoverData).subscribe(
+      () => {
+        console.log('password recovered successfully');
+        this.router.navigateByUrl(routeUrls.profile);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 }

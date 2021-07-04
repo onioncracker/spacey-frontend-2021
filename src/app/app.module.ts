@@ -76,6 +76,7 @@ import { ErrorPageComponent } from './components/error-page/error-page.component
 import { ProfileComponent } from './components/profile/profile.component';
 import { RecoverPasswordComponent } from './components/recover-password/recover-password.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { EmailForRecoverPassComponent } from './components/email-for-recover-pass/email-for-recover-pass.component';
 
 @NgModule({
   declarations: [
@@ -123,6 +124,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     ErrorPageComponent,
     ProfileComponent,
     RecoverPasswordComponent,
+    EmailForRecoverPassComponent,
   ],
   imports: [
     BrowserModule,
