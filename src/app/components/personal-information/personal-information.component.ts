@@ -66,7 +66,6 @@ export class PersonalInformationComponent implements OnInit, OnChanges {
     this.personalInformationForm.setValue(this.userContactInfo);
   }
 
-  // TODO: inject from Auth service
   isUserLogin(): boolean {
     return sessionStorage.getItem('token') != null;
   }

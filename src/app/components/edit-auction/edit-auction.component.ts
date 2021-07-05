@@ -151,7 +151,6 @@ export class EditAuctionComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.editAuctionForm.controls.auctionId.disable();
     this.getProducts();
     this.getTypes();
     this.getSizes();
