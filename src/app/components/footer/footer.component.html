@@ -3,13 +3,17 @@
     <mat-list>
       <div mat-subheader>Categories</div>
       <mat-list-item>
-        <button mat-flat-button routerLink="/women&&&">Women</button>
+        <button mat-flat-button (click)="routeToProductCatalog('women')">
+          Women
+        </button>
       </mat-list-item>
       <mat-list-item>
-        <button mat-flat-button routerLink="/women&&&">Men</button>
+        <button mat-flat-button (click)="routeToProductCatalog('men')">
+          Men
+        </button>
       </mat-list-item>
       <mat-list-item>
-        <button mat-flat-button routerLink="/women&&&">Accessories</button>
+        <button mat-flat-button (click)="goToAuctions()">Auctions</button>
       </mat-list-item>
     </mat-list>
   </div>
@@ -18,23 +22,19 @@
       <div mat-subheader>Contact us</div>
       <mat-list-item>
         <mat-icon>location_on</mat-icon>
-        <button mat-flat-button routerLink="/women&&&">Ukraine, Kyiv</button>
+        <mat-label class="label"> Ukraine, Kyiv</mat-label>
       </mat-list-item>
       <mat-list-item>
         <mat-icon>local_phone</mat-icon>
-        <button mat-flat-button routerLink="/women&&&">
-          +38 (044) 256 99 91
-        </button>
+        <mat-label class="label"> +38 (044) 256 99 91</mat-label>
       </mat-list-item>
       <mat-list-item>
         <mat-icon>access_time</mat-icon>
-        <button mat-flat-button routerLink="/women&&&">All week 24/7</button>
+        <mat-label class="label"> All week 24/7</mat-label>
       </mat-list-item>
       <mat-list-item>
         <mat-icon>mail_outline</mat-icon>
-        <button mat-flat-button routerLink="/women&&&">
-          onioncracker21@gmail.com
-        </button>
+        <mat-label class="label"> onioncracker21@gmail.com</mat-label>
       </mat-list-item>
     </mat-list>
   </div>

@@ -51,7 +51,11 @@
       />
     </mat-form-field>
 
-    <mat-form-field class="profile-info-form-field" appearance="fill">
+    <mat-form-field
+      class="profile-info-form-field"
+      appearance="fill"
+      *ngIf="false"
+    >
       <mat-label> Date of birth </mat-label>
       <input
         type="text"
@@ -62,7 +66,7 @@
     </mat-form-field>
 
     <mat-radio-group formControlName="sex">
-      <mat-radio-button value="male" style="margin-right: 2%">
+      <mat-radio-button value="male" class="male-button">
         Male
       </mat-radio-button>
       <mat-radio-button value="female"> Female </mat-radio-button>

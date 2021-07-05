@@ -81,6 +81,10 @@ export class ToolbarComponent implements OnInit {
     }
   }
 
+  routeToCustomization() {
+    this.router.navigateByUrl(routeUrls.customization);
+  }
+
   ngOnInit() {
     this.getUserRole();
   }

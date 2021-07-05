@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { ProductModel } from '../models/product.model';
 import {
   HttpClient,
   HttpErrorResponse,
@@ -147,6 +146,14 @@ export class CartService {
     console.log(
       'cart for unauthorized user successfully saved to session storage'
     );
+  }
+
+  countTotalPrice(products: ProductForCartModel[]): number {
+    let total = 0;
+    for (let product of products) {
+      total += product.overallPrice;
+    }
+    return total;
   }
 
   isAuthorised(): boolean {

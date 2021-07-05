@@ -6,14 +6,15 @@ import { EmployeeModel } from '../../models/employee.model';
 import { environment } from '../../../../environments/environment';
 import { RoleModel } from '../../models/role.model';
 import { StatusModel } from '../../models/user-status.model';
-import { ProductModel } from '../../models/product.model';
+import { endpointUrls } from '../../../../environments/endpoint-routes-manager';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class EmployeeService {
-  private hostURL = 'https://spacey-backend.herokuapp.com';
-  private employeeUrl = `${this.hostURL}/api/v1/employees`;
+  private hostURL = environment.url + endpointUrls.apiPrefix;
+  private employeeUrl = `${this.hostURL}/employees`;
   private searchEmployeeUrl = `${this.employeeUrl}/search`;
   private statusUrl = `${environment.url}/api/v1/user-statuses`;
   private roleUrl = `${environment.url}/api/v1/roles/employees`;

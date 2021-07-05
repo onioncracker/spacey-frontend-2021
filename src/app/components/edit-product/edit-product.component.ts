@@ -55,7 +55,6 @@ export class EditProductComponent implements OnInit {
     productSex: ['', [Validators.required]],
     price: ['', [Validators.min(0), Validators.required]],
     discount: [0, [Validators.min(0), Validators.required]],
-    // photo: ['', [Validators.required]],
     description: ['', [Validators.required]],
     isAvailable: ['', [Validators.required]],
     category: ['', [Validators.required]],
@@ -72,7 +71,7 @@ export class EditProductComponent implements OnInit {
   onSubmit() {
     this.product = this.editProductForm.value;
     this.product.sizes = this.sizesAmount;
-    this.updateProduct(this.product);
+    this.updateProduct(this.product, this.productId);
     this.dialogService.openMessage('Product has been updated', 'close');
   }
 
@@ -90,7 +89,6 @@ export class EditProductComponent implements OnInit {
           product.productSex,
           product.price,
           product.discount,
-          // product.photo,
           product.description,
           product.isAvailable,
           product.sizes
@@ -100,8 +98,8 @@ export class EditProductComponent implements OnInit {
       });
   }
 
-  updateProduct(product: EditProduct) {
-    this.editProductService.updateProductById(product).subscribe();
+  updateProduct(product: EditProduct, productId) {
+    this.editProductService.updateProductById(product, productId).subscribe();
   }
 
   deleteProduct(id: number) {

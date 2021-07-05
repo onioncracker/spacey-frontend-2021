@@ -15,6 +15,8 @@ import { TokenStorageService } from '../../store/service/auth/token-storage.serv
 import { Router } from '@angular/router';
 import { routeUrls } from '../../../environments/router-manager';
 import { ChangePassword } from '../../store/models/change-password.model';
+import { DialogService } from '../../store/service/dialog/dialog.service';
+import { validatorPatterns } from '../../../environments/validate-patterns';
 
 export class UserProfileErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -47,6 +49,7 @@ export class UserProfileComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
+    private dialogService: DialogService,
     private profileService: ProfileService,
     private router: Router
   ) {
@@ -67,21 +70,21 @@ export class UserProfileComponent implements OnInit {
         '',
         [
           Validators.required,
-          Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,30}'),
+          Validators.pattern(validatorPatterns.passwordPattern),
         ],
       ],
       passwordNew: [
         '',
         [
           Validators.required,
-          Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,30}'),
+          Validators.pattern(validatorPatterns.passwordPattern),
         ],
       ],
       passwordRepeat: [
         '',
         [
           Validators.required,
-          Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,30}'),
+          Validators.pattern(validatorPatterns.passwordPattern),
         ],
       ],
     });
@@ -102,7 +105,6 @@ export class UserProfileComponent implements OnInit {
   }
 
   onSubmitProfile(): void {
-    console.log('submiting new info');
     const editInfo = {
       firstName: this.profileForm.get('firstName')?.value,
       lastName: this.profileForm.get('secondName')?.value,
@@ -116,28 +118,47 @@ export class UserProfileComponent implements OnInit {
     } as EditUserProfile;
 
     this.profileService.editUserInfo(editInfo).subscribe(
-      (response) => {
-        alert('info changed');
+      () => {
+        this.dialogService.openMessage(' Profile info changed ', ' Close ');
       },
       (error) => {
         console.error(error);
-        alert('something went wrong. try again later');
+        this.dialogService.openMessage(
+          ' Something went wrong. Try again ',
+          ' Close '
+        );
       }
     );
   }
 
   private changePassword(): void {
-    const newPassData = {
+    const newPasswordData = {
       oldPassword: this.passwordForm.get('passwordOld')?.value,
       newPassword: this.passwordForm.get('passwordNew')?.value,
       newPasswordRepeat: this.passwordForm.get('passwordRepeat')?.value,
     } as ChangePassword;
-    this.profileService.changePassword(newPassData).subscribe(
-      (response) => {
-        alert('password changed successfully');
+    this.profileService.changePassword(newPasswordData).subscribe(
+      () => {
+        console.log('password changed successfully');
+        this.dialogService.openMessage(
+          ' Your password has been changed ',
+          ' Close '
+        );
       },
       (error) => {
-        alert('something go wrong');
+        if (error.status == 400) {
+          this.dialogService.openMessage(
+            ' Repeated password does not match new password. Try again ',
+            ' Close '
+          );
+          console.error(error);
+        } else {
+          this.dialogService.openMessage(
+            ' Something went wrong. Try again ',
+            ' Close '
+          );
+          console.error(error);
+        }
       }
     );
   }
@@ -147,11 +168,24 @@ export class UserProfileComponent implements OnInit {
       (response) => {
         const data = response.body;
         this.userInfo = data!;
-        console.log('user info loaded');
+        this.profileForm.get('firstName')?.setValue(data?.firstName);
+        this.profileForm.get('secondName')?.setValue(data?.lastName);
       },
       (error) => {
-        console.warn('Loading propositions failed');
-        this.profileService.handleError(error);
+        if (error.status == 404) {
+          console.error(error);
+          this.dialogService.openMessage(
+            ' Something went wrong while authorizing user. Try again ',
+            ' Close '
+          );
+          this.logout();
+        } else {
+          console.error(error);
+          this.dialogService.openMessage(
+            ' Something went wrong. Try again ',
+            ' Close '
+          );
+        }
       }
     );
   }
