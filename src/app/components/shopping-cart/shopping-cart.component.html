@@ -8,13 +8,17 @@
         <h3 class="h3-name">{{ product.name }}</h3>
         <h3 class="h3-color-size">{{ product.color }}, {{ product.size }}</h3>
         <span class="amount-gap"></span>
+        <mat-error><h5 class="item-error-label" *ngIf="!checkoutAvailable">
+          You should remove this product
+        </h5></mat-error>
         <div class="add-substract-div">
           <button
             mat-raised-button
             class="btn btn-primary"
             (click)="addProduct(product)"
+            [disabled]="!checkoutAvailable"
           >
-            + <i class="fa fa-plus"></i>
+            +
           </button>
           <h3 class="h3-amount">{{ product.amount }}</h3>
           <button
@@ -22,7 +26,7 @@
             class="btn btn-primary"
             (click)="substractProduct(product)"
           >
-            - <i class="fa fa-plus"></i>
+            -
           </button>
         </div>
       </div>
@@ -35,9 +39,7 @@
 </div>
 <div class="total-container">
   <h3 class="h3-total">Total</h3>
-  <h3 class="h3-sum">
-    <h3>{{ overallPrice }}</h3>
-  </h3>
+    <h3 class="h3-sum">{{ overallPrice }} UAH </h3>
 </div>
 <div class="checkout">
   <hr class="solid" />

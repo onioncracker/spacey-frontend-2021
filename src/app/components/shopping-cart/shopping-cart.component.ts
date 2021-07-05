@@ -34,20 +34,18 @@ export class ShoppingCartComponent implements OnInit {
   loadData(): void {
     this.getProducts();
     this.checkoutAvailable = this.cartService.checkAvailability(this.products);
-    this.overallPrice = this.cartService.countTotalPrice(this.products);
   }
 
   getProducts(): void {
-    console.log('loading products');
     this.cartService.getProducts().subscribe(
       (response) => {
         this.products = response.body!;
         this.isProductsLoaded = true;
         console.log('Cart: data loaded');
+        this.overallPrice = this.cartService.countTotalPrice(this.products);
       },
       (error) => {
         console.error(error);
-        console.log(error);
         this.dialogService.openMessage(
           'Something went wrong. Reload page or log in again',
           ' Close '
