@@ -52,7 +52,7 @@ export class AdminProfileComponent {
     });
   }
 
-  private changePassword(): void {
+  changePassword(): void {
     const newPassData = {
       oldPassword: this.passwordForm.get('passwordOld')?.value,
       newPassword: this.passwordForm.get('passwordNew')?.value,
