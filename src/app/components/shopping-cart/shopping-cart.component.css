@@ -108,7 +108,6 @@
 
 .add-substract-div {
   display: flex;
-  padding-top: 115px;
 }
 
 .btn {
@@ -125,4 +124,5 @@
 
 .name-amount-div {
   display: flex;
+  flex-direction: column;
 }
