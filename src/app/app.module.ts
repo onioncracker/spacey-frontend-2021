@@ -87,7 +87,6 @@ import { CreatePasswordComponent } from './components/create-password/create-pas
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { AdminProfileComponent } from './components/admin-profile/admin-profile.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
