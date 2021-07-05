@@ -7,7 +7,7 @@ import { CompareService } from '../../store/service/comparison/compare.service';
 import { EditCartModel } from '../../store/models/edit-cart.model';
 import { SizeModel } from '../../store/models/size.model';
 import { TokenStorageService } from '../../store/service/auth/token-storage.service';
-import {DialogService} from "../../store/service/dialog/dialog.service";
+import { DialogService } from '../../store/service/dialog/dialog.service';
 
 @Component({
   selector: 'app-product-details',
@@ -55,21 +55,19 @@ export class ProductDetailsComponent implements OnInit {
     } as EditCartModel;
 
     if (this.cartService.isAuthorised()) {
-      this.cartService.addProductToCart(productToAdd).subscribe(
-        () => {
+      this.cartService.addProductToCart(productToAdd).subscribe(() => {
         this.dialogService.openMessage(
           ' Product added to your cart ',
           ' Close '
         );
       });
     } else {
-      this.cartService.checkProduct(productToAdd).subscribe(
-        () => {
+      this.cartService.checkProduct(productToAdd).subscribe(() => {
         this.cartService.addProductToUnauthorizedCart(productToAdd);
-          this.dialogService.openMessage(
-            ' Product added to your cart ',
-            ' Close '
-          );
+        this.dialogService.openMessage(
+          ' Product added to your cart ',
+          ' Close '
+        );
       });
     }
   }

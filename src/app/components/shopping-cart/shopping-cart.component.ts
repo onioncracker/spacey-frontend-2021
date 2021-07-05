@@ -5,7 +5,7 @@ import { ProductForCartModel } from '../../store/models/product-for-cart.model';
 import { EditCartModel } from '../../store/models/edit-cart.model';
 import { routeUrls } from '../../../environments/router-manager';
 import { HeaderTitleService } from '../../store/service/header/header-title.service';
-import {DialogService} from "../../store/service/dialog/dialog.service";
+import { DialogService } from '../../store/service/dialog/dialog.service';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -16,6 +16,7 @@ export class ShoppingCartComponent implements OnInit {
   products: ProductForCartModel[] = [];
   isProductsLoaded = false;
   checkoutAvailable = false;
+  overallPrice = 0;
 
   constructor(
     private headerTitleService: HeaderTitleService,
@@ -27,7 +28,13 @@ export class ShoppingCartComponent implements OnInit {
 
   ngOnInit(): void {
     this.headerTitleService.setTitle('shopping cart');
+    this.loadData();
+  }
+
+  loadData(): void {
     this.getProducts();
+    this.checkoutAvailable = this.cartService.checkAvailability(this.products);
+    this.overallPrice = this.cartService.countTotalPrice(this.products);
   }
 
   getProducts(): void {
@@ -37,15 +44,16 @@ export class ShoppingCartComponent implements OnInit {
         this.products = response.body!;
         this.isProductsLoaded = true;
         console.log('Cart: data loaded');
-      }, (error) => {
+      },
+      (error) => {
         console.error(error);
         console.log(error);
-          this.dialogService.openMessage(
-        'Something went wrong. Reload page or log in again',
+        this.dialogService.openMessage(
+          'Something went wrong. Reload page or log in again',
           ' Close '
         );
-      });
-    this.checkoutAvailable = this.cartService.checkAvailability(this.products);
+      }
+    );
   }
 
   addProduct(product: ProductForCartModel) {
@@ -56,14 +64,13 @@ export class ShoppingCartComponent implements OnInit {
     } as EditCartModel;
 
     if (this.cartService.isAuthorised()) {
-      this.cartService.addProductToCart(productToAdd).subscribe(
-        () => {
-        this.getProducts();
+      this.cartService.addProductToCart(productToAdd).subscribe(() => {
+        this.loadData();
       });
     } else {
       this.cartService.checkProduct(productToAdd).subscribe((response) => {
         this.cartService.addProductToUnauthorizedCart(productToAdd);
-        this.getProducts();
+        this.loadData();
       });
     }
   }
@@ -79,7 +86,7 @@ export class ShoppingCartComponent implements OnInit {
       this.cartService
         .removeProductFromCart(productToSubstract)
         .subscribe((response) => {
-          this.getProducts();
+          this.loadData();
         });
     } else {
       const productToCheck = {
@@ -88,9 +95,9 @@ export class ShoppingCartComponent implements OnInit {
         amount: product.amount - 1,
       } as EditCartModel;
 
-      this.cartService.checkProduct(productToCheck).subscribe((response) => {
+      this.cartService.checkProduct(productToCheck).subscribe(() => {
         this.cartService.removeProductFromUnauthorizedCart(productToSubstract);
-        this.getProducts();
+        this.loadData();
       });
     }
   }
