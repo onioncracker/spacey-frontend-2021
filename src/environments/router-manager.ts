@@ -1,7 +1,7 @@
 export const routeUrls = {
   login: 'login',
   register: 'register',
-  homepage: 'product-catalog',
+  homepage: 'homepage',
   popular: 'popular',
   checkout: 'checkout',
   auctions: 'auctions',
@@ -11,6 +11,7 @@ export const routeUrls = {
   productCatalog: 'product-catalog',
   auctionCatalog: 'auction-catalog',
   productDetails: 'product-catalog/:id',
+  auctionDetails: 'auction-catalog/:id',
   adminEmployee: 'admin-manage',
   adminEdit: 'admin-edit/:id',
   adminAdd: 'admin-add',
@@ -25,4 +26,10 @@ export const routeUrls = {
   userProfile: 'user-profile',
   orderHistory: 'order-history',
   orderInHistory: 'order-history/:id',
+  profile: 'profile',
+  customization: 'customization',
+  errorPage: 'error-page',
+  recoverPassword: 'recover-password',
+  imageUploader: 'image-uploader',
+  emailForRecover: 'email-password-recover',
 };

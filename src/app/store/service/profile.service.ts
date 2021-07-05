@@ -6,19 +6,24 @@ import { endpointUrls } from '../../../environments/endpoint-routes-manager';
 import { EmployeeProfileModel } from '../models/employee-profile.model';
 import { UserProfile } from '../models/user-profile.model';
 import { EditUserProfile } from '../models/edit-user-profile.model';
+import { ChangePassword } from '../models/change-password.model';
+import { TokenStorageService } from './auth/token-storage.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProfileService {
-  private employeeInfoURL =
-    environment.url + endpointUrls.apiPrefix + '/employee-info';
-  private userInfoURL = environment.url + endpointUrls.apiPrefix + '/profile';
-  private editUserURL =
-    environment.url + endpointUrls.apiPrefix + '/profile/edit';
+  private hostURL = environment.url + endpointUrls.apiPrefix;
+  private userInfoURL = this.hostURL + '/profile';
+  private editUserURL = this.hostURL + '/profile/edit';
+  private employeeInfoURL = this.hostURL + '/profile/employee';
+  private changePasswordURL = this.hostURL + '/change-password-save';
   private httpOptions = { observe: 'response' as const };
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private storageService: TokenStorageService
+  ) {}
 
   handleError(error) {
     if (error.error instanceof ErrorEvent) {
@@ -46,5 +51,13 @@ export class ProfileService {
 
   editUserInfo(userData: EditUserProfile): Observable<HttpResponse<any>> {
     return this.http.put(this.editUserURL, userData, this.httpOptions);
+  }
+
+  changePassword(newPass: ChangePassword): Observable<HttpResponse<any>> {
+    return this.http.post(this.changePasswordURL, newPass, this.httpOptions);
+  }
+
+  logOut() {
+    this.storageService.signOut();
   }
 }

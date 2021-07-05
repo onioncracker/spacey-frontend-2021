@@ -8,6 +8,8 @@ import { AddProductService } from '../../store/service/add-product/add-product.s
 import { DialogService } from '../../store/service/dialog/dialog.service';
 import { routeUrls } from '../../../environments/router-manager';
 import { EditProduct } from '../../store/models/edit-product';
+import { TokenStorageService } from '../../store/service/auth/token-storage.service';
+import { ErrorPageService } from '../../store/service/error/error-page.service';
 
 class ImageSnippet {
   constructor(public src: string, public file: File) {}
@@ -19,13 +21,15 @@ class ImageSnippet {
   styleUrls: ['./edit-product.component.css'],
 })
 export class EditProductComponent implements OnInit {
+  title = 'Update product';
   product!: EditProduct;
   materialsList!: CategoryColorMaterialsModel[];
   categories!: CategoryColorMaterialsModel[];
   colors!: CategoryColorMaterialsModel[];
   sizesAmount!: Sizes[];
   selectedCategory!: number;
-  selectedFile!: ImageSnippet;
+  photoFile!: File;
+  productId = parseInt(this.route.snapshot.paramMap.get('id')!);
 
   options = {
     title: 'Do you want to delete a product?',
@@ -40,23 +44,30 @@ export class EditProductComponent implements OnInit {
     private addProductService: AddProductService,
     private formBuilder: FormBuilder,
     private editProductService: EditProductService,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private tokenStorageService: TokenStorageService,
+    private errorPageService: ErrorPageService
   ) {}
 
   editProductForm = this.formBuilder.group({
     id: ['', [Validators.required]],
     name: ['', [Validators.required]],
     productSex: ['', [Validators.required]],
-    price: ['', [Validators.required]],
-    discount: ['', [Validators.required]],
-    photo: ['', [Validators.required]],
+    price: ['', [Validators.min(0), Validators.required]],
+    discount: [0, [Validators.min(0), Validators.required]],
+    // photo: ['', [Validators.required]],
     description: ['', [Validators.required]],
     isAvailable: ['', [Validators.required]],
     category: ['', [Validators.required]],
     color: ['', [Validators.required]],
     materials: ['', [Validators.required]],
-    sizes: ['', [Validators.required]],
+    sizes: [0, [Validators.min(0), Validators.required]],
   });
+
+  private isProductManagerRole(): boolean {
+    let userRole = this.tokenStorageService.getRole();
+    return userRole === 'PRODUCT_MANAGER';
+  }
 
   onSubmit() {
     this.product = this.editProductForm.value;
@@ -66,9 +77,8 @@ export class EditProductComponent implements OnInit {
   }
 
   getProduct(): void {
-    const id = parseInt(this.route.snapshot.paramMap.get('id')!);
     this.editProductService
-      .getProductById(id)
+      .getProductById(this.productId)
       .pipe()
       .subscribe((product: EditProduct) => {
         this.product = new EditProduct(
@@ -80,7 +90,7 @@ export class EditProductComponent implements OnInit {
           product.productSex,
           product.price,
           product.discount,
-          product.photo,
+          // product.photo,
           product.description,
           product.isAvailable,
           product.sizes
@@ -107,7 +117,7 @@ export class EditProductComponent implements OnInit {
   }
 
   goProductsCatalog() {
-    this.router.navigateByUrl(routeUrls.productCatalog);
+    this.router.navigateByUrl(routeUrls.homepage);
   }
 
   compareObjects(object1: any, object2: any) {
@@ -147,27 +157,30 @@ export class EditProductComponent implements OnInit {
 
   allCategory() {
     this.addProductService
-      .getAllCategory()
+      .getAllCategories()
       .pipe()
       .subscribe((categories: CategoryColorMaterialsModel[]) => {
         this.categories = categories;
       });
   }
 
-  processFile(imageInput: any) {
-    const file: File = imageInput.files[0];
-    const reader = new FileReader();
-    reader.addEventListener('load', (event: any) => {
-      this.selectedFile = new ImageSnippet(event.target.result, file);
-    });
-    reader.readAsDataURL(file);
+  getPhoto(event) {
+    this.photoFile = event;
+  }
+
+  saveImage() {
+    this.addProductService.uploadImage(this.photoFile, this.productId);
   }
 
   ngOnInit() {
+    this.editProductForm.controls.id.disable();
     this.allMaterials();
     this.allColors();
     this.allSizes();
     this.allCategory();
     this.getProduct();
+    if (!this.isProductManagerRole()) {
+      this.errorPageService.openErrorPage('Access is denied');
+    }
   }
 }

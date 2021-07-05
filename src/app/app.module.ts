@@ -63,12 +63,28 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { ConfirmComponent } from './components/confirm/confirm.component';
 import { AddAuctionComponent } from './components/add-auction/add-auction.component';
 import { EditAuctionComponent } from './components/edit-auction/edit-auction.component';
+import { DpDatePickerModule } from 'ng2-date-picker';
+import { CustomizationComponent } from './components/customization/customization.component';
+import { DialogInputComponent } from './components/dialog-input/dialog-input.component';
 import {
   NgxMatDatetimePickerModule,
+  NgxMatNativeDateModule,
   NgxMatTimepickerModule,
 } from '@angular-material-components/datetime-picker';
 import { OrderHistoryComponent } from './components/order-history/order-history.component';
 import { OrderInHistoryComponent } from './components/order-in-history/order-in-history.component';
+import { AuctionCatalogComponent } from './components/auction-catalog/auction-catalog.component';
+import { AuctionComponent } from './components/auction/auction.component';
+import { PillAuctionComponent } from './components/pill-auction/pill-auction.component';
+import { AuctionDetailsComponent } from './components/auction-details/auction-details.component';
+import { ErrorPageComponent } from './components/error-page/error-page.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { RecoverPasswordComponent } from './components/recover-password/recover-password.component';
+import { ImageUploaderComponent } from './components/image-uploader/image-uploader/image-uploader.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { HomepageComponent } from './components/homepage/homepage.component';
+import { EmailForRecoverPassComponent } from './components/email-for-recover-pass/email-for-recover-pass.component';
 
 @NgModule({
   declarations: [
@@ -109,6 +125,18 @@ import { OrderInHistoryComponent } from './components/order-in-history/order-in-
     EditAuctionComponent,
     OrderHistoryComponent,
     OrderInHistoryComponent,
+    CustomizationComponent,
+    DialogInputComponent,
+    AuctionCatalogComponent,
+    AuctionComponent,
+    PillAuctionComponent,
+    AuctionDetailsComponent,
+    ErrorPageComponent,
+    ProfileComponent,
+    RecoverPasswordComponent,
+    HomepageComponent,
+    ImageUploaderComponent,
+    EmailForRecoverPassComponent,
   ],
   imports: [
     BrowserModule,
@@ -143,8 +171,12 @@ import { OrderInHistoryComponent } from './components/order-in-history/order-in-
     MatCheckboxModule,
     MatSelectModule,
     MatDividerModule,
+    MatSnackBarModule,
     NgxMatDatetimePickerModule,
     NgxMatTimepickerModule,
+    DpDatePickerModule,
+    ImageCropperModule,
+    NgxMatNativeDateModule,
   ],
   providers: [
     {

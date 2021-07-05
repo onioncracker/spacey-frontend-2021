@@ -10,23 +10,13 @@ import {
 } from '@angular/forms';
 import { ProfileService } from '../../store/service/profile.service';
 import { EmployeeProfileModel } from '../../store/models/employee-profile.model';
-
-export class EmployeeProfileErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(
-    control: FormControl | null,
-    form: FormGroupDirective | NgForm | null
-  ): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(
-      control &&
-      control.invalid &&
-      (control.dirty || control.touched || isSubmitted)
-    );
-  }
-}
+import { ChangePassword } from '../../store/models/change-password.model';
+import { routeUrls } from '../../../environments/router-manager';
+import { Router } from '@angular/router';
+import { DefaultErrorStateMatcher } from '../../store/service/DefaultErrorStateMatcher';
 
 @Component({
-  selector: 'app-profile-info',
+  selector: 'app-employee-profile',
   templateUrl: './employee-profile.component.html',
   styleUrls: ['./employee-profile.component.css'],
 })
@@ -34,22 +24,23 @@ export class EmployeeProfileComponent implements OnInit {
   profileForm: FormGroup;
   profileInfo?: EmployeeProfileModel;
   dataLoaded = false;
-  errorMatcher = new EmployeeProfileErrorStateMatcher();
+  errorMatcher = new DefaultErrorStateMatcher();
   hideOld = false;
   hideNew = true;
   hideRepeat = true;
 
   constructor(
     private formBuilder: FormBuilder,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private router: Router
   ) {
     this.profileForm = this.formBuilder.group({
-      firstName: ['Cristopher'],
-      email: ['cris@email.com'],
-      secondName: ['Robin'],
-      phoneNumber: ['0997775533'],
-      role: ['Courier'],
-      status: ['Inactive'],
+      firstName: [''],
+      email: [''],
+      secondName: [''],
+      phoneNumber: [''],
+      role: [''],
+      status: [''],
       passwordOld: [
         '',
         [
@@ -75,7 +66,7 @@ export class EmployeeProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.loadProfileInfo();
+    this.loadProfileInfo();
     this.profileForm.controls.firstName.disable();
     this.profileForm.controls.email.disable();
     this.profileForm.controls.secondName.disable();
@@ -88,7 +79,21 @@ export class EmployeeProfileComponent implements OnInit {
     this.changePassword();
   }
 
-  private changePassword(): void {}
+  private changePassword(): void {
+    const newPassData = {
+      oldPassword: this.profileForm.get('passwordOld')?.value,
+      newPassword: this.profileForm.get('passwordNew')?.value,
+      newPasswordRepeat: this.profileForm.get('passwordRepeat')?.value,
+    } as ChangePassword;
+    this.profileService.changePassword(newPassData).subscribe(
+      (response) => {
+        alert('password changed successfully');
+      },
+      (error) => {
+        alert('something go wrong');
+      }
+    );
+  }
 
   private loadProfileInfo(): void {
     this.profileService.getEmployeeInfo().subscribe(
@@ -103,5 +108,10 @@ export class EmployeeProfileComponent implements OnInit {
         this.profileService.handleError(error);
       }
     );
+  }
+
+  logout(): void {
+    this.profileService.logOut();
+    this.router.navigateByUrl(routeUrls.login);
   }
 }

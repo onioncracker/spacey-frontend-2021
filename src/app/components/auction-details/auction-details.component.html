@@ -1,0 +1,104 @@
+<div *ngIf="auction">
+  <div class="title-container">
+    <h1 class="display-4 mb-5">{{ auction.auctionName }}</h1>
+  </div>
+
+  <div class="body-container">
+    <div class="photos-container">
+      <img
+        class="card-img-top"
+        src="{{ auction.auctionProduct.photo }}"
+        alt="{{ auction.auctionProduct.name }}"
+      />
+    </div>
+
+    <div class="info-container">
+      <div class="underlining-container">
+        <div>
+          <h5 class="h5-title-parameter">id:</h5>
+          <p class="parameter">{{ auction.auctionId }}</p>
+        </div>
+        <div>
+          <h5 class="h5-title-parameter">product:</h5>
+          <p class="parameter">{{ auction.auctionProduct.name }}</p>
+        </div>
+        <div>
+          <h5 class="h5-title-parameter">amount:</h5>
+          <p class="parameter">{{ auction.amount }}</p>
+        </div>
+        <div>
+          <h5 class="h5-title-parameter">start date:</h5>
+          <p class="parameter">{{ auction.startTime | date: "medium" }}</p>
+        </div>
+        <div>
+          <h5 class="h5-title-parameter">end date:</h5>
+          <p class="parameter">{{ auction.endTime | date: "medium" }}</p>
+        </div>
+        <div>
+          <h5 class="h5-title-parameter">type:</h5>
+          <p class="parameter" *ngIf="auction.auctionType === true">
+            Increase Auction
+          </p>
+          <p class="parameter" *ngIf="auction.auctionType === false">
+            Decrease Auction
+          </p>
+        </div>
+      </div>
+
+      <div class="product-info-container underlining-container">
+        <h5 class="price">{{ auction.startPrice }} UAH</h5>
+        <ng-container *ngIf="isUser">
+          <button type="button" class="purchase-button">Bid</button>
+        </ng-container>
+
+        <ng-container *ngIf="isProductManager">
+          <button
+            type="button"
+            class="purchase-button"
+            [routerLink]="['/edit-auction', auction.auctionId]"
+          >
+            Edit auction
+          </button>
+        </ng-container>
+      </div>
+
+      <div class="product-info-container underlining-container">
+        <h5 class="product-info-title">Description</h5>
+        <p class="description">{{ auction.auctionProduct.description }}</p>
+      </div>
+
+      <div class="underlining-container">
+        <h5 class="product-info-title">Additional information</h5>
+        <div>
+          <h5 class="h5-additional-info-title">Sex:</h5>
+          <p class="additional-info">{{ auction.auctionProduct.productSex }}</p>
+        </div>
+        <div>
+          <h5 class="h5-additional-info-title">Category:</h5>
+          <p class="additional-info">
+            {{ auction.auctionProduct.productCategory.name }}
+          </p>
+        </div>
+        <div>
+          <h5 class="h5-additional-info-title">Color:</h5>
+          <p class="additional-info">
+            {{ auction.auctionProduct.productColor.name }}
+          </p>
+        </div>
+        <div>
+          <h5 class="h5-additional-info-title">Sizes:</h5>
+          <p class="additional-info">{{ auction.productSize.name }}</p>
+        </div>
+        <div>
+          <h5 class="h5-additional-info-title">Materials:</h5>
+          <p
+            class="additional-info"
+            *ngFor="let material of auction.auctionProduct.materials"
+          >
+            {{ material.name }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -9,10 +9,10 @@ import {
 } from '@angular/forms';
 import { EmployeeService } from '../../store/service/employee/employee.service';
 import { ErrorStateMatcher } from '@angular/material/core';
-import { RegistrationErrorStateMatcher } from '../register/register.component';
 import { EmployeeModel } from '../../store/models/employee.model';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DefaultErrorStateMatcher } from '../../store/service/DefaultErrorStateMatcher';
 
 interface Roles {
   id: number;
@@ -77,7 +77,7 @@ export class AdminEditComponent implements OnInit {
       statusName: ['', [Validators.required]],
       phoneNumber: ['', [Validators.required, Validators.maxLength(13)]],
     });
-    this.errorMatcher = new RegistrationErrorStateMatcher();
+    this.errorMatcher = new DefaultErrorStateMatcher();
   }
 
   getEmployee(): void {

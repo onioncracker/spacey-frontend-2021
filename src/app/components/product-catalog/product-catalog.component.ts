@@ -22,6 +22,7 @@ export class ProductCatalogComponent implements OnInit, OnDestroy {
   public showFilter = false;
   products: ProductModel[] = [];
   sexQueryParam = '';
+  pageParam = '';
   private destroyStream = new Subject<void>();
 
   constructor(
@@ -42,7 +43,7 @@ export class ProductCatalogComponent implements OnInit, OnDestroy {
       });
   }
 
-  getQueryStringByFilter(name, data) {
+  getQueryStringByFilter(name, data): string {
     if (data && data.length) {
       const selectedFilters = data
         .filter((i) => i.isSelected)
@@ -53,7 +54,7 @@ export class ProductCatalogComponent implements OnInit, OnDestroy {
     return '';
   }
 
-  getQueryStringByName(name, data) {
+  getQueryStringByName(name, data): string {
     if (data && data.length) {
       const selectedFilters = data;
       return selectedFilters ? `${name}=${selectedFilters}` : '';
@@ -61,7 +62,7 @@ export class ProductCatalogComponent implements OnInit, OnDestroy {
     return '';
   }
 
-  getFiltersQueryString(...args) {
+  getFiltersQueryString(...args): string {
     let qs = '';
 
     args.forEach((i) => {
@@ -69,11 +70,10 @@ export class ProductCatalogComponent implements OnInit, OnDestroy {
         qs += qs ? `&${i}` : `?${i}`;
       }
     });
-
     return qs;
   }
 
-  handleSexQueryParam() {
+  handleSexQueryParam(): void {
     this.activatedRoute.queryParams
       .pipe(takeUntil(this.destroyStream))
       .subscribe((i) => {
@@ -91,8 +91,6 @@ export class ProductCatalogComponent implements OnInit, OnDestroy {
       null) as string;
     const sortingSessionStorage = (sessionStorage.getItem(SORTING_PARAM) ||
       null) as string;
-    const pageNumberSessionStorage = (sessionStorage.getItem(PAGE_PARAM) ||
-      null) as string;
     const categories = this.getQueryStringByFilter(
       CATEGORIES_PARAM,
       JSON.parse(categoriesSessionStorage)
@@ -105,27 +103,25 @@ export class ProductCatalogComponent implements OnInit, OnDestroy {
       SORTING_PARAM,
       sortingSessionStorage
     );
-    const page = this.getQueryStringByName(
-      PAGE_PARAM,
-      pageNumberSessionStorage
-    );
     const queryString = this.getFiltersQueryString(
       this.sexQueryParam,
       categories,
       colors,
       sorting,
-      page
+      this.pageParam
     );
     this.getProducts(queryString);
   }
 
-  onSelectedPage(): void {
+  onSelectedPage(page): void {
+    this.pageParam = `${PAGE_PARAM}=${page}` || '';
     this.handleProducts();
   }
 
   onSelectedFilter(): void {
     this.handleProducts();
   }
+
   onSelectedSorting(): void {
     this.handleProducts();
   }

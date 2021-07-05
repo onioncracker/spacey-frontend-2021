@@ -6,17 +6,6 @@
 <form name="EditAuction" [formGroup]="editAuctionForm" (ngSubmit)="onSubmit()">
   <table class="table-edit">
     <div class="space">
-      <td>
-        <h3 class="edit-h">ID</h3>
-        <mat-form-field class="input-field" appearance="fill">
-          <input
-            matInput
-            type="text"
-            placeholder="ID"
-            formControlName="auctionId"
-          />
-        </mat-form-field>
-      </td>
       <td colspan="3">
         <h3 class="edit-h">Auction Name</h3>
         <mat-form-field class="input-name" appearance="fill">
@@ -32,15 +21,18 @@
     </div>
     <div class="space" style="margin-top: 20px">
       <td>
-        <h3 class="edit-h">Product Id</h3>
+        <h3 class="edit-h">Product</h3>
         <mat-form-field class="input-field" appearance="fill">
-          <input
-            matInput
+          <mat-select
             [formGroup]="editAuctionForm"
-            formControlName="auctionProductId"
-            type="number"
+            formControlName="auctionProduct"
+            [compareWith]="compareObjects"
             placeholder="Product"
-          />
+          >
+            <mat-option *ngFor="let product of products" [value]="product">
+              {{ product.name }}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
       </td>
       <td>
@@ -48,10 +40,11 @@
         <mat-form-field class="input-field" appearance="fill">
           <mat-select
             [formGroup]="editAuctionForm"
+            [compareWith]="compareObjects"
             formControlName="productSize"
             placeholder="Size"
           >
-            <mat-option *ngFor="let size of sizes" [value]="sizes">
+            <mat-option *ngFor="let size of sizes" [value]="size">
               {{ size.name }}
             </mat-option>
           </mat-select>
@@ -61,6 +54,7 @@
         <h3 class="edit-h">Amount</h3>
         <mat-form-field class="input-field" appearance="fill">
           <input
+            min="0"
             matInput
             [formGroup]="editAuctionForm"
             formControlName="amount"
@@ -77,8 +71,10 @@
             formControlName="auctionType"
             placeholder="Type"
           >
-            <mat-option value="Increase">INCREASE</mat-option>
-            <mat-option value="Decrease">DECREASE</mat-option>
+            <mat-option *ngFor="let type of types" [value]="type">
+              <div *ngIf="type === false">DECREASE</div>
+              <div *ngIf="type === true">INCREASE</div>
+            </mat-option>
           </mat-select>
         </mat-form-field>
       </td>
@@ -88,6 +84,7 @@
         <h3 class="edit-h">Start Price</h3>
         <mat-form-field class="input-field" appearance="fill">
           <input
+            min="0"
             matInput
             [formGroup]="editAuctionForm"
             formControlName="startPrice"
@@ -100,6 +97,7 @@
         <h3 class="edit-h">End Price</h3>
         <mat-form-field class="input-field" appearance="fill">
           <input
+            min="0"
             matInput
             [formGroup]="editAuctionForm"
             formControlName="endPrice"
@@ -112,6 +110,7 @@
         <h3 class="edit-h">Price Step</h3>
         <mat-form-field class="input-field" appearance="fill">
           <input
+            min="0"
             matInput
             [formGroup]="editAuctionForm"
             formControlName="priceStep"
@@ -125,11 +124,12 @@
         <mat-form-field class="input-field" appearance="fill">
           <mat-select
             [formGroup]="editAuctionForm"
-            formControlName="auctionType"
-            placeholder="Type"
+            formControlName="status"
+            placeholder="Status"
           >
-            <mat-option value="Active">ACTIVE</mat-option>
-            <mat-option value="Inactive">INACTIVE</mat-option>
+            <mat-option *ngFor="let status of statuses" [value]="status">
+              {{ status }}
+            </mat-option>
           </mat-select>
         </mat-form-field>
       </td>
@@ -172,7 +172,7 @@
     mat-raised-button
     class="edit-btn delete-btn btn-hover"
     color="accent"
-    (click)="deleteAuction(auction.auctionId)"
+    (click)="deleteAuction()"
   >
     DELETE AUCTION
   </button>

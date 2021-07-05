@@ -14,6 +14,7 @@ import { EditUserProfile } from '../../store/models/edit-user-profile.model';
 import { TokenStorageService } from '../../store/service/auth/token-storage.service';
 import { Router } from '@angular/router';
 import { routeUrls } from '../../../environments/router-manager';
+import { ChangePassword } from '../../store/models/change-password.model';
 
 export class UserProfileErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -47,7 +48,6 @@ export class UserProfileComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private profileService: ProfileService,
-    private tokenStorageService: TokenStorageService,
     private router: Router
   ) {
     this.profileForm = this.formBuilder.group({
@@ -97,7 +97,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   logout(): void {
-    this.tokenStorageService.signOut();
+    this.profileService.logOut();
     this.router.navigateByUrl(routeUrls.login);
   }
 
@@ -126,7 +126,21 @@ export class UserProfileComponent implements OnInit {
     );
   }
 
-  private changePassword(): void {}
+  private changePassword(): void {
+    const newPassData = {
+      oldPassword: this.passwordForm.get('passwordOld')?.value,
+      newPassword: this.passwordForm.get('passwordNew')?.value,
+      newPasswordRepeat: this.passwordForm.get('passwordRepeat')?.value,
+    } as ChangePassword;
+    this.profileService.changePassword(newPassData).subscribe(
+      (response) => {
+        alert('password changed successfully');
+      },
+      (error) => {
+        alert('something go wrong');
+      }
+    );
+  }
 
   private loadProfileInfo(): void {
     this.profileService.getUserInfo().subscribe(

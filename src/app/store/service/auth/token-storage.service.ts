@@ -3,19 +3,16 @@ import { sessionStorageKeys } from '../../../../environments/session-storage-man
 
 const TOKEN_KEY = sessionStorageKeys.TOKEN_KEY;
 const USERNAME_KEY = sessionStorageKeys.USERNAME_KEY;
-const AUTHORITIES_KEY = sessionStorageKeys.AUTHORITIES_KEY;
 const ROLE_KEY = sessionStorageKeys.ROLE_KEY;
 
 @Injectable({
   providedIn: 'root',
 })
 export class TokenStorageService {
-  private role: string | undefined;
   constructor() {}
 
   signOut() {
     sessionStorage.removeItem(TOKEN_KEY);
-    // sessionStorage.removeItem(AUTHORITIES_KEY);
     sessionStorage.removeItem(ROLE_KEY);
     sessionStorage.removeItem(USERNAME_KEY);
   }
@@ -46,19 +43,6 @@ export class TokenStorageService {
   public getUsername(): string {
     return sessionStorage.getItem(USERNAME_KEY) as string;
   }
-
-  // public saveAuthorities(authority: string) {
-  //   sessionStorage.removeItem(AUTHORITIES_KEY);
-  //   sessionStorage.setItem(AUTHORITIES_KEY, authority);
-  // }
-  //
-  // public getAuthorities(): string {
-  //   let res = sessionStorage.getItem(AUTHORITIES_KEY);
-  //   if (res) {
-  //     return res;
-  //   }
-  //   return '';
-  // }
 
   public isAuthorised(): boolean {
     return (
