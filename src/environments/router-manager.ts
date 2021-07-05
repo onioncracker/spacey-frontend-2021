@@ -20,4 +20,6 @@ export const routeUrls = {
   editProduct: 'edit/:id',
   manageProducts: 'manage/products',
   userProfile: 'user-profile',
+  errorPage: 'error-page',
+
 };

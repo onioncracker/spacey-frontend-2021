@@ -1,0 +1,38 @@
+<div class="filter-container">
+  <section class="filter-section">
+    <span class="title-section"> Role </span>
+    <ng-container *ngFor="let role of roleFilter">
+      <ul>
+        <li>
+          <mat-checkbox
+            name="roles"
+            value="{{ role.roleId }}"
+            [(ngModel)]="role.isSelected"
+            (change)="changeSelection()"
+          >
+            {{ role.roleName }}
+          </mat-checkbox>
+        </li>
+      </ul>
+    </ng-container>
+  </section>
+
+  <!-- Color filter -->
+  <section class="filter-section">
+    <span class="title-section"> Status </span>
+    <ng-container *ngFor="let status of statusFilter">
+      <ul>
+        <li>
+          <mat-checkbox
+            name="statuses"
+            value="{{ status.statusId }}"
+            [(ngModel)]="status.isSelected"
+            (change)="changeSelection()"
+          >
+            {{ status.statusName }}
+          </mat-checkbox>
+        </li>
+      </ul>
+    </ng-container>
+  </section>
+</div>

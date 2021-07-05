@@ -27,6 +27,7 @@ export class AdminEmployeeComponent implements OnInit, AfterViewInit {
   search!: string;
   length!: number;
   pageSize!: number;
+  showFilter!: boolean;
   pageSizeOptions!: number[];
 
   constructor(
@@ -41,7 +42,6 @@ export class AdminEmployeeComponent implements OnInit, AfterViewInit {
       .subscribe((employees: EmployeeModel[]) => {
         this.employees = employees;
         this.dataSource = new MatTableDataSource(this.employees);
-        // this.dataSource.paginator = this.paginator;
       });
   }
 
@@ -70,12 +70,19 @@ export class AdminEmployeeComponent implements OnInit, AfterViewInit {
         this.dataSource = new MatTableDataSource(this.employees);
       });
   }
+  public onToggleFilters(): void {
+    this.showFilter = !this.showFilter;
+  }
 
   btnClick() {
     this.router.navigate(['/admin-add']);
   }
 
+  onSelectedFilter(): void {
+  }
+
   ngOnInit() {
+    this.showFilter = false;
     this.pageSize = 5;
     this.pageSizeOptions = [5, 10, 20];
     this.getAllEmployees();

@@ -3,6 +3,9 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AddEmployeeModel } from '../../models/AddEmployeeModel';
 import { EmployeeModel } from '../../models/employee.model';
+import {environment} from "../../../../environments/environment";
+import {RoleModel} from "../../models/role.model";
+import {StatusModel} from "../../models/user-status.model";
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +14,8 @@ export class EmployeeService {
   private hostURL = 'https://spacey-backend.herokuapp.com';
   private employeeUrl = `${this.hostURL}/api/v1/employees`;
   private searchEmployeeUrl = `${this.employeeUrl}/search`;
+  private statusUrl = `${environment.url}/api/v1/user-statuses`;
+  private roleUrl = `${environment.url}/api/v1/roles/employees`;
   constructor(private http: HttpClient) {}
 
   getAllEmployees(page: number, pageSize: number): Observable<any> {
@@ -18,6 +23,14 @@ export class EmployeeService {
       .append('page', page)
       .append('pageSize', pageSize);
     return this.http.get(this.employeeUrl, { params });
+  }
+
+  getRoles(): Observable<RoleModel[]> {
+    return this.http.get<RoleModel[]>(this.roleUrl);
+  }
+
+  getStatuses(): Observable<StatusModel[]> {
+    return this.http.get<StatusModel[]>(this.statusUrl);
   }
 
   getAllEmployeesVariable(

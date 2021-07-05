@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -8,20 +8,15 @@ import {
   Validators,
 } from '@angular/forms';
 import { EmployeeService } from '../../store/service/employee/employee.service';
-import { RegistrationErrorStateMatcher } from '../register/register.component';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { AddEmployeeModel } from '../../store/models/AddEmployeeModel';
 import { Router } from '@angular/router';
+import {RoleModel} from "../../store/models/role.model";
+import {StatusModel} from "../../store/models/user-status.model";
+import {ErrorPageService} from "../../store/service/error/error-page.service";
+import {DialogService} from "../../store/service/dialog/dialog.service";
+import {TokenStorageService} from "../../store/service/auth/token-storage.service";
 
-interface Roles {
-  id: number;
-  name: string;
-}
-
-interface Statuses {
-  id: number;
-  name: string;
-}
 export class EmployeeErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
     control: FormControl | null,
@@ -40,58 +35,52 @@ export class EmployeeErrorStateMatcher implements ErrorStateMatcher {
   templateUrl: './admin-add.component.html',
   styleUrls: ['./admin-add.component.css'],
 })
-export class AdminAddComponent {
+export class AdminAddComponent implements OnInit{
   addEmployeeForm: FormGroup;
   errorMatcher: ErrorStateMatcher;
   disableSelect = new FormControl(false);
-  roles: Roles[] = [
-    { id: 4, name: 'Courier' },
-    { id: 3, name: 'Product Manager' },
-  ];
-
-  statuses: Statuses[] = [
-    { id: 1, name: 'Inactive' },
-    { id: 2, name: 'Active' },
-    { id: 3, name: 'Terminate' },
-  ];
+  roles!: RoleModel[];
+  statuses!: StatusModel[];
 
   constructor(
     private formBuilder: FormBuilder,
-    private messageService: EmployeeService,
-    private router: Router
+    private employeeService: EmployeeService,
+    private router: Router,
+    private errorPageService: ErrorPageService,
+    private dialogService: DialogService,
+    private tokenStorageService: TokenStorageService,
   ) {
     this.addEmployeeForm = this.formBuilder.group({
+      userId: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       firstName: ['', [Validators.required, Validators.maxLength(20)]],
       lastName: ['', [Validators.required, Validators.maxLength(30)]],
       roleId: ['', [Validators.required]],
+      roleName: ['', [Validators.required]],
       statusId: ['', [Validators.required]],
+      tokenId: ['', [Validators.required]],
+      statusName: ['', [Validators.required]],
       phoneNumber: ['', [Validators.required, Validators.maxLength(13)]],
     });
-
-    this.errorMatcher = new RegistrationErrorStateMatcher();
+    this.errorMatcher = new EmployeeErrorStateMatcher();
   }
 
   onSubmit(addEmployeeForm: any, employeeForm: FormGroupDirective) {
     this.addEmployee();
     employeeForm.resetForm();
-    window.alert('Employee has been added to the employee list!');
+    this.dialogService.openMessage('Employee has been added', 'close');
   }
 
   public addEmployee(): void {
-    const roleId = this.addEmployeeForm.get('roleId')?.value;
-    const roleName = this.roles.find((el) => el.id == roleId)?.name;
-    const statusId = this.addEmployeeForm.get('statusId')?.value;
-    const statusName = this.statuses.find((el) => el.id == statusId)?.name;
 
     const addEmployeeData = {
       email: this.addEmployeeForm.get('email')?.value,
       firstName: this.addEmployeeForm.get('firstName')?.value,
       lastName: this.addEmployeeForm.get('lastName')?.value,
-      roleId: roleId,
-      roleName: roleName,
-      statusId: statusId,
-      statusName: statusName,
+      roleId: this.addEmployeeForm.get('roleId')?.value,
+      roleName: this.addEmployeeForm.get('roleName')?.value,
+      statusId: this.addEmployeeForm.get('statusId')?.value,
+      statusName: this.addEmployeeForm.get('statusName')?.value,
       phoneNumber: this.addEmployeeForm.get('phoneNumber')?.value,
     } as AddEmployeeModel;
 
@@ -104,7 +93,7 @@ export class AdminAddComponent {
     this.addEmployeeForm.controls.statusId.disable();
     this.addEmployeeForm.controls.phoneNumber.disable();
 
-    this.messageService.addEmployee(addEmployeeData).subscribe(
+    this.employeeService.addEmployee(addEmployeeData).subscribe(
       (response) => {
         const data = response.body;
         console.log(data);
@@ -121,7 +110,38 @@ export class AdminAddComponent {
     );
   }
 
+  allRoles() {
+    this.employeeService
+      .getRoles()
+      .pipe()
+      .subscribe((roles: RoleModel[]) => {
+        this.roles = roles;
+      });
+  }
+
+  allStatuses() {
+    this.employeeService
+      .getStatuses()
+      .pipe()
+      .subscribe((statuses: StatusModel[]) => {
+        this.statuses = statuses;
+      });
+  }
+
   back() {
     this.router.navigate(['/admin-manage']);
+  }
+
+  private isAdminRole(): boolean {
+    let userRole = this.tokenStorageService.getRole();
+    return userRole === 'ADMIN';
+  }
+
+  ngOnInit() {
+    this.allRoles();
+    this.allStatuses();
+    if (!this.isAdminRole()) {
+      this.errorPageService.openErrorPage('Access is denied');
+    }
   }
 }

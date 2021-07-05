@@ -61,6 +61,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { EmployeeProfileComponent } from './components/employee-profile/employee-profile.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { ConfirmComponent } from './components/confirm/confirm.component';
+import { FilterEmployeeComponent } from './components/filter-employee/filter-employee.component';
 
 @NgModule({
   declarations: [
@@ -97,6 +98,7 @@ import { ConfirmComponent } from './components/confirm/confirm.component';
     EmployeeProfileComponent,
     UserProfileComponent,
     ConfirmComponent,
+    FilterEmployeeComponent,
   ],
   imports: [
     BrowserModule,

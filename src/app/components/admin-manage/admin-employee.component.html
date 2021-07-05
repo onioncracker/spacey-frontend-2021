@@ -13,6 +13,14 @@
       />
     </mat-form-field>
 
+    <button class="employees-toggle-filter" (click)="onToggleFilters()">
+      Filter
+    </button>
+
+    <div *ngIf="showFilter">
+      <app-filter-employee (selectFilterEmployeeItem)="onSelectedFilter()"></app-filter-employee>
+    </div>
+
     <div class="mat-elevation-z8">
       <table mat-table [dataSource]="dataSource">
         <!-- Name Column -->
