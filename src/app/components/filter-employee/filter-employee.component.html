@@ -5,7 +5,7 @@
       <ul>
         <li>
           <mat-checkbox
-            name="roles"
+            name="roleId"
             value="{{ role.roleId }}"
             [(ngModel)]="role.isSelected"
             (change)="changeSelection()"
@@ -24,7 +24,7 @@
       <ul>
         <li>
           <mat-checkbox
-            name="statuses"
+            name="statusId"
             value="{{ status.statusId }}"
             [(ngModel)]="status.isSelected"
             (change)="changeSelection()"

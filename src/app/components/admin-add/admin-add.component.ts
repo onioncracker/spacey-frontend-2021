@@ -30,6 +30,16 @@ export class EmployeeErrorStateMatcher implements ErrorStateMatcher {
     );
   }
 }
+
+interface Roles {
+  id: number;
+  name: string;
+}
+
+interface Statuses {
+  id: number;
+  name: string;
+}
 @Component({
   selector: 'app-admin-add',
   templateUrl: './admin-add.component.html',
@@ -39,8 +49,18 @@ export class AdminAddComponent implements OnInit{
   addEmployeeForm: FormGroup;
   errorMatcher: ErrorStateMatcher;
   disableSelect = new FormControl(false);
-  roles!: RoleModel[];
-  statuses!: StatusModel[];
+
+  roles: Roles[] = [
+    { id: 4, name: 'Courier' },
+    { id: 3, name: 'Product Manager' },
+  ];
+
+  statuses: Statuses[] = [
+    { id: 1, name: 'Inactive' },
+    { id: 2, name: 'Active' },
+    { id: 3, name: 'Terminate' },
+  ];
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -51,15 +71,13 @@ export class AdminAddComponent implements OnInit{
     private tokenStorageService: TokenStorageService,
   ) {
     this.addEmployeeForm = this.formBuilder.group({
-      userId: ['', [Validators.required]],
+      userId: [''],
       email: ['', [Validators.required, Validators.email]],
       firstName: ['', [Validators.required, Validators.maxLength(20)]],
       lastName: ['', [Validators.required, Validators.maxLength(30)]],
-      roleId: ['', [Validators.required]],
-      roleName: ['', [Validators.required]],
-      statusId: ['', [Validators.required]],
-      tokenId: ['', [Validators.required]],
-      statusName: ['', [Validators.required]],
+      roleId: [''],
+      statusId: [''],
+      tokenId: [''],
       phoneNumber: ['', [Validators.required, Validators.maxLength(13)]],
     });
     this.errorMatcher = new EmployeeErrorStateMatcher();
@@ -73,15 +91,21 @@ export class AdminAddComponent implements OnInit{
   }
 
   public addEmployee(): void {
+    const roleId = this.addEmployeeForm.get('roleId')?.value;
+    const roleName = this.roles.find((role) => role.id == roleId)?.name;
+    const statusId = this.addEmployeeForm.get('statusId')?.value;
+    const statusName = this.statuses.find((el) => el.id == statusId)?.name;
 
     const addEmployeeData = {
+      userId: this.addEmployeeForm.get('userId')?.value,
       email: this.addEmployeeForm.get('email')?.value,
       firstName: this.addEmployeeForm.get('firstName')?.value,
       lastName: this.addEmployeeForm.get('lastName')?.value,
-      roleId: this.addEmployeeForm.get('roleId')?.value,
-      roleName: this.addEmployeeForm.get('roleName')?.value,
-      statusId: this.addEmployeeForm.get('statusId')?.value,
-      statusName: this.addEmployeeForm.get('statusName')?.value,
+      roleId: roleId,
+      roleName: roleName,
+      statusId: statusId,
+      statusName: statusName,
+      tokenId: this.addEmployeeForm.get('tokenId')?.value,
       phoneNumber: this.addEmployeeForm.get('phoneNumber')?.value,
     } as AddEmployeeModel;
 
@@ -111,24 +135,6 @@ export class AdminAddComponent implements OnInit{
     );
   }
 
-  allRoles() {
-    this.employeeService
-      .getRoles()
-      .pipe()
-      .subscribe((roles: RoleModel[]) => {
-        this.roles = roles;
-      });
-  }
-
-  allStatuses() {
-    this.employeeService
-      .getStatuses()
-      .pipe()
-      .subscribe((statuses: StatusModel[]) => {
-        this.statuses = statuses;
-      });
-  }
-
   back() {
     this.router.navigate(['/admin-manage']);
   }
@@ -139,8 +145,6 @@ export class AdminAddComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.allRoles();
-    this.allStatuses();
     if (!this.isAdminRole()) {
       this.errorPageService.openErrorPage('Access is denied');
     }

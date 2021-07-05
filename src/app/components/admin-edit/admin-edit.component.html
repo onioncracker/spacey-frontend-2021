@@ -22,7 +22,6 @@
           Name is required!
         </mat-error>
       </mat-form-field>
-      <!--          [(ngModel)]="employee.firstName"-->
 
       <mat-label><h3>E-MAIL</h3></mat-label>
       <mat-form-field class="emp-form-field" appearance="fill">
@@ -47,11 +46,11 @@
         <mat-select
           class="emp-form-field"
           placeholder="Role"
-          formControlName="roleName"
-          [compareWith]="compareObjects"
+          formControlName="roleId"
+          [compareWith]="compareRoles"
         >
-          <mat-option *ngFor="let role of roles" [value]="role">
-            {{ role.roleName }}
+          <mat-option *ngFor="let role of roles" [value]="role.id">
+            {{ role.name }}
           </mat-option>
         </mat-select>
       </mat-form-field>
@@ -89,11 +88,11 @@
         <mat-select
           class="emp-form-field"
           placeholder="Status"
-          formControlName="statusName"
-          [compareWith]="compareObjects"
+          formControlName="statusId"
+          [compareWith]="compareStatuses"
         >
-          <mat-option *ngFor="let status of statuses" [value]="status">
-            {{ status.statusName }}
+          <mat-option *ngFor="let status of statuses" [value]="status.id">
+            {{ status.name }}
           </mat-option>
         </mat-select>
       </mat-form-field>

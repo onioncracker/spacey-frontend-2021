@@ -6,6 +6,7 @@ import { EmployeeModel } from '../../models/employee.model';
 import {environment} from "../../../../environments/environment";
 import {RoleModel} from "../../models/role.model";
 import {StatusModel} from "../../models/user-status.model";
+import {ProductModel} from "../../models/product.model";
 
 @Injectable({
   providedIn: 'root',
@@ -18,11 +19,18 @@ export class EmployeeService {
   private roleUrl = `${environment.url}/api/v1/roles/employees`;
   constructor(private http: HttpClient) {}
 
-  getAllEmployees(page: number, pageSize: number): Observable<any> {
+  getAllEmployees(page: number, pageSize: number): Observable<EmployeeModel[]> {
     const params = new HttpParams()
       .append('page', page)
       .append('pageSize', pageSize);
-    return this.http.get(this.employeeUrl, { params });
+    return this.http.get<EmployeeModel[]>(this.employeeUrl, { params });
+  }
+
+  getEmployeesByQuery(queryString: string, page: number, pageSize: number): Observable<EmployeeModel[]> {
+    const params = new HttpParams()
+      .append('page', page)
+      .append('pageSize', pageSize);
+    return this.http.get<EmployeeModel[]>(`${this.employeeUrl}${queryString}`, {params} );
   }
 
   getRoles(): Observable<RoleModel[]> {
@@ -59,8 +67,4 @@ export class EmployeeService {
     const url = `${this.employeeUrl}/${id}`;
     return this.http.put(url, editEmployeeData);
   }
-
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-  };
 }

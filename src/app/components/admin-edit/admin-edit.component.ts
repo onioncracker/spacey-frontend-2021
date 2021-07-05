@@ -29,6 +29,15 @@ export class EmployeeErrorStateMatcher implements ErrorStateMatcher {
     );
   }
 }
+interface Roles {
+  id: number;
+  name: string;
+}
+
+interface Statuses {
+  id: number;
+  name: string;
+}
 
 @Component({
   selector: 'app-admin-edit',
@@ -38,21 +47,19 @@ export class EmployeeErrorStateMatcher implements ErrorStateMatcher {
 
 export class AdminEditComponent implements OnInit {
   employee!: EmployeeModel;
-  roles!: RoleModel[];
-  statuses!: StatusModel[];
   editEmployeeForm: FormGroup;
   errorMatcher: ErrorStateMatcher;
 
-  // roles: RoleModel[] = [
-  //   { roleId: 4, roleName: 'COURIER', isSelected: true },
-  //   { roleId: 3, roleName: 'PRODUCT_MANAGER', isSelected: true },
-  // ];
-  //
-  // statuses: StatusModel[] = [
-  //   { statusId: 1, statusName: 'INACTIVED', isSelected: true },
-  //   { statusId: 2, statusName: 'ACTIVED', isSelected: true },
-  //   { statusId: 3, statusName: 'TERMINATED', isSelected: true },
-  // ];
+  roles: Roles[] = [
+    { id: 4, name: 'Courier' },
+    { id: 3, name: 'Product Manager' },
+  ];
+
+  statuses: Statuses[] = [
+    { id: 1, name: 'Inactive' },
+    { id: 2, name: 'Active' },
+    { id: 3, name: 'Terminate' },
+  ];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -64,27 +71,27 @@ export class AdminEditComponent implements OnInit {
     private tokenStorageService: TokenStorageService,
   ) {
     this.editEmployeeForm = this.formBuilder.group({
-      userId: ['', [Validators.required]],
+      userId: [''],
       email: ['', [Validators.required]],
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
-      roleId: ['', [Validators.required]],
-      roleName: ['', [Validators.required]],
-      statusId: ['', [Validators.required]],
-      tokenId: ['', [Validators.required]],
-      statusName: ['', [Validators.required]],
+      roleId: [''],
+      roleName: [''],
+      statusId: [''],
+      tokenId: [''],
+      statusName: [''],
       phoneNumber: ['', [Validators.required]],
     });
     this.errorMatcher = new EmployeeErrorStateMatcher();
+    console.log(this.editEmployeeForm);
   }
 
-  getEmployee(): void {
+  async getEmployee(): Promise<void> {
     const id = parseInt(this.route.snapshot.paramMap.get('id')!);
-    this.employeeService.getEmployee(id).subscribe((employee) => {
-      this.employee = employee;
-      this.editEmployeeForm.setValue(this.employee);
-      console.log(employee);
-    });
+    let employee = await this.employeeService.getEmployee(id).toPromise()
+    this.employee = employee;
+    this.editEmployeeForm.setValue(this.employee);
+    console.log(employee);
   }
 
   onSubmit(editEmployeeForm: any, employeeForm: FormGroupDirective) {
@@ -94,16 +101,20 @@ export class AdminEditComponent implements OnInit {
   }
 
   public editEmployee(): void {
+    const roleId = this.editEmployeeForm.get('roleId')?.value;
+    const roleName = this.roles.find((role) => role.id == roleId)?.name;
+    const statusId = this.editEmployeeForm.get('statusId')?.value;
+    const statusName = this.statuses.find((el) => el.id == statusId)?.name;
 
     const editEmployeeData = {
       userId: this.editEmployeeForm.get('userId')?.value,
       email: this.editEmployeeForm.get('email')?.value,
       firstName: this.editEmployeeForm.get('firstName')?.value,
       lastName: this.editEmployeeForm.get('lastName')?.value,
-      roleId: this.editEmployeeForm.get('roleId')?.value,
-      roleName: this.editEmployeeForm.get('roleName')?.value,
-      statusId: this.editEmployeeForm.get('statusId')?.value,
-      statusName: this.editEmployeeForm.get('statusName')?.value,
+      roleId: roleId,
+      roleName: roleName,
+      statusId: statusId,
+      statusName: statusName,
       tokenId: this.editEmployeeForm.get('tokenId')?.value,
       phoneNumber: this.editEmployeeForm.get('phoneNumber')?.value,
     } as EmployeeModel;
@@ -135,30 +146,16 @@ export class AdminEditComponent implements OnInit {
       );
   }
 
-  compareObjects(object1: any, object2: any) {
-    return object1 && object2 && object1.id == object2.id;
+  compareRoles(object1: any, object2: any) {
+    return object1 && object2 && object1.roleId== object2.roleId;
+  }
+
+  compareStatuses(object1: any, object2: any) {
+    return object1 && object2 && object1.statusId == object2.statusId;
   }
 
   back() {
     this.router.navigate(['/admin-manage']);
-  }
-
-  allRoles() {
-    this.employeeService
-      .getRoles()
-      .pipe()
-      .subscribe((roles: RoleModel[]) => {
-        this.roles = roles;
-      });
-  }
-
-  allStatuses() {
-    this.employeeService
-      .getStatuses()
-      .pipe()
-      .subscribe((statuses: StatusModel[]) => {
-        this.statuses = statuses;
-      });
   }
 
   private isAdminRole(): boolean {
@@ -166,10 +163,8 @@ export class AdminEditComponent implements OnInit {
     return userRole === 'ADMIN';
   }
 
-  ngOnInit() {
-    this.allRoles();
-    this.allStatuses();
-    this.getEmployee();
+  async ngOnInit() {
+      await this.getEmployee();
     if (!this.isAdminRole()) {
       this.errorPageService.openErrorPage('Access is denied');
     }
