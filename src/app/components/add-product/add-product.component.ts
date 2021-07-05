@@ -14,10 +14,6 @@ import { AddProduct } from '../../store/models/add-product';
 import { TokenStorageService } from '../../store/service/auth/token-storage.service';
 import { ErrorPageService } from '../../store/service/error/error-page.service';
 
-class ImageSnippet {
-  constructor(public src: string, public file: File) {}
-}
-
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
@@ -46,6 +42,7 @@ export class AddProductComponent implements OnInit {
       productSex: ['', [Validators.required]],
       price: ['', [Validators.min(0), Validators.required]],
       discount: [0, [Validators.min(0), Validators.required]],
+      photo: [''],
       description: ['', [Validators.required]],
       isAvailable: [true, [Validators.required]],
       category: ['', [Validators.required]],

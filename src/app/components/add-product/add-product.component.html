@@ -39,8 +39,13 @@
             />
           </mat-form-field>
         </td>
-        <app-image-uploader (sendPhoto)="getPhoto($event)">
-        </app-image-uploader>
+        <td rowspan="3">
+          <app-image-uploader
+            (sendPhoto)="getPhoto($event)"
+            class="photo-component"
+          >
+          </app-image-uploader>
+        </td>
       </tr>
       <tr>
         <td>
@@ -165,13 +170,7 @@
 
     <br />
     <div class="save-wrapper">
-      <button
-        mat-raised-button
-        class="add-btn"
-        type="submit"
-        color="accent"
-        [disabled]="!addProductForm.valid"
-      >
+      <button mat-raised-button class="add-btn" type="submit" color="accent">
         SAVE PRODUCT
       </button>
       <br />

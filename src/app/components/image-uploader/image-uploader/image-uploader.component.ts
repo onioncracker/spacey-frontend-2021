@@ -1,11 +1,6 @@
 import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-image-uploader',
