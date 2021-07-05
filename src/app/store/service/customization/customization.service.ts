@@ -30,12 +30,6 @@ export class CustomizationService {
     );
   }
 
-  deleteColor(colorId: number): Observable<number> {
-    return this.http.delete<number>(
-      `${this.customizationUrl}/color/delete/${colorId}`
-    );
-  }
-
   addNewCategory(
     category: CategoryColorMaterialsModel
   ): Observable<CategoryColorMaterialsModel> {
@@ -51,12 +45,6 @@ export class CustomizationService {
     return this.http.put<CategoryColorMaterialsModel>(
       `${this.customizationUrl}/category/edit/${category.id}`,
       category
-    );
-  }
-
-  deleteCategory(categoryId: number): Observable<number> {
-    return this.http.delete<number>(
-      `${this.customizationUrl}/category/delete/${categoryId}`
     );
   }
 
@@ -78,12 +66,6 @@ export class CustomizationService {
     );
   }
 
-  deleteMaterial(materialId: number): Observable<number> {
-    return this.http.delete<number>(
-      `${this.customizationUrl}/material/delete/${materialId}`
-    );
-  }
-
   addNewSize(
     size: CategoryColorMaterialsModel
   ): Observable<CategoryColorMaterialsModel> {
@@ -99,12 +81,6 @@ export class CustomizationService {
     return this.http.put<CategoryColorMaterialsModel>(
       `${this.customizationUrl}/size/edit/${size.id}`,
       size
-    );
-  }
-
-  deleteSize(sizeId: number): Observable<number> {
-    return this.http.delete<number>(
-      `${this.customizationUrl}/size/delete/${sizeId}`
     );
   }
 }

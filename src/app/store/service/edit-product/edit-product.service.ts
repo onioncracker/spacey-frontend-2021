@@ -24,10 +24,10 @@ export class EditProductService {
     return this.http.delete(`${this.deleteProductUrl}/${id}`, this.httpOptions);
   }
 
-  updateProductById(editProductData: EditProduct): Observable<any> {
+  updateProductById(editProductData: EditProduct, productId): Observable<any> {
     return this.http
       .put(
-        `${this.editProductUrl}/edit/${editProductData.id}`,
+        `${this.editProductUrl}/edit/${productId}`,
         editProductData,
         this.httpOptions
       )
