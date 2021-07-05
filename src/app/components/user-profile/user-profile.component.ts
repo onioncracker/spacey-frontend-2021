@@ -168,6 +168,8 @@ export class UserProfileComponent implements OnInit {
       (response) => {
         const data = response.body;
         this.userInfo = data!;
+        this.profileForm.get('firstName')?.setValue(data?.firstName);
+        this.profileForm.get('secondName')?.setValue(data?.lastName);
       },
       (error) => {
         if (error.status == 404) {

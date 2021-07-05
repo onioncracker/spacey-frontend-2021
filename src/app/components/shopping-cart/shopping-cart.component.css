@@ -26,10 +26,14 @@
 }
 
 .img {
-  width: 224px;
-  height: 280px;
+  width: 15%;
+  height: 15%;
   display: block;
   padding-left: 2%;
+}
+
+.item-error-label {
+  padding-left: 20px;
 }
 
 .h3-name {
@@ -55,11 +59,16 @@
 
 .h3-price {
   padding-top: 12px;
-  font-style: normal;
   font-weight: bold;
   font-size: 14px;
   line-height: 22px;
-  color: #121212;
+  white-space: nowrap;
+}
+
+.discount {
+  margin-right: 5%;
+  white-space: nowrap;
+  color: #f00;
 }
 
 .h3-delete {
@@ -69,7 +78,6 @@
 
 .price-delete {
   display: flex;
-  align-content: space-between;
 }
 
 .solid {
@@ -91,6 +99,7 @@
 .h3-sum {
   padding-right: 4%;
   padding-top: 2%;
+  font-weight: bold;
 }
 
 .checkout {
@@ -112,7 +121,7 @@
 
 .btn {
   width: 40px;
-  height: 50px;
+  height: 90%;
   margin-right: 20px;
   margin-left: 20px;
 }
@@ -125,4 +134,9 @@
 .name-amount-div {
   display: flex;
   flex-direction: column;
+}
+
+.checkout-error-label {
+  margin-top: 3%;
+  font-weight: bold;
 }
