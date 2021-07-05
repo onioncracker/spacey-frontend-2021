@@ -14,7 +14,7 @@
 
     <div class="info-container">
       <div class="underlining-container">
-        <div>
+        <div *ngIf="isProductManager">
           <h5 class="h5-title-parameter">id:</h5>
           <p class="parameter">{{ auction.auctionId }}</p>
         </div>
@@ -43,12 +43,31 @@
             Decrease Auction
           </p>
         </div>
+        <div>
+          <h5 class="h5-title-parameter">price step:</h5>
+          <p class="parameter">{{ auction.priceStep }}</p>
+        </div>
       </div>
 
       <div class="product-info-container underlining-container">
-        <h5 class="price">{{ auction.startPrice }} UAH</h5>
+        <h5 class="price" *ngIf="auction.buyPrice === 0">
+          {{ auction.startPrice }} UAH
+        </h5>
+        <h5 class="price" *ngIf="auction.buyPrice !== 0">
+          {{ auction.buyPrice }} UAH
+        </h5>
         <ng-container *ngIf="isUser">
-          <button type="button" class="purchase-button">Bid</button>
+          <form name="UpdateBid" [formGroup]="bidForm" (ngSubmit)="onSubmit()">
+            <mat-form-field class="input-bid" appearance="fill">
+              <input
+                matInput
+                type="text"
+                placeholder="Bid"
+                formControlName="buyPrice"
+              />
+            </mat-form-field>
+            <button type="submit" class="purchase-button">Make a bid</button>
+          </form>
         </ng-container>
 
         <ng-container *ngIf="isProductManager">
