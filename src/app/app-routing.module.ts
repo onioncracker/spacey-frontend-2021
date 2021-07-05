@@ -19,6 +19,8 @@ import { ConfirmRegistrationComponent } from './components/confirm-registration/
 import { ProductCatalogComponent } from './components/product-catalog/product-catalog.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { EditAuctionComponent } from './components/edit-auction/edit-auction.component';
+import { OrderHistoryComponent } from './components/order-history/order-history.component';
+import { OrderInHistoryComponent } from './components/order-in-history/order-in-history.component';
 
 const routes: Routes = [
   { path: routeUrls.login, component: LoginComponent },
@@ -42,6 +44,8 @@ const routes: Routes = [
     component: ConfirmRegistrationComponent,
   },
   { path: routeUrls.userProfile, component: UserProfileComponent },
+  { path: routeUrls.orderHistory, component: OrderHistoryComponent },
+  { path: routeUrls.orderInHistory, component: OrderInHistoryComponent },
 ];
 
 @NgModule({

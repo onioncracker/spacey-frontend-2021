@@ -67,6 +67,8 @@ import {
   NgxMatDatetimePickerModule,
   NgxMatTimepickerModule,
 } from '@angular-material-components/datetime-picker';
+import { OrderHistoryComponent } from './components/order-history/order-history.component';
+import { OrderInHistoryComponent } from './components/order-in-history/order-in-history.component';
 
 @NgModule({
   declarations: [
@@ -105,6 +107,8 @@ import {
     ConfirmComponent,
     AddAuctionComponent,
     EditAuctionComponent,
+    OrderHistoryComponent,
+    OrderInHistoryComponent,
   ],
   imports: [
     BrowserModule,
