@@ -83,6 +83,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { EmailForRecoverPassComponent } from './components/email-for-recover-pass/email-for-recover-pass.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { AdminProfileComponent } from './components/admin-profile/admin-profile.component';
 
 @NgModule({
   declarations: [
@@ -135,6 +136,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     HomepageComponent,
     ImageUploaderComponent,
     EmailForRecoverPassComponent,
+    AdminProfileComponent,
   ],
   imports: [
     BrowserModule,
