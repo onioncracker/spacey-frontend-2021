@@ -14,6 +14,8 @@ import { ChangePassword } from '../../store/models/change-password.model';
 import { routeUrls } from '../../../environments/router-manager';
 import { Router } from '@angular/router';
 import { DefaultErrorStateMatcher } from '../../store/service/DefaultErrorStateMatcher';
+import { DialogService } from '../../store/service/dialog/dialog.service';
+import { validatorPatterns } from '../../../environments/validate-patterns';
 
 @Component({
   selector: 'app-employee-profile',
@@ -21,18 +23,20 @@ import { DefaultErrorStateMatcher } from '../../store/service/DefaultErrorStateM
   styleUrls: ['./employee-profile.component.css'],
 })
 export class EmployeeProfileComponent implements OnInit {
-  profileForm: FormGroup;
-  profileInfo?: EmployeeProfileModel;
-  dataLoaded = false;
   errorMatcher = new DefaultErrorStateMatcher();
+  profileInfo?: EmployeeProfileModel;
+  profileForm: FormGroup;
+
+  dataLoaded = false;
+  hideRepeat = true;
   hideOld = false;
   hideNew = true;
-  hideRepeat = true;
 
   constructor(
+    private router: Router,
     private formBuilder: FormBuilder,
-    private profileService: ProfileService,
-    private router: Router
+    private dialogService: DialogService,
+    private profileService: ProfileService
   ) {
     this.profileForm = this.formBuilder.group({
       firstName: [''],
@@ -45,21 +49,21 @@ export class EmployeeProfileComponent implements OnInit {
         '',
         [
           Validators.required,
-          Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,30}'),
+          Validators.pattern(validatorPatterns.passwordPattern),
         ],
       ],
       passwordNew: [
         '',
         [
           Validators.required,
-          Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,30}'),
+          Validators.pattern(validatorPatterns.passwordPattern),
         ],
       ],
       passwordRepeat: [
         '',
         [
           Validators.required,
-          Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,30}'),
+          Validators.pattern(validatorPatterns.passwordPattern),
         ],
       ],
     });
@@ -85,12 +89,28 @@ export class EmployeeProfileComponent implements OnInit {
       newPassword: this.profileForm.get('passwordNew')?.value,
       newPasswordRepeat: this.profileForm.get('passwordRepeat')?.value,
     } as ChangePassword;
+
     this.profileService.changePassword(newPassData).subscribe(
-      (response) => {
-        alert('password changed successfully');
+      () => {
+        this.dialogService.openMessage(
+          ' Your password has been changed ',
+          ' Close '
+        );
       },
       (error) => {
-        alert('something go wrong');
+        if (error.status == 400) {
+          this.dialogService.openMessage(
+            ' Repeated password does not match new password. Try again ',
+            ' Close '
+          );
+          console.error(error);
+        } else {
+          this.dialogService.openMessage(
+            ' Something went wrong. Try again ',
+            ' Close '
+          );
+          console.error(error);
+        }
       }
     );
   }
@@ -101,11 +121,22 @@ export class EmployeeProfileComponent implements OnInit {
         const data = response.body;
         this.profileInfo = data!;
         this.dataLoaded = true;
-        console.log('data loaded');
       },
       (error) => {
-        console.warn('Loading propositions failed');
-        this.profileService.handleError(error);
+        if (error.status == 404) {
+          console.error(error);
+          this.dialogService.openMessage(
+            ' Something went wrong while authorizing user. Try again ',
+            ' Close '
+          );
+          this.logout();
+        } else {
+          console.error(error);
+          this.dialogService.openMessage(
+            ' Something went wrong. Try again ',
+            ' Close '
+          );
+        }
       }
     );
   }

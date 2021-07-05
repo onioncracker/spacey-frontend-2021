@@ -13,6 +13,7 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { RecoverPassword } from '../../store/models/recover-password.model';
 import { routeUrls } from '../../../environments/router-manager';
 import { Subscription } from 'rxjs';
+import { DialogService } from '../../store/service/dialog/dialog.service';
 
 export class CustomErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -42,6 +43,7 @@ export class RecoverPasswordComponent implements OnInit, OnDestroy {
   hideRepeat = true;
 
   constructor(
+    private dialogService: DialogService,
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private route: ActivatedRoute,
@@ -56,7 +58,6 @@ export class RecoverPasswordComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.routeSub = this.route.queryParams.subscribe(
       (params) => {
-        console.log(params['token']);
         this.token = params['token'];
       },
       (error) => {
@@ -76,10 +77,34 @@ export class RecoverPasswordComponent implements OnInit, OnDestroy {
     } as RecoverPassword;
     this.authService.recoverPassword(this.token, recoverData).subscribe(
       () => {
-        console.log('password recovered successfully');
+        this.dialogService.openMessage(
+          ' Password recovered successfully ',
+          ' Close '
+        );
         this.router.navigateByUrl(routeUrls.profile);
       },
       (error) => {
+        switch (error.status) {
+          case 404:
+            this.dialogService.openMessage(
+              ' User not found. Try again ',
+              ' Close '
+            );
+            break;
+          case 401:
+            this.dialogService.openMessage(
+              ' New password matches old password. Try again ',
+              ' Close '
+            );
+            break;
+          default:
+            this.dialogService.openMessage(
+              ' Something went wrong. Try again ',
+              ' Close '
+            );
+            console.error(error);
+            break;
+        }
         console.log(error);
       }
     );

@@ -23,7 +23,6 @@ export const routeUrls = {
   editProduct: 'edit/:id',
   editAuction: 'edit-auction/:id',
   manageProducts: 'manage/products',
-  userProfile: 'user-profile',
   orderHistory: 'order-history',
   orderInHistory: 'order-history/:id',
   profile: 'profile',

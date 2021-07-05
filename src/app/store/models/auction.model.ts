@@ -12,6 +12,7 @@ export class AuctionModel {
   startPrice!: number;
   endPrice!: number;
   buyPrice!: number;
+  priceStep!: number;
   startTime!: Date;
   endTime!: Date;
   status!: string;

@@ -80,11 +80,13 @@ import { ErrorPageComponent } from './components/error-page/error-page.component
 import { ProfileComponent } from './components/profile/profile.component';
 import { RecoverPasswordComponent } from './components/recover-password/recover-password.component';
 import { ImageUploaderComponent } from './components/image-uploader/image-uploader/image-uploader.component';
-import { ImageCropperModule } from 'ngx-image-cropper';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { EmailForRecoverPassComponent } from './components/email-for-recover-pass/email-for-recover-pass.component';
 import { CreatePasswordComponent } from './components/create-password/create-password.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
+import { AdminProfileComponent } from './components/admin-profile/admin-profile.component';
+
 
 @NgModule({
   declarations: [
@@ -138,6 +140,7 @@ import { CreatePasswordComponent } from './components/create-password/create-pas
     ImageUploaderComponent,
     EmailForRecoverPassComponent,
     CreatePasswordComponent,
+    AdminProfileComponent,
   ],
   imports: [
     BrowserModule,

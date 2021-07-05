@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../store/service/auth/auth.service';
 import { routeUrls } from '../../../environments/router-manager';
+import { DialogService } from '../../store/service/dialog/dialog.service';
 
 @Component({
   selector: 'app-confirm-registration',
@@ -17,12 +18,12 @@ export class ConfirmRegistrationComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private authService: AuthService,
+    private dialogService: DialogService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
     this.routeSub = this.route.queryParams.subscribe((params) => {
-      console.log(params['token']);
       this.token = params['token'];
     });
   }
@@ -33,15 +34,17 @@ export class ConfirmRegistrationComponent implements OnInit, OnDestroy {
 
   sendToken(): void {
     this.authService.confirmRegistration(this.token).subscribe(
-      (response) => {
+      () => {
         this.router.navigateByUrl(routeUrls.login);
       },
       (error) => {
         if (error.status == 400) {
-          alert('your link is expired. refresh it to confirm registration');
+          this.dialogService.openMessage(
+            ' Your link has been expired. Try with new one ',
+            ' Close '
+          );
           this.tokenIsOk = false;
         }
-        alert('Confirming failed. Try again');
         console.error(error);
       }
     );
@@ -49,11 +52,14 @@ export class ConfirmRegistrationComponent implements OnInit, OnDestroy {
 
   resendToken(): void {
     this.authService.resendRegistration(this.token).subscribe(
-      (response) => {
+      () => {
         this.tokenIsOk = true;
       },
       (error) => {
-        alert('Confirming failed. Try again');
+        this.dialogService.openMessage(
+          ' Something went wrong. Try again ',
+          ' Close '
+        );
         console.error(error);
       }
     );

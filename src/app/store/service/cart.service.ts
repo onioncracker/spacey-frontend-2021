@@ -149,6 +149,14 @@ export class CartService {
     );
   }
 
+  countTotalPrice(products: ProductForCartModel[]): number {
+    let total = 0;
+    for (let product of products) {
+      total += product.overallPrice;
+    }
+    return total;
+  }
+
   isAuthorised(): boolean {
     return this.tokenStorageService.isAuthorised();
   }

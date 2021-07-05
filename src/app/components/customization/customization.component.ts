@@ -34,13 +34,6 @@ export class CustomizationComponent implements OnInit {
     private customizationService: CustomizationService
   ) {}
 
-  deleteOptions = {
-    title: 'Delete custom?',
-    message: 'Custom will be deleted.',
-    cancelText: 'CANCEL',
-    confirmText: 'DELETE',
-  };
-
   addOptions = {
     title: 'Add custom?',
     message: 'Custom will be added.',
@@ -214,62 +207,6 @@ export class CustomizationComponent implements OnInit {
           .addNewSize(new CategoryColorMaterialsModel(0, input))
           .subscribe(() => {
             this.dialogService.openMessage('Custom has been added', 'Close');
-            this.allSizes();
-          });
-      }
-    });
-  }
-
-  deleteColor(): void {
-    this.dialogService.openConfirm(this.deleteOptions);
-    this.dialogService.confirmed().subscribe((confirm) => {
-      if (confirm) {
-        this.customizationService
-          .deleteColor(this.selectedColor.id)
-          .subscribe(() => {
-            this.dialogService.openMessage('Custom has been deleted', 'Close');
-            this.allColors();
-          });
-      }
-    });
-  }
-
-  deleteCategory(): void {
-    this.dialogService.openConfirm(this.deleteOptions);
-    this.dialogService.confirmed().subscribe((confirm) => {
-      if (confirm) {
-        this.customizationService
-          .deleteCategory(this.selectedCategory.id)
-          .subscribe(() => {
-            this.dialogService.openMessage('Custom has been deleted', 'Close');
-            this.allCategories();
-          });
-      }
-    });
-  }
-
-  deleteMaterial(): void {
-    this.dialogService.openConfirm(this.deleteOptions);
-    this.dialogService.confirmed().subscribe((confirm) => {
-      if (confirm) {
-        this.customizationService
-          .deleteMaterial(this.selectedMaterial.id)
-          .subscribe(() => {
-            this.dialogService.openMessage('Custom has been deleted', 'Close');
-            this.allMaterials();
-          });
-      }
-    });
-  }
-
-  deleteSize(): void {
-    this.dialogService.openConfirm(this.deleteOptions);
-    this.dialogService.confirmed().subscribe((confirm) => {
-      if (confirm) {
-        this.customizationService
-          .deleteSize(this.selectedSize.id)
-          .subscribe(() => {
-            this.dialogService.openMessage('Custom has been deleted', 'Close');
             this.allSizes();
           });
       }

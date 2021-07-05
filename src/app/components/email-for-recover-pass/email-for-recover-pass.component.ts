@@ -4,6 +4,7 @@ import { DefaultErrorStateMatcher } from '../../store/service/DefaultErrorStateM
 import { AuthService } from '../../store/service/auth/auth.service';
 import { Router } from '@angular/router';
 import { routeUrls } from '../../../environments/router-manager';
+import { DialogService } from '../../store/service/dialog/dialog.service';
 
 @Component({
   selector: 'app-email-for-recover-pass',
@@ -17,19 +18,38 @@ export class EmailForRecoverPassComponent {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
+    private dialogService: DialogService,
     private router: Router
   ) {
     this.emailForm = this.formBuilder.group({
-      email: ['', Validators.required],
+      email: ['', Validators.required, Validators.email],
     });
   }
 
   onSubmit() {
     this.authService
       .sendEmailForRecover(this.emailForm.get('email')?.value)
-      .subscribe(() => {
-        alert('check your email');
-        this.router.navigateByUrl(routeUrls.login);
-      });
+      .subscribe(
+        () => {
+          this.dialogService.openMessage(
+            ' Check your email for recover link ',
+            ' Close '
+          );
+          this.router.navigateByUrl(routeUrls.login);
+        },
+        (error) => {
+          if (error.status == 404) {
+            this.dialogService.openMessage(
+              ' Email not found in database. Try again ',
+              ' Close '
+            );
+          } else {
+            this.dialogService.openMessage(
+              ' Something went wrong. Try again ',
+              ' Close '
+            );
+          }
+        }
+      );
   }
 }
