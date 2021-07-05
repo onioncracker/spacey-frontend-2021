@@ -5,8 +5,11 @@ import { MatTableDataSource } from '@angular/material/table';
 import { EmployeeService } from '../../store/service/employee/employee.service';
 import { EmployeeModel } from '../../store/models/employee.model';
 import { Router } from '@angular/router';
-import {ROLES_PARAM, STATUSES_PARAM} from "../filter-employee/filter-employee-params.constants";
-import {PAGE_PARAM} from "../filter/filter-params.constants";
+import {
+  ROLES_PARAM,
+  STATUSES_PARAM,
+} from '../filter-employee/filter-employee-params.constants';
+import { PAGE_PARAM } from '../filter/filter-params.constants';
 
 @Component({
   selector: 'app-admin-employee',
@@ -114,9 +117,8 @@ export class AdminEmployeeComponent implements OnInit, AfterViewInit {
   }
 
   handleEmployees(): void {
-    const rolesSessionStorage = (sessionStorage.getItem(
-      ROLES_PARAM
-    ) || null) as string;
+    const rolesSessionStorage = (sessionStorage.getItem(ROLES_PARAM) ||
+      null) as string;
     const statusesSessionStorage = (sessionStorage.getItem(STATUSES_PARAM) ||
       null) as string;
 
@@ -130,10 +132,7 @@ export class AdminEmployeeComponent implements OnInit, AfterViewInit {
       JSON.parse(statusesSessionStorage)
     );
 
-    const queryString = this.getFiltersQueryString(
-      roleId,
-      statusId
-    );
+    const queryString = this.getFiltersQueryString(roleId, statusId);
     this.getAllEmployeesQuery(queryString);
     console.log(queryString);
   }

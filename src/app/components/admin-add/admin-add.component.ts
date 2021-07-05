@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -11,11 +11,11 @@ import { EmployeeService } from '../../store/service/employee/employee.service';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { AddEmployeeModel } from '../../store/models/AddEmployeeModel';
 import { Router } from '@angular/router';
-import {RoleModel} from "../../store/models/role.model";
-import {StatusModel} from "../../store/models/user-status.model";
-import {ErrorPageService} from "../../store/service/error/error-page.service";
-import {DialogService} from "../../store/service/dialog/dialog.service";
-import {TokenStorageService} from "../../store/service/auth/token-storage.service";
+import { RoleModel } from '../../store/models/role.model';
+import { StatusModel } from '../../store/models/user-status.model';
+import { ErrorPageService } from '../../store/service/error/error-page.service';
+import { DialogService } from '../../store/service/dialog/dialog.service';
+import { TokenStorageService } from '../../store/service/auth/token-storage.service';
 
 export class EmployeeErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -45,7 +45,7 @@ interface Statuses {
   templateUrl: './admin-add.component.html',
   styleUrls: ['./admin-add.component.css'],
 })
-export class AdminAddComponent implements OnInit{
+export class AdminAddComponent implements OnInit {
   addEmployeeForm: FormGroup;
   errorMatcher: ErrorStateMatcher;
   disableSelect = new FormControl(false);
@@ -61,14 +61,13 @@ export class AdminAddComponent implements OnInit{
     { id: 3, name: 'Terminate' },
   ];
 
-
   constructor(
     private formBuilder: FormBuilder,
     private employeeService: EmployeeService,
     private router: Router,
     private errorPageService: ErrorPageService,
     private dialogService: DialogService,
-    private tokenStorageService: TokenStorageService,
+    private tokenStorageService: TokenStorageService
   ) {
     this.addEmployeeForm = this.formBuilder.group({
       userId: [''],
@@ -81,7 +80,6 @@ export class AdminAddComponent implements OnInit{
       phoneNumber: ['', [Validators.required, Validators.maxLength(13)]],
     });
     this.errorMatcher = new EmployeeErrorStateMatcher();
-
   }
 
   onSubmit(addEmployeeForm: any, employeeForm: FormGroupDirective) {

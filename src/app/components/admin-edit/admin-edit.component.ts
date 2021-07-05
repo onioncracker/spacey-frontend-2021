@@ -1,20 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  FormBuilder, FormControl,
+  FormBuilder,
+  FormControl,
   FormGroup,
-  FormGroupDirective, NgForm,
+  FormGroupDirective,
+  NgForm,
   Validators,
 } from '@angular/forms';
 import { EmployeeService } from '../../store/service/employee/employee.service';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { EmployeeModel } from '../../store/models/employee.model';
 import { ActivatedRoute, Router } from '@angular/router';
-import {RoleModel} from "../../store/models/role.model";
-import {StatusModel} from "../../store/models/user-status.model";
+import { RoleModel } from '../../store/models/role.model';
+import { StatusModel } from '../../store/models/user-status.model';
 import { ErrorPageService } from '../../store/service/error/error-page.service';
-import {DialogService} from "../../store/service/dialog/dialog.service";
-import {TokenStorageService} from "../../store/service/auth/token-storage.service";
-
+import { DialogService } from '../../store/service/dialog/dialog.service';
+import { TokenStorageService } from '../../store/service/auth/token-storage.service';
 
 export class EmployeeErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -44,7 +45,6 @@ interface Statuses {
   templateUrl: './admin-edit.component.html',
   styleUrls: ['./admin-edit.component.css'],
 })
-
 export class AdminEditComponent implements OnInit {
   employee!: EmployeeModel;
   editEmployeeForm: FormGroup;
@@ -68,7 +68,7 @@ export class AdminEditComponent implements OnInit {
     private router: Router,
     private errorPageService: ErrorPageService,
     private dialogService: DialogService,
-    private tokenStorageService: TokenStorageService,
+    private tokenStorageService: TokenStorageService
   ) {
     this.editEmployeeForm = this.formBuilder.group({
       userId: [''],
@@ -88,7 +88,7 @@ export class AdminEditComponent implements OnInit {
 
   async getEmployee(): Promise<void> {
     const id = parseInt(this.route.snapshot.paramMap.get('id')!);
-    let employee = await this.employeeService.getEmployee(id).toPromise()
+    let employee = await this.employeeService.getEmployee(id).toPromise();
     this.employee = employee;
     this.editEmployeeForm.setValue(this.employee);
     console.log(employee);
@@ -147,7 +147,7 @@ export class AdminEditComponent implements OnInit {
   }
 
   compareRoles(object1: any, object2: any) {
-    return object1 && object2 && object1.roleId== object2.roleId;
+    return object1 && object2 && object1.roleId == object2.roleId;
   }
 
   compareStatuses(object1: any, object2: any) {
@@ -164,7 +164,7 @@ export class AdminEditComponent implements OnInit {
   }
 
   async ngOnInit() {
-      await this.getEmployee();
+    await this.getEmployee();
     if (!this.isAdminRole()) {
       this.errorPageService.openErrorPage('Access is denied');
     }

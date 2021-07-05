@@ -29,8 +29,7 @@ export class ProductCatalogComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private headerTitleService: HeaderTitleService,
     private productService: ProductService
-  ) {
-  }
+  ) {}
 
   public onToggleFilters(): void {
     this.showFilter = !this.showFilter;

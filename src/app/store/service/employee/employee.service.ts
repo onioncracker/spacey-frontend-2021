@@ -3,10 +3,10 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AddEmployeeModel } from '../../models/AddEmployeeModel';
 import { EmployeeModel } from '../../models/employee.model';
-import {environment} from "../../../../environments/environment";
-import {RoleModel} from "../../models/role.model";
-import {StatusModel} from "../../models/user-status.model";
-import {ProductModel} from "../../models/product.model";
+import { environment } from '../../../../environments/environment';
+import { RoleModel } from '../../models/role.model';
+import { StatusModel } from '../../models/user-status.model';
+import { ProductModel } from '../../models/product.model';
 
 @Injectable({
   providedIn: 'root',
@@ -26,11 +26,17 @@ export class EmployeeService {
     return this.http.get<EmployeeModel[]>(this.employeeUrl, { params });
   }
 
-  getEmployeesByQuery(queryString: string, page: number, pageSize: number): Observable<EmployeeModel[]> {
+  getEmployeesByQuery(
+    queryString: string,
+    page: number,
+    pageSize: number
+  ): Observable<EmployeeModel[]> {
     const params = new HttpParams()
       .append('page', page)
       .append('pageSize', pageSize);
-    return this.http.get<EmployeeModel[]>(`${this.employeeUrl}${queryString}`, {params} );
+    return this.http.get<EmployeeModel[]>(`${this.employeeUrl}${queryString}`, {
+      params,
+    });
   }
 
   getRoles(): Observable<RoleModel[]> {

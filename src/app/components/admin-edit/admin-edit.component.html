@@ -5,8 +5,7 @@
   #employeeForm="ngForm"
   (ngSubmit)="onSubmit(editEmployeeForm, employeeForm)"
 >
-
-    <div class="input-form">
+  <div class="input-form">
     <div class="column">
       <mat-label><h3>FIRST NAME</h3></mat-label>
       <mat-form-field class="emp-form-field" appearance="fill">
@@ -35,7 +34,8 @@
         <mat-error
           *ngIf="
             editEmployeeForm.get('email')?.hasError('email') &&
-            !editEmployeeForm.get('email')?.hasError('required')"
+            !editEmployeeForm.get('email')?.hasError('required')
+          "
         >
           Please write correct address!
         </mat-error>

@@ -18,7 +18,9 @@
     </button>
 
     <div *ngIf="showFilter">
-      <app-filter-employee (selectFilterEmployeeItem)="onSelectedFilter()"></app-filter-employee>
+      <app-filter-employee
+        (selectFilterEmployeeItem)="onSelectedFilter()"
+      ></app-filter-employee>
     </div>
 
     <div class="mat-elevation-z8">
