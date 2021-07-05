@@ -22,6 +22,7 @@
             *ngFor="let status of statuses"
             [value]="status"
             (change)="onChange($event)"
+            [disabled]="isStatusFinal(order.orderStatus)"
           >
             {{ status.statusName }}
           </mat-radio-button>

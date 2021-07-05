@@ -3,9 +3,6 @@
     <h2>Spacey</h2>
   </button>
   <span class="gap"></span>
-  <button mat-flat-button color="primary" (click)="routeToPopular()">
-    Popular now
-  </button>
   <button
     mat-flat-button
     color="primary"
@@ -20,11 +17,45 @@
   >
     Men
   </button>
-  <button mat-flat-button color="primary" (click)="routeToAuctions()">
-    Auctions
+  <button
+    mat-flat-button
+    color="primary"
+    (click)="routeToAddProduct()"
+    *ngIf="isProductManager"
+  >
+    Add Product
   </button>
-  <button mat-flat-button color="primary" routerLink="/comparison">
+  <button
+    mat-flat-button
+    color="primary"
+    (click)="routeToAddAuction()"
+    *ngIf="isProductManager"
+  >
+    Add Auction
+  </button>
+  <button
+    mat-flat-button
+    color="primary"
+    (click)="routeToCourierOrders()"
+    *ngIf="isCourier"
+  >
+    My Orders
+  </button>
+  <button
+    mat-flat-button
+    color="primary"
+    routerLink="/comparison"
+    *ngIf="isUser || isAuthorizedUser"
+  >
     Comparison
+  </button>
+  <button
+    mat-flat-button
+    color="primary"
+    (click)="routeToAuctions()"
+    *ngIf="isAuthorizedUser || isProductManager"
+  >
+    Auctions
   </button>
   <span class="gap"></span>
   <button mat-icon-button>
@@ -33,7 +64,7 @@
   <button mat-icon-button (click)="routeToProfile()">
     <mat-icon>perm_identity</mat-icon>
   </button>
-  <button mat-icon-button (click)="routeToCheckout()">
+  <button mat-icon-button (click)="routeToCart()">
     <mat-icon>shopping_cart</mat-icon>
   </button>
 </mat-toolbar>

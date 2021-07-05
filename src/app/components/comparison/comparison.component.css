@@ -1,20 +1,9 @@
-.head-prod-comparison {
-  height: 70px;
+.head-comparison {
+  text-align: center;
+  padding: 25px 0 25px 0;
   background: #f8f8f8;
-  display: flex;
-  justify-content: center;
-}
-
-.comparison-label {
-  margin: 17px auto 17px;
-}
-
-.label-field {
-  margin: 24px auto 0;
-}
-
-.h-comparison {
-  margin: 17px auto 17px;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 .photo {
@@ -29,9 +18,13 @@
 
 .button-x {
   position: absolute;
-  padding: 10px 10px;
   border: none;
   cursor: pointer;
+}
+
+.button-x:hover {
+  font-weight: bold;
+  opacity: 0.8;
 }
 
 .table-comparison {
@@ -65,10 +58,24 @@
   border-radius: 1px;
   height: 48px;
   width: 340px;
+  transition-duration: 0.3s;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
 }
 
-.link-title {
-  text-transform: capitalize;
+.btn-add-more:hover {
+  background: #4b4a4a;
+  border: 2px solid #4b4a4a;
+  box-sizing: border-box;
+}
+
+.prod-name {
+  text-decoration: none;
+  color: #121212;
+}
+
+.prod-name:hover {
   font-weight: bold;
-  cursor: pointer;
+  opacity: 0.8;
 }

@@ -5,23 +5,32 @@ export class CheckoutOrder {
   products!: ProductCreateOrderDto[];
   orderStatusId!: number;
   userId!: number;
-  firstName!: string;
-  lastName!: string;
+  ordererFirstName!: string;
+  ordererLastName!: string;
   phoneNumber!: string;
   email!: string;
   city!: string;
   street!: string;
   house!: string;
   apartment!: string;
-  date!: Date;
+  dateDelivery!: Date;
   overallPrice!: number;
   commentOrder!: string;
   doNotDisturb!: boolean;
   noContact!: boolean;
 
   constructor(checkout: CheckoutDto) {
-    this.firstName = checkout.firstName;
-    this.lastName = checkout.lastName;
+    this.products = checkout.products.map(
+      (product) =>
+        new ProductCreateOrderDto(
+          product.productId,
+          product.sizeId,
+          product.amount,
+          checkout.overallPrice
+        )
+    );
+    this.ordererFirstName = checkout.firstName;
+    this.ordererLastName = checkout.lastName;
     this.street = checkout.street;
     this.city = checkout.city;
     this.apartment = checkout.apartment;

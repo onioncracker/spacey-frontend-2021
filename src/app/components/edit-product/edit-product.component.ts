@@ -1,11 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EditProductService } from '../../store/service/edit-product/edit-product.service';
 import { FormBuilder, Validators } from '@angular/forms';
-import { CategoryColorMaterials } from '../../store/models/category-color-materials';
+import { CategoryColorMaterialsModel } from '../../store/models/category-color-materials.model';
 import { Sizes } from '../../store/models/sizes';
 import { AddProductService } from '../../store/service/add-product/add-product.service';
+import { DialogService } from '../../store/service/dialog/dialog.service';
+import { routeUrls } from '../../../environments/router-manager';
 import { EditProduct } from '../../store/models/edit-product';
+import { TokenStorageService } from '../../store/service/auth/token-storage.service';
+import { ErrorPageService } from '../../store/service/error/error-page.service';
+
+class ImageSnippet {
+  constructor(public src: string, public file: File) {}
+}
 
 @Component({
   selector: 'app-edit-product',
@@ -13,46 +21,64 @@ import { EditProduct } from '../../store/models/edit-product';
   styleUrls: ['./edit-product.component.css'],
 })
 export class EditProductComponent implements OnInit {
+  title = 'Update product';
   product!: EditProduct;
-  materialsList!: CategoryColorMaterials[];
-  categories!: CategoryColorMaterials[];
-  colors!: CategoryColorMaterials[];
+  materialsList!: CategoryColorMaterialsModel[];
+  categories!: CategoryColorMaterialsModel[];
+  colors!: CategoryColorMaterialsModel[];
   sizesAmount!: Sizes[];
   selectedCategory!: number;
+  photoFile!: File;
+  productId = parseInt(this.route.snapshot.paramMap.get('id')!);
+
+  options = {
+    title: 'Do you want to delete a product?',
+    message: 'This product will be permanently removed',
+    cancelText: 'CANCEL',
+    confirmText: 'CONTINUE',
+  };
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private addProductService: AddProductService,
     private formBuilder: FormBuilder,
-    private editProductService: EditProductService
+    private editProductService: EditProductService,
+    private dialogService: DialogService,
+    private tokenStorageService: TokenStorageService,
+    private errorPageService: ErrorPageService
   ) {}
 
   editProductForm = this.formBuilder.group({
     id: ['', [Validators.required]],
     name: ['', [Validators.required]],
     productSex: ['', [Validators.required]],
-    price: ['', [Validators.required]],
-    discount: ['', [Validators.required]],
-    photo: ['', [Validators.required]],
+    price: ['', [Validators.min(0), Validators.required]],
+    discount: [0, [Validators.min(0), Validators.required]],
+    // photo: ['', [Validators.required]],
     description: ['', [Validators.required]],
     isAvailable: ['', [Validators.required]],
     category: ['', [Validators.required]],
     color: ['', [Validators.required]],
     materials: ['', [Validators.required]],
-    sizes: ['', [Validators.required]],
+    sizes: [0, [Validators.min(0), Validators.required]],
   });
+
+  private isProductManagerRole(): boolean {
+    let userRole = this.tokenStorageService.getRole();
+    return userRole === 'PRODUCT_MANAGER';
+  }
 
   onSubmit() {
     this.product = this.editProductForm.value;
     this.product.sizes = this.sizesAmount;
-    console.log(this.product);
     this.updateProduct(this.product);
+    this.dialogService.openMessage('Product has been updated', 'close');
   }
 
   getProduct(): void {
-    const id = parseInt(this.route.snapshot.paramMap.get('id')!);
     this.editProductService
-      .getProductById(id)
+      .getProductById(this.productId)
       .pipe()
       .subscribe((product: EditProduct) => {
         this.product = new EditProduct(
@@ -64,7 +90,7 @@ export class EditProductComponent implements OnInit {
           product.productSex,
           product.price,
           product.discount,
-          product.photo,
+          // product.photo,
           product.description,
           product.isAvailable,
           product.sizes
@@ -79,7 +105,19 @@ export class EditProductComponent implements OnInit {
   }
 
   deleteProduct(id: number) {
-    this.editProductService.deleteProductById(id).subscribe();
+    this.dialogService.openConfirm(this.options);
+    this.dialogService.confirmed().subscribe((confirmed) => {
+      if (confirmed) {
+        this.editProductService.deleteProductById(id).subscribe(() => {
+          this.dialogService.openMessage('Product has been deleted', 'close');
+          this.goProductsCatalog();
+        });
+      }
+    });
+  }
+
+  goProductsCatalog() {
+    this.router.navigateByUrl(routeUrls.homepage);
   }
 
   compareObjects(object1: any, object2: any) {
@@ -90,7 +128,7 @@ export class EditProductComponent implements OnInit {
     this.addProductService
       .getAllMaterials()
       .pipe()
-      .subscribe((materialsList: CategoryColorMaterials[]) => {
+      .subscribe((materialsList: CategoryColorMaterialsModel[]) => {
         this.materialsList = materialsList;
       });
   }
@@ -99,7 +137,7 @@ export class EditProductComponent implements OnInit {
     this.addProductService
       .getAllColors()
       .pipe()
-      .subscribe((colors: CategoryColorMaterials[]) => {
+      .subscribe((colors: CategoryColorMaterialsModel[]) => {
         this.colors = colors;
       });
   }
@@ -119,18 +157,30 @@ export class EditProductComponent implements OnInit {
 
   allCategory() {
     this.addProductService
-      .getAllCategory()
+      .getAllCategories()
       .pipe()
-      .subscribe((categories: CategoryColorMaterials[]) => {
+      .subscribe((categories: CategoryColorMaterialsModel[]) => {
         this.categories = categories;
       });
   }
 
+  getPhoto(event) {
+    this.photoFile = event;
+  }
+
+  saveImage() {
+    this.addProductService.uploadImage(this.photoFile, this.productId);
+  }
+
   ngOnInit() {
+    this.editProductForm.controls.id.disable();
     this.allMaterials();
     this.allColors();
     this.allSizes();
     this.allCategory();
     this.getProduct();
+    if (!this.isProductManagerRole()) {
+      this.errorPageService.openErrorPage('Access is denied');
+    }
   }
 }

@@ -12,20 +12,8 @@ import { AuthService } from '../../store/service/auth/auth.service';
 import { Router } from '@angular/router';
 import { LoginModel } from '../../store/models/login.model';
 import { TokenStorageService } from '../../store/service/auth/token-storage.service';
-
-export class LoginErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(
-    control: FormControl | null,
-    form: FormGroupDirective | NgForm | null
-  ): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(
-      control &&
-      control.invalid &&
-      (control.dirty || control.touched || isSubmitted)
-    );
-  }
-}
+import { routeUrls } from '../../../environments/router-manager';
+import { DefaultErrorStateMatcher } from '../../store/service/DefaultErrorStateMatcher';
 
 @Component({
   selector: 'app-login',
@@ -34,7 +22,7 @@ export class LoginErrorStateMatcher implements ErrorStateMatcher {
 })
 export class LoginComponent {
   loginForm: FormGroup;
-  errorMatcher = new LoginErrorStateMatcher();
+  errorMatcher = new DefaultErrorStateMatcher();
   hide = true;
   siteKey = '6LcVzFobAAAAAItOzCPLpCc8Xi83puwXPK3Njaab';
   public theme: 'light' | 'dark' = 'light';
@@ -72,9 +60,9 @@ export class LoginComponent {
       (response) => {
         const data = response.body;
         this.storageService.saveToken(data!.authToken);
-        this.router.navigate(['/']);
+        this.storageService.saveRole(data!.role);
         console.warn('logged in successfully');
-        console.log(this.storageService.getToken());
+        this.router.navigateByUrl(routeUrls.profile);
       },
       (error) => {
         console.warn('LOGIN FAILED: ');
@@ -87,10 +75,12 @@ export class LoginComponent {
           case 403:
             alert('Невірно вказаний пароль. спробуйте ще раз');
             break;
+          case 401:
+            alert('Підтвердіть свій e-mail');
+            break;
           default:
             console.error('Unexpected server response: ' + error);
             alert('Сталася помилка сервера. Спробуйте пізніше');
-          // this.router.navigate(['/main-page']);
         }
 
         this.loginForm.controls.email.enable();

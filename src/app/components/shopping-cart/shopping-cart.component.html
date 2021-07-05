@@ -1,10 +1,10 @@
-<mat-label class="cart-label"><h1>SHOPPING CART</h1></mat-label>
+<app-header></app-header>
 <div class="cart-form" *ngFor="let product of products">
   <!--    *ngFor="let product of products-->
   <div class="product-description">
     <div class="cart-photo">
       <img class="img" [src]="product.photo" alt="" />
-      <div>
+      <div class="name-amount-div">
         <h3 class="h3-name">{{ product.name }}</h3>
         <h3 class="h3-color-size">{{ product.color }}, {{ product.size }}</h3>
         <span class="amount-gap"></span>
@@ -50,6 +50,5 @@
   >
     CHECK OUT
   </button>
-  <!--  <button mat-raised-button class="check">VIEW CART</button>-->
   <br />
 </div>
