@@ -92,6 +92,17 @@ export class AuthService {
     );
   }
 
+  createPassword(
+    token: string,
+    recoverData: RecoverPassword
+  ): Observable<HttpResponse<any>> {
+    return this.http.post(
+      this.recoverPasswordURL + '?token=' + token,
+      recoverData,
+      this.httpOptions
+    );
+  }
+
   sendEmailForRecover(email: string): Observable<HttpResponse<any>> {
     return this.http.post(
       this.emailForRecoverURL + '?email=' + email,

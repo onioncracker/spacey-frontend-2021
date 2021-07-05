@@ -26,6 +26,7 @@ import { AuctionCatalogComponent } from './components/auction-catalog/auction-ca
 import { AuctionDetailsComponent } from './components/auction-details/auction-details.component';
 import { ErrorPageComponent } from './components/error-page/error-page.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { CreatePassword } from './store/models/create-password.model';
 import { RecoverPassword } from './store/models/recover-password.model';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { ImageUploaderComponent } from './components/image-uploader/image-uploader/image-uploader.component';
@@ -66,6 +67,7 @@ const routes: Routes = [
   { path: routeUrls.imageUploader, component: ImageUploaderComponent },
   { path: routeUrls.recoverPassword, component: RecoverPasswordComponent },
   { path: routeUrls.emailForRecover, component: EmailForRecoverPassComponent },
+  { path: routeUrls.createPassword, component: CreatePassword },
 ];
 
 @NgModule({

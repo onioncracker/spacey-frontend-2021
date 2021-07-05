@@ -84,6 +84,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { EmailForRecoverPassComponent } from './components/email-for-recover-pass/email-for-recover-pass.component';
+import { CreatePasswordComponent } from './components/create-password/create-password.component';
 
 @NgModule({
   declarations: [
@@ -136,6 +137,7 @@ import { EmailForRecoverPassComponent } from './components/email-for-recover-pas
     HomepageComponent,
     ImageUploaderComponent,
     EmailForRecoverPassComponent,
+    CreatePasswordComponent,
   ],
   imports: [
     BrowserModule,
