@@ -51,7 +51,8 @@
 }
 
 .input-area-small {
-  width: 60px;
+  padding: 10px 0 0 10px;
+  width: 165px;
 }
 
 .apartment-building-info {

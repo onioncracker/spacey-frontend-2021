@@ -10,6 +10,8 @@ import { FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CartService } from '../../store/service/cart.service';
 import { ProductForCartModel } from '../../store/models/product-for-cart.model';
+import { Router } from '@angular/router';
+import { routeUrls } from '../../../environments/router-manager';
 
 @Component({
   selector: 'app-checkout',
@@ -31,6 +33,7 @@ export class CheckoutComponent implements OnInit {
 
   constructor(
     private checkoutService: CheckoutService,
+    private router: Router,
     private authService: AuthService,
     private dialogService: DialogService,
     private snackBar: MatSnackBar,
@@ -77,10 +80,20 @@ export class CheckoutComponent implements OnInit {
       this.dialogService.openConfirm(this.options);
       this.dialogService.confirmed().subscribe((confirmed) => {
         if (confirmed) {
-          this.checkoutService.makeOrderAuthorized(this.order).subscribe();
+          if (this.isUserLogin) {
+            this.checkoutService.makeOrderAuthorized(this.order).subscribe();
+            this.navigateToMainPage();
+          } else {
+            this.checkoutService.makeOrderAnonymous(this.order).subscribe();
+            this.navigateToMainPage();
+          }
         }
       });
     }
+  }
+
+  navigateToMainPage() {
+    this.router.navigateByUrl(routeUrls.homepage);
   }
 
   getProducts() {
@@ -99,7 +112,6 @@ export class CheckoutComponent implements OnInit {
         );
         // @ts-ignore
         this.order.products = data.body;
-        console.log(this.order.products)
         // @ts-ignore
         this.countPriceForProduct(this.products);
         // @ts-ignore
