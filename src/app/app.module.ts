@@ -82,6 +82,7 @@ import { ImageUploaderComponent } from './components/image-uploader/image-upload
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { EmailForRecoverPassComponent } from './components/email-for-recover-pass/email-for-recover-pass.component';
+import { CreatePasswordComponent } from './components/create-password/create-password.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { AdminProfileComponent } from './components/admin-profile/admin-profile.component';
 
@@ -136,6 +137,7 @@ import { AdminProfileComponent } from './components/admin-profile/admin-profile.
     HomepageComponent,
     ImageUploaderComponent,
     EmailForRecoverPassComponent,
+    CreatePasswordComponent,
     AdminProfileComponent,
   ],
   imports: [
