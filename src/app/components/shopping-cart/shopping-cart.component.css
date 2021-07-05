@@ -59,11 +59,16 @@
 
 .h3-price {
   padding-top: 12px;
-  font-style: normal;
   font-weight: bold;
   font-size: 14px;
   line-height: 22px;
-  color: #121212;
+  white-space: nowrap;
+}
+
+.discount {
+  margin-right: 5%;
+  white-space: nowrap;
+  color: #f00;
 }
 
 .h3-delete {
@@ -73,7 +78,6 @@
 
 .price-delete {
   display: flex;
-  align-content: space-between;
 }
 
 .solid {
@@ -130,4 +134,9 @@
 .name-amount-div {
   display: flex;
   flex-direction: column;
+}
+
+.checkout-error-label {
+  margin-top: 3%;
+  font-weight: bold;
 }
