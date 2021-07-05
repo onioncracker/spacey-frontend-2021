@@ -1,0 +1,167 @@
+<div class="logout-div">
+  <button
+    mat-raised-button
+    class="logout-btn"
+    (click)="logout()"
+    color="accent"
+  >
+    Log out
+  </button>
+</div>
+
+<mat-label class="profile-label"><h1>PROFILE</h1></mat-label>
+
+<form class="form-class" (ngSubmit)="onSubmit()" [formGroup]="profileForm">
+  <span></span>
+  <div class="form-column">
+    <mat-label><h3>FIRST NAME</h3></mat-label>
+    <mat-form-field class="profile-info-form-field" appearance="fill">
+      <mat-label> First name </mat-label>
+      <input
+        type="text"
+        matInput
+        formControlName="firstName"
+        [value]="profileInfo?.firstName"
+      />
+    </mat-form-field>
+
+    <mat-label><h3>EMAIL</h3></mat-label>
+    <mat-form-field class="profile-info-form-field" appearance="fill">
+      <mat-label> Email </mat-label>
+      <input
+        type="email"
+        matInput
+        formControlName="email"
+        [value]="profileInfo?.email"
+      />
+    </mat-form-field>
+
+    <mat-label><h3>ROLE</h3></mat-label>
+    <mat-form-field class="profile-info-form-field" appearance="fill">
+      <mat-label> Role </mat-label>
+      <input
+        type="text"
+        matInput
+        formControlName="role"
+        [value]="profileInfo?.roleName"
+      />
+    </mat-form-field>
+  </div>
+  <div class="form-column">
+    <mat-label><h3>SECOND NAME</h3></mat-label>
+    <mat-form-field class="profile-info-form-field" appearance="fill">
+      <mat-label> Last name </mat-label>
+      <input
+        type="text"
+        matInput
+        formControlName="secondName"
+        [value]="profileInfo?.lastName"
+      />
+    </mat-form-field>
+
+    <mat-label><h3>PHONE NUMBER</h3></mat-label>
+    <mat-form-field class="profile-info-form-field" appearance="fill">
+      <mat-label>Phone number </mat-label>
+      <input
+        type="text"
+        matInput
+        formControlName="phoneNumber"
+        [value]="profileInfo?.phoneNumber"
+      />
+    </mat-form-field>
+
+    <mat-label><h3>STATUS</h3></mat-label>
+    <mat-form-field class="profile-info-form-field" appearance="fill">
+      <mat-label> Status </mat-label>
+      <input
+        type="text"
+        matInput
+        formControlName="status"
+        [value]="profileInfo?.statusName"
+      />
+    </mat-form-field>
+  </div>
+  <div class="form-column">
+    <mat-label><h3>OLD PASSWORD</h3></mat-label>
+    <mat-form-field class="profile-info-form-field" appearance="fill">
+      <mat-label>password</mat-label>
+      <input
+        matInput
+        formControlName="passwordOld"
+        [type]="hideOld ? 'password' : 'text'"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        type="button"
+        (click)="hideOld = !hideOld"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hideOld"
+      >
+        <mat-icon>{{ hideOld ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+      <mat-error *ngIf="profileForm.get('passwordOld')?.hasError('required')">
+        Password is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-label><h3>NEW PASSWORD</h3></mat-label>
+    <mat-form-field class="profile-info-form-field" appearance="fill">
+      <mat-label>new password</mat-label>
+      <input
+        matInput
+        formControlName="passwordNew"
+        [type]="hideNew ? 'password' : 'text'"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        type="button"
+        (click)="hideNew = !hideNew"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hideNew"
+      >
+        <mat-icon>{{ hideNew ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+      <mat-error *ngIf="profileForm.get('passwordNew')?.hasError('required')">
+        Password is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-label><h3>REPEAT PASSWORD</h3></mat-label>
+    <mat-form-field class="profile-info-form-field" appearance="fill">
+      <mat-label>new password</mat-label>
+      <input
+        matInput
+        formControlName="passwordRepeat"
+        [type]="hideRepeat ? 'password' : 'text'"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        type="button"
+        (click)="hideRepeat = !hideRepeat"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hideRepeat"
+      >
+        <mat-icon>{{ hideRepeat ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+      <mat-error
+        *ngIf="profileForm.get('passwordRepeat')?.hasError('required')"
+      >
+        Password is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <button
+      mat-raised-button
+      class="change-pswrd-btn"
+      [disabled]="!profileForm.valid"
+      disabled
+      type="submit"
+      color="accent"
+    >
+      CHANGE PASSWORD
+    </button>
+  </div>
+  <span></span>
+</form>

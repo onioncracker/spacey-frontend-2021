@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CompareService } from '../../store/service/comparison/compare.service';
-import { SizesComparison } from '../../store/models/sizes-comparison';
+import { SizesComparisonModel } from '../../store/models/sizes-comparison.model';
 import { ProductModel } from '../../store/models/product.model';
 import { routeUrls } from '../../../environments/router-manager';
+import { TokenStorageService } from '../../store/service/auth/token-storage.service';
+import { ErrorPageService } from '../../store/service/error/error-page.service';
 
 @Component({
   selector: 'app-comparison',
@@ -11,14 +13,27 @@ import { routeUrls } from '../../../environments/router-manager';
   styleUrls: ['./comparison.component.css'],
 })
 export class ComparisonComponent implements OnInit {
+  title = 'Comparison';
   products: ProductModel[] = [];
-  sizes!: SizesComparison[];
+  sizes!: SizesComparisonModel[];
 
   constructor(
-    private route: ActivatedRoute,
     private router: Router,
-    private comparisonService: CompareService
+    private route: ActivatedRoute,
+    private comparisonService: CompareService,
+    private tokenStorageService: TokenStorageService,
+    private errorPageService: ErrorPageService
   ) {}
+
+  private isUserRole(): boolean {
+    let userRole = this.tokenStorageService.getRole();
+    if (userRole === 'USER') {
+      return true;
+    } else if (userRole === null) {
+      return true;
+    }
+    return false;
+  }
 
   getAllComparison() {
     if (sessionStorage.getItem('token')) {
@@ -54,13 +69,15 @@ export class ComparisonComponent implements OnInit {
     this.products = this.products.filter((product) => product.id !== id);
   }
 
-  ngOnInit() {
-    this.getAllComparison();
+  routeToProductCatalog() {
+    this.router.navigate([routeUrls.homepage]);
   }
 
-  routeToProductCatalog(sex: string) {
-    this.router.navigate([routeUrls.productCatalog], {
-      queryParams: { sex: sex },
-    });
+  ngOnInit() {
+    if (this.isUserRole()) {
+      this.getAllComparison();
+    } else {
+      this.errorPageService.openErrorPage('Access is denied');
+    }
   }
 }

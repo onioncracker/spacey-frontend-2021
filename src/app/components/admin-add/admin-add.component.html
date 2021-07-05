@@ -5,8 +5,6 @@
   #employeeForm="ngForm"
   (ngSubmit)="onSubmit(addEmployeeForm, employeeForm)"
 >
-  <span></span>
-
   <div class="input-form">
     <div class="column">
       <mat-label><h3>FIRST NAME</h3></mat-label>
@@ -50,14 +48,15 @@
         <h3>ROLE</h3>
       </mat-label>
       <mat-form-field class="emp-form-field" appearance="fill">
-        <mat-select class="emp-form-field" formControlName="roleId">
+        <mat-select
+          class="emp-form-field"
+          placeholder="Role"
+          formControlName="roleId"
+        >
           <mat-option *ngFor="let role of roles" [value]="role.id">
             {{ role.name }}
           </mat-option>
         </mat-select>
-        <!--        <mat-error *ngIf="addEmployeeForm.get('roleId')?.hasError('required')">-->
-        <!--          Role is required!-->
-        <!--        </mat-error>-->
       </mat-form-field>
     </div>
 
@@ -79,26 +78,26 @@
 
       <mat-label><h3>PHONE NUMBER</h3></mat-label>
       <mat-form-field class="emp-form-field" appearance="fill">
-        <span matPrefix>+380 &nbsp;</span>
         <input
           matInput
           formControlName="phoneNumber"
           type="text"
-          placeholder="989898988"
+          placeholder="+380989898988"
         />
         <mat-icon matSuffix>mode_edit</mat-icon>
       </mat-form-field>
 
       <mat-label><h3>STATUS</h3></mat-label>
       <mat-form-field class="emp-form-field" appearance="fill">
-        <mat-select class="emp-form-field" formControlName="statusId">
+        <mat-select
+          class="emp-form-field"
+          placeholder="Status"
+          formControlName="statusId"
+        >
           <mat-option *ngFor="let status of statuses" [value]="status.id">
             {{ status.name }}
           </mat-option>
         </mat-select>
-        <!--        <mat-error *ngIf="addEmployeeForm.get('statusId')?.hasError('required')">-->
-        <!--          Status is required!-->
-        <!--        </mat-error>-->
       </mat-form-field>
     </div>
   </div>
@@ -113,6 +112,9 @@
       color="accent"
     >
       ADD
+    </button>
+    <button mat-raised-button class="add" (click)="back()" color="accent">
+      VIEW ALL EMPLOYEES
     </button>
   </div>
   <span></span>

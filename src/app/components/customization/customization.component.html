@@ -1,0 +1,151 @@
+<div class="head-custom">
+  <mat-label class="custom-label">
+    <h1 class="custom-h">Customization</h1>
+  </mat-label>
+</div>
+<div class="custom-table-div">
+  <table>
+    <tr>
+      <td>
+        <div>
+          <h3 class="h-name">Color</h3>
+          <div class="custom-row">
+            <mat-form-field appearance="fill">
+              <mat-select placeholder="Color" [(value)]="selectedColor">
+                <mat-option *ngFor="let color of colors" [value]="color">
+                  {{ color.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <button type="button" class="custom-buttons" (click)="addColor()">
+              ADD NEW
+            </button>
+          </div>
+          <div class="custom-row">
+            <mat-form-field class="size-amount" appearance="fill">
+              <input
+                matInput
+                placeholder="Value"
+                [(ngModel)]="selectedColor.name"
+              />
+            </mat-form-field>
+            <button type="button" class="custom-buttons" (click)="saveColor()">
+              SAVE
+            </button>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div>
+          <h3 class="h-name">Category</h3>
+          <div class="custom-row">
+            <mat-form-field appearance="fill">
+              <mat-select placeholder="Category" [(value)]="selectedCategory">
+                <mat-option
+                  *ngFor="let category of categories"
+                  [value]="category"
+                >
+                  {{ category.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <button
+              type="button"
+              class="custom-buttons"
+              (click)="addCategory()"
+            >
+              ADD NEW
+            </button>
+          </div>
+          <div class="custom-row">
+            <mat-form-field class="size-amount" appearance="fill">
+              <input
+                matInput
+                placeholder="Value"
+                [(ngModel)]="selectedCategory.name"
+              />
+            </mat-form-field>
+            <button
+              type="button"
+              class="custom-buttons"
+              (click)="saveCategory()"
+            >
+              SAVE
+            </button>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div>
+          <h3 class="h-name">Materials</h3>
+          <div class="custom-row">
+            <mat-form-field appearance="fill">
+              <mat-select placeholder="Material" [(value)]="selectedMaterial">
+                <mat-option
+                  *ngFor="let material of materials"
+                  [value]="material"
+                >
+                  {{ material.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <button
+              type="button"
+              class="custom-buttons"
+              (click)="addMaterial()"
+            >
+              ADD NEW
+            </button>
+          </div>
+          <div class="custom-row">
+            <mat-form-field class="size-amount" appearance="fill">
+              <input
+                matInput
+                placeholder="Value"
+                [(ngModel)]="selectedMaterial.name"
+              />
+            </mat-form-field>
+            <button
+              type="button"
+              class="custom-buttons"
+              (click)="saveMaterial()"
+            >
+              SAVE
+            </button>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div>
+          <h3 class="h-name">Sizes</h3>
+          <div class="custom-row">
+            <mat-form-field appearance="fill">
+              <mat-select placeholder="Size" [(value)]="selectedSize">
+                <mat-option *ngFor="let size of sizes" [value]="size">
+                  {{ size.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <button type="button" class="custom-buttons" (click)="addSize()">
+              ADD NEW
+            </button>
+          </div>
+          <div class="custom-row">
+            <mat-form-field class="size-amount" appearance="fill">
+              <input
+                matInput
+                placeholder="Value"
+                [(ngModel)]="selectedSize.name"
+              />
+            </mat-form-field>
+            <button type="button" class="custom-buttons" (click)="saveSize()">
+              SAVE
+            </button>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>

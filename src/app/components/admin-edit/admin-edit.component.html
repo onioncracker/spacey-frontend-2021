@@ -5,8 +5,6 @@
   #employeeForm="ngForm"
   (ngSubmit)="onSubmit(editEmployeeForm, employeeForm)"
 >
-  <span></span>
-
   <div class="input-form">
     <div class="column">
       <mat-label><h3>FIRST NAME</h3></mat-label>
@@ -41,24 +39,24 @@
         >
           Please write correct address!
         </mat-error>
-        <mat-error *ngIf="editEmployeeForm.get('email')?.hasError('required')">
-          Email is<strong>required!</strong>
-        </mat-error>
       </mat-form-field>
 
       <mat-label><h3>ROLE</h3></mat-label>
       <mat-form-field class="emp-form-field" appearance="fill">
-        <mat-select class="emp-form-field" formControlName="userRole">
-          <mat-option value="Courier">Courier</mat-option>
-          <mat-option value="PM">ProductModel Manager</mat-option>
-        </mat-select>
-        <mat-error
-          *ngIf="editEmployeeForm.get('userRole')?.hasError('required')"
+        <mat-select
+          class="emp-form-field"
+          placeholder="Role"
+          formControlName="roleId"
+          [compareWith]="compareRoles"
         >
-          Role is required!
-        </mat-error>
+          <mat-option *ngFor="let role of roles" [value]="role.id">
+            {{ role.name }}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
+    </div>
 
+    <div class="column">
       <mat-label><h3>LAST NAME</h3></mat-label>
       <mat-form-field class="emp-form-field" appearance="fill">
         <input
@@ -80,28 +78,27 @@
           matInput
           formControlName="phoneNumber"
           type="text"
-          placeholder="+8 800 555 35 35"
+          placeholder="+380989898988"
         />
-        <mat-error
-          *ngIf="editEmployeeForm.get('phoneNumber')?.hasError('required')"
-        >
-          Name is required!
-        </mat-error>
+        <mat-icon matSuffix>mode_edit</mat-icon>
       </mat-form-field>
 
       <mat-label><h3>STATUS</h3></mat-label>
       <mat-form-field class="emp-form-field" appearance="fill">
-        <mat-select class="emp-form-field" formControlName="status">
-          <mat-option value="Active">Active</mat-option>
-          <mat-option value="Terminated">Terminated</mat-option>
-          <mat-option value="Inactive">Inactive</mat-option>
+        <mat-select
+          class="emp-form-field"
+          placeholder="Status"
+          formControlName="statusId"
+          [compareWith]="compareStatuses"
+        >
+          <mat-option *ngFor="let status of statuses" [value]="status.id">
+            {{ status.name }}
+          </mat-option>
         </mat-select>
-        <mat-error *ngIf="editEmployeeForm.get('status')?.hasError('required')">
-          Status is required!
-        </mat-error>
       </mat-form-field>
     </div>
   </div>
+
   <div class="edit-employee">
     <button
       mat-raised-button
@@ -112,6 +109,9 @@
       color="accent"
     >
       EDIT
+    </button>
+    <button mat-raised-button class="edit" (click)="back()" color="accent">
+      VIEW ALL EMPLOYEES
     </button>
   </div>
   <span></span>

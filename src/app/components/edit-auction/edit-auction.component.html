@@ -1,0 +1,180 @@
+<div class="head-prod-edit">
+  <mat-label class="edit-label">
+    <h1 class="edit-h">EDIT AUCTION</h1>
+  </mat-label>
+</div>
+<form name="EditAuction" [formGroup]="editAuctionForm" (ngSubmit)="onSubmit()">
+  <table class="table-edit">
+    <div class="space">
+      <td colspan="3">
+        <h3 class="edit-h">Auction Name</h3>
+        <mat-form-field class="input-name" appearance="fill">
+          <input
+            matInput
+            type="text"
+            placeholder="AuctionName"
+            [formGroup]="editAuctionForm"
+            formControlName="auctionName"
+          />
+        </mat-form-field>
+      </td>
+    </div>
+    <div class="space" style="margin-top: 20px">
+      <td>
+        <h3 class="edit-h">Product</h3>
+        <mat-form-field class="input-field" appearance="fill">
+          <mat-select
+            [formGroup]="editAuctionForm"
+            formControlName="auctionProduct"
+            [compareWith]="compareObjects"
+            placeholder="Product"
+          >
+            <mat-option *ngFor="let product of products" [value]="product">
+              {{ product.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </td>
+      <td>
+        <h3 class="edit-h">Size</h3>
+        <mat-form-field class="input-field" appearance="fill">
+          <mat-select
+            [formGroup]="editAuctionForm"
+            [compareWith]="compareObjects"
+            formControlName="productSize"
+            placeholder="Size"
+          >
+            <mat-option *ngFor="let size of sizes" [value]="size">
+              {{ size.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </td>
+      <td>
+        <h3 class="edit-h">Amount</h3>
+        <mat-form-field class="input-field" appearance="fill">
+          <input
+            min="0"
+            matInput
+            [formGroup]="editAuctionForm"
+            formControlName="amount"
+            type="number"
+            placeholder="Amount"
+          />
+        </mat-form-field>
+      </td>
+      <td>
+        <h3 class="edit-h">Type</h3>
+        <mat-form-field class="input-field" appearance="fill">
+          <mat-select
+            [formGroup]="editAuctionForm"
+            formControlName="auctionType"
+            placeholder="Type"
+          >
+            <mat-option *ngFor="let type of types" [value]="type">
+              <div *ngIf="type === false">DECREASE</div>
+              <div *ngIf="type === true">INCREASE</div>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </td>
+    </div>
+    <div class="space">
+      <td>
+        <h3 class="edit-h">Start Price</h3>
+        <mat-form-field class="input-field" appearance="fill">
+          <input
+            min="0"
+            matInput
+            [formGroup]="editAuctionForm"
+            formControlName="startPrice"
+            type="number"
+            placeholder="StartPrice"
+          />
+        </mat-form-field>
+      </td>
+      <td>
+        <h3 class="edit-h">End Price</h3>
+        <mat-form-field class="input-field" appearance="fill">
+          <input
+            min="0"
+            matInput
+            [formGroup]="editAuctionForm"
+            formControlName="endPrice"
+            type="number"
+            placeholder="EndPrice"
+          />
+        </mat-form-field>
+      </td>
+      <td>
+        <h3 class="edit-h">Price Step</h3>
+        <mat-form-field class="input-field" appearance="fill">
+          <input
+            min="0"
+            matInput
+            [formGroup]="editAuctionForm"
+            formControlName="priceStep"
+            type="number"
+            placeholder="PriceStep"
+          />
+        </mat-form-field>
+      </td>
+      <td>
+        <h3 class="edit-h">Status</h3>
+        <mat-form-field class="input-field" appearance="fill">
+          <mat-select
+            [formGroup]="editAuctionForm"
+            formControlName="status"
+            placeholder="Status"
+          >
+            <mat-option *ngFor="let status of statuses" [value]="status">
+              {{ status }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </td>
+    </div>
+    <div class="space" style="margin-top: 20px">
+      <td>
+        <h3 class="edit-h">START TIME</h3>
+        <input
+          class="datetime"
+          formControlName="startTime"
+          type="datetime-local"
+          matInput
+        />
+      </td>
+      <td>
+        <h3 class="edit-h">END TIME</h3>
+        <input
+          class="datetime"
+          formControlName="endTime"
+          type="datetime-local"
+          matInput
+        />
+      </td>
+    </div>
+  </table>
+  <div class="wrapper">
+    <button
+      mat-raised-button
+      class="edit-btn btn-hover"
+      type="submit"
+      color="accent"
+      [disabled]="!editAuctionForm.valid"
+    >
+      SAVE CHANGES
+    </button>
+  </div>
+  <br />
+</form>
+<div class="wrapper">
+  <button
+    mat-raised-button
+    class="edit-btn delete-btn btn-hover"
+    color="accent"
+    (click)="deleteAuction()"
+  >
+    DELETE AUCTION
+  </button>
+</div>

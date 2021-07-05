@@ -1,0 +1,41 @@
+<mat-label class="main-label"><h1>RECOVER PASSWORD</h1></mat-label>
+
+<form class="form-class" (ngSubmit)="onSubmit()" [formGroup]="emailForm">
+  <span></span>
+  <div class="input-form">
+    <mat-label><h3>EMAIL</h3></mat-label>
+
+    <mat-form-field class="email-form-field" appearance="fill">
+      <mat-label>email</mat-label>
+      <input
+        type="email"
+        matInput
+        formControlName="email"
+        [errorStateMatcher]="errorMatcher"
+        placeholder="email@example.com"
+      />
+      <mat-error
+        *ngIf="
+          emailForm.get('email')?.hasError('email') &&
+          !emailForm.get('email')?.hasError('required')
+        "
+      >
+        Please write correct address
+      </mat-error>
+      <mat-error *ngIf="emailForm.get('email')?.hasError('required')">
+        Email is<strong>required!</strong>
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <button
+    mat-raised-button
+    class="submit-btn"
+    [disabled]="!emailForm.valid"
+    disabled
+    type="submit"
+    color="accent"
+  >
+    SEND ME LINK
+  </button>
+  <span></span>
+</form>

@@ -12,11 +12,33 @@
 }
 
 .manage-form {
-  width: 60%;
+  width: 80%;
 }
 
 .search-box {
   width: 100%;
+}
+.employees-toggle-filter {
+  width: 100%;
+  background-color: #ffff;
+  border: none;
+  color: #121212;
+  padding: 16px 32px;
+  text-align: left;
+  text-decoration: none;
+  text-transform: uppercase;
+  display: inline-block;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  line-height: 15px;
+  transition-duration: 0.2s;
+  cursor: pointer;
+}
+
+.employees-toggle-filter:hover {
+  background-color: #f8f8f8;
 }
 
 table {
@@ -30,7 +52,7 @@ table {
 }
 
 .add-btn {
-  width: 50%;
+  width: 30%;
   border-radius: 1px;
   margin-top: 3%;
   margin-bottom: 3%;
@@ -41,3 +63,4 @@ table {
   flex-direction: column;
   align-items: center;
 }
+

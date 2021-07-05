@@ -1,0 +1,21 @@
+<div>
+  <div class="input-div">
+    <label for="input-file" class="input-label">
+      <input type="file" id="input-file" (change)="fileChangeEvent($event)" />
+      Pick file
+    </label>
+  </div>
+  <div class="img-uploader-div">
+    <image-cropper
+      [imageChangedEvent]="imageChangedEvent"
+      [maintainAspectRatio]="true"
+      [aspectRatio]="255 / 318"
+      [resizeToWidth]="1000"
+      format="png"
+      (imageCropped)="imageCropped($event)"
+      (imageLoaded)="imageLoaded()"
+      (cropperReady)="cropperReady()"
+      (loadImageFailed)="loadImageFailed()"
+    ></image-cropper>
+  </div>
+</div>

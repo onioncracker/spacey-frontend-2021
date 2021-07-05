@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { AddProduct } from '../../models/add-product';
 import { Observable, Subscription } from 'rxjs';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { DialogMessageComponent } from '../../../components/dialog-message/dialog-message.component';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogService } from '../dialog/dialog.service';
+import { AddProduct } from '../../models/add-product';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +18,11 @@ export class AddProductService {
   private allCategoryUrl = `${environment.url}/api/v1/category/all`;
   private imgUrl = `${environment.url}/api/v1/images`;
 
-  constructor(private http: HttpClient, private dialog: MatDialog) {}
+  constructor(
+    private http: HttpClient,
+    private dialog: MatDialog,
+    private dialogService: DialogService
+  ) {}
 
   addNewProduct(addProductData: AddProduct): Observable<any> {
     console.log(this.httpOptions);
@@ -35,7 +39,7 @@ export class AddProductService {
     return this.http
       .post(`${this.imgUrl}/${id}`, formData)
       .subscribe((response) => {
-        this.openDialog('Product was added!');
+        this.dialogService.openMessage('Photo has been uploaded', 'Close');
       });
   }
 
@@ -51,15 +55,7 @@ export class AddProductService {
     return this.http.get(`${this.allSizesUrl}`);
   }
 
-  getAllCategory(): Observable<any> {
+  getAllCategories(): Observable<any> {
     return this.http.get(`${this.allCategoryUrl}`);
-  }
-
-  openDialog(title: string) {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.data = {
-      messageTitle: title,
-    };
-    this.dialog.open(DialogMessageComponent, dialogConfig);
   }
 }

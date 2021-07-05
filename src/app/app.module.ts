@@ -38,17 +38,14 @@ import { DeliveryComponent } from './components/delivery/delivery.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { DeliveriesComponent } from './components/deliveries/deliveries.component';
 import { DatePipe } from '@angular/common';
-import { MatRadioModule } from '@angular/material/radio';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { ConfirmRegistrationComponent } from './components/confirm-registration/confirm-registration.component';
 import { DialogMessageComponent } from './components/dialog-message/dialog-message.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HeaderComponent } from './components/header/header.component';
 import { MatSelectModule } from '@angular/material/select';
-import { MatSliderModule } from '@angular/material/slider';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDividerModule } from '@angular/material/divider';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { PersonalInformationComponent } from './components/personal-information/personal-information.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { NgxCaptchaModule } from 'ngx-captcha';
@@ -58,6 +55,37 @@ import { SortingComponent } from './components/sorting/sorting.component';
 import { ProductComponent } from './components/product/product.component';
 import { PillComponent } from './components/pill/pill.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { MatRadioModule } from '@angular/material/radio';
+import { EmployeeProfileComponent } from './components/employee-profile/employee-profile.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { ConfirmComponent } from './components/confirm/confirm.component';
+import { FilterEmployeeComponent } from './components/filter-employee/filter-employee.component';
+import { AddAuctionComponent } from './components/add-auction/add-auction.component';
+import { EditAuctionComponent } from './components/edit-auction/edit-auction.component';
+import { DpDatePickerModule } from 'ng2-date-picker';
+import { CustomizationComponent } from './components/customization/customization.component';
+import { DialogInputComponent } from './components/dialog-input/dialog-input.component';
+import {
+  NgxMatDatetimePickerModule,
+  NgxMatNativeDateModule,
+  NgxMatTimepickerModule,
+} from '@angular-material-components/datetime-picker';
+import { OrderHistoryComponent } from './components/order-history/order-history.component';
+import { OrderInHistoryComponent } from './components/order-in-history/order-in-history.component';
+import { AuctionCatalogComponent } from './components/auction-catalog/auction-catalog.component';
+import { AuctionComponent } from './components/auction/auction.component';
+import { PillAuctionComponent } from './components/pill-auction/pill-auction.component';
+import { AuctionDetailsComponent } from './components/auction-details/auction-details.component';
+import { ErrorPageComponent } from './components/error-page/error-page.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { RecoverPasswordComponent } from './components/recover-password/recover-password.component';
+import { ImageUploaderComponent } from './components/image-uploader/image-uploader/image-uploader.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { HomepageComponent } from './components/homepage/homepage.component';
+import { EmailForRecoverPassComponent } from './components/email-for-recover-pass/email-for-recover-pass.component';
+import { CreatePasswordComponent } from './components/create-password/create-password.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
+import { AdminProfileComponent } from './components/admin-profile/admin-profile.component';
 
 @NgModule({
   declarations: [
@@ -91,6 +119,28 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     PillComponent,
     PaginationComponent,
     PersonalInformationComponent,
+    EmployeeProfileComponent,
+    UserProfileComponent,
+    ConfirmComponent,
+    FilterEmployeeComponent,
+    AddAuctionComponent,
+    EditAuctionComponent,
+    OrderHistoryComponent,
+    OrderInHistoryComponent,
+    CustomizationComponent,
+    DialogInputComponent,
+    AuctionCatalogComponent,
+    AuctionComponent,
+    PillAuctionComponent,
+    AuctionDetailsComponent,
+    ErrorPageComponent,
+    ProfileComponent,
+    RecoverPasswordComponent,
+    HomepageComponent,
+    ImageUploaderComponent,
+    EmailForRecoverPassComponent,
+    CreatePasswordComponent,
+    AdminProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -125,6 +175,12 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     MatCheckboxModule,
     MatSelectModule,
     MatDividerModule,
+    MatSnackBarModule,
+    NgxMatDatetimePickerModule,
+    NgxMatTimepickerModule,
+    DpDatePickerModule,
+    ImageCropperModule,
+    NgxMatNativeDateModule,
   ],
   providers: [
     {

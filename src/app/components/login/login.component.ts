@@ -12,20 +12,9 @@ import { AuthService } from '../../store/service/auth/auth.service';
 import { Router } from '@angular/router';
 import { LoginModel } from '../../store/models/login.model';
 import { TokenStorageService } from '../../store/service/auth/token-storage.service';
-
-export class LoginErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(
-    control: FormControl | null,
-    form: FormGroupDirective | NgForm | null
-  ): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(
-      control &&
-      control.invalid &&
-      (control.dirty || control.touched || isSubmitted)
-    );
-  }
-}
+import { routeUrls } from '../../../environments/router-manager';
+import { DefaultErrorStateMatcher } from '../../store/service/DefaultErrorStateMatcher';
+import { DialogService } from '../../store/service/dialog/dialog.service';
 
 @Component({
   selector: 'app-login',
@@ -33,8 +22,8 @@ export class LoginErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
+  errorMatcher = new DefaultErrorStateMatcher();
   loginForm: FormGroup;
-  errorMatcher = new LoginErrorStateMatcher();
   hide = true;
   siteKey = '6LcVzFobAAAAAItOzCPLpCc8Xi83puwXPK3Njaab';
   public theme: 'light' | 'dark' = 'light';
@@ -43,9 +32,10 @@ export class LoginComponent {
   public type!: 'image' | 'audio';
 
   constructor(
+    private router: Router,
     private formBuilder: FormBuilder,
     private messageService: AuthService,
-    private router: Router,
+    private dialogService: DialogService,
     private storageService: TokenStorageService
   ) {
     this.loginForm = this.formBuilder.group({
@@ -72,27 +62,37 @@ export class LoginComponent {
       (response) => {
         const data = response.body;
         this.storageService.saveToken(data!.authToken);
-        this.router.navigate(['/']);
-        console.warn('logged in successfully');
-        console.log(this.storageService.getToken());
+        this.storageService.saveRole(data!.role);
+        this.router.navigateByUrl(routeUrls.profile);
       },
       (error) => {
         console.warn('LOGIN FAILED: ');
         switch (error.status) {
           case 404:
-            alert(
-              'Вказаний email не зареєстровано в базі. Перевірте введені дані та спробуйте ще раз'
+            this.dialogService.openMessage(
+              ' User with such email does not exist. Register to continue ',
+              ' Close '
             );
             break;
           case 403:
-            alert('Невірно вказаний пароль. спробуйте ще раз');
+            this.dialogService.openMessage(
+              ' Wrong password. Try again ',
+              ' Close '
+            );
+            break;
+          case 401:
+            this.dialogService.openMessage(
+              ' Either wrong email passed or it is not confirmed. Check your email and try again ',
+              ' Close '
+            );
             break;
           default:
             console.error('Unexpected server response: ' + error);
-            alert('Сталася помилка сервера. Спробуйте пізніше');
-          // this.router.navigate(['/main-page']);
+            this.dialogService.openMessage(
+              ' Something went wrong. Try again ',
+              ' Close '
+            );
         }
-
         this.loginForm.controls.email.enable();
         this.loginForm.controls.password.enable();
       }

@@ -1,4 +1,4 @@
-import { CategoryColorMaterials } from './category-color-materials';
+import { CategoryColorMaterialsModel } from './category-color-materials.model';
 import { Sizes } from './sizes';
 
 export class EditProduct {
@@ -7,23 +7,21 @@ export class EditProduct {
   productSex!: string;
   price!: number;
   discount!: number;
-  photo!: string;
   description!: string;
   isAvailable!: boolean;
-  category!: CategoryColorMaterials;
-  color!: CategoryColorMaterials;
-  materials!: CategoryColorMaterials[];
+  category!: CategoryColorMaterialsModel;
+  color!: CategoryColorMaterialsModel;
+  materials!: CategoryColorMaterialsModel[];
   sizes!: Sizes[];
   constructor(
     id: number,
     name: string,
-    category: CategoryColorMaterials,
-    color: CategoryColorMaterials,
-    materials: CategoryColorMaterials[],
+    category: CategoryColorMaterialsModel,
+    color: CategoryColorMaterialsModel,
+    materials: CategoryColorMaterialsModel[],
     sex: string,
     price: number,
     discount: number,
-    photo: string,
     description: string,
     isAvailable: boolean,
     sizes: Sizes[]
@@ -36,7 +34,6 @@ export class EditProduct {
     this.productSex = sex;
     this.price = price;
     this.discount = discount;
-    this.photo = photo;
     this.description = description;
     this.isAvailable = isAvailable;
     this.sizes = sizes;

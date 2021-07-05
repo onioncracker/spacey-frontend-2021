@@ -1,33 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import {
-  FormBuilder,
-  FormControl,
-  NgForm,
-  FormGroupDirective,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { User } from '../../store/models/user';
 import { AuthService } from '../../store/service/auth/auth.service';
-import { TokenStorageService } from '../../store/service/auth/token-storage.service';
 import { RegisterModel } from '../../store/models/register.model';
 import { routeUrls } from '../../../environments/router-manager';
-
-export class RegistrationErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(
-    control: FormControl | null,
-    form: FormGroupDirective | NgForm | null
-  ): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(
-      control &&
-      control.invalid &&
-      (control.dirty || control.touched || isSubmitted)
-    );
-  }
-}
+import { DefaultErrorStateMatcher } from '../../store/service/DefaultErrorStateMatcher';
+import { DialogService } from '../../store/service/dialog/dialog.service';
+import { validatorPatterns } from '../../../environments/validate-patterns';
 
 @Component({
   selector: 'app-register',
@@ -43,7 +24,8 @@ export class RegisterComponent {
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
-    private messageService: AuthService
+    private messageService: AuthService,
+    private dialogService: DialogService
   ) {
     this.registerForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -51,13 +33,13 @@ export class RegisterComponent {
         '',
         [
           Validators.required,
-          Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,30}'),
+          Validators.pattern(validatorPatterns.passwordPattern),
         ],
       ],
       name: ['', [Validators.required, Validators.maxLength(40)]],
       surname: ['', [Validators.required, Validators.maxLength(40)]],
     });
-    this.errorMatcher = new RegistrationErrorStateMatcher();
+    this.errorMatcher = new DefaultErrorStateMatcher();
   }
 
   onSubmit() {
@@ -78,19 +60,27 @@ export class RegisterComponent {
     this.registerForm.controls.surname.disable();
 
     this.messageService.register(registrationData).subscribe(
-      (response) => {
-        console.log('user registered successfully');
-        alert('Check your email to verify your account');
-        this.router.navigateByUrl(routeUrls.homepage);
+      () => {
+        this.dialogService.openMessage(
+          ' Check your email to verify your account ',
+          ' Close '
+        );
+        this.router.navigateByUrl(routeUrls.login);
       },
       (error) => {
         console.warn('REGISTRATION FAILED');
         if (error.status === 400) {
-          alert('Вказаний email вже зареєстровано в базі');
+          this.dialogService.openMessage(
+            ' This email is already registered',
+            ' Close '
+          );
           this.router.navigateByUrl(routeUrls.login);
         } else {
-          alert('Виникла помилка. Спробуйте ще раз');
-          console.warn(error);
+          this.dialogService.openMessage(
+            ' Something went wrong. Try again ',
+            ' Close '
+          );
+          console.error(error);
         }
 
         this.registerForm.controls.name.enable();

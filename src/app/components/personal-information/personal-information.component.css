@@ -46,17 +46,13 @@
   resize: none;
 }
 
-.mt {
-  margin-top: 25px;
+.ml {
+  margin-left: 8px;
 }
 
 .input-area-small {
-  background: #f8f8f8;
-  font-family: Spartan, sans-serif;
   padding: 10px 0 0 10px;
-  width: 152px;
-  border: 0;
-  outline: none;
+  width: 165px;
 }
 
 .apartment-building-info {

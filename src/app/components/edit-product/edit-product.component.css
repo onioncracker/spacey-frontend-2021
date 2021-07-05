@@ -1,12 +1,9 @@
-.head-prod-edit {
-  height: 70px;
+.head-upd-product {
+  text-align: center;
+  padding: 25px 0 25px 0;
   background: #f8f8f8;
-  display: flex;
-  justify-content: center;
-}
-
-.edit-label {
-  margin: 17px auto 17px;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 .edit-h {
@@ -25,10 +22,22 @@
   margin: 38px auto 8px;
 }
 
+.btn-hover:hover {
+  background: #4b4a4a;
+  border: 2px solid #4b4a4a;
+  box-sizing: border-box;
+}
+
 .delete-btn {
   background: #e6e6e6;
   color: #121212;
   margin: 0 auto 80px;
+}
+
+.save-btn {
+  border-radius: 1px;
+  height: 48px;
+  width: 230px;
 }
 
 .wrapper {

@@ -5,6 +5,9 @@ import { ActivatedRoute } from '@angular/router';
 import { CartService } from '../../store/service/cart.service';
 import { CompareService } from '../../store/service/comparison/compare.service';
 import { EditCartModel } from '../../store/models/edit-cart.model';
+import { SizeModel } from '../../store/models/size.model';
+import { TokenStorageService } from '../../store/service/auth/token-storage.service';
+import { DialogService } from '../../store/service/dialog/dialog.service';
 
 @Component({
   selector: 'app-product-details',
@@ -13,13 +16,17 @@ import { EditCartModel } from '../../store/models/edit-cart.model';
 })
 export class ProductDetailsComponent implements OnInit {
   product!: ProductModel;
-  choosedSize: string | undefined = 'S'; // TODO change string to id
+  chosenSize: number | undefined;
+  isUser = false;
+  isProductManager = false;
 
   constructor(
-    private route: ActivatedRoute,
+    private tokenStorageService: TokenStorageService,
     private productService: ProductService,
     private compareService: CompareService,
-    private cartService: CartService
+    private dialogService: DialogService,
+    private cartService: CartService,
+    private route: ActivatedRoute
   ) {}
 
   getProduct() {
@@ -29,30 +36,59 @@ export class ProductDetailsComponent implements OnInit {
     });
   }
 
+  chooseSize(size: SizeModel) {
+    this.chosenSize = size.id;
+  }
+
   addToCart() {
+    if (this.chosenSize == undefined) {
+      this.dialogService.openMessage(
+        ' Choose size of product to add ',
+        ' Close '
+      );
+      return;
+    }
     const productToAdd = {
       productId: this.product.id,
-      size: 1, // TODO change to choosedSize
+      sizeId: this.chosenSize,
       amount: 1,
     } as EditCartModel;
 
     if (this.cartService.isAuthorised()) {
-      this.cartService.addProductToCart(productToAdd).subscribe((response) => {
-        window.alert('product-details added to cart!');
+      this.cartService.addProductToCart(productToAdd).subscribe(() => {
+        this.chosenSize = undefined;
+        this.dialogService.openMessage(' Product added to your cart ', ' OK ');
       });
     } else {
-      this.cartService.checkProduct(productToAdd).subscribe((response) => {
+      this.cartService.checkProduct(productToAdd).subscribe(() => {
         this.cartService.addProductToUnauthorizedCart(productToAdd);
-        window.alert('product-details added to cart!');
+        this.dialogService.openMessage(
+          ' Product added to your cart ',
+          ' Close '
+        );
       });
     }
   }
 
-  addProductToCompare(product: ProductModel) {
+  addProductToCompare(product: ProductModel): void {
     this.compareService.addProductToCompare(product);
   }
 
+  getUserRole(): void {
+    const userRole = this.tokenStorageService.getRole();
+    switch (userRole) {
+      case null:
+      case 'USER':
+        this.isUser = true;
+        break;
+      case 'PRODUCT_MANAGER':
+        this.isProductManager = true;
+        break;
+    }
+  }
+
   ngOnInit() {
+    this.getUserRole();
     this.getProduct();
   }
 }

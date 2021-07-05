@@ -1,0 +1,52 @@
+.head-custom {
+  height: 70px;
+  background: #f8f8f8;
+  display: flex;
+  justify-content: center;
+}
+
+.custom-h {
+  margin: 17px auto 17px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.custom-row {
+  display: flex;
+  justify-content: center;
+}
+
+.custom-table-div {
+  display: flex;
+  justify-content: center;
+}
+
+.custom-buttons {
+  display: inline-block;
+  margin-right: 30px;
+  margin-left: 10px;
+  background: #121212;
+  width: 140px;
+  height: 52px;
+  border: 2px solid #121212;
+  box-sizing: border-box;
+  color: #ffff;
+  text-align: center;
+  align-items: center;
+  text-transform: uppercase;
+  transition-duration: 0.3s;
+  cursor: pointer;
+}
+
+.custom-buttons:hover {
+  background: #4b4a4a;
+  border: 2px solid #4b4a4a;
+  box-sizing: border-box;
+}
+
+.h-name {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin: 24px auto 24px;
+}
