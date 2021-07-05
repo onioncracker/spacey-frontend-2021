@@ -57,10 +57,7 @@ export class ProductDetailsComponent implements OnInit {
     if (this.cartService.isAuthorised()) {
       this.cartService.addProductToCart(productToAdd).subscribe(() => {
         this.chosenSize = undefined;
-        this.dialogService.openMessage(
-          ' Product added to your cart ',
-          ' OK '
-        );
+        this.dialogService.openMessage(' Product added to your cart ', ' OK ');
       });
     } else {
       this.cartService.checkProduct(productToAdd).subscribe(() => {
