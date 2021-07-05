@@ -3,8 +3,7 @@ import { environment } from '../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { ProductModel } from '../../models/product.model';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { DialogMessageComponent } from '../../../components/dialog-message/dialog-message.component';
+import { MatDialog } from '@angular/material/dialog';
 import { catchError } from 'rxjs/operators';
 import { DialogService } from '../dialog/dialog.service';
 
@@ -93,7 +92,7 @@ export class CompareService {
       .post(`${this.comparisonURL}/${productId}`, productId)
       .pipe(
         catchError((error) => {
-          this.openDialog(error.error.message);
+          this.dialogService.openMessage(error.error.message, 'Close');
           return of(null);
         })
       )
@@ -113,18 +112,5 @@ export class CompareService {
     } else {
       this.addProductToCompareSessionStorage(comparison);
     }
-  }
-
-  openDialog(title: string) {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.data = {
-      messageTitle: title,
-    };
-    this.dialog.open(DialogMessageComponent, dialogConfig);
-  }
-
-  handleError(error: any) {
-    console.error(error);
-    console.log(`${error.error.message}`);
   }
 }

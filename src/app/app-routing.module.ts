@@ -28,6 +28,7 @@ import { HomepageComponent } from './components/homepage/homepage.component';
 import { ImageUploaderComponent } from './components/image-uploader/image-uploader/image-uploader.component';
 import { EmailForRecoverPassComponent } from './components/email-for-recover-pass/email-for-recover-pass.component';
 import { RecoverPasswordComponent } from './components/recover-password/recover-password.component';
+import { CreatePasswordComponent } from './components/create-password/create-password.component';
 import { ErrorPageComponent } from './components/error-page/error-page.component';
 
 const routes: Routes = [
@@ -59,9 +60,9 @@ const routes: Routes = [
   { path: routeUrls.errorPage, component: ErrorPageComponent },
   { path: routeUrls.profile, component: ProfileComponent },
   { path: routeUrls.recoverPassword, component: RecoverPasswordComponent },
+  { path: routeUrls.createPassword, component: CreatePasswordComponent },
   { path: routeUrls.homepage, component: HomepageComponent },
   { path: routeUrls.imageUploader, component: ImageUploaderComponent },
-  { path: routeUrls.recoverPassword, component: RecoverPasswordComponent },
   { path: routeUrls.emailForRecover, component: EmailForRecoverPassComponent },
 ];
 

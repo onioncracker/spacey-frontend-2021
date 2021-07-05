@@ -3,13 +3,15 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AddEmployeeModel } from '../../models/AddEmployeeModel';
 import { EmployeeModel } from '../../models/employee.model';
+import { environment } from '../../../../environments/environment';
+import { endpointUrls } from '../../../../environments/endpoint-routes-manager';
 
 @Injectable({
   providedIn: 'root',
 })
 export class EmployeeService {
-  private hostURL = 'https://spacey-backend.herokuapp.com';
-  private employeeUrl = `${this.hostURL}/api/v1/employees`;
+  private hostURL = environment.url + endpointUrls.apiPrefix;
+  private employeeUrl = `${this.hostURL}/employees`;
   private searchEmployeeUrl = `${this.employeeUrl}/search`;
   constructor(private http: HttpClient) {}
 

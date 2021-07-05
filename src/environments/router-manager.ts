@@ -28,6 +28,7 @@ export const routeUrls = {
   profile: 'profile',
   customization: 'customization',
   errorPage: 'error-page',
+  createPassword: 'create-password',
   recoverPassword: 'recover-password',
   imageUploader: 'image-uploader',
   emailForRecover: 'email-password-recover',
