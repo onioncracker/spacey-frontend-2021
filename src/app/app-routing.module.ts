@@ -17,7 +17,6 @@ import { DeliveryComponent } from './components/delivery/delivery.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { ConfirmRegistrationComponent } from './components/confirm-registration/confirm-registration.component';
 import { ProductCatalogComponent } from './components/product-catalog/product-catalog.component';
-import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { EditAuctionComponent } from './components/edit-auction/edit-auction.component';
 import { OrderHistoryComponent } from './components/order-history/order-history.component';
 import { OrderInHistoryComponent } from './components/order-in-history/order-in-history.component';
@@ -25,12 +24,11 @@ import { CustomizationComponent } from './components/customization/customization
 import { AuctionCatalogComponent } from './components/auction-catalog/auction-catalog.component';
 import { AuctionDetailsComponent } from './components/auction-details/auction-details.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { CreatePassword } from './store/models/create-password.model';
-import { RecoverPassword } from './store/models/recover-password.model';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { ImageUploaderComponent } from './components/image-uploader/image-uploader/image-uploader.component';
 import { EmailForRecoverPassComponent } from './components/email-for-recover-pass/email-for-recover-pass.component';
 import { RecoverPasswordComponent } from './components/recover-password/recover-password.component';
+import { CreatePasswordComponent } from './components/create-password/create-password.component';
 import { ErrorPageComponent } from './components/error-page/error-page.component';
 
 const routes: Routes = [
@@ -56,18 +54,16 @@ const routes: Routes = [
     path: routeUrls.confirmRegistration,
     component: ConfirmRegistrationComponent,
   },
-  { path: routeUrls.userProfile, component: UserProfileComponent },
   { path: routeUrls.orderHistory, component: OrderHistoryComponent },
   { path: routeUrls.orderInHistory, component: OrderInHistoryComponent },
   { path: routeUrls.customization, component: CustomizationComponent },
   { path: routeUrls.errorPage, component: ErrorPageComponent },
   { path: routeUrls.profile, component: ProfileComponent },
   { path: routeUrls.recoverPassword, component: RecoverPasswordComponent },
+  { path: routeUrls.createPassword, component: CreatePasswordComponent },
   { path: routeUrls.homepage, component: HomepageComponent },
   { path: routeUrls.imageUploader, component: ImageUploaderComponent },
-  { path: routeUrls.recoverPassword, component: RecoverPasswordComponent },
   { path: routeUrls.emailForRecover, component: EmailForRecoverPassComponent },
-  { path: routeUrls.createPassword, component: CreatePassword },
 ];
 
 @NgModule({

@@ -13,6 +13,7 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { CreatePassword } from '../../store/models/create-password.model';
 import { routeUrls } from '../../../environments/router-manager';
 import { Subscription } from 'rxjs';
+import { DialogService } from '../../store/service/dialog/dialog.service';
 
 export class CustomErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -31,7 +32,7 @@ export class CustomErrorStateMatcher implements ErrorStateMatcher {
 @Component({
   selector: 'app-create-password',
   templateUrl: './create-password.component.html',
-  styleUrls: ['./create-password.component.css'],
+  styleUrls: ['./create-password. component.css'],
 })
 export class CreatePasswordComponent implements OnInit, OnDestroy {
   errorMatcher = new CustomErrorStateMatcher();
@@ -42,6 +43,7 @@ export class CreatePasswordComponent implements OnInit, OnDestroy {
   hideRepeat = true;
 
   constructor(
+    private dialogService: DialogService,
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private route: ActivatedRoute,
@@ -56,7 +58,6 @@ export class CreatePasswordComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.routeSub = this.route.queryParams.subscribe(
       (params) => {
-        console.log(params['token']);
         this.token = params['token'];
       },
       (error) => {
@@ -76,10 +77,28 @@ export class CreatePasswordComponent implements OnInit, OnDestroy {
     } as CreatePassword;
     this.authService.createPassword(this.token, recoverData).subscribe(
       () => {
-        console.log('password created successfully');
+        this.dialogService.openMessage(
+          ' Password created successfully ',
+          ' Close '
+        );
         this.router.navigateByUrl(routeUrls.profile);
       },
       (error) => {
+        switch (error.status) {
+          case 404:
+            this.dialogService.openMessage(
+              ' User not found. Try again ',
+              ' Close '
+            );
+            break;
+          default:
+            this.dialogService.openMessage(
+              ' Something went wrong. Try again ',
+              ' Close '
+            );
+            console.error(error);
+            break;
+        }
         console.log(error);
       }
     );

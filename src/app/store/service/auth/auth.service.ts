@@ -22,6 +22,7 @@ export class AuthService {
   private resendConfirmURL = this.hostURL + '/resend_registration_token';
   private recoverPasswordURL = this.hostURL + '/reset-password-save';
   private emailForRecoverURL = this.hostURL + '/reset-password';
+  private createPasswordURL = this.hostURL + '/create-password-save';
 
   private httpOptions = { observe: 'response' as const };
 
@@ -97,7 +98,7 @@ export class AuthService {
     recoverData: RecoverPassword
   ): Observable<HttpResponse<any>> {
     return this.http.post(
-      this.recoverPasswordURL + '?token=' + token,
+      this.createPasswordURL + '?token=' + token,
       recoverData,
       this.httpOptions
     );
