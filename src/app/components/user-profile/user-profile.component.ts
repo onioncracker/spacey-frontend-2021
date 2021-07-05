@@ -16,6 +16,7 @@ import { Router } from '@angular/router';
 import { routeUrls } from '../../../environments/router-manager';
 import { ChangePassword } from '../../store/models/change-password.model';
 import { DialogService } from '../../store/service/dialog/dialog.service';
+import { validatorPatterns } from '../../../environments/validate-patterns';
 
 export class UserProfileErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -69,21 +70,21 @@ export class UserProfileComponent implements OnInit {
         '',
         [
           Validators.required,
-          Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,30}'),
+          Validators.pattern(validatorPatterns.passwordPattern),
         ],
       ],
       passwordNew: [
         '',
         [
           Validators.required,
-          Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,30}'),
+          Validators.pattern(validatorPatterns.passwordPattern),
         ],
       ],
       passwordRepeat: [
         '',
         [
           Validators.required,
-          Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,30}'),
+          Validators.pattern(validatorPatterns.passwordPattern),
         ],
       ],
     });
