@@ -81,21 +81,17 @@ export class CheckoutComponent implements OnInit {
       this.dialogService.confirmed().subscribe((confirmed) => {
         if (confirmed) {
           if (this.isUserLogin) {
-            this.checkoutService.makeOrderAuthorized(this.order).subscribe(
-              () => {
-                this.dialogService.openMessage(
-                  'Thanks for purchase!',
-                  'Close'
-                );
+            this.checkoutService
+              .makeOrderAuthorized(this.order)
+              .subscribe(() => {
+                this.dialogService.openMessage('Thanks for purchase!', 'Close');
                 this.navigateToMainPage();
               });
           } else {
-            this.checkoutService.makeOrderAnonymous(this.order).subscribe(
-              () => {
-                this.dialogService.openMessage(
-                  'Thanks for purchase!',
-                  'Close'
-                );
+            this.checkoutService
+              .makeOrderAnonymous(this.order)
+              .subscribe(() => {
+                this.dialogService.openMessage('Thanks for purchase!', 'Close');
                 this.navigateToMainPage();
               });
           }
