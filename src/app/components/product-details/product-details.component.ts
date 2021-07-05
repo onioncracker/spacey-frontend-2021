@@ -7,6 +7,7 @@ import { CompareService } from '../../store/service/comparison/compare.service';
 import { EditCartModel } from '../../store/models/edit-cart.model';
 import { SizeModel } from '../../store/models/size.model';
 import { TokenStorageService } from '../../store/service/auth/token-storage.service';
+import {DialogService} from "../../store/service/dialog/dialog.service";
 
 @Component({
   selector: 'app-product-details',
@@ -20,11 +21,12 @@ export class ProductDetailsComponent implements OnInit {
   isProductManager = false;
 
   constructor(
-    private route: ActivatedRoute,
     private tokenStorageService: TokenStorageService,
     private productService: ProductService,
     private compareService: CompareService,
-    private cartService: CartService
+    private dialogService: DialogService,
+    private cartService: CartService,
+    private route: ActivatedRoute
   ) {}
 
   getProduct() {
@@ -39,6 +41,13 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   addToCart() {
+    if (this.chosenSize == undefined) {
+      this.dialogService.openMessage(
+        ' Choose size of product to add ',
+        ' Close '
+      );
+      return;
+    }
     const productToAdd = {
       productId: this.product.id,
       sizeId: this.chosenSize,
@@ -46,13 +55,21 @@ export class ProductDetailsComponent implements OnInit {
     } as EditCartModel;
 
     if (this.cartService.isAuthorised()) {
-      this.cartService.addProductToCart(productToAdd).subscribe((response) => {
-        window.alert('product added to cart!');
+      this.cartService.addProductToCart(productToAdd).subscribe(
+        () => {
+        this.dialogService.openMessage(
+          ' Product added to your cart ',
+          ' Close '
+        );
       });
     } else {
-      this.cartService.checkProduct(productToAdd).subscribe((response) => {
+      this.cartService.checkProduct(productToAdd).subscribe(
+        () => {
         this.cartService.addProductToUnauthorizedCart(productToAdd);
-        window.alert('product added to cart!');
+          this.dialogService.openMessage(
+            ' Product added to your cart ',
+            ' Close '
+          );
       });
     }
   }

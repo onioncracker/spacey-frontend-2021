@@ -5,6 +5,7 @@ import { ProductForCartModel } from '../../store/models/product-for-cart.model';
 import { EditCartModel } from '../../store/models/edit-cart.model';
 import { routeUrls } from '../../../environments/router-manager';
 import { HeaderTitleService } from '../../store/service/header/header-title.service';
+import {DialogService} from "../../store/service/dialog/dialog.service";
 
 @Component({
   selector: 'app-shopping-cart',
@@ -19,6 +20,7 @@ export class ShoppingCartComponent implements OnInit {
   constructor(
     private headerTitleService: HeaderTitleService,
     private route: ActivatedRoute,
+    private dialogService: DialogService,
     private router: Router,
     private cartService: CartService
   ) {}
@@ -30,11 +32,19 @@ export class ShoppingCartComponent implements OnInit {
 
   getProducts(): void {
     console.log('loading products');
-    this.cartService.getProducts().subscribe((response) => {
-      this.products = response.body!;
-      this.isProductsLoaded = true;
-      console.log('Cart: data loaded');
-    });
+    this.cartService.getProducts().subscribe(
+      (response) => {
+        this.products = response.body!;
+        this.isProductsLoaded = true;
+        console.log('Cart: data loaded');
+      }, (error) => {
+        console.error(error);
+        console.log(error);
+          this.dialogService.openMessage(
+        'Something went wrong. Reload page or log in again',
+          ' Close '
+        );
+      });
     this.checkoutAvailable = this.cartService.checkAvailability(this.products);
   }
 
@@ -46,7 +56,8 @@ export class ShoppingCartComponent implements OnInit {
     } as EditCartModel;
 
     if (this.cartService.isAuthorised()) {
-      this.cartService.addProductToCart(productToAdd).subscribe((response) => {
+      this.cartService.addProductToCart(productToAdd).subscribe(
+        () => {
         this.getProducts();
       });
     } else {
