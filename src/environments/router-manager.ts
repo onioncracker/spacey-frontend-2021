@@ -1,7 +1,8 @@
 export const routeUrls = {
   login: 'login',
   register: 'register',
-  homepage: 'product-catalog',
+  homepage: 'homepage',
+  popular: 'popular',
   checkout: 'checkout',
   auctions: 'auctions',
   products: 'products',
@@ -27,5 +28,6 @@ export const routeUrls = {
   customization: 'customization',
   errorPage: 'error-page',
   recoverPassword: 'recover-password',
+  imageUploader: 'image-uploader',
   emailForRecover: 'email-password-recover',
 };

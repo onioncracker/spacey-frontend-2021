@@ -1,12 +1,9 @@
-.head-prod-edit {
-  height: 70px;
+.head-upd-product {
+  text-align: center;
+  padding: 25px 0 25px 0;
   background: #f8f8f8;
-  display: flex;
-  justify-content: center;
-}
-
-.edit-label {
-  margin: 17px auto 17px;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 .edit-h {

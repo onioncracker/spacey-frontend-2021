@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import CheckoutService from '../../store/service/checkout/checkout.service';
 import { CheckoutOrder } from '../../store/models/checkout-order';
 import { CheckoutDto } from '../../store/models/checkout';
@@ -17,17 +17,25 @@ import { ProductForCartModel } from '../../store/models/product-for-cart.model';
   styleUrls: ['./checkout.component.css'],
 })
 export class CheckoutComponent implements OnInit {
-  order!: CheckoutOrder;
   products!: CheckoutItem[];
+  order!: CheckoutOrder;
   isUserLogin = false;
   isFormValid = false;
+  edit = false;
   options = {
     title: 'Do checkout?',
     message: 'Order will be delivered soon',
     cancelText: 'CANCEL',
     confirmText: 'YES',
   };
-  edit = false;
+
+  constructor(
+    private checkoutService: CheckoutService,
+    private authService: AuthService,
+    private dialogService: DialogService,
+    private snackBar: MatSnackBar,
+    private cartService: CartService
+  ) {}
 
   getPersonalInformation(personalInformationForm: FormGroup) {
     let personalInformation = personalInformationForm.value;
@@ -47,14 +55,12 @@ export class CheckoutComponent implements OnInit {
   }
 
   getDelivery(delivery: Delivery) {
-    console.log(delivery);
     this.order.dateDelivery = delivery.date;
     this.order.noContact = delivery.noContact;
     this.order.doNotDisturb = delivery.doNotDisturb;
   }
 
   onCheckout() {
-    console.log(this.order);
     if (!this.isFormValid) {
       this.snackBar.open(
         'Please, specify all required personal information',
@@ -71,9 +77,7 @@ export class CheckoutComponent implements OnInit {
       this.dialogService.openConfirm(this.options);
       this.dialogService.confirmed().subscribe((confirmed) => {
         if (confirmed) {
-          this.checkoutService
-            .makeOrder(this.order)
-            .subscribe((res) => alert(res));
+          this.checkoutService.makeOrderAuthorized(this.order).subscribe();
         }
       });
     }
@@ -82,14 +86,6 @@ export class CheckoutComponent implements OnInit {
   getProducts() {
     return JSON.parse(<string>sessionStorage.getItem('shoppingCart'));
   }
-
-  constructor(
-    private checkoutService: CheckoutService,
-    private authService: AuthService,
-    private dialogService: DialogService,
-    private snackBar: MatSnackBar,
-    private cartService: CartService
-  ) {}
 
   ngOnInit(): void {
     this.isUserLogin = this.authService.isAuthorised();
@@ -102,7 +98,6 @@ export class CheckoutComponent implements OnInit {
         this.order.products = data.body;
         // @ts-ignore
         this.products = data.body;
-        console.log('products', this.products);
         // @ts-ignore
         this.countPriceForProduct(this.products);
         // @ts-ignore
@@ -113,20 +108,16 @@ export class CheckoutComponent implements OnInit {
       this.checkoutService.getCheckout().subscribe((checkout: CheckoutDto) => {
         this.order = new CheckoutOrder(checkout);
         this.products = checkout.products;
-        console.log(this.products);
       });
     }
   }
 
   countTotalPrice(products: ProductForCartModel[]): number {
-    return products.reduce(
-      (sum, { overallPrice, amount }) => sum + overallPrice,
-      0
-    );
+    return products.reduce((sum, { overallPrice }) => sum + overallPrice, 0);
   }
 
   countPriceForProduct(products: ProductForCartModel[]): void {
-    products.forEach(function (item) {
+    products.forEach((item) => {
       item.overallPrice = item.amount * item.overallPrice;
     });
   }
