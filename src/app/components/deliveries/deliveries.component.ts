@@ -18,7 +18,8 @@ export class DeliveriesComponent implements OnInit {
   displayedColumns: string[] = [
     'orderId',
     'dateTime',
-    'address',
+    'city',
+    'street',
     'phoneNumber',
     'status',
     'actions',
