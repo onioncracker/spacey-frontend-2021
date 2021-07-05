@@ -32,7 +32,7 @@ export class CustomErrorStateMatcher implements ErrorStateMatcher {
 @Component({
   selector: 'app-create-password',
   templateUrl: './create-password.component.html',
-  styleUrls: ['./create-password. component.css'],
+  styleUrls: ['./create-password.component.css'],
 })
 export class CreatePasswordComponent implements OnInit, OnDestroy {
   errorMatcher = new CustomErrorStateMatcher();
