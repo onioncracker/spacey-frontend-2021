@@ -23,8 +23,24 @@ export class OrderService {
     }
   }
 
+  findAllOrdersForCustomer(date: string): Observable<Order[]> {
+    if (date == null) {
+      return this.http.get<Order[]>(`${this.ordersUrl}/order-history/orders`);
+    } else {
+      return this.http.get<Order[]>(`${this.ordersUrl}/order-history/orders`, {
+        params: new HttpParams().set('date', date),
+      });
+    }
+  }
+
   findOrderById(orderId: number): Observable<OrderDetails> {
     return this.http.get<OrderDetails>(`${this.ordersUrl}/orders/${orderId}`);
+  }
+
+  findOrderByIdForCustomer(orderId: number): Observable<OrderDetails> {
+    return this.http.get<OrderDetails>(
+      `${this.ordersUrl}/order-history/${orderId}`
+    );
   }
 
   updateOrderStatusConfirm(orderId: number): Observable<number> {

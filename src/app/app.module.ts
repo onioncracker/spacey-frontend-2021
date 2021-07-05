@@ -44,6 +44,7 @@ import { DialogMessageComponent } from './components/dialog-message/dialog-messa
 import { MatDialogModule } from '@angular/material/dialog';
 import { HeaderComponent } from './components/header/header.component';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSliderModule } from '@angular/material/slider';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDividerModule } from '@angular/material/divider';
 import { PersonalInformationComponent } from './components/personal-information/personal-information.component';
@@ -69,6 +70,8 @@ import {
   NgxMatNativeDateModule,
   NgxMatTimepickerModule,
 } from '@angular-material-components/datetime-picker';
+import { OrderHistoryComponent } from './components/order-history/order-history.component';
+import { OrderInHistoryComponent } from './components/order-in-history/order-in-history.component';
 import { AuctionCatalogComponent } from './components/auction-catalog/auction-catalog.component';
 import { AuctionComponent } from './components/auction/auction.component';
 import { PillAuctionComponent } from './components/pill-auction/pill-auction.component';
@@ -119,6 +122,8 @@ import { EmailForRecoverPassComponent } from './components/email-for-recover-pas
     ConfirmComponent,
     AddAuctionComponent,
     EditAuctionComponent,
+    OrderHistoryComponent,
+    OrderInHistoryComponent,
     CustomizationComponent,
     DialogInputComponent,
     AuctionCatalogComponent,
