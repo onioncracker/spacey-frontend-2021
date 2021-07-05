@@ -3,7 +3,7 @@
     <h1 class="custom-h">Customization</h1>
   </mat-label>
 </div>
-<div class="custom-table">
+<div class="custom-table-div">
   <table>
     <tr>
       <td>
@@ -17,20 +17,9 @@
                 </mat-option>
               </mat-select>
             </mat-form-field>
-          </div>
-          <div>
-            <div class="wrapper">
-              <button
-                type="button"
-                class="custom-buttons"
-                (click)="deleteColor()"
-              >
-                DELETE
-              </button>
-              <button type="button" class="custom-buttons" (click)="addColor()">
-                ADD NEW
-              </button>
-            </div>
+            <button type="button" class="custom-buttons" (click)="addColor()">
+              ADD NEW
+            </button>
           </div>
           <div class="custom-row">
             <mat-form-field class="size-amount" appearance="fill">
@@ -40,8 +29,6 @@
                 [(ngModel)]="selectedColor.name"
               />
             </mat-form-field>
-          </div>
-          <div class="wrapper">
             <button type="button" class="custom-buttons" (click)="saveColor()">
               SAVE
             </button>
@@ -62,24 +49,13 @@
                 </mat-option>
               </mat-select>
             </mat-form-field>
-          </div>
-          <div>
-            <div class="wrapper">
-              <button
-                type="button"
-                class="custom-buttons"
-                (click)="deleteCategory()"
-              >
-                DELETE
-              </button>
-              <button
-                type="button"
-                class="custom-buttons"
-                (click)="addCategory()"
-              >
-                ADD NEW
-              </button>
-            </div>
+            <button
+              type="button"
+              class="custom-buttons"
+              (click)="addCategory()"
+            >
+              ADD NEW
+            </button>
           </div>
           <div class="custom-row">
             <mat-form-field class="size-amount" appearance="fill">
@@ -89,8 +65,6 @@
                 [(ngModel)]="selectedCategory.name"
               />
             </mat-form-field>
-          </div>
-          <div class="wrapper">
             <button
               type="button"
               class="custom-buttons"
@@ -117,24 +91,13 @@
                 </mat-option>
               </mat-select>
             </mat-form-field>
-          </div>
-          <div>
-            <div class="wrapper">
-              <button
-                type="button"
-                class="custom-buttons"
-                (click)="deleteMaterial()"
-              >
-                DELETE
-              </button>
-              <button
-                type="button"
-                class="custom-buttons"
-                (click)="addMaterial()"
-              >
-                ADD NEW
-              </button>
-            </div>
+            <button
+              type="button"
+              class="custom-buttons"
+              (click)="addMaterial()"
+            >
+              ADD NEW
+            </button>
           </div>
           <div class="custom-row">
             <mat-form-field class="size-amount" appearance="fill">
@@ -144,8 +107,6 @@
                 [(ngModel)]="selectedMaterial.name"
               />
             </mat-form-field>
-          </div>
-          <div class="wrapper">
             <button
               type="button"
               class="custom-buttons"
@@ -167,20 +128,9 @@
                 </mat-option>
               </mat-select>
             </mat-form-field>
-          </div>
-          <div>
-            <div class="wrapper">
-              <button
-                type="button"
-                class="custom-buttons"
-                (click)="deleteSize()"
-              >
-                DELETE
-              </button>
-              <button type="button" class="custom-buttons" (click)="addSize()">
-                ADD NEW
-              </button>
-            </div>
+            <button type="button" class="custom-buttons" (click)="addSize()">
+              ADD NEW
+            </button>
           </div>
           <div class="custom-row">
             <mat-form-field class="size-amount" appearance="fill">
@@ -190,8 +140,6 @@
                 [(ngModel)]="selectedSize.name"
               />
             </mat-form-field>
-          </div>
-          <div class="wrapper">
             <button type="button" class="custom-buttons" (click)="saveSize()">
               SAVE
             </button>

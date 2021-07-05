@@ -16,7 +16,7 @@
   justify-content: center;
 }
 
-.custom-table {
+.custom-table-div {
   display: flex;
   justify-content: center;
 }
@@ -24,9 +24,10 @@
 .custom-buttons {
   display: inline-block;
   margin-right: 30px;
+  margin-left: 10px;
   background: #121212;
   width: 140px;
-  height: 48px;
+  height: 52px;
   border: 2px solid #121212;
   box-sizing: border-box;
   color: #ffff;
@@ -48,10 +49,4 @@
   text-transform: uppercase;
   font-weight: bold;
   margin: 24px auto 24px;
-}
-
-.wrapper {
-  display: flex;
-  justify-content: center;
-  margin: 0 auto 24px;
 }
