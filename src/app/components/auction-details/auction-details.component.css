@@ -115,9 +115,13 @@
   text-transform: uppercase;
 }
 
+.input-bid {
+  display: block;
+  width: 522px;
+}
+
 .purchase-button {
-  display: inline-block;
-  margin-right: 30px;
+  display: block;
   background: #121212;
   width: 156px;
   height: 48px;

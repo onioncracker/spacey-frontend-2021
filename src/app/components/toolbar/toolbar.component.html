@@ -17,13 +17,28 @@
   >
     Men
   </button>
-  <button mat-flat-button color="primary" (click)="routeToAddProduct()" *ngIf="isProductManager">
+  <button
+    mat-flat-button
+    color="primary"
+    (click)="routeToAddProduct()"
+    *ngIf="isProductManager"
+  >
     Add Product
   </button>
-  <button mat-flat-button color="primary" (click)="routeToAddAuction()" *ngIf="isProductManager">
+  <button
+    mat-flat-button
+    color="primary"
+    (click)="routeToAddAuction()"
+    *ngIf="isProductManager"
+  >
     Add Auction
   </button>
-  <button mat-flat-button color="primary" (click)="routeToCourierOrders()" *ngIf="isCourier">
+  <button
+    mat-flat-button
+    color="primary"
+    (click)="routeToCourierOrders()"
+    *ngIf="isCourier"
+  >
     My Orders
   </button>
   <button
@@ -34,7 +49,12 @@
   >
     Comparison
   </button>
-  <button mat-flat-button color="primary" (click)="routeToAuctions()" *ngIf="isAuthorizedUser || isProductManager">
+  <button
+    mat-flat-button
+    color="primary"
+    (click)="routeToAuctions()"
+    *ngIf="isAuthorizedUser || isProductManager"
+  >
     Auctions
   </button>
   <span class="gap"></span>
